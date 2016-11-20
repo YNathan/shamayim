@@ -1,0 +1,72 @@
+<md-button class="menu" ng-click="toggleLeft()">
+    <md-icon md-svg-icon="menu"></md-icon>
+</md-button>
+</br></br></br></br>
+
+<div flex="66">
+    <table class="rwd-table">
+        <h1>Your Groups Information</h1>
+        <tr>
+            <th>Group Name</th>
+            <th>Owner Name</th>
+                    </tr>
+        <tr ng-repeat="x in groups">
+            <td>{{ x.group_name }}</td>
+            <td ng-click="getOwnerGroup(x.group_owner_name)">{{ x.group_owner_name }}</td>
+            <td>
+                <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">pay</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container" layout="row" flex>
+
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <br layout-margin="" align="center">
+        <md-button class="account_circle" ng-click="goToUserInformation()">
+            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+            <div>{{userName}} Information</div>
+        </md-button>
+        </br>
+        <md-button class="group" ng-click="goToGroups()">
+            <md-icon md-svg-icon="group"></md-icon>
+            <div> Manage Groups</div>
+        </md-button>
+        </br>
+        <md-button class="house" ng-click="goToHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>house</div>
+        </md-button>
+        </br>
+        <md-button class="houses" ng-click="goToHouses()" >
+            <md-icon md-svg-icon="home" ></md-icon> <div>  Manage houses </div>
+        </md-button>
+        </br>
+        <md-button class="NewHouse" ng-click="goToNewHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>New House</div>
+        </md-button>
+        </br>
+        <md-button class="attach_money" ng-click="goToMain()">
+            <md-icon md-svg-icon="attach_money"></md-icon>
+            <div>Bank Manager</div>
+        </md-button>
+        </br>
+
+        <md-button class="copyright" ng-click="goToCopyright()">
+            <md-icon md-svg-icon="copyright"></md-icon>
+            <div>copyright</div>
+        </md-button>
+        </br>
+
+
+        </md-content>
+
+
+</div>

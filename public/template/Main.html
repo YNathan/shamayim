@@ -1,0 +1,128 @@
+<md-button class="menu" ng-click="toggleLeft()">
+    <md-icon md-svg-icon="menu"></md-icon>
+</md-button>
+<div layout="column" layout-sm="column" flex>
+    <div>
+        <center><label class="myFont">Wellcom To Your Account</label></center>
+        <center>
+            <div class="myFont">{{message}}</div>
+        </center>
+    </div>
+</div>
+<div layout="row" layout-sm="column" flex>
+    <form ng-submit="submitGroup()">
+        <label class="myFont">Select a Group</label>
+        <md-input-container>
+            <md-select placeholder="Assign to Group" ng-model="userGroupsName.selectedOption">
+                <md-option ng-value="groupsName" ng-repeat="groupsName in userGroupsName.availableOptions">
+                    {{groupsName.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </form>
+
+</div>
+
+
+<div layout="row" layout-sm="column">
+    <div flex="5"></div>
+    <div flex>
+        <form ng-submit="submit()">
+
+            <label class="myFont">choose a debter: </label>
+
+            <!--<select class="textar" name="mySelect" id="mySelect"-->
+            <!--ng-options="option.name for option in data.availableOptions track by option.id"-->
+            <!--ng-model="data.selectedOption" ng-change="updateName()" style="background-color:#E6E6E6"></select>-->
+
+            <md-input-container>
+                <md-select placeholder="Assign to user" ng-model="data.selectedOption">
+                    <md-option ng-value="user" ng-repeat="user in data.availableOptions">{{user.name}}</md-option>
+                </md-select>
+            </md-input-container>
+
+
+            </br>
+            <label class="myFont">choice an amount : </label>
+
+            <input type="number" style="" ng-model="Amount" name="text" class="textar" placeholder="סכום"
+                   ng-change="updateBeforeInput()" required/> </br>
+            <label class="myFont">{{alertBeforeInput}}</label>
+            </br>
+            <md-button id="submit" ng-click="submit()"/>
+            Yes I Confirm</md-button></br>
+        </form>
+    </div>
+    <div flex>
+        <table class="rwd-table">
+            <h1>Debts Table</h1>
+            <tr>
+                <th>Debter</th>
+                <th>Entitled</th>
+                <th>Amount</th>
+            </tr>
+            <tr ng-repeat="x in debts">
+                <td>{{ x.Debter }}</td>
+                <td>{{ x.Entitled }}</td>
+                <td>{{ x.Amount }}</td>
+                <td>
+                    <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">pay</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container" layout="row" flex>
+
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <br layout-margin="" align="center">
+        <md-button class="account_circle" ng-click="goToUserInformation()">
+            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+            <div>{{userName}} Information</div>
+        </md-button>
+        </br>
+        <md-button class="group" ng-click="goToGroups()">
+            <md-icon md-svg-icon="group"></md-icon>
+            <div> Manage Groups</div>
+        </md-button>
+        </br>
+        <md-button class="house" ng-click="goToHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>house</div>
+        </md-button>
+        </br>
+        <md-button class="houses" ng-click="goToHouses()" >
+            <md-icon md-svg-icon="home" ></md-icon> <div>  Manage houses </div>
+        </md-button>
+        </br>
+        <md-button class="NewHouse" ng-click="goToNewHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>New House</div>
+        </md-button>
+        </br>
+        <md-button class="attach_money" ng-click="goToMain()">
+            <md-icon md-svg-icon="attach_money"></md-icon>
+            <div>Bank Manager</div>
+        </md-button>
+        </br>
+
+        <md-button class="copyright" ng-click="goToCopyright()">
+            <md-icon md-svg-icon="copyright"></md-icon>
+            <div>copyright</div>
+        </md-button>
+        </br>
+
+
+        </md-content>
+
+    </md-sidenav>
+
+
+
+</div>

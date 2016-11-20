@@ -1,0 +1,104 @@
+<md-button class="menu" ng-click="toggleLeft()">
+    <md-icon md-svg-icon="menu"></md-icon>
+</md-button>
+<div layout="column" layout-sm="column" flex>
+    <div>
+        <label class="myFont">Wellcom To Your Account {{message}}</label>
+    </div>
+</div>
+<div layout="row" layout-sm="column" flex>
+    <form ng-submit="submitHouse()">
+        <label class="myFont">Select a House</label>
+        <md-input-container>
+            <md-select placeholder="Assign to House" ng-model="houses.selectedOption">
+                <md-option ng-value="house" ng-repeat="house in houses.availableOptions">
+                    {{house.house_number}} {{house.street}} {{house.city}} {{house.state}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </form>
+
+</div>
+
+
+<div layout="row" layout-sm="column">
+    <div flex="5"></div>
+    <div flex>
+        <table class="rwd-table">
+            <h1>House Table</h1>
+            <tr>
+                <th>entity</th>
+                <th>detaile</th>
+            </tr>
+            <tr>
+                <td>house_id</td><td>{{house_id}}</td></tr><tr>
+                <td>adress</td><td>{{house_number}} {{street}} {{city}} {{state}}</td></tr><tr>
+                <td>house_kind</td><td>{{house_kind}}</td></tr><tr>
+                <td>number_of_rooms</td><td>{{number_of_rooms}}</td></tr><tr>
+                <td>number_of_living_rooms</td><td>{{number_of_living_rooms}}</td></tr><tr>
+                <td>number_of_kitchens</td><td>{{number_of_kitchens}}</td></tr><tr>
+                <td>number_of_bedrooms</td><td>{{number_of_bedrooms}}</td></tr><tr>
+                <td>number_of_batdrooms</td><td>{{number_of_batdrooms}}</td></tr><tr>
+                <td>location_kind</td><td>{{location_kind}}</td></tr><tr>
+                <td>comments</td><td>{{comments}}</td></tr><tr>
+                <td>purchase_price</td><td>{{purchase_price}}</td></tr><tr>
+                <td>treatment_fees</td><td>{{treatment_fees}}</td></tr><tr>
+                <td>renovation_fees</td><td>{{renovation_fees}}</td></tr><tr>
+                <td>divers_fees</td><td>{{divers_fees}}</td></tr><tr>
+                <td>
+                    <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">pay</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container" layout="row" flex>
+
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <br layout-margin="" align="center">
+        <md-button class="account_circle" ng-click="goToUserInformation()">
+            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+            <div>{{userName}} Information</div>
+        </md-button>
+        </br>
+        <md-button class="group" ng-click="goToGroups()">
+            <md-icon md-svg-icon="group"></md-icon>
+            <div> Manage Groups</div>
+        </md-button>
+        </br>
+        <md-button class="house" ng-click="goToHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>house</div>
+        </md-button>
+        </br>
+        <md-button class="houses" ng-click="goToHouses()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div> Manage houses</div>
+        </md-button>
+        </br>
+
+        <md-button class="attach_money" ng-click="goToMain()">
+            <md-icon md-svg-icon="attach_money"></md-icon>
+            <div>Bank Manager</div>
+        </md-button>
+        </br>
+
+        <md-button class="copyright" ng-click="goToCopyright()">
+            <md-icon md-svg-icon="copyright"></md-icon>
+            <div>copyright</div>
+        </md-button>
+        </br>
+
+
+        </md-content>
+
+    </md-sidenav>
+
+
+</div>

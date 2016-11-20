@@ -1,0 +1,46 @@
+<md-button class="menu" ng-click="toggleLeft()">
+    <md-icon md-svg-icon="menu"></md-icon>
+</md-button>
+</br></br></br></br>
+<div flex="50"><center>All right reserved to Nathan Yaacov Prod@</center></div>
+
+<div flex="50"><center>
+    <video width="320" height="240" controls>
+        <source src="videos/AirForceIsraelyArchive.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        Your browser does not support the video tag.
+    </video>
+    </center>
+</div>
+<!--md-button ng-click="maKore()">a</md-button-->
+<div class="container" layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <md-content layout-margin="" align="center">
+            <md-button class="account_circle" ng-click="goToUserInformation()">
+                <md-icon md-svg-icon="account_circle" ></md-icon> <div>{{userName}} Information</div>
+            </md-button>
+            </br>
+            <md-button class="group" ng-click="goToGroups()" >
+                <md-icon md-svg-icon="group" ></md-icon> <div>  Manage Groups </div>
+            </md-button>
+            </br>
+            <md-button class="attach_money" ng-click="goToMain()">
+                <md-icon md-svg-icon="attach_money"></md-icon><div>Bank Manager</div>
+            </md-button>
+            </br>
+            <md-button class="copyright" ng-click="goToCopyright()">
+                <md-icon md-svg-icon="copyright"></md-icon>
+                <div>copyright</div>
+            </md-button>
+            </br>
+           </md-content>
+
+    </md-sidenav>
+
+
+</div>

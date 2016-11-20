@@ -1,0 +1,96 @@
+<md-button class="menu" ng-click="toggleLeft()">
+    <md-icon md-svg-icon="menu"></md-icon>
+</md-button>
+</br></br></br></br>
+
+
+<div flex="66">
+    <table class="rwd-table">
+        <h1>Your Houses Information</h1>
+        <tr>
+            <th>id</th>
+            <th>State</th>
+            <th>city</th>
+            <th>street</th>
+            <th>house number</th>
+            <th>house kind</th>
+            <th>number of rooms</th>
+            <th>number of living rooms</th>
+            <th>number of kitchens</th>
+            <th>number of bedrooms</th>
+            <th>number of bathrooms</th>
+            <th>location kind</th>
+            <th>comment</th>
+
+        </tr>
+        <tr ng-repeat="x in houses">
+
+            <td>{{ x.house_id}}</td>
+            <td>{{ x.state}}</td>
+            <td>{{ x.city}}</td>
+            <td>{{ x.street}}</td>
+            <td>{{ x.house_number}}</td>
+            <td>{{ x.house_kind}}</td>
+            <td>{{ x.number_of_rooms}}</td>
+            <td>{{ x.number_of_living_rooms}}</td>
+            <td>{{ x.number_of_kitchens}}</td>
+            <td>{{ x.number_of_bedrooms}}</td>
+            <td>{{ x.number_of_bathrooms}}</td>
+            <td>{{ x.location_kind}}</td>
+            <td>{{ x.comments}}</td>
+
+
+            <td>
+                <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">pay</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="container" layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <br layout-margin="" align="center">
+        <md-button class="account_circle" ng-click="goToUserInformation()">
+            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+            <div>{{userName}} Information</div>
+        </md-button>
+        </br>
+        <md-button class="group" ng-click="goToGroups()">
+            <md-icon md-svg-icon="group"></md-icon>
+            <div> Manage Groups</div>
+        </md-button>
+        </br>
+        <md-button class="house" ng-click="goToHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>house</div>
+        </md-button>
+        </br>
+        <md-button class="houses" ng-click="goToHouses()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div> Manage houses</div>
+        </md-button>
+        </br>
+
+        <md-button class="attach_money" ng-click="goToMain()">
+            <md-icon md-svg-icon="attach_money"></md-icon>
+            <div>Bank Manager</div>
+        </md-button>
+        </br>
+
+        <md-button class="copyright" ng-click="goToCopyright()">
+            <md-icon md-svg-icon="copyright"></md-icon>
+            <div>copyright</div>
+        </md-button>
+        </br>
+
+
+        </md-content>
+
+    </md-sidenav>
+
+
+</div>
