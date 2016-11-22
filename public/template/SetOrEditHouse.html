@@ -1,41 +1,60 @@
 <md-button class="menu" ng-click="toggleLeft()">
     <md-icon md-svg-icon="menu"></md-icon>
 </md-button>
-</br></br></br></br>
 <div class="flex-container">
     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
         <div flex>
             <form ng-submit="setNewHouse()">
                 <md-input-container>
                     <label> State :</label>
-                    <input type="text" ng-model="username" name="text"  placeholder="שם משתמש" required/>
+                    <input type="text" ng-model="state" name="text"  placeholder="ארץ" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> City :</label>
-                    <input type="text" ng-model="firstname" name="text"  placeholder="שם פרטי" required/>
+                    <input type="text" ng-model="city" name="text"  placeholder="עיר" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> Street :</label>
-                    <input type="text" ng-model="lastname" name="text"  placeholder="שם משפחה" required/>
+                    <input type="text" ng-model="street" name="text"  placeholder="רחוב" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> Nouse Number :</label>
-                    <input type="number" ng-model="telephone" name="text"  placeholder="טלפון" required/>
+                    <input type="number" ng-model="nouse_number" name="text"  placeholder="מספר בית" required/>
                 </md-input-container>
                 <md-input-container>
-                    <label> Email :</label>
-                    <input type="email" ng-model="email" name="text"  placeholder="אימייל" required/>
+                    <label> house_kind  :</label>
+                    <input type="number" ng-model="house_kind" name="text"  placeholder="מספר בית" required/>
                 </md-input-container>
                 <md-input-container>
-                    <label> birthdate &nbsp;&nbsp; :</label>
-                    <input type="date" ng-model="birthdate"  name="text" required/>
+                    <label> number_of_rooms  :</label>
+                    <input type="number" ng-model="number_of_rooms" name="text"  placeholder="מספר בית" required/>
                 </md-input-container>
                 <md-input-container>
-                    <label> password &nbsp;&nbsp; :</label>
-                    <input type="text" ng-model="password" name="text"  placeholder="סיסמא" required/>
+                    <label> number_of_living_rooms :</label>
+                    <input type="number" ng-model="number_of_living_rooms" name="text"  placeholder="מספר בית" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label>number_of_kitchens   :</label>
+                    <input type="number" ng-model="number_of_kitchens" name="text"  placeholder="מספר בית" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> number_of_bedrooms   :</label>
+                    <input type="number" ng-model="number_of_bedrooms" name="text"  placeholder="מספר בית" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> number_of_bathrooms :</label>
+                    <input type="number" ng-model="number_of_bathrooms" name="text"  placeholder="מספר בית" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> location_kind  :</label>
+                    <input type="number" ng-model="location_kind" name="text"  placeholder="מספר בית" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> comment :</label>
+                    <input type="text" ng-model="comments" name="text"  placeholder="רחוב" required/>
                 </md-input-container>
                 <md-input-container>
                     <input type="file" name="file"  onchange="angular.element(this).scope().uploadFile(this.files)"/>

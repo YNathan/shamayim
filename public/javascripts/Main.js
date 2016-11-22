@@ -1,4 +1,27 @@
-app.controller('mainControl', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav) {
+app.service('Nadlan',  function() {
+
+     this.toggleLeft = function() {
+         $mdSidenav('left').toggle();
+     }
+     this.goToCopyright = function() {
+         $state.go('Copyright');
+     }
+     this.goToUserInformation = function() {
+         $state.go('userInformation');
+     }
+
+     this.goToHouses = function() {
+         $state.go('Houses');
+     }
+     this.goToNewHouse = function() {
+         $state.go('NewOrEditHouse');
+     }
+     this.goToHouse = function() {
+         $state.go('House');
+     }
+
+});
+app.controller('mainControl', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav','Nadlan', function ($scope, $http, $state, $interval, $mdDialog,$mdSidenav, Nadlan) {
     //$interval.clear(interval)
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + getCookie("username");
@@ -278,27 +301,7 @@ app.controller('mainControl', ['$scope', '$http', '$state', '$interval', '$mdDia
             submitGroup();
         }
     })
-    $scope.toggleLeft = function () {
-           $mdSidenav('left').toggle();
-       }
-   $scope.goToCopyright = function () {
-           $state.go('Copyright');
-       }
-       $scope.goToUserInformation = function () {
-           $state.go('userInformation');
-       }
-       $scope.goToGroups = function () {
-           $state.go('Groups');
-       }
-       $scope.goToHouses = function () {
-                $state.go('Houses');
-            }
-   		 $scope.goToNewHouse = function () {
-                $state.go('NewOrEditHouse');
-            }
-   		 $scope.goToHouse = function () {
-                $state.go('House');
-            }
+
     // Update profile picture
     $scope.uploadFile = function (files) {
         var fd = new FormData();

@@ -160,24 +160,4 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     $state.go('House');
                 }
 
-
-    // Update profile picture
-    $scope.uploadFile = function(files) {
-        var fd = new FormData();
-        //Take the selected file
-        fd.append("file", files[0]);
-
-        $http.post("/upload/" + getCookie("username"), fd, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': undefined
-            },
-            transformRequest: angular.identity
-        }).success(
-            swal("Yeah!!!")
-        ).error(
-            swal("Oups! something wrong was hapening")
-        );
-
-    };
 }]);

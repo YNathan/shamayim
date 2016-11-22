@@ -52,7 +52,6 @@
         </table>
     </div>
 </div>
-
 <div class="container" layout="row" flex>
 
 
@@ -67,11 +66,7 @@
             <div>{{userName}} Information</div>
         </md-button>
         </br>
-        <md-button class="group" ng-click="goToGroups()">
-            <md-icon md-svg-icon="group"></md-icon>
-            <div> Manage Groups</div>
-        </md-button>
-        </br>
+
         <md-button class="house" ng-click="goToHouse()">
             <md-icon md-svg-icon="home"></md-icon>
             <div>house</div>
@@ -82,7 +77,11 @@
             <div> Manage houses</div>
         </md-button>
         </br>
-
+        <md-button class="NewHouse" ng-click="goToNewHouse()">
+            <md-icon md-svg-icon="home"></md-icon>
+            <div>New House</div>
+        </md-button>
+        </br>
         <md-button class="attach_money" ng-click="goToMain()">
             <md-icon md-svg-icon="attach_money"></md-icon>
             <div>Bank Manager</div>
@@ -97,8 +96,5 @@
 
 
         </md-content>
-
     </md-sidenav>
-
-
 </div>

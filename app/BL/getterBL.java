@@ -39,13 +39,13 @@ public class getterBL {
         for (User currUser : userList) {
             if (currUser.getUserName().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
                 isGreateLogin = true;
-                mailBL mail = new mailBL();
+                /*mailBL mail = new mailBL();
                 try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
                     Logger.error(e.getMessage());
                     e.printStackTrace();
-                }
+                }*/
             }
         }
         return isGreateLogin;
