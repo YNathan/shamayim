@@ -133,7 +133,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.$watch('houses.selectedOption', function(newVal, oldVal) {
         if (newVal != oldVal) {
             houseName = newVal;
-            //alert(newVal.house_number + " " + newVal.street + " " + newVal.city + " " + newVal.state + " " + newVal.house_id);
             getHouse(newVal.house_id);
 
         }
@@ -161,59 +160,80 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     }
 
     var results = {
-        "results": [{
-            "address_components": [{
-                "long_name": "1600",
-                "short_name": "1600",
-                "types": ["street_number"]
-            }, {
-                "long_name": "Amphitheatre Pkwy",
-                "short_name": "Amphitheatre Pkwy",
-                "types": ["route"]
-            }, {
-                "long_name": "Mountain View",
-                "short_name": "Mountain View",
-                "types": ["locality", "political"]
-            }, {
-                "long_name": "Santa Clara County",
-                "short_name": "Santa Clara County",
-                "types": ["administrative_area_level_2", "political"]
-            }, {
-                "long_name": "California",
-                "short_name": "CA",
-                "types": ["administrative_area_level_1", "political"]
-            }, {
-                "long_name": "United States",
-                "short_name": "US",
-                "types": ["country", "political"]
-            }, {
-                "long_name": "94043",
-                "short_name": "94043",
-                "types": ["postal_code"]
-            }],
-            "formatted_address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, USA",
-            "geometry": {
-                "location": {
-                    "lat": 37.4224764,
-                    "lng": -122.0842499
-                },
-                "location_type": "ROOFTOP",
-                "viewport": {
-                    "northeast": {
-                        "lat": 37.4238253802915,
-                        "lng": -122.0829009197085
-                    },
-                    "southwest": {
-                        "lat": 37.4211274197085,
-                        "lng": -122.0855988802915
-                    }
-                }
-            },
-            "place_id": "ChIJ2eUgeAK6j4ARbn5u_wAGqWA",
-            "types": ["street_address"]
-        }],
-        "status": "OK"
-    }
+                     "results" : [
+                        {
+                           "address_components" : [
+                              {
+                                 "long_name" : "283",
+                                 "short_name" : "283",
+                                 "types" : [ "street_number" ]
+                              },
+                              {
+                                 "long_name" : "Prince Street",
+                                 "short_name" : "Prince St",
+                                 "types" : [ "route" ]
+                              },
+                              {
+                                 "long_name" : "Springfield/Belmont",
+                                 "short_name" : "Springfield/Belmont",
+                                 "types" : [ "neighborhood", "political" ]
+                              },
+                              {
+                                 "long_name" : "Newark",
+                                 "short_name" : "Newark",
+                                 "types" : [ "locality", "political" ]
+                              },
+                              {
+                                 "long_name" : "Essex County",
+                                 "short_name" : "Essex County",
+                                 "types" : [ "administrative_area_level_2", "political" ]
+                              },
+                              {
+                                 "long_name" : "New Jersey",
+                                 "short_name" : "NJ",
+                                 "types" : [ "administrative_area_level_1", "political" ]
+                              },
+                              {
+                                 "long_name" : "États-Unis",
+                                 "short_name" : "US",
+                                 "types" : [ "country", "political" ]
+                              },
+                              {
+                                 "long_name" : "07108",
+                                 "short_name" : "07108",
+                                 "types" : [ "postal_code" ]
+                              },
+                              {
+                                 "long_name" : "2629",
+                                 "short_name" : "2629",
+                                 "types" : [ "postal_code_suffix" ]
+                              }
+                           ],
+                           "formatted_address" : "283 Prince St, Newark, NJ 07108, États-Unis",
+                           "geometry" : {
+                              "location" : {
+                                 "lat" : 40.7269049,
+                                 "lng" : -74.1896381
+                              },
+                              "location_type" : "ROOFTOP",
+                              "viewport" : {
+                                 "northeast" : {
+                                    "lat" : 40.7282538802915,
+                                    "lng" : -74.18828911970849
+                                 },
+                                 "southwest" : {
+                                    "lat" : 40.7255559197085,
+                                    "lng" : -74.19098708029151
+                                 }
+                              }
+                           },
+                           "partial_match" : true,
+                           "place_id" : "ChIJCcsncmtTwokR_9zF-itQG94",
+                           "types" : [ "street_address" ]
+                        }
+                     ],
+                     "status" : "OK"
+                  }
 var latitude = results.results[0].geometry.location.lat;
 var longitude = results.results[0].geometry.location.lng;
 
@@ -233,8 +253,17 @@ var longitude = results.results[0].geometry.location.lng;
 
 function newMapLocation(nNumberOfHouse,szStreetName,szCityName,szStateName)
 {
-//https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-https://maps.googleapis.com/maps/api/geocode/json?address="nNumberOfHouse+szStreetName+szCityName,+szStateName&key=YOUR_API_KEY;
+
+ // Get information conserning the house
+        $http.get("/maps.googleapis.com/maps/api/geocode/json?address=" +nNumberOfHouse+"+,"+szStreetName+"+,"+szCityName+"+,"+szStateName)
+            .then(function successCallback(response) {
+
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load maps");
+                });
+//https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDpC9Z3zA73VG-FgbPdijlztIkOjrq8mAI
+//https://maps.googleapis.com/maps/api/geocode/json?address="nNumberOfHouse+szStreetName+szCityName,+szStateName&key=AIzaSyDpC9Z3zA73VG-FgbPdijlztIkOjrq8mAI;
 }
 
 }]);
