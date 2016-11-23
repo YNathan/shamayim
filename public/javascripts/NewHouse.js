@@ -33,8 +33,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.userName = getCookie("username");
     var houseName = "";
     var tempArr = [];
- $scope.house = {
-        "house": {
+ var house = {
             "state": "ca",
             "city": "la",
             "street": "blalba",
@@ -47,7 +46,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             "number_of_bathrooms": "1",
             "location_kind": "dfg",
             "comments": "Nice area great place to have fun"
-        }
     }
 
     // For the house
@@ -109,22 +107,19 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     }
     $interval(checkIfNeedConfirming, 200000);
     $scope.setNewHouse = function() {
-        $scope.house = {
-            "house": {
-                "state": $scope.state,
-                "city": $scope.city,
-                "street": $scope.street,
-                "house_number": $scope.house_number,
-                "house_kind": $scope.house_kind,
-                "number_of_rooms": $scope.number_of_rooms,
-                "number_of_living_rooms": $scope.number_of_living_rooms,
-                "number_of_kitchens": $scope.number_of_kitchens,
-                "number_of_bedrooms": $scope.number_of_bedrooms,
-                "number_of_bathrooms": $scope.number_of_bathrooms,
-                "location_kind": $scope.location_kind,
-                "comments": $scope.comments
-            }
-        }
+         house.state = $scope.state;
+         house.city = $scope.city,
+         house.street = $scope.street,
+         house.house_number =  $scope.house_number;
+         house.house_kind =  $scope.house_kind;
+         house.number_of_rooms =  $scope.number_of_rooms;
+         house.number_of_living_rooms =  $scope.number_of_living_rooms;
+         house.number_of_kitchens =  $scope.number_of_kitchens;
+         house.number_of_bedrooms =  $scope.number_of_bedrooms;
+         house.number_of_bathrooms =  $scope.number_of_bathrooms;
+         house.location_kind =  $scope.location_kind;
+         house.comments = $scope.comments;
+
 
         var res = $http.post('/SET_NEW_HOUSE', house);
         res.success(function(data, status, headers, config) {

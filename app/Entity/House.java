@@ -212,4 +212,27 @@ public class House {
     public void setDiversFees(double dDiversFees) {
         this.dDiversFees = dDiversFees;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "nHouseId=" + nHouseId +
+                ", szState='" + szState + '\'' +
+                ", szCity='" + szCity + '\'' +
+                ", szStreet='" + szStreet + '\'' +
+                ", nHouseNumber=" + nHouseNumber +
+                ", EHouseKind=" + EHouseKind +
+                ", nNumberOfRooms=" + nNumberOfRooms +
+                ", nNumberOfLivingRooms=" + nNumberOfLivingRooms +
+                ", nNumberOfKitchens=" + nNumberOfKitchens +
+                ", nNumberOfBedrooms=" + nNumberOfBedrooms +
+                ", nNumberOfBathrooms=" + nNumberOfBathrooms +
+                ", eLocationKind=" + eLocationKind +
+                ", szComments='" + szComments + '\'' +
+                ", dPurchasePrice=" + dPurchasePrice +
+                ", dTreatmentFees=" + dTreatmentFees +
+                ", dRenovationFees=" + dRenovationFees +
+                ", dDiversFees=" + dDiversFees +
+                '}';
+    }
 }

@@ -319,4 +319,25 @@ app.controller('mainControl', ['$scope', '$http', '$state', '$interval', '$mdDia
         );
 
     };
+
+
+     this.toggleLeft = function() {
+             $mdSidenav('left').toggle();
+         }
+         this.goToCopyright = function() {
+             $state.go('Copyright');
+         }
+         this.goToUserInformation = function() {
+             $state.go('userInformation');
+         }
+
+         this.goToHouses = function() {
+             $state.go('Houses');
+         }
+         this.goToNewHouse = function() {
+             $state.go('NewOrEditHouse');
+         }
+         this.goToHouse = function() {
+             $state.go('House');
+         }
 }]);
