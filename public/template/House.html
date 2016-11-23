@@ -31,27 +31,85 @@
                 <th>detaile</th>
             </tr>
             <tr>
-                <td>house_id</td><td>{{house_id}}</td></tr><tr>
-                <td>adress</td><td>{{house_number}} {{street}} {{city}} {{state}}</td></tr><tr>
-                <td>house_kind</td><td>{{house_kind}}</td></tr><tr>
-                <td>number_of_rooms</td><td>{{number_of_rooms}}</td></tr><tr>
-                <td>number_of_living_rooms</td><td>{{number_of_living_rooms}}</td></tr><tr>
-                <td>number_of_kitchens</td><td>{{number_of_kitchens}}</td></tr><tr>
-                <td>number_of_bedrooms</td><td>{{number_of_bedrooms}}</td></tr><tr>
-                <td>number_of_batdrooms</td><td>{{number_of_batdrooms}}</td></tr><tr>
-                <td>location_kind</td><td>{{location_kind}}</td></tr><tr>
-                <td>comments</td><td>{{comments}}</td></tr><tr>
-                <td>purchase_price</td><td>{{purchase_price}}</td></tr><tr>
-                <td>treatment_fees</td><td>{{treatment_fees}}</td></tr><tr>
-                <td>renovation_fees</td><td>{{renovation_fees}}</td></tr><tr>
-                <td>divers_fees</td><td>{{divers_fees}}</td></tr><tr>
+                <td>house_id</td>
+                <td>{{house_id}}</td>
+            </tr>
+            <tr>
+                <td>adress</td>
+                <td>{{house_number}} {{street}} {{city}} {{state}}</td>
+            </tr>
+            <tr>
+                <td>house_kind</td>
+                <td>{{house_kind}}</td>
+            </tr>
+            <tr>
+                <td>number_of_rooms</td>
+                <td>{{number_of_rooms}}</td>
+            </tr>
+            <tr>
+                <td>number_of_living_rooms</td>
+                <td>{{number_of_living_rooms}}</td>
+            </tr>
+            <tr>
+                <td>number_of_kitchens</td>
+                <td>{{number_of_kitchens}}</td>
+            </tr>
+            <tr>
+                <td>number_of_bedrooms</td>
+                <td>{{number_of_bedrooms}}</td>
+            </tr>
+            <tr>
+                <td>number_of_batdrooms</td>
+                <td>{{number_of_batdrooms}}</td>
+            </tr>
+            <tr>
+                <td>location_kind</td>
+                <td>{{location_kind}}</td>
+            </tr>
+            <tr>
+                <td>comments</td>
+                <td>{{comments}}</td>
+            </tr>
+            <tr>
+                <td>purchase_price</td>
+                <td>{{purchase_price}}</td>
+            </tr>
+            <tr>
+                <td>treatment_fees</td>
+                <td>{{treatment_fees}}</td>
+            </tr>
+            <tr>
+                <td>renovation_fees</td>
+                <td>{{renovation_fees}}</td>
+            </tr>
+            <tr>
+                <td>divers_fees</td>
+                <td>{{divers_fees}}</td>
+            </tr>
+            <tr>
                 <td>
                     <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">pay</button>
                 </td>
             </tr>
         </table>
     </div>
+    <div flex><h3>My Google Maps Demo</h3>
+        <div id="map" style="height: 400px; width: 400px;"></div>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjv02tBzmU9PnsWYYuC9vk7vL2NjQmMcA&callback=initMap">
+        </script></div>
 </div>
+
+
+<div layout="row" layout-sm="column">
+    <div flex>
+        I'm above on mobile, and to the left on larger devices.
+    </div>
+    <div flex>
+        I'm below on mobile, and to the right on larger devices.
+    </div>
+</div>
+
 <div class="container" layout="row" flex>
 
 
