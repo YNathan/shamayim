@@ -1,0 +1,59 @@
+<language>
+    <hebrew>
+        <house_id>מספר רישום הבית במערכת</house_id>
+        <state>מדינה</state>
+        <city>עיר</city>
+        <street>רחוב</street>
+        <house_number>מספר בית</house_number>
+        <house_kind>סוג הבית</house_kind>
+        <number_of_rooms>מספר חדרים</number_of_rooms>
+        <number_of_living_rooms>מספר חדרי סלון</number_of_living_rooms>
+        <number_of_kitchens>מספר חדרי מטבח</number_of_kitchens>
+        <number_of_bedrooms>מספר חדרי שינה</number_of_bedrooms>
+        <number_of_bathrooms>מספר חדרי שירותים/ מקלחת</number_of_bathrooms>
+        <location_kind>מיקום</location_kind>
+        <comments>הערות</comments>
+        <purchase_price>מחיר קניה</purchase_price>
+        <treatment_fees>הוצאות טיפול</treatment_fees>
+        <renovation_fees>הוצאות שיפוץ</renovation_fees>
+        <divers_fees>הוצאות אחרות</divers_fees>
+    </hebrew>
+    <french>
+        <house_id>Number Of House That Recording In The System</house_id>
+        <state>State</state>
+        <city>עיר</city>
+        <street>רחוב</street>
+        <house_number>מספר בית</house_number>
+        <house_kind>סוג הבית</house_kind>
+        <number_of_rooms>מספר חדרים</number_of_rooms>
+        <number_of_living_rooms>מספר חדרי סלון</number_of_living_rooms>
+        <number_of_kitchens>מספר חדרי מטבח</number_of_kitchens>
+        <number_of_bedrooms>מספר חדרי שינה</number_of_bedrooms>
+        <number_of_bathrooms>מספר חדרי שירותים/ מקלחת</number_of_bathrooms>
+        <location_kind>מיקום</location_kind>
+        <comments>הערות</comments>
+        <purchase_price>מחיר קניה</purchase_price>
+        <treatment_fees>הוצאות טיפול</treatment_fees>
+        <renovation_fees>הוצאות שיפוץ</renovation_fees>
+        <divers_fees>הוצאות אחרות</divers_fees>
+    </french>
+    <english>
+        <house_id>Number Of House That Recording In The System</house_id>
+        <state>State</state>
+        <city>City</city>
+        <street>Street</street>
+        <house_number>House Number</house_number>
+        <house_kind>Kind Of House</house_kind>
+        <number_of_rooms>Number Of Rooms</number_of_rooms>
+        <number_of_living_rooms>Number Of Living Rooms</number_of_living_rooms>
+        <number_of_kitchens>Number Of Kitchens</number_of_kitchens>
+        <number_of_bedrooms>Number Of Bedrooms</number_of_bedrooms>
+        <number_of_bathrooms>Number Of Bathrooms</number_of_bathrooms>
+        <location_kind>Location Kind</location_kind>
+        <comments>Comments</comments>
+        <purchase_price>Purchase Price</purchase_price>
+        <treatment_fees>Treatment Fees</treatment_fees>
+        <renovation_fees>Renovation Fees</renovation_fees>
+        <divers_fees>Divers Fees</divers_fees>
+    </english>
+</language>
