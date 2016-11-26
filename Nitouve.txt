@@ -7,9 +7,6 @@ $scope.goToCopyright = function () {
     $scope.goToUserInformation = function () {
         $state.go('userInformation');
     }
-    $scope.goToGroups = function () {
-        $state.go('Groups');
-    }
     $scope.goToHouses = function () {
              $state.go('Houses');
          }

@@ -6,7 +6,6 @@ app.config(function ($stateProvider, $urlRouterProvider,$mdIconProvider) {
     $mdIconProvider.defaultIconSet('./svg/avatars.svg',128);
     $mdIconProvider.icon('share','./svg/share.svg',24);
     $mdIconProvider.icon('menu','./svg/menu.svg',24);
-    $mdIconProvider.icon('group','./svg/group.svg',24);
     $mdIconProvider.icon('account_circle','./svg/account_circle.svg');
     $mdIconProvider.icon('attach_money','./svg/attach_money.svg');
     $mdIconProvider.icon('copyright','./svg/copyright.svg');
@@ -29,21 +28,11 @@ app.config(function ($stateProvider, $urlRouterProvider,$mdIconProvider) {
             templateUrl: "template/userInformation.html",
             controller: 'userInformation'
         })
-        .state('Groups', {
-            url: "/groups",
-            templateUrl: "template/Groups.html",
-            controller: 'groups'
-        })
         .state('Houses', {
                       url: "/houses",
                       templateUrl: "template/Houses.html",
                       controller: 'houses'
                   })
-        .state('Main', {
-            url: "/main",
-            templateUrl: "template/Main.html",
-            controller: 'mainControl'
-        })
         .state('House', {
                     url: "/house",
                     templateUrl: "template/House.html",

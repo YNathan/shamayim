@@ -138,27 +138,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
         }
     })
-    $scope.toggleLeft = function() {
-        $mdSidenav('left').toggle();
-    }
-    $scope.goToCopyright = function() {
-        $state.go('Copyright');
-    }
-    $scope.goToUserInformation = function() {
-        $state.go('userInformation');
-    }
-    $scope.goToGroups = function() {
-        $state.go('Groups');
-    }
-    $scope.goToHouses = function() {
-        $state.go('Houses');
-    }
-    $scope.goToNewHouse = function() {
-        $state.go('NewOrEditHouse');
-    }
-    $scope.goToHouse = function() {
-        $state.go('House');
-    }
 
     var results = {
         "results": [{
@@ -255,5 +234,25 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
 
     }
+
+     $scope.toggleLeft = function() {
+         $mdSidenav('left').toggle();
+     }
+     $scope.goToCopyright = function() {
+         $state.go('Copyright');
+     }
+     $scope.goToUserInformation = function() {
+         $state.go('userInformation');
+     }
+     $scope.goToHouses = function() {
+         $state.go('Houses');
+     }
+     $scope.goToNewHouse = function() {
+         $state.go('NewOrEditHouse');
+     }
+     $scope.goToHouse = function() {
+         $state.go('House');
+     }
+
 
 }]);

@@ -50,26 +50,6 @@ app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '
         document.cookie = szName + "=" + szValue + "; ";
     }
 
-   $scope.toggleLeft = function () {
-           $mdSidenav('left').toggle();
-       }
-   $scope.goToCopyright = function () {
-           $state.go('Copyright');
-       }
-       $scope.goToUserInformation = function () {
-           $state.go('userInformation');
-       }
-
-       $scope.goToHouses = function () {
-                $state.go('Houses');
-            }
-    $scope.goToNewHouse = function () {
-                $state.go('NewOrEditHouse');
-            }
-   		 $scope.goToHouse = function () {
-                $state.go('House');
-            }
-
 
     // Get information conserning the user
     $http.get("/GET_LIST_OF_HOUSES")
@@ -100,5 +80,23 @@ app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '
 
     };
 
+ $scope.toggleLeft = function() {
+     $mdSidenav('left').toggle();
+ }
+ $scope.goToCopyright = function() {
+     $state.go('Copyright');
+ }
+ $scope.goToUserInformation = function() {
+     $state.go('userInformation');
+ }
+ $scope.goToHouses = function() {
+     $state.go('Houses');
+ }
+ $scope.goToNewHouse = function() {
+     $state.go('NewOrEditHouse');
+ }
+ $scope.goToHouse = function() {
+     $state.go('House');
+ }
 
 }]);

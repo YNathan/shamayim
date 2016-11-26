@@ -22,15 +22,23 @@
 
         <md-content layout-margin="" align="center">
             <md-button class="account_circle" ng-click="goToUserInformation()">
-                <md-icon md-svg-icon="account_circle" ></md-icon> <div>{{userName}} Information</div>
+                <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+                <div>{{userName}} Information</div>
             </md-button>
             </br>
-            <md-button class="group" ng-click="goToGroups()" >
-                <md-icon md-svg-icon="group" ></md-icon> <div>  Manage Groups </div>
+            <md-button class="house" ng-click="goToHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>house</div>
             </md-button>
             </br>
-            <md-button class="attach_money" ng-click="goToMain()">
-                <md-icon md-svg-icon="attach_money"></md-icon><div>Bank Manager</div>
+            <md-button class="houses" ng-click="goToHouses()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div> Manage houses</div>
+            </md-button>
+            </br>
+            <md-button class="NewHouse" ng-click="goToNewHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>New House</div>
             </md-button>
             </br>
             <md-button class="copyright" ng-click="goToCopyright()">

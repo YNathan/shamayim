@@ -1,19 +1,6 @@
 app.controller('index', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav) {
 
 
-    $scope.toggleLeft = function () {
-        $mdSidenav('left').toggle();
-    }
-    $scope.goToCopyright = function () {
-        $state.go('Copyright');
-    }
-    $scope.goToMain = function () {
-        $state.go('Main');
-    }
-    $scope.goToGroups = function () {
-        $state.go('Groups');
-    }
-
     // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";
@@ -62,4 +49,24 @@ app.controller('index', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$
         );
 
     };
+
+     $scope.toggleLeft = function() {
+         $mdSidenav('left').toggle();
+     }
+     $scope.goToCopyright = function() {
+         $state.go('Copyright');
+     }
+     $scope.goToUserInformation = function() {
+         $state.go('userInformation');
+     }
+     $scope.goToHouses = function() {
+         $state.go('Houses');
+     }
+     $scope.goToNewHouse = function() {
+         $state.go('NewOrEditHouse');
+     }
+     $scope.goToHouse = function() {
+         $state.go('House');
+     }
+
 }]);

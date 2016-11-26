@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
+import Entity.House;
+import Entity.HouseLanguage;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -64,12 +67,25 @@ public class ApplicationTest {
 
                     Element eElement = (Element) nNode;
 
-                    System.out.println("house_id : " + eElement.getAttribute("house_id"));
-                    System.out.println("state : " + eElement.getElementsByTagName("state").item(0).getTextContent());
-                    System.out.println("city : " + eElement.getElementsByTagName("city").item(0).getTextContent());
-                    System.out.println("street : " + eElement.getElementsByTagName("street").item(0).getTextContent());
-                    System.out.println("house_number : " + eElement.getElementsByTagName("house_number").item(0).getTextContent());
-
+                    HouseLanguage houseLanguageToReturn = new HouseLanguage();
+                    houseLanguageToReturn.setHouseId(eElement.getElementsByTagName("house_id").item(0).getTextContent());
+                    houseLanguageToReturn.setState(eElement.getElementsByTagName("state").item(0).getTextContent());
+                    houseLanguageToReturn.setCity(eElement.getElementsByTagName("city").item(0).getTextContent());
+                    houseLanguageToReturn.setStreet(eElement.getElementsByTagName("street").item(0).getTextContent());
+                    houseLanguageToReturn.setHouseNumber(eElement.getElementsByTagName("house_number").item(0).getTextContent());
+                    houseLanguageToReturn.setHouseKind(eElement.getElementsByTagName("house_kind").item(0).getTextContent());
+                    houseLanguageToReturn.setNumberOfRooms(eElement.getElementsByTagName("number_of_rooms").item(0).getTextContent());
+                    houseLanguageToReturn.setNumberOfLivingRooms(eElement.getElementsByTagName("number_of_living_rooms").item(0).getTextContent());
+                    houseLanguageToReturn.setNumberOfKitchens(eElement.getElementsByTagName("number_of_kitchens").item(0).getTextContent());
+                    houseLanguageToReturn.setNumberOfBedrooms(eElement.getElementsByTagName("number_of_bedrooms").item(0).getTextContent());
+                    houseLanguageToReturn.setNumberOfBathrooms(eElement.getElementsByTagName("number_of_bathrooms").item(0).getTextContent());
+                    houseLanguageToReturn.setLocationKind(eElement.getElementsByTagName("location_kind").item(0).getTextContent());
+                    houseLanguageToReturn.setComments(eElement.getElementsByTagName("comments").item(0).getTextContent());
+                    houseLanguageToReturn.setPurchasePrice(eElement.getElementsByTagName("purchase_price").item(0).getTextContent());
+                    houseLanguageToReturn.setTreatmentFees(eElement.getElementsByTagName("treatment_fees").item(0).getTextContent());
+                    houseLanguageToReturn.setRenovationFees(eElement.getElementsByTagName("renovation_fees").item(0).getTextContent());
+                    houseLanguageToReturn.setDiversFees(eElement.getElementsByTagName("divers_fees").item(0).getTextContent());
+                    System.out.println(houseLanguageToReturn.toJson());
                 }
             }
         } catch (Exception e) {

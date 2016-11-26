@@ -1,7 +1,7 @@
 body {
 	background: url("../images/background.jpg");
 	background-size: 100% 100%;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 }
 
 ng-scope.btn {

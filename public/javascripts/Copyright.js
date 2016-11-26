@@ -10,21 +10,7 @@ app.controller('Copyright', ['$scope', '$http', '$filter', '$state', '$mdDialog'
     $scope.birthdate = '';
     $scope.userId = '';
 
-    $scope.goToCopyright = function () {
-        $state.go('Copyright');
-    }
-    $scope.toggleLeft = function () {
-        $mdSidenav('left').toggle();
-    }
-    $scope.goToUserInformation = function () {
-        $state.go('userInformation');
-    }
-    $scope.goToMain = function () {
-        $state.go('Main');
-    }
-    $scope.goToGroups = function () {
-        $state.go('Groups');
-    }
+
 // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";
@@ -170,5 +156,23 @@ app.controller('Copyright', ['$scope', '$http', '$filter', '$state', '$mdDialog'
                 showAlert("Owner Group Information", "User Name : " + $scope.username + ", Telephone : " + $scope.telephone + ", email : "+$scope.email);
             });
     }
+ $scope.toggleLeft = function() {
+     $mdSidenav('left').toggle();
+ }
+ $scope.goToCopyright = function() {
+     $state.go('Copyright');
+ }
+ $scope.goToUserInformation = function() {
+     $state.go('userInformation');
+ }
+ $scope.goToHouses = function() {
+     $state.go('Houses');
+ }
+ $scope.goToNewHouse = function() {
+     $state.go('NewOrEditHouse');
+ }
+ $scope.goToHouse = function() {
+     $state.go('House');
+ }
 
 }]);
