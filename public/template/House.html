@@ -3,9 +3,16 @@
     <md-icon md-svg-icon="menu"></md-icon>
 </md-button>
    </div>
-    <md-button class="menu" ng-click="toggleLeft()">
-        <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
+    <form ng-submit="submitHouse()">
+        <label class="myFont">Language</label>
+        <md-input-container>
+            <md-select placeholder="Assign to Language" ng-model="Languages.selectedOption">
+                <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
+                    {{Language}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </form>
     </div>
 <div layout="column" layout-sm="column" flex>
     <div flex>

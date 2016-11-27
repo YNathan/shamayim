@@ -34,14 +34,24 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     var houseName = "";
     var tempArr = [];
 
-
-
-
-$http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
+    // For the Language
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
+    $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
         .then(function successCallback(response) {
         angular.forEach(response.data.languages, function(value, key) {
-                alert(value);
-                });
+                itemName = {
+                        id: key,
+                        HouseLanguage: value
+                    }
+                    tempArr.push(itemName);
+                    $scope.Languages.availableOptions.push(itemName.HouseLanguage);
+                }, $scope.Languages);
             },
             function error(response) {
                 showAlert("Your attention please", response.data, "cant load houses");
@@ -55,7 +65,6 @@ $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
             house: 'default'
         }
     };
-
     function showAlert(title, textContent, ariaLabel) {
         // Appending dialog to document.body to cover sidenav in docs app
         // Modal dialogs should fully cover application
@@ -135,6 +144,33 @@ $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
                 });
     }
 
+    function getLanguage(szLanguageName) {
+        // Get information conserning the house
+        $http.get("/GET_HOUSE_BY_ID/" + szLanguageName)
+            .then(function successCallback(response) {
+                    $scope.house_id = response.data.house.house_id;
+                    $scope.state = response.data.house.state;
+                    $scope.city = response.data.house.city;
+                    $scope.street = response.data.house.street;
+                    $scope.house_number = response.data.house.house_number;
+                    $scope.house_kind = response.data.house.house_kind;
+                    $scope.number_of_rooms = response.data.house.number_of_rooms;
+                    $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
+                    $scope.number_of_kitchens = response.data.house.number_of_kitchens;
+                    $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
+                    $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
+                    $scope.location_kind = response.data.house.location_kind;
+                    $scope.comments = response.data.house.comments;
+                    $scope.purchase_price = response.data.house.purchase_price;
+                    $scope.treatment_fees = response.data.house.treatment_fees;
+                    $scope.renovation_fees = response.data.house.renovation_fees;
+                    $scope.divers_fees = response.data.house.divers_fees;
+                    newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+    }
 
 
     // Just check if there is a user name
@@ -150,6 +186,16 @@ $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
 
         }
     })
+
+    $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+            if (newVal != oldVal) {
+                HouseLanguageName = newVal;
+                alert(HouseLanguageName)
+                //getLanguage(newVal);
+
+            }
+        })
+
 
     var results = {
         "results": [{
