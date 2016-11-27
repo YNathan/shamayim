@@ -4,6 +4,9 @@ values ('Newark', 'N.J', '13th', '718', '1', 7, 1, 1, 2, 1, 2,  'comments');
 insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
 values ('Washington', 'Baltimor', 'Prince', '12', '1', 7, 1, 1, 2, 1, 2,  'אחלה של בית');
 
+insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
+values ('Israel', 'jerusalem', 'Maanee Simcha', '28', '1', 7, 1, 1, 2, 1, 2,  'נוף מדהים');
+
 CREATE DATABASE `shamayim` /*!40100 DEFAULT CHARACTER SET utf8 */
 
 CREATE TABLE `house` (
@@ -27,6 +30,14 @@ CREATE TABLE `house` (
   PRIMARY KEY (`house_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
 
+insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
+values ('Newark', 'N.J', '13th', '718', '1', 7, 1, 1, 2, 1, 2,  'comments');
+
+insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
+values ('Washington', 'Baltimor', 'Prince', '12', '1', 7, 1, 1, 2, 1, 2,  'אחלה של בית');
+
+insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
+values ('Israel', 'jerusalem', 'Maanee Simcha', '28', '1', 7, 1, 1, 2, 1, 2,  'נוף מדהים');
 
 CREATE TABLE `users` (
   `user_name` varchar(255) NOT NULL,
@@ -39,3 +50,32 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+
+
+CREATE TABLE `house_language` (
+  `house_language` varchar(255) NOT NULL,
+  `house_id` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `house_number` varchar(255) NOT NULL,
+  `house_kind` varchar(255) NOT NULL,
+  `number_of_rooms` varchar(255) NOT NULL,
+  `number_of_living_rooms` varchar(255) NOT NULL,
+  `number_of_kitchens` varchar(255) NOT NULL,
+  `number_of_bedrooms` varchar(255) NOT NULL,
+  `number_of_bathrooms` varchar(255) NOT NULL,
+  `location_kind` varchar(255) NOT NULL,
+  `score` varchar(255) NOT NULL,
+  `comments` varchar(255) NOT NULL,
+  `purchase_price` varchar(255) NOT NULL,
+  `treatment_fees` varchar(255) NOT NULL,
+  `renovation_fees` varchar(255) NOT NULL,
+  `divers_fees` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+insert into shamayim.house_language values("עברית","מספר רישום הבית במערכת","כתובת","מדינה","עיר","רחוב","מספר בית","סוג הבית","מספר חדרים","מספר חדרי סלון","מספר חדרי מטבח","מספר חדרי שינה","מספר חדרי שירותים/ מקלחת","מיקום","ציון","הערות","מחיר קניה","הוצאות טיפול","הוצאות שיפוץ","הוצאות אחרות");
+insert into shamayim.house_language values("Francais","Numero De Maison Enregistrer Dans Le System","Address","Pays","Ville","Rue","Numero De Maison","Style De Maison","Nombre De Chambres","Numbre De Salle A Manger","Numbre De cuisins","Nombre De
+insert into shamayim.house_language values("English","Number Of House That Recording In The System","Address","State","City","Street","House Number","Kind Of House","Number Of Rooms","Number Of Living Rooms","Number Of Kitchens","Number Of Bedrooms","Number Of Bathrooms","Location Kind","Score","Comments","Purchase Price","Treatment Fees","Renovation Fees","Divers Fees");

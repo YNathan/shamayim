@@ -1,6 +1,7 @@
 <language>
     <hebrew>
         <house_id>מספר רישום הבית במערכת</house_id>
+        <address>כתובת</address>
         <state>מדינה</state>
         <city>עיר</city>
         <street>רחוב</street>
@@ -12,6 +13,7 @@
         <number_of_bedrooms>מספר חדרי שינה</number_of_bedrooms>
         <number_of_bathrooms>מספר חדרי שירותים/ מקלחת</number_of_bathrooms>
         <location_kind>מיקום</location_kind>
+        <score>ציון</score>
         <comments>הערות</comments>
         <purchase_price>מחיר קניה</purchase_price>
         <treatment_fees>הוצאות טיפול</treatment_fees>
@@ -20,6 +22,7 @@
     </hebrew>
     <french>
         <house_id>Numero De Maison Enregistrer Dans Le System</house_id>
+        <address>Address</address>
         <state>Pays</state>
         <city>Ville</city>
         <street>Rue</street>
@@ -31,6 +34,7 @@
         <number_of_bedrooms>Nombre De Chambre A Cousher</number_of_bedrooms>
         <number_of_bathrooms>Nombre De Chambre De Toilette</number_of_bathrooms>
         <location_kind>Environnment</location_kind>
+        <score>Score</score>
         <comments>Commentaire</comments>
         <purchase_price>Prix Dachat</purchase_price>
         <treatment_fees>Depance De Traitment</treatment_fees>
@@ -39,6 +43,7 @@
     </french>
     <english>
         <house_id>Number Of House That Recording In The System</house_id>
+        <address>Address</address>
         <state>State</state>
         <city>City</city>
         <street>Street</street>
@@ -50,6 +55,7 @@
         <number_of_bedrooms>Number Of Bedrooms</number_of_bedrooms>
         <number_of_bathrooms>Number Of Bathrooms</number_of_bathrooms>
         <location_kind>Location Kind</location_kind>
+        <score>Score</score>
         <comments>Comments</comments>
         <purchase_price>Purchase Price</purchase_price>
         <treatment_fees>Treatment Fees</treatment_fees>

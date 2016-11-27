@@ -4,7 +4,9 @@ package Entity;
  * Created by jacky on 18/11/2016.
  */
 public class HouseLanguage {
+    private String szHouseLanguage;
     private String nHouseId;
+    private String szAddress;
     private String szState;
     private String szCity;
     private String szStreet;
@@ -16,6 +18,7 @@ public class HouseLanguage {
     private String nNumberOfBedrooms;
     private String nNumberOfBathrooms;
     private String eLocationKind;
+    private String nScore;
     private String szComments;
     private String dPurchasePrice;
     private String dTreatmentFees;
@@ -159,32 +162,37 @@ public class HouseLanguage {
         this.dDiversFees = dDiversFees;
     }
 
-    @Override
-    public String toString() {
-        return "HouseLanguage{" +
-                "nHouseId='" + nHouseId + '\'' +
-                ", szState='" + szState + '\'' +
-                ", szCity='" + szCity + '\'' +
-                ", szStreet='" + szStreet + '\'' +
-                ", nHouseNumber='" + nHouseNumber + '\'' +
-                ", EHouseKind='" + EHouseKind + '\'' +
-                ", nNumberOfRooms='" + nNumberOfRooms + '\'' +
-                ", nNumberOfLivingRooms='" + nNumberOfLivingRooms + '\'' +
-                ", nNumberOfKitchens='" + nNumberOfKitchens + '\'' +
-                ", nNumberOfBedrooms='" + nNumberOfBedrooms + '\'' +
-                ", nNumberOfBathrooms='" + nNumberOfBathrooms + '\'' +
-                ", eLocationKind='" + eLocationKind + '\'' +
-                ", szComments='" + szComments + '\'' +
-                ", dPurchasePrice='" + dPurchasePrice + '\'' +
-                ", dTreatmentFees='" + dTreatmentFees + '\'' +
-                ", dRenovationFees='" + dRenovationFees + '\'' +
-                ", dDiversFees='" + dDiversFees + '\'' +
-                '}';
+    public String getHouseLanguage() {
+        return szHouseLanguage;
     }
+
+    public void setHouseLanguage(String szHouseLanguage) {
+        this.szHouseLanguage = szHouseLanguage;
+    }
+
+    public String getAddress() {
+        return szAddress;
+    }
+
+    public void setAddress(String szAdress) {
+        this.szAddress = szAdress;
+    }
+
+    public String getScore() {
+        return nScore;
+    }
+
+    public void setScore(String nScore) {
+        this.nScore = nScore;
+    }
+
+
 
     public String toJson() {
         return "{ \"HouseLanguage\":[ {" +
+                "\"HouseLanguage\":\"" + szHouseLanguage + "\"" +
                 "\"HouseId\":\"" + nHouseId + "\"" +
+                "\"Address\":\"" + szAddress + "\"" +
                 ",\"State\":\"" + szState + "\"" +
                 ",\"City\":\"" + szCity + "\"" +
                 ",\"Street\":\"" + szStreet + "\"" +
@@ -196,6 +204,7 @@ public class HouseLanguage {
                 ",\"NumberOfBedrooms\":\"" + nNumberOfBedrooms + "\"" +
                 ",\"NumberOfBathrooms\":\"" + nNumberOfBathrooms + "\"" +
                 ",\"LocationKind\":\"" + eLocationKind + "\"" +
+                ",\"Score\":\"" + nScore + "\"" +
                 ",\"Comments\":\"" + szComments + "\"" +
                 ",\"PurchasePrice\":\"" + dPurchasePrice + "\"" +
                 ",\"TreatmentFees\":\"" + dTreatmentFees + "\"" +
