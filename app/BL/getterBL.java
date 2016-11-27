@@ -490,4 +490,30 @@ public class getterBL {
         sbHousesInformationToReturn.append(" }");
         return sbHousesInformationToReturn;
     }
+
+
+    public StringBuilder getListOFExistingLanguage()
+    {
+        StringBuilder sbExistingLanguageToReturn = new StringBuilder();
+        sbExistingLanguageToReturn.append("{ \"languages\": [");
+        ArrayList<String> lstExistingLaguages = getterDB.getListOFExistingLanguage();
+
+        Iterator<String> ltrHouseLanguage = lstExistingLaguages.iterator();
+        String currHouseLanguage = null;
+        if (ltrHouseLanguage.hasNext()) {
+            currHouseLanguage = ltrHouseLanguage.next();
+        }
+        while (currHouseLanguage != null) {
+            sbExistingLanguageToReturn.append("\""+currHouseLanguage+"\"");
+            if (ltrHouseLanguage.hasNext()) {
+                sbExistingLanguageToReturn.append(",");
+                currHouseLanguage = ltrHouseLanguage.next();
+            } else {
+                currHouseLanguage = null;
+            }
+
+        }
+        sbExistingLanguageToReturn.append("]}");
+        return sbExistingLanguageToReturn;
+    }
 }

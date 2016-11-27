@@ -13,7 +13,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 import java.io.File;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.*;
 
@@ -28,15 +30,19 @@ import play.libs.F.*;
 
 import static play.test.Helpers.*;
 
+import BL.getterBL;
 
 /**
-*
-* Simple (JUnit) tests that can call all parts of a play app.
-* If you are interested in mocking a whole application, see the wiki for more details.
-*
-*/
+ * Simple (JUnit) tests that can call all parts of a play app.
+ * If you are interested in mocking a whole application, see the wiki for more details.
+ */
 public class ApplicationTest {
+    getterBL getterBL = new getterBL();
 
+    @Test
+    public void getListOfExistingLanguage() {
+        System.out.println(getterBL.getListOFExistingLanguage());
+    }
 
     @Test
     public void readXml() {
@@ -92,7 +98,6 @@ public class ApplicationTest {
             e.printStackTrace();
         }
     }
-
 
 
 }

@@ -30,7 +30,8 @@ POST        /CONFIRM_DEBT/:szDebterName/:szAmount/:szEntitledName/:szGroupName  
 POST        /NOT_CONFIRM_DEBT/:szDebterName/:szAmount/:szEntitledName/:szGroupName                 controllers.setter.notConfirmDebt(szDebterName:String,szAmount:String,szEntitledName:String,szGroupName:String)
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
-GET         /GET_HOUSE_BY_ID/:nHouseId                                                              controllers.getter.getHouseById(nHouseId:String)
+GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
+GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
 POST        /upload/:szUserName                                                                    controllers.setter.uploadFileWithName(szUserName:String)

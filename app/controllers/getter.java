@@ -185,4 +185,11 @@ public class getter extends Controller {
         System.out.println(szResponce);
         return ok(szResponce);
     }
+
+    public static Result getListOfExistingLanguages() {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get List Of Existing Language");
+        String szResponce = getterBL.getListOFExistingLanguage().toString();
+        System.out.println(szResponce);
+        return ok(szResponce);
+    }
 }

@@ -35,6 +35,18 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     var tempArr = [];
 
 
+
+
+$http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
+        .then(function successCallback(response) {
+        angular.forEach(response.data.languages, function(value, key) {
+                alert(value);
+                });
+            },
+            function error(response) {
+                showAlert("Your attention please", response.data, "cant load houses");
+            });
+
     // For the house
     $scope.houses = {
         availableOptions: [],
