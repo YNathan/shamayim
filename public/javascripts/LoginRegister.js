@@ -61,32 +61,6 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
 
     };
 
-    var house = {
-        "house": {
-            "state": "ca",
-            "city": "la",
-            "street": "blalba",
-            "house_number": "3",
-            "house_kind": "1",
-            "number_of_rooms": "3",
-            "number_of_living_rooms": "1",
-            "number_of_kitchens": "2",
-            "number_of_bedrooms": "1",
-            "number_of_bathrooms": "1",
-            "location_kind": "dfg",
-            "comments": "Nice area great place to have fun"
-        }
-    }
-
-    var res = $http.post('/SET_NEW_HOUSE', house);
-    res.success(function(data, status, headers, config) {
-        alert(data);
-    });
-    res.error(function(data, status, headers, config) {
-        alert("failure message: " + JSON.stringify({
-            data: data
-        }));
-    });
 
     $scope.register = function() {
         var userName = $scope.userName;
@@ -113,7 +87,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                                 }).then(
                                     function successCallback(response) {
                                         alert("Register successful!");
-                                        $state.go('Houses')
+                                        $state.go('House')
                                     },
                                     function errorCallback(response) {
                                         alert(response.data);
@@ -152,7 +126,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                 );
                 setUserNameCookie("username", userName);
                 // Go to the main application
-                $state.go('Houses');
+                $state.go('House');
             }
         }, function error(response) {
             alert(response.data);

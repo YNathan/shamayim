@@ -1,9 +1,15 @@
-<md-button class="menu" ng-click="toggleLeft()">
+<div layout="row" layout-sm="column" flex>
+   <div flex><md-button class="menu" ng-click="toggleLeft()">
     <md-icon md-svg-icon="menu"></md-icon>
 </md-button>
+   </div>
+    <md-button class="menu" ng-click="toggleLeft()">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    </div>
 <div layout="column" layout-sm="column" flex>
-    <div>
-        <label class="myFont">Wellcom To Your Account {{message}}</label>
+    <div flex>
+       <center><label class="myFont">Wellcom To Your Account {{message}}</label></center>
     </div>
 </div>
 <div layout="row" layout-sm="column" flex>
