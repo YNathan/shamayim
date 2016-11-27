@@ -178,27 +178,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         // Get information conserning the house
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
-              dictionary = response.data;
-                    alert(dictionary.HouseLanguage[0].HouseId  + dictionary.HouseLanguage[0].NumberOfBathrooms);
-                  /*  $scope.house_id = response.data.house.house_id;
-                    $scope.state = response.data.house.state;
-                    $scope.city = response.data.house.city;
-                    $scope.street = response.data.house.street;
-                    $scope.house_number = response.data.house.house_number;
-                    $scope.house_kind = response.data.house.house_kind;
-                    $scope.number_of_rooms = response.data.house.number_of_rooms;
-                    $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
-                    $scope.number_of_kitchens = response.data.house.number_of_kitchens;
-                    $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
-                    $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
-                    $scope.location_kind = response.data.house.location_kind;
-                    $scope.comments = response.data.house.comments;
-                    $scope.purchase_price = response.data.house.purchase_price;
-                    $scope.treatment_fees = response.data.house.treatment_fees;
-                    $scope.renovation_fees = response.data.house.renovation_fees;
-                    $scope.divers_fees = response.data.house.divers_fees;
-                    newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);*/
-                },
+              $scope.dictionary = response.data;
+                                  },
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
                 });
@@ -206,7 +187,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
  $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
             if (newVal != oldVal) {
                 HouseLanguageName = newVal;
-                alert(HouseLanguageName)
                 getLanguage(newVal);
 
             }
