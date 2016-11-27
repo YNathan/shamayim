@@ -31,31 +31,10 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.renovation_fees = 54.5;
     $scope.divers_fees = 54.2;
     $scope.userName = getCookie("username");
+    $scope.dictionary ="";
     var houseName = "";
     var tempArr = [];
 
-    // For the Language
-    $scope.Languages = {
-        availableOptions: [],
-        selectedOption: {
-            id: '1',
-            HouseLanguage: 'default'
-        }
-    };
-    $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
-        .then(function successCallback(response) {
-        angular.forEach(response.data.languages, function(value, key) {
-                itemName = {
-                        id: key,
-                        HouseLanguage: value
-                    }
-                    tempArr.push(itemName);
-                    $scope.Languages.availableOptions.push(itemName.HouseLanguage);
-                }, $scope.Languages);
-            },
-            function error(response) {
-                showAlert("Your attention please", response.data, "cant load houses");
-            });
 
     // For the house
     $scope.houses = {
@@ -144,10 +123,38 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 });
     }
 
+
+
+// For the Language
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
+    $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
+        .then(function successCallback(response) {
+        angular.forEach(response.data.languages, function(value, key) {
+                itemName = {
+                        id: key,
+                        HouseLanguage: value
+                    }
+                    tempArr.push(itemName);
+                    $scope.Languages.availableOptions.push(itemName.HouseLanguage);
+                }, $scope.Languages);
+            },
+            function error(response) {
+                showAlert("Your attention please", response.data, "cant load houses");
+            });
+
+
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-        $http.get("/GET_HOUSE_BY_ID/" + szLanguageName)
+        $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
+              dictionary = response.data.HouseLanguage;
+                    alert(dictionary);
                     $scope.house_id = response.data.house.house_id;
                     $scope.state = response.data.house.state;
                     $scope.city = response.data.house.city;
@@ -171,7 +178,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     showAlert("Your attention please", response.data, "cant load houses");
                 });
     }
+ $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+            if (newVal != oldVal) {
+                HouseLanguageName = newVal;
+                alert(HouseLanguageName)
+                getLanguage(newVal);
 
+            }
+     })
 
     // Just check if there is a user name
     if (getCookie("username") == null) {
@@ -187,14 +201,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     })
 
-    $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
-            if (newVal != oldVal) {
-                HouseLanguageName = newVal;
-                alert(HouseLanguageName)
-                //getLanguage(newVal);
 
-            }
-        })
 
 
     var results = {

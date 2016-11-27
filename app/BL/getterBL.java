@@ -8,10 +8,7 @@ import javax.mail.MessagingException;
 
 
 import DB.getterDB;
-import Entity.Gelt;
-import Entity.Group;
-import Entity.House;
-import Entity.User;
+import Entity.*;
 import play.Logger;
 import play.mvc.BodyParser;
 
@@ -492,6 +489,15 @@ public class getterBL {
     }
 
 
+    public HouseLanguage getHouseLanguageByLanguage(String szLanguage)
+    {
+        HouseLanguage houseLanguageToReturn = new HouseLanguage();
+
+        houseLanguageToReturn = getterDB.getHouseLanguageByLanguage(szLanguage);
+        System.out.println(houseLanguageToReturn.toJson());
+        return houseLanguageToReturn;
+
+    }
     public StringBuilder getListOFExistingLanguage()
     {
         StringBuilder sbExistingLanguageToReturn = new StringBuilder();

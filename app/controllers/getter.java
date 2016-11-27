@@ -192,4 +192,11 @@ public class getter extends Controller {
         System.out.println(szResponce);
         return ok(szResponce);
     }
+
+    public static Result getLanguage(String szLanguage) {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Language : "+szLanguage);
+        String szResponce = getterBL.getHouseLanguageByLanguage(szLanguage).toJson();
+        System.out.println(szResponce);
+        return ok(szResponce);
+    }
 }

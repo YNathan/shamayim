@@ -191,8 +191,8 @@ public class HouseLanguage {
     public String toJson() {
         return "{ \"HouseLanguage\":[ {" +
                 "\"HouseLanguage\":\"" + szHouseLanguage + "\"" +
-                "\"HouseId\":\"" + nHouseId + "\"" +
-                "\"Address\":\"" + szAddress + "\"" +
+                ",\"HouseId\":\"" + nHouseId + "\"" +
+                ",\"Address\":\"" + szAddress + "\"" +
                 ",\"State\":\"" + szState + "\"" +
                 ",\"City\":\"" + szCity + "\"" +
                 ",\"Street\":\"" + szStreet + "\"" +
