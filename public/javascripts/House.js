@@ -31,9 +31,34 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.renovation_fees = 54.5;
     $scope.divers_fees = 54.2;
     $scope.userName = getCookie("username");
-    $scope.dictionary ="";
     var houseName = "";
     var tempArr = [];
+    $scope.dictionary = {
+                          "HouseLanguage": [
+                            {
+                              "HouseLanguage": "English",
+                              "HouseId": "Number Of House That Recording In The System",
+                              "Address": "Address",
+                              "State": "State",
+                              "City": "City",
+                              "Street": "Street",
+                              "HouseNumber": "House Number",
+                              "HouseKind": "Kind Of House",
+                              "NumberOfRooms": "Number Of Rooms",
+                              "NumberOfLivingRooms": "Number Of Living Rooms",
+                              "NumberOfKitchens": "Number Of Kitchens",
+                              "NumberOfBedrooms": "Number Of Bedrooms",
+                              "NumberOfBathrooms": "Number Of Bathrooms",
+                              "LocationKind": "LocationKind",
+                              "Score": "Score",
+                              "Comments": "Comments",
+                              "PurchasePrice": "Purchase Price",
+                              "TreatmentFees": "Treatment Fees",
+                              "RenovationFees": "Renovation Fees",
+                              "DiversFees": "Divers Fees"
+                            }
+                          ]
+                        };
 
 
     // For the house
@@ -153,9 +178,9 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         // Get information conserning the house
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
-              dictionary = response.data.HouseLanguage;
-                    alert(dictionary);
-                    $scope.house_id = response.data.house.house_id;
+              dictionary = response.data;
+                    alert(dictionary.HouseLanguage[0].HouseId  + dictionary.HouseLanguage[0].NumberOfBathrooms);
+                  /*  $scope.house_id = response.data.house.house_id;
                     $scope.state = response.data.house.state;
                     $scope.city = response.data.house.city;
                     $scope.street = response.data.house.street;
@@ -172,7 +197,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     $scope.treatment_fees = response.data.house.treatment_fees;
                     $scope.renovation_fees = response.data.house.renovation_fees;
                     $scope.divers_fees = response.data.house.divers_fees;
-                    newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
+                    newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);*/
                 },
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
