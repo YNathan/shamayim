@@ -82,7 +82,7 @@ public class setter {
                 ELocationKind eLocationKind = ELocationKind.WHITE;
                 eLocationKind.setValue(json.findPath("location_kind").asInt());
                 houseToRegistre.setLocationKind(eLocationKind);
-                houseToRegistre.setState(json.findPath("comments").textValue());
+                houseToRegistre.setComments(json.findPath("comments").textValue());
             } catch (Exception e) {
                 webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
                 webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
