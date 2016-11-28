@@ -3,6 +3,7 @@ package BL;
 import java.io.*;
 import java.util.ArrayList;
 
+import File.FileSetter;
 import DB.getterDB;
 import DB.setterDB;
 import Entity.Gelt;
@@ -16,6 +17,7 @@ public class setterBL {
     private setterDB setterDB = new setterDB();
     private getterDB getterDB = new getterDB();
     private getterBL getterBL = new getterBL();
+    private FileSetter fileSetter = new FileSetter();
 
     /**
      * Will do the algorithm for inserting a new debt
@@ -458,7 +460,9 @@ public class setterBL {
 
 
     public WebResponce insertHouseDetails(House m_house) {
-        return setterDB.setNewHouseDetails(m_house);
+        WebResponce webResponceToReturn = new WebResponce();//setterDB.setNewHouseDetails(m_house);
+        fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
+        return webResponceToReturn;
     }
 
     /**

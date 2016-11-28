@@ -89,7 +89,7 @@ public class setter {
                 e.printStackTrace();
                 return badRequest(webResponce.toJson());
             }
-            //webResponce = setterBL.insertHouseDetails(houseToRegistre);
+            webResponce = setterBL.insertHouseDetails(houseToRegistre);
             if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
                 System.out.println(webResponce.toString());
                 return badRequest(webResponce.toJson());

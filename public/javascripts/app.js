@@ -29,23 +29,23 @@ app.config(function ($stateProvider, $urlRouterProvider,$mdIconProvider) {
             controller: 'userInformation'
         })
         .state('Houses', {
-                      url: "/houses",
-                      templateUrl: "template/Houses.html",
-                      controller: 'houses'
-                  })
+            url: "/houses",
+            templateUrl: "template/Houses.html",
+            controller: 'houses'
+        })
         .state('House', {
-                    url: "/house",
-                    templateUrl: "template/House.html",
-                    controller: 'house'
-                })
+            url: "/house",
+            templateUrl: "template/House.html",
+            controller: 'house'
+        })
         .state('NewOrEditHouse', {
-                            url: "/neworedithouse",
-                            templateUrl: "template/SetOrEditHouse.html",
-                            controller: 'neworedithouse'
-                        })
-                .state('Copyright', {
-        url: "/Copyright",
-        templateUrl: "template/Copyright.html",
-        controller: 'Copyright'
-    });
+            url: "/neworedithouse",
+            templateUrl: "template/SetOrEditHouse.html",
+            controller: 'neworedithouse'
+        })
+        .state('Copyright', {
+            url: "/Copyright",
+            templateUrl: "template/Copyright.html",
+            controller: 'Copyright'
+        });
 });
