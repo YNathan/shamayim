@@ -33,7 +33,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.userName = getCookie("username");
     var houseName = "";
     var tempArr = [];
- var house = {
+    var house = {
             "state": "ca",
             "city": "la",
             "street": "blalba",
@@ -47,6 +47,81 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             "location_kind": "dfg",
             "comments": "Nice area great place to have fun"
     }
+     $scope.dictionary = {
+                              "Dictionary": [
+                                {
+                                  "HouseLanguage": "English",
+                                  "HouseId": "Number Of House That Recording In The System",
+                                  "Address": "Address",
+                                  "State": "State",
+                                  "City": "City",
+                                  "Street": "Street",
+                                  "HouseNumber": "House Number",
+                                  "HouseKind": "Kind Of House",
+                                  "NumberOfRooms": "Number Of Rooms",
+                                  "NumberOfLivingRooms": "Number Of Living Rooms",
+                                  "NumberOfKitchens": "Number Of Kitchens",
+                                  "NumberOfBedrooms": "Number Of Bedrooms",
+                                  "NumberOfBathrooms": "Number Of Bathrooms",
+                                  "LocationKind": "LocationKind",
+                                  "Score": "Score",
+                                  "Comments": "Comments",
+                                  "PurchasePrice": "Purchase Price",
+                                  "TreatmentFees": "Treatment Fees",
+                                  "RenovationFeesForSale": "Renovation Fees For Sale",
+                                  "RenovationFeesForRenting": "Renovation Fees For Renting",
+                                  "GeneralHouseDetailes": "General House Details",
+                                  "FinancialHouseDetailes": "Financial House Details",
+                                  "DiversFees": "Divers Fees"
+                                }
+                              ]
+                            };
+
+// Language Section
+// For the Language
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
+    $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
+        .then(function successCallback(response) {
+        angular.forEach(response.data.languages, function(value, key) {
+                itemName = {
+                        id: key,
+                        HouseLanguage: value
+                    }
+                    tempArr.push(itemName);
+                    $scope.Languages.availableOptions.push(itemName.HouseLanguage);
+                }, $scope.Languages);
+            },
+            function error(response) {
+                showAlert("Your attention please", response.data, "cant load houses");
+            });
+
+
+    function getLanguage(szLanguageName) {
+        // Get information conserning the house
+        $http.get("/GET_LANGUAGE/" + szLanguageName)
+            .then(function successCallback(response) {
+              $scope.dictionary = response.data;
+                                  },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+    }
+ $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+            if (newVal != oldVal) {
+                HouseLanguageName = newVal;
+                getLanguage(newVal);
+
+            }
+     })
+// End Of Language Section
+
+
 
     // For the house
     $scope.houses = {
@@ -87,25 +162,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
                 showAlert("Your attention please", response.data, "cant load houses");
             });
 
-    function checkIfNeedConfirming() {
-        // While Thread
-        // Get information conserning the
-        $http.get("/GET_LIST_OF_HOUSES")
-            .then(function successCallback(response) {
-                    angular.forEach(response.data.houses, function(value, key) {
-                        itemName = {
-                            id: key,
-                            house: value
-                        }
-                        tempArr.push(itemName);
-                        $scope.houses.availableOptions.push(itemName.house);
-                    }, $scope.houses);
-                },
-                function error(response) {
-                    showAlert("Your attention please", response.data, "cant load houses");
-                });
-    }
-    $interval(checkIfNeedConfirming, 200000);
     $scope.setNewHouse = function() {
          house.state = $scope.state;
          house.city = $scope.city,

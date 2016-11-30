@@ -1,121 +1,138 @@
 <div class="test">
-<md-button class="menu" ng-click="toggleLeft()">
-    <md-icon md-svg-icon="menu"></md-icon>
-</md-button>
-<div class="flex-container">
-    <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
-        <div flex = 100>
-            <form ng-submit="setNewHouse()">
-                <md-input-container>
-                    <label> State :</label>
-                    <input type="text" ng-model="state" name="text"  placeholder="ארץ" required/>
-                </md-input-container>
+    <!head>
+    <div layout="row" layout-sm="column" flex>
+        <div flex>
+            <md-button class="menu" ng-click="toggleLeft()">
+                <md-icon md-svg-icon="menu"></md-icon>
+            </md-button>
+        </div>
+        <form ng-submit="submitHouse()">
+            <label>Language / שפה</label>
+            <md-input-container>
+                <md-select placeholder="Assign to Language" ng-model="Languages.selectedOption">
+                    <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
+                        {{Language}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </form>
+    </div>
+    <!/head>
+    <div class="flex-container">
+        <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
+            <div flex=100>
+                <form ng-submit="setNewHouse()">
+                    <md-input-container>
+                        <label>{{dictionary.Dictionary[0].State}} :</label>
+                        <input type="text" ng-model="state" name="text" placeholder="ארץ" required/>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label> City :</label>
-                    <input type="text" ng-model="city" name="text"  placeholder="עיר" required/>
-                </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].City}} :</label>
+                        <input type="text" ng-model="city" name="text" placeholder="עיר" required/>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label> Street :</label>
-                    <input type="text" ng-model="street" name="text"  placeholder="רחוב" required/>
-                </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].Street}} :</label>
+                        <input type="text" ng-model="street" name="text" placeholder="רחוב" required/>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label> Nouse Number :</label>
-                    <input type="number" ng-model="nouse_number" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> house_kind  :</label>
-                    <input type="number" ng-model="house_kind" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> number_of_rooms  :</label>
-                    <input type="number" ng-model="number_of_rooms" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> number_of_living_rooms :</label>
-                    <input type="number" ng-model="number_of_living_rooms" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label>number_of_kitchens   :</label>
-                    <input type="number" ng-model="number_of_kitchens" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> number_of_bedrooms   :</label>
-                    <input type="number" ng-model="number_of_bedrooms" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> number_of_bathrooms :</label>
-                    <input type="number" ng-model="number_of_bathrooms" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> location_kind  :</label>
-                    <input type="number" ng-model="location_kind" name="text"  placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> comment :</label>
-                    <input type="text" ng-model="comments" name="text"  placeholder="רחוב" required/>
-                </md-input-container>
-                <md-input-container>
-                    <input type="file" name="file"  onchange="angular.element(this).scope().uploadFile(this.files)"/>
-                </md-input-container>
-                <md-input-container>
-                    <md-button type="submit" id="submit">שמור</md-button>
-                </md-input-container>
-            </form>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].HouseNumber}} :</label>
+                        <input type="number" ng-model="nouse_number" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
+                        <input type="number" ng-model="house_kind" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].NumberOfRooms}}:</label>
+                        <input type="number" ng-model="number_of_rooms" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].NumberOfLivingRooms }}:</label>
+                        <input type="number" ng-model="number_of_living_rooms" name="text" placeholder="מספר בית"
+                               required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>{{dictionary.Dictionary[0].NumberOfKitchens }}:</label>
+                        <input type="number" ng-model="number_of_kitchens" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].NumberOfBedrooms}} :</label>
+                        <input type="number" ng-model="number_of_bedrooms" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].NumberOfBathrooms}} :</label>
+                        <input type="number" ng-model="number_of_bathrooms" name="text" placeholder="מספר בית"
+                               required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].LocationKind}} :</label>
+                        <input type="number" ng-model="location_kind" name="text" placeholder="מספר בית" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label> {{dictionary.Dictionary[0].Comments}} :</label>
+                        <input type="text" ng-model="comments" name="text" placeholder="רחוב" required/>
+                    </md-input-container>
+                    <md-input-container>
+                        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-button type="submit" id="submit">שמור</md-button>
+                    </md-input-container>
+                </form>
+            </div>
+
+            <div flex hide-sm hide-xs>
+                <!--img src="images/MyProfile.png" width="180" height="320"-->
+            </div>
         </div>
 
-        <div flex hide-sm hide-xs>
-            <!--img src="images/MyProfile.png" width="180" height="320"-->
-        </div>
     </div>
 
-</div>
+    {{dictionary.Dictionary[0].GeneralHouseDetailes}}
 
 
+    {{dictionary.Dictionary[0].FinancialHouseDetailes}}
+    <div class="container" layout="row" flex>
 
 
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Menu</h1>
+            </md-toolbar>
+
+            <br layout-margin="" align="center">
+            <md-button class="account_circle" ng-click="goToUserInformation()">
+                <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+                <div>{{userName}} Information</div>
+            </md-button>
+            </br>
+            <md-button class="house" ng-click="goToHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>house</div>
+            </md-button>
+            </br>
+            <md-button class="houses" ng-click="goToHouses()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div> Manage houses</div>
+            </md-button>
+            </br>
+            <md-button class="NewHouse" ng-click="goToNewHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>New House</div>
+            </md-button>
+            </br>
+            <md-button class="copyright" ng-click="goToCopyright()">
+                <md-icon md-svg-icon="copyright"></md-icon>
+                <div>copyright</div>
+            </md-button>
+            </br>
+            </md-content>
+
+        </md-sidenav>
 
 
-<div class="container" layout="row" flex>
-
-
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-        <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Menu</h1>
-        </md-toolbar>
-
-        <br layout-margin="" align="center">
-        <md-button class="account_circle" ng-click="goToUserInformation()">
-            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
-            <div>{{userName}} Information</div>
-        </md-button>
-        </br>
-        <md-button class="house" ng-click="goToHouse()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div>house</div>
-        </md-button>
-        </br>
-        <md-button class="houses" ng-click="goToHouses()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div> Manage houses</div>
-        </md-button>
-        </br>
-        <md-button class="NewHouse" ng-click="goToNewHouse()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div>New House</div>
-        </md-button>
-        </br>
-        <md-button class="copyright" ng-click="goToCopyright()">
-            <md-icon md-svg-icon="copyright"></md-icon>
-            <div>copyright</div>
-        </md-button>
-        </br>
-        </md-content>
-
-    </md-sidenav>
-
-
-</div>
+    </div>
 </div>

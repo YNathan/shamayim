@@ -12,7 +12,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     }
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + getCookie("username");
-    $scope.DebterName = "";
     $scope.house_id = "1";
     $scope.state = "ca";
     $scope.city = "la";
@@ -57,6 +56,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                               "TreatmentFees": "Treatment Fees",
                               "RenovationFeesForSale": "Renovation Fees For Sale",
                               "RenovationFeesForRenting": "Renovation Fees For Renting",
+                              "GeneralHouseDetailes": "General House Details",
+                              "FinancialHouseDetailes": "Financial House Details",
                               "DiversFees": "Divers Fees"
                             }
                           ]
@@ -152,7 +153,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     }
 
 
-
+// Language Section
 // For the Language
     $scope.Languages = {
         availableOptions: [],
@@ -194,6 +195,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
             }
      })
+// End Of Language Section
 
     // Just check if there is a user name
     if (getCookie("username") == null) {

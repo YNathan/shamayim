@@ -75,9 +75,11 @@ CREATE TABLE `dictionary` (
   `treatment_fees` varchar(255) NOT NULL,
   `renovation_fees_for_sale` varchar(255) NOT NULL,
   `divers_fees` varchar(255) NOT NULL,
-  `renovation_fees_for_renting` varchar(255) DEFAULT NULL
+  `renovation_fees_for_renting` varchar(255) NOT NULL,
+  `general_house_details` varchar(255) NOT NULL,
+  `financial_house_details` varchar(255) NOT NULL,
+  PRIMARY KEY (`house_language`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-
 
 insert into shamayim.dictionary values("עברית","מספר רישום הבית במערכת","כתובת","מדינה","עיר","רחוב","מספר בית","סוג הבית","מספר חדרים","מספר חדרי סלון","מספר חדרי מטבח","מספר חדרי שינה","מספר חדרי שירותים/ מקלחת","מיקום","ציון","הערות","מחיר קניה","הוצאות טיפול","הוצאות שיפוץ למכירה","הוצאות שיפוץ להשכרה","הוצאות אחרות");
 insert into shamayim.dictionary values("Francais","Numero De Maison Enregistrer Dans Le System","Address","Pays","Ville","Rue","Numero De Maison","Style De Maison","Nombre De Chambres","Numbre De Salle A Manger","Numbre De cuisins","Nombre De Chambre A Cousher","Nombre De Chambre De Toilette","Environnment","Score","Commentaires","Prix Dachat","Depance De Traitment","Depance De Renovation Pour Vente",,"Depance De Renovation Pour Location","Autre Depance");

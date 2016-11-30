@@ -25,6 +25,8 @@ public class Dictionary {
     private String dRenovationFeesForSale;
     private String dRenovationFeesForRenting;
     private String dDiversFees;
+    private String szGeneralHouseDetailes;
+    private String szFinancialHouseDetailes;
 
 
     public String getHouseId() {
@@ -195,6 +197,21 @@ public class Dictionary {
         this.dRenovationFeesForRenting = dRenovationFeesForRenting;
     }
 
+    public String getGeneralHouseDetailes() {
+        return szGeneralHouseDetailes;
+    }
+
+    public void setGeneralHouseDetailes(String szGeneralHouseDetailes) {
+        this.szGeneralHouseDetailes = szGeneralHouseDetailes;
+    }
+
+    public String getFinancialHouseDetailes() {
+        return szFinancialHouseDetailes;
+    }
+
+    public void setFinancialHouseDetailes(String szFinancialHouseDetailes) {
+        this.szFinancialHouseDetailes = szFinancialHouseDetailes;
+    }
 
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
@@ -218,6 +235,8 @@ public class Dictionary {
                 ",\"TreatmentFees\":\"" + dTreatmentFees + "\"" +
                 ",\"RenovationFeesForSale\":\"" + dRenovationFeesForSale + "\"" +
                 ",\"RenovationFeesForRenting\":\"" + dRenovationFeesForRenting + "\"" +
+                ",\"GeneralHouseDetailes\":\"" + szGeneralHouseDetailes+ "\"" +
+                ",\"FinancialHouseDetailes\":\"" + szFinancialHouseDetailes + "\"" +
                 ",\"DiversFees\":\"" + dDiversFees + "\"" +
                 "} ]}";
     }

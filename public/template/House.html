@@ -1,3 +1,4 @@
+<!head>
 <div layout="row" layout-sm="column" flex>
     <div flex>
         <md-button class="menu" ng-click="toggleLeft()">
@@ -5,7 +6,7 @@
         </md-button>
     </div>
     <form ng-submit="submitHouse()">
-        <label class="myFont">Language / שפה</label>
+        <label>Language / שפה</label>
         <md-input-container>
             <md-select placeholder="Assign to Language" ng-model="Languages.selectedOption">
                 <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
@@ -15,6 +16,7 @@
         </md-input-container>
     </form>
 </div>
+<!/head>
 <div layout="column" layout-sm="column" flex>
     <div>
         <center><label class="myFont">Wellcom To Your Account {{message}}</label></center>
