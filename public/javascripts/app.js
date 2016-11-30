@@ -1,7 +1,7 @@
 /**
  * Created by Yaacov on 29/12/2015.
  */
-app = angular.module('root', ['ui.router', 'ngMaterial', 'ngMessages']);
+app = angular.module('root', ['ui.router', 'ngMaterial', 'ngMessages','lfNgMdFileInput']);
 app.config(function ($stateProvider, $urlRouterProvider,$mdIconProvider) {
     $mdIconProvider.defaultIconSet('./svg/avatars.svg',128);
     $mdIconProvider.icon('share','./svg/share.svg',24);
