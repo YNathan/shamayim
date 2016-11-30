@@ -10,6 +10,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         }
         return "";
     }
+    $scope.strCaptionDragAndDrop = "Drag & drop files here...";
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + getCookie("username");
     $scope.DebterName = "";
