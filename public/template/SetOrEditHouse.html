@@ -1,4 +1,4 @@
-<div class="test">
+<br class="test">
     <!head>
     <div layout="row" layout-sm="column" flex>
         <div flex>
@@ -85,7 +85,7 @@
             </div>
 
             <div flex hide-sm hide-xs>
-                <!--img src="images/MyProfile.png" width="180" height="320"-->
+
             </div>
         </div>
 
@@ -95,6 +95,21 @@
 
 
     {{dictionary.Dictionary[0].FinancialHouseDetailes}}
+</br></br></br></br></br>
+    <lf-ng-md-file-input lf-files="files08" lf-option="optoin08" lf-placeholder="Pick Image" lf-browse-label="Search" lf-remove-label="Delete" multiple drag preview ng-disabled="disabled06"></lf-ng-md-file-input>
+
+    <form name="testForm" layout="column">
+        <lf-ng-md-file-input name="files00" lf-files="files09" lf-api="api09" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+        <div ng-messages="testForm.files00.$error" style="color:red;">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="maxcount">Too much files.</div>
+            <div ng-message="filesize">File size too large.</div>
+            <div ng-message="totalsize">Total size too large.</div>
+            <div ng-message="mimetype">Mimetype error.</div>
+        </div>
+        <md-button type="button" ng-disabled="testForm.$invalid" class="md-raised md-primary" ng-click="api09.removeAll()">Submit</md-button>
+    </form>
+    <!--lf-ng-md-file-input lf-files="filesOnFileClick" lf-on-file-click="onFileClick" preview drag multiple></lf-ng-md-file-input-->
     <div class="container" layout="row" flex>
 
 

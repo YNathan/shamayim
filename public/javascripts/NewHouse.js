@@ -241,14 +241,14 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         //Take the selected file
         fd.append("file", files[0]);
 
-        $http.post("/upload/" + getCookie("username"), fd, {
+        $http.post("/upload/" + house.house_number +"_"+house.street+"_"+house.city+"_"+house.state, fd, {
             withCredentials: true,
             headers: {
                 'Content-Type': undefined
             },
             transformRequest: angular.identity
         }).success(
-            swal("Yeah!!!")
+            swal("File Upload")
         ).error(
             swal("Oups! something wrong was hapening")
         );
