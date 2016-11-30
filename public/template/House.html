@@ -1,8 +1,9 @@
 <div layout="row" layout-sm="column" flex>
-   <div flex><md-button class="menu" ng-click="toggleLeft()">
-    <md-icon md-svg-icon="menu"></md-icon>
-</md-button>
-   </div>
+    <div flex>
+        <md-button class="menu" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+    </div>
     <form ng-submit="submitHouse()">
         <label class="myFont">Language / שפה</label>
         <md-input-container>
@@ -13,150 +14,157 @@
             </md-select>
         </md-input-container>
     </form>
-    </div>
+</div>
 <div layout="column" layout-sm="column" flex>
-    <div flex>
-       <center><label class="myFont">Wellcom To Your Account {{message}}</label></center>
+    <div>
+        <center><label class="myFont">Wellcom To Your Account {{message}}</label></center>
     </div>
-</div>
-<div layout="row" layout-sm="column" flex>
-    <form ng-submit="submitHouse()">
-        <label class="myFont">Select a House</label>
-        <md-input-container>
-            <md-select placeholder="Assign to House" ng-model="houses.selectedOption">
-                <md-option ng-value="house" ng-repeat="house in houses.availableOptions">
-                    {{house.house_number}} {{house.street}} {{house.city}} {{house.state}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </form>
-
-</div>
-
-
-<div layout="row" layout-sm="column">
-    <div flex="5"></div>
+    </br>
     <div flex>
-        <table class="rwd-table">
-            <h1>House Table</h1>
-            <tr>
-                <th>entity</th>
-                <th>detaile</th>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].HouseId}}</td>
-                <td>{{house_id}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].Address}}</td>
-                <td>{{house_number}} {{street}} {{city}} {{state}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].HouseKind}}</td>
-                <td>{{house_kind}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].NumberOfRooms}}</td>
-                <td>{{number_of_rooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].NumberOfLivingRooms}}</td>
-                <td>{{number_of_living_rooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].NumberOfKitchens}}</td>
-                <td>{{number_of_kitchens}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].NumberOfBedrooms}}</td>
-                <td>{{number_of_bedrooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].NumberOfBatdrooms}}</td>
-                <td>{{number_of_batdrooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].LocationKind}}</td>
-                <td>{{location_kind}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].Comments}}</td>
-                <td>{{comments}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].PurchasePrice}}</td>
-                <td>{{purchase_price}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].TreatmentFees}}</td>
-                <td>{{treatment_fees}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].RenovationFees}}</td>
-                <td>{{renovation_fees}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.HouseLanguage[0].DiversFees}}</td>
-                <td>{{divers_fees}}</td>
-            </tr>
-            <tr>
-                <td>
-                    <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">check</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div flex><h3>Area On The Maps</h3>
-        <div id="map" style="height: 400px; width: 400px;"></div>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpC9Z3zA73VG-FgbPdijlztIkOjrq8mAI&callback=initMap">
-        </script></div>
+        <center>
+            <form ng-submit="submitHouse()">
+                <label class="myFont">Select a House</label>
+                <md-input-container>
+                    <md-select placeholder="Assign to House" ng-model="houses.selectedOption">
+                        <md-option ng-value="house" ng-repeat="house in houses.availableOptions">
+                            {{house.house_number}} {{house.street}} {{house.city}} {{house.state}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </form>
+        </center>
+        </div>
 </div>
+</br> </br>
+
+        <div layout="row" layout-sm="column">
+            <div flex="5"></div>
+            <div flex>
+                <table class="rwd-table">
+                    <h1>House Table</h1>
+                    <tr>
+                        <th>entity</th>
+                        <th>detaile</th>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].HouseId}}</td>
+                        <td>{{house_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].Address}}</td>
+                        <td>{{house_number}} {{street}} {{city}} {{state}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].HouseKind}}</td>
+                        <td>{{house_kind}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].NumberOfRooms}}</td>
+                        <td>{{number_of_rooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</td>
+                        <td>{{number_of_living_rooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].NumberOfKitchens}}</td>
+                        <td>{{number_of_kitchens}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].NumberOfBedrooms}}</td>
+                        <td>{{number_of_bedrooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].NumberOfBatdrooms}}</td>
+                        <td>{{number_of_batdrooms}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].LocationKind}}</td>
+                        <td>{{location_kind}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].Comments}}</td>
+                        <td>{{comments}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].PurchasePrice}}</td>
+                        <td>{{purchase_price}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].TreatmentFees}}</td>
+                        <td>{{treatment_fees}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].RenovationFeesForSale}}</td>
+                        <td>{{renovation_fees_for_sale}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].RenovationFeesForRenting}}</td>
+                        <td>{{renovation_fees_for_renting}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{dictionary.Dictionary[0].DiversFees}}</td>
+                        <td>{{divers_fees}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">check</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div flex><h3>Area On The Maps</h3>
+                <div id="map" style="height: 400px; width: 400px;"></div>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpC9Z3zA73VG-FgbPdijlztIkOjrq8mAI&callback=initMap">
+                </script>
+            </div>
+        </div>
 
 
-<div layout="row" layout-sm="column">
-    <div flex>
-        I'm above on mobile, and to the left on larger devices.
-    </div>
-    <div flex>
-        I'm below on mobile, and to the right on larger devices.
-    </div>
-</div>
+        <div layout="row" layout-sm="column">
+            <div flex>
+                I'm above on mobile, and to the left on larger devices.
+            </div>
+            <div flex>
+                I'm below on mobile, and to the right on larger devices.
+            </div>
+        </div>
 
-<div class="container" layout="row" flex>
+        <div class="container" layout="row" flex>
 
 
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-        <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Menu</h1>
-        </md-toolbar>
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Menu</h1>
+                </md-toolbar>
 
-        <br layout-margin="" align="center">
-        <md-button class="account_circle" ng-click="goToUserInformation()">
-            <md-icon md-svg-icon="account_circle" align="center"></md-icon>
-            <div>{{userName}} Information</div>
-        </md-button>
-        </br>
-        <md-button class="house" ng-click="goToHouse()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div>house</div>
-        </md-button>
-        </br>
-        <md-button class="houses" ng-click="goToHouses()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div> Manage houses</div>
-        </md-button>
-        </br>
-        <md-button class="NewHouse" ng-click="goToNewHouse()">
-            <md-icon md-svg-icon="home"></md-icon>
-            <div>New House</div>
-        </md-button>
-        </br>
-        <md-button class="copyright" ng-click="goToCopyright()">
-            <md-icon md-svg-icon="copyright"></md-icon>
-            <div>copyright</div>
-        </md-button>
-        </br>
-        </md-content>
-    </md-sidenav>
-</div>
+                <br layout-margin="" align="center">
+                <md-button class="account_circle" ng-click="goToUserInformation()">
+                    <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+                    <div>{{userName}} Information</div>
+                </md-button>
+                </br>
+                <md-button class="house" ng-click="goToHouse()">
+                    <md-icon md-svg-icon="home"></md-icon>
+                    <div>house</div>
+                </md-button>
+                </br>
+                <md-button class="houses" ng-click="goToHouses()">
+                    <md-icon md-svg-icon="home"></md-icon>
+                    <div> Manage houses</div>
+                </md-button>
+                </br>
+                <md-button class="NewHouse" ng-click="goToNewHouse()">
+                    <md-icon md-svg-icon="home"></md-icon>
+                    <div>New House</div>
+                </md-button>
+                </br>
+                <md-button class="copyright" ng-click="goToCopyright()">
+                    <md-icon md-svg-icon="copyright"></md-icon>
+                    <div>copyright</div>
+                </md-button>
+                </br>
+                </md-content>
+            </md-sidenav>
+        </div>

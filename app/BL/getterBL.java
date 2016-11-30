@@ -484,13 +484,13 @@ public class getterBL {
     }
 
 
-    public HouseLanguage getHouseLanguageByLanguage(String szLanguage)
+    public Dictionary getHouseLanguageByLanguage(String szLanguage)
     {
-        HouseLanguage houseLanguageToReturn = new HouseLanguage();
+        Dictionary dictionaryToReturn = new Dictionary();
 
-        houseLanguageToReturn = getterDB.getHouseLanguageByLanguage(szLanguage);
-        System.out.println(houseLanguageToReturn.toJson());
-        return houseLanguageToReturn;
+        dictionaryToReturn = getterDB.getHouseLanguageByLanguage(szLanguage);
+        System.out.println(dictionaryToReturn.toJson());
+        return dictionaryToReturn;
 
     }
     public StringBuilder getListOFExistingLanguage()

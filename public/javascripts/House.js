@@ -25,16 +25,17 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.number_of_bedrooms = 1;
     $scope.number_of_bathrooms = 1;
     $scope.location_kind = 5;
-    $scope.comments = "???? ???? ???? ???? ?????";
+    $scope.comments = "אחלה של בית";
     $scope.purchase_price = 0.0;
     $scope.treatment_fees = 21.2;
-    $scope.renovation_fees = 54.5;
+    $scope.renovation_fees_for_sale = 54.5;
+    $scope.renovation_fees_for_renting = 24.5;
     $scope.divers_fees = 54.2;
     $scope.userName = getCookie("username");
     var houseName = "";
     var tempArr = [];
     $scope.dictionary = {
-                          "HouseLanguage": [
+                          "Dictionary": [
                             {
                               "HouseLanguage": "English",
                               "HouseId": "Number Of House That Recording In The System",
@@ -54,7 +55,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                               "Comments": "Comments",
                               "PurchasePrice": "Purchase Price",
                               "TreatmentFees": "Treatment Fees",
-                              "RenovationFees": "Renovation Fees",
+                              "RenovationFeesForSale": "Renovation Fees For Sale",
+                              "RenovationFeesForRenting": "Renovation Fees For Renting",
                               "DiversFees": "Divers Fees"
                             }
                           ]
@@ -139,7 +141,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     $scope.comments = response.data.house.comments;
                     $scope.purchase_price = response.data.house.purchase_price;
                     $scope.treatment_fees = response.data.house.treatment_fees;
-                    $scope.renovation_fees = response.data.house.renovation_fees;
+                    $scope.renovation_fees_for_sale = response.data.house.renovation_fees_for_sale;
+                    $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
                     $scope.divers_fees = response.data.house.divers_fees;
                     newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
                 },

@@ -3,7 +3,7 @@ package Entity;
 /**
  * Created by jacky on 18/11/2016.
  */
-public class HouseLanguage {
+public class Dictionary {
     private String szHouseLanguage;
     private String nHouseId;
     private String szAddress;
@@ -23,7 +23,7 @@ public class HouseLanguage {
     private String dPurchasePrice;
     private String dTreatmentFees;
     private String dRenovationFeesForSale;
-    private double dRenovationFeesForRenting;
+    private String dRenovationFeesForRenting;
     private String dDiversFees;
 
 
@@ -147,11 +147,11 @@ public class HouseLanguage {
         this.dTreatmentFees = dTreatmentFees;
     }
 
-    public String getRenovationFees() {
+    public String getdRenovationFeesForSale() {
         return dRenovationFeesForSale;
     }
 
-    public void setRenovationFees(String dRenovationFees) {
+    public void setRenovationFeesForSale(String dRenovationFees) {
         this.dRenovationFeesForSale = dRenovationFees;
     }
 
@@ -187,18 +187,18 @@ public class HouseLanguage {
         this.nScore = nScore;
     }
 
-    public double getRenovationFeesForRenting() {
+    public String getRenovationFeesForRenting() {
         return dRenovationFeesForRenting;
     }
 
-    public void setRenovationFeesForRenting(double dRenovationFeesForRenting) {
+    public void setRenovationFeesForRenting(String dRenovationFeesForRenting) {
         this.dRenovationFeesForRenting = dRenovationFeesForRenting;
     }
 
 
     public String toJson() {
-        return "{ \"HouseLanguage\":[ {" +
-                "\"HouseLanguage\":\"" + szHouseLanguage + "\"" +
+        return "{ \"Dictionary\":[ {" +
+                "\"Dictionary\":\"" + szHouseLanguage + "\"" +
                 ",\"HouseId\":\"" + nHouseId + "\"" +
                 ",\"Address\":\"" + szAddress + "\"" +
                 ",\"State\":\"" + szState + "\"" +
@@ -216,7 +216,8 @@ public class HouseLanguage {
                 ",\"Comments\":\"" + szComments + "\"" +
                 ",\"PurchasePrice\":\"" + dPurchasePrice + "\"" +
                 ",\"TreatmentFees\":\"" + dTreatmentFees + "\"" +
-                ",\"RenovationFees\":\"" + dRenovationFeesForSale + "\"" +
+                ",\"RenovationFeesForSale\":\"" + dRenovationFeesForSale + "\"" +
+                ",\"RenovationFeesForRenting\":\"" + dRenovationFeesForRenting + "\"" +
                 ",\"DiversFees\":\"" + dDiversFees + "\"" +
                 "} ]}";
     }
