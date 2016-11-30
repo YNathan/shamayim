@@ -19,10 +19,11 @@ public class House {
     private String szComments;
     private double dPurchasePrice;
     private double dTreatmentFees;
-    private double dRenovationFees;
+    private double dRenovationFeesForSale;
+    private double dRenovationFeesForRenting;
     private double dDiversFees;
 
-    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFees, double dDiversFees) {
+    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale,double dRenovationFeesForRenting, double dDiversFees) {
         this.nHouseId = nHouseId;
         this.szState = szState;
         this.szCity = szCity;
@@ -38,7 +39,8 @@ public class House {
         this.szComments = szComments;
         this.dPurchasePrice = dPurchasePrice;
         this.dTreatmentFees = dTreatmentFees;
-        this.dRenovationFees = dRenovationFees;
+        this.dRenovationFeesForSale = dRenovationFeesForSale;
+        this.dRenovationFeesForRenting = dRenovationFeesForRenting;
         this.dDiversFees = dDiversFees;
     }
 
@@ -197,12 +199,12 @@ public class House {
         this.dTreatmentFees = dTreatmentFees;
     }
 
-    public double getRenovationFees() {
-        return dRenovationFees;
+    public double getRenovationFeesForSale() {
+        return dRenovationFeesForSale;
     }
 
-    public void setRenovationFees(double dRenovationFees) {
-        this.dRenovationFees = dRenovationFees;
+    public void setRenovationFeesForSale(double dRenovationFees) {
+        this.dRenovationFeesForSale = dRenovationFees;
     }
 
     public double getDiversFees() {
@@ -211,6 +213,14 @@ public class House {
 
     public void setDiversFees(double dDiversFees) {
         this.dDiversFees = dDiversFees;
+    }
+
+    public double getRenovationFeesForRenting() {
+        return dRenovationFeesForRenting;
+    }
+
+    public void setRenovationFeesForRenting(double dRenovationFeesForRenting) {
+        this.dRenovationFeesForRenting = dRenovationFeesForRenting;
     }
 
     @Override
@@ -231,7 +241,7 @@ public class House {
                 ", szComments='" + szComments + '\'' +
                 ", dPurchasePrice=" + dPurchasePrice +
                 ", dTreatmentFees=" + dTreatmentFees +
-                ", dRenovationFees=" + dRenovationFees +
+                ", dRenovationFeesForSale=" + dRenovationFeesForSale +
                 ", dDiversFees=" + dDiversFees +
                 '}';
     }

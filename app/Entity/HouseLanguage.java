@@ -22,7 +22,8 @@ public class HouseLanguage {
     private String szComments;
     private String dPurchasePrice;
     private String dTreatmentFees;
-    private String dRenovationFees;
+    private String dRenovationFeesForSale;
+    private double dRenovationFeesForRenting;
     private String dDiversFees;
 
 
@@ -147,11 +148,11 @@ public class HouseLanguage {
     }
 
     public String getRenovationFees() {
-        return dRenovationFees;
+        return dRenovationFeesForSale;
     }
 
     public void setRenovationFees(String dRenovationFees) {
-        this.dRenovationFees = dRenovationFees;
+        this.dRenovationFeesForSale = dRenovationFees;
     }
 
     public String getDiversFees() {
@@ -186,6 +187,13 @@ public class HouseLanguage {
         this.nScore = nScore;
     }
 
+    public double getRenovationFeesForRenting() {
+        return dRenovationFeesForRenting;
+    }
+
+    public void setRenovationFeesForRenting(double dRenovationFeesForRenting) {
+        this.dRenovationFeesForRenting = dRenovationFeesForRenting;
+    }
 
 
     public String toJson() {
@@ -208,7 +216,7 @@ public class HouseLanguage {
                 ",\"Comments\":\"" + szComments + "\"" +
                 ",\"PurchasePrice\":\"" + dPurchasePrice + "\"" +
                 ",\"TreatmentFees\":\"" + dTreatmentFees + "\"" +
-                ",\"RenovationFees\":\"" + dRenovationFees + "\"" +
+                ",\"RenovationFees\":\"" + dRenovationFeesForSale + "\"" +
                 ",\"DiversFees\":\"" + dDiversFees + "\"" +
                 "} ]}";
     }
