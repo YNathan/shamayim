@@ -4,15 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.mail.MessagingException;
-
 
 import DB.getterDB;
 import Entity.*;
 import play.Logger;
-import play.mvc.BodyParser;
-
-import static play.mvc.Http.Context.Implicit.request;
 
 /**
  * Will do all the logic of the data who asked from the server
@@ -434,7 +429,7 @@ public class getterBL {
             sbHousesInformationToReturn.append("\"comments\":\"" + currHouse.getComments() + "\",");
             sbHousesInformationToReturn.append("\"purchase_price\":\"" + currHouse.getPurchasePrice() + "\",");
             sbHousesInformationToReturn.append("\"treatment_fees\":\"" + currHouse.getTreatmentFees() + "\",");
-            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + currHouse.getRenovationFees() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + currHouse.getRenovationFeesForSale() + "\",");
             sbHousesInformationToReturn.append("\"divers_fees\":\"" + currHouse.getDiversFees() + "\"}");
 
             if (housesLtr.hasNext()) {
@@ -481,7 +476,7 @@ public class getterBL {
             sbHousesInformationToReturn.append("\"comments\":\"" + house.getComments() + "\",");
             sbHousesInformationToReturn.append("\"purchase_price\":\"" + house.getPurchasePrice() + "\",");
             sbHousesInformationToReturn.append("\"treatment_fees\":\"" + house.getTreatmentFees() + "\",");
-            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + house.getRenovationFees() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + house.getRenovationFeesForSale() + "\",");
             sbHousesInformationToReturn.append("\"divers_fees\":\"" + house.getDiversFees() + "\"}");
         }
         sbHousesInformationToReturn.append(" }");
