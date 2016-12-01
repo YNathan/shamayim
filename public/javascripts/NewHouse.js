@@ -86,7 +86,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             id: '1',
             HouseLanguage: 'default'
         }
-    };
+    };/**********/
     $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
         .then(function successCallback(response) {
         angular.forEach(response.data.languages, function(value, key) {

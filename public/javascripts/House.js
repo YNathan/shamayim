@@ -1,17 +1,7 @@
-app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', function($scope, $http, $state, $interval, $mdDialog, $mdSidenav) {
-    // Get value from the cookie
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1);
-            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-        }
-        return "";
-    }
+app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
+
     // Just print kind of 'hay message'
-    $scope.message = 'M. ' + getCookie("username");
+    $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.house_id = "1";
     $scope.state = "ca";
     $scope.city = "la";
@@ -30,38 +20,36 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.renovation_fees_for_sale = 54.5;
     $scope.renovation_fees_for_renting = 24.5;
     $scope.divers_fees = 54.2;
-    $scope.userName = getCookie("username");
+    $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
     $scope.dictionary = {
-                          "Dictionary": [
-                            {
-                              "HouseLanguage": "English",
-                              "HouseId": "Number Of House That Recording In The System",
-                              "Address": "Address",
-                              "State": "State",
-                              "City": "City",
-                              "Street": "Street",
-                              "HouseNumber": "House Number",
-                              "HouseKind": "Kind Of House",
-                              "NumberOfRooms": "Number Of Rooms",
-                              "NumberOfLivingRooms": "Number Of Living Rooms",
-                              "NumberOfKitchens": "Number Of Kitchens",
-                              "NumberOfBedrooms": "Number Of Bedrooms",
-                              "NumberOfBathrooms": "Number Of Bathrooms",
-                              "LocationKind": "LocationKind",
-                              "Score": "Score",
-                              "Comments": "Comments",
-                              "PurchasePrice": "Purchase Price",
-                              "TreatmentFees": "Treatment Fees",
-                              "RenovationFeesForSale": "Renovation Fees For Sale",
-                              "RenovationFeesForRenting": "Renovation Fees For Renting",
-                              "GeneralHouseDetailes": "General House Details",
-                              "FinancialHouseDetailes": "Financial House Details",
-                              "DiversFees": "Divers Fees"
-                            }
-                          ]
-                        };
+        "Dictionary": [{
+            "Dictionary": "English",
+            "HouseId": "Number Of House That Recording In The System",
+            "Address": "Address",
+            "State": "State",
+            "City": "City",
+            "Street": "Street",
+            "HouseNumber": "House Number",
+            "HouseKind": "Kind Of House",
+            "NumberOfRooms": "Number Of Rooms",
+            "NumberOfLivingRooms": "Number Of Living Rooms",
+            "NumberOfKitchens": "Number Of Kitchens",
+            "NumberOfBedrooms": "Number Of Bedrooms",
+            "NumberOfBathrooms": "Number Of Bathrooms",
+            "LocationKind": "LocationKind",
+            "Score": "Score",
+            "Comments": "Comments",
+            "PurchasePrice": "Purchase Price",
+            "TreatmentFees": "Treatment Fees",
+            "RenovationFeesForSale": "Renovation Fees For Sale",
+            "RenovationFeesForRenting": "Renovation Fees For Renting",
+            "GeneralHouseDetailes": "General House Details",
+            "FinancialHouseDetailes": "Financial House Details",
+            "DiversFees": "Divers Fees"
+        }]
+    };
 
 
     // For the house
@@ -72,19 +60,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             house: 'default'
         }
     };
-    function showAlert(title, textContent, ariaLabel) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title(title)
-            .textContent(textContent)
-            .ariaLabel(ariaLabel)
-        );
-    }
+
+
     // Get information conserning the
     $http.get("/GET_LIST_OF_HOUSES")
         .then(function successCallback(response) {
@@ -98,12 +75,11 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 }, $scope.houses);
             },
             function error(response) {
-                showAlert("Your attention please", response.data, "cant load houses");
+                ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
             });
 
     function checkIfNeedConfirming() {
-        // While Thread
-        // Get information conserning the
+        /*// Get information conserning the houses
         $http.get("/GET_LIST_OF_HOUSES")
             .then(function successCallback(response) {
                     angular.forEach(response.data.houses, function(value, key) {
@@ -116,8 +92,9 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     }, $scope.houses);
                 },
                 function error(response) {
-                    showAlert("Your attention please", response.data, "cant load houses");
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
+   */
     }
     $interval(checkIfNeedConfirming, 200000);
 
@@ -148,13 +125,13 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
                 },
                 function error(response) {
-                    showAlert("Your attention please", response.data, "cant load houses");
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
     }
 
 
-// Language Section
-// For the Language
+    // Language Section
+    // For the Language
     $scope.Languages = {
         availableOptions: [],
         selectedOption: {
@@ -162,43 +139,27 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             HouseLanguage: 'default'
         }
     };
-    $http.get("/GET_LIST_OF_EXISTING_LANGUAGES")
-        .then(function successCallback(response) {
-        angular.forEach(response.data.languages, function(value, key) {
-                itemName = {
-                        id: key,
-                        HouseLanguage: value
-                    }
-                    tempArr.push(itemName);
-                    $scope.Languages.availableOptions.push(itemName.HouseLanguage);
-                }, $scope.Languages);
-            },
-            function error(response) {
-                showAlert("Your attention please", response.data, "cant load houses");
-            });
+  $scope.Languages = ShamayimFunctions.getExistingLanguages();
+
 
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-        $http.get("/GET_LANGUAGE/" + szLanguageName)
-            .then(function successCallback(response) {
-              $scope.dictionary = response.data;
-                                  },
-                function error(response) {
-                    showAlert("Your attention please", response.data, "cant load houses");
-                });
+       ShamayimFunctions.getLanguage(szLanguageName);
+       ShamayimFunctions.getLanguage(szLanguageName);
+       $scope.dictionary = ShamayimFunctions.dictionary;
     }
- $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+    $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
             if (newVal != oldVal) {
                 HouseLanguageName = newVal;
                 getLanguage(newVal);
 
             }
-     })
-// End Of Language Section
+        })
+        // End Of Language Section
 
     // Just check if there is a user name
-    if (getCookie("username") == null) {
+    if (ShamayimFunctions.getCookie("username") == null) {
         // Go to the main application
         $state.go('wellcom');
     }
@@ -288,21 +249,21 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             .then(function successCallback(response) {
                     latitude = response.data.results[0].geometry.location.lat;
                     longitude = response.data.results[0].geometry.location.lng;
-                     var uluru = {
-                                lat: latitude,
-                                lng: longitude
-                            };
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 15,
-                                center: uluru
-                            });
-                            var marker = new google.maps.Marker({
-                                position: uluru,
-                                map: map
-                            });
+                    var uluru = {
+                        lat: latitude,
+                        lng: longitude
+                    };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: uluru
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
                 },
                 function error(response) {
-                    showAlert("Your attention please", response.data, "cant load maps");
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load maps");
                 });
 
 
@@ -310,24 +271,24 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
 
-     $scope.toggleLeft = function() {
-         $mdSidenav('left').toggle();
-     }
-     $scope.goToCopyright = function() {
-         $state.go('Copyright');
-     }
-     $scope.goToUserInformation = function() {
-         $state.go('userInformation');
-     }
-     $scope.goToHouses = function() {
-         $state.go('Houses');
-     }
-     $scope.goToNewHouse = function() {
-         $state.go('NewOrEditHouse');
-     }
-     $scope.goToHouse = function() {
-         $state.go('House');
-     }
+    $scope.toggleLeft = function() {
+        $mdSidenav('left').toggle();
+    }
+    $scope.goToCopyright = function() {
+        $state.go('Copyright');
+    }
+    $scope.goToUserInformation = function() {
+        $state.go('userInformation');
+    }
+    $scope.goToHouses = function() {
+        $state.go('Houses');
+    }
+    $scope.goToNewHouse = function() {
+        $state.go('NewOrEditHouse');
+    }
+    $scope.goToHouse = function() {
+        $state.go('House');
+    }
 
 
 }]);

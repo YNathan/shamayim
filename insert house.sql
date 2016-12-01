@@ -74,13 +74,14 @@ CREATE TABLE `dictionary` (
   `purchase_price` varchar(255) NOT NULL,
   `treatment_fees` varchar(255) NOT NULL,
   `renovation_fees_for_sale` varchar(255) NOT NULL,
-  `divers_fees` varchar(255) NOT NULL,
   `renovation_fees_for_renting` varchar(255) NOT NULL,
+  `divers_fees` varchar(255) NOT NULL,
   `general_house_details` varchar(255) NOT NULL,
   `financial_house_details` varchar(255) NOT NULL,
   PRIMARY KEY (`house_language`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
-insert into shamayim.dictionary values("עברית","מספר רישום הבית במערכת","כתובת","מדינה","עיר","רחוב","מספר בית","סוג הבית","מספר חדרים","מספר חדרי סלון","מספר חדרי מטבח","מספר חדרי שינה","מספר חדרי שירותים/ מקלחת","מיקום","ציון","הערות","מחיר קניה","הוצאות טיפול","הוצאות שיפוץ למכירה","הוצאות שיפוץ להשכרה","הוצאות אחרות");
-insert into shamayim.dictionary values("Francais","Numero De Maison Enregistrer Dans Le System","Address","Pays","Ville","Rue","Numero De Maison","Style De Maison","Nombre De Chambres","Numbre De Salle A Manger","Numbre De cuisins","Nombre De Chambre A Cousher","Nombre De Chambre De Toilette","Environnment","Score","Commentaires","Prix Dachat","Depance De Traitment","Depance De Renovation Pour Vente",,"Depance De Renovation Pour Location","Autre Depance");
-insert into shamayim.dictionary values("English","Number Of House That Recording In The System","Address","State","City","Street","House Number","Kind Of House","Number Of Rooms","Number Of Living Rooms","Number Of Kitchens","Number Of Bedrooms","Number Of Bathrooms","Location Kind","Score","Comments","Purchase Price","Treatment Fees","Renovation Fees For Sale","Renovation Fees For Reinting","Divers Fees");
+
+insert into shamayim.dictionary values("עברית","מספר רישום הבית במערכת","כתובת","מדינה","עיר","רחוב","מספר בית","סוג הבית","מספר חדרים","מספר חדרי סלון","מספר חדרי מטבח","מספר חדרי שינה","מספר חדרי שירותים/ מקלחת","מיקום","ציון","הערות","מחיר קניה","הוצאות טיפול","הוצאות שיפוץ למכירה","הוצאות שיפוץ להשכרה","הוצאות אחרות","נתונים כלליים","נתונים כלכליים");
+insert into shamayim.dictionary values("Francais","Numero De Maison Enregistrer Dans Le System","Address","Pays","Ville","Rue","Numero De Maison","Style De Maison","Nombre De Chambres","Numbre De Salle A Manger","Numbre De cuisins","Nombre De Chambre A Cousher","Nombre De Chambre De Toilette","Environnment","Score","Commentaires","Prix Dachat","Depance De Traitment","Depance De Renovation Pour Vente","Depance De Renovation Pour Location","Autre Depance","Detailles Generals","Detailles Financier");
+insert into shamayim.dictionary values("English","Number Of House That Recording In The System","Address","State","City","Street","House Number","Kind Of House","Number Of Rooms","Number Of Living Rooms","Number Of Kitchens","Number Of Bedrooms","Number Of Bathrooms","Location Kind","Score","Comments","Purchase Price","Treatment Fees","Renovation Fees For Sale","Renovation Fees For Reinting","Divers Fees","General Details","Financial Details");
