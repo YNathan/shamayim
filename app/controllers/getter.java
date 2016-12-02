@@ -66,17 +66,6 @@ public class getter extends Controller {
 
     }
 
-    public static Result getGelts(String szUserName) {
-        if (szUserName != null) {
-            String szResponce = getterBL.getGeltsByNameForOutput(szUserName).toString();
-            play.Logger.info(szResponce);
-            return play.mvc.Results.ok(szResponce);
-        } else {
-            return play.mvc.Results
-                    .badRequest("Null pointer screw you! \nyou send your request with an empty user-name!");
-        }
-    }
-
     public static Result getGroupGelts(String szUserName, String szGroupName) {
         if (szUserName != null && szGroupName != null) {
             String szResponce = getterBL.getGeltsByNameAndGroupsForOutput(szUserName, szGroupName).toString();

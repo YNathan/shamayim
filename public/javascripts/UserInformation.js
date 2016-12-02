@@ -1,4 +1,4 @@
-app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav) {
+app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions) {
 
     $scope.userName = getCookie("username");
     $scope.username = 'Developer';
@@ -11,7 +11,7 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
     $scope.userId = '';
 
 
-// Get value from the cookie
+    // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');
@@ -57,11 +57,11 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
         // to prevent interaction outside of dialog
         $mdDialog.show(
             $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title(title)
-                .textContent(textContent)
-                .ariaLabel(ariaLabel)
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title(title)
+            .textContent(textContent)
+            .ariaLabel(ariaLabel)
         );
     }
 
@@ -78,7 +78,9 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
 
         $http.post("/upload/" + getCookie("username"), fd, {
             withCredentials: true,
-            headers: {'Content-Type': undefined},
+            headers: {
+                'Content-Type': undefined
+            },
             transformRequest: angular.identity
         }).success(
             swal("Yeah!!!")
@@ -94,15 +96,15 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
 
         // Check if the name exist
         $http({
-            method: 'GET',
-            url: '/CHECK_USER_NAME/' + userName
-        })
+                method: 'GET',
+                url: '/CHECK_USER_NAME/' + userName
+            })
             .then(function successCallback(response) {
                     // Check if the email exist
                     $http({
-                        method: 'GET',
-                        url: '/CHECK_EMAIL/' + email
-                    })
+                            method: 'GET',
+                            url: '/CHECK_EMAIL/' + email
+                        })
                         .then(function successCallback(response) {
                                 var birthdateOrder = $filter('date')($scope.birthdate, 'yyyy-MM-dd');
                                 setUserNameCookie("username", userName);
@@ -130,23 +132,23 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
                 });
     };
 
- $scope.toggleLeft = function() {
-     $mdSidenav('left').toggle();
- }
- $scope.goToCopyright = function() {
-     $state.go('Copyright');
- }
- $scope.goToUserInformation = function() {
-     $state.go('userInformation');
- }
- $scope.goToHouses = function() {
-     $state.go('Houses');
- }
- $scope.goToNewHouse = function() {
-     $state.go('NewOrEditHouse');
- }
- $scope.goToHouse = function() {
-     $state.go('House');
- }
+    $scope.toggleLeft = function () {
+        $mdSidenav('left').toggle();
+    }
+    $scope.goToCopyright = function () {
+        $state.go('Copyright');
+    }
+    $scope.goToUserInformation = function () {
+        $state.go('userInformation');
+    }
+    $scope.goToHouses = function () {
+        $state.go('Houses');
+    }
+    $scope.goToNewHouse = function () {
+        $state.go('NewOrEditHouse');
+    }
+    $scope.goToHouse = function () {
+        $state.go('House');
+    }
 
 }]);

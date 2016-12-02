@@ -93,11 +93,16 @@ var dictionary = {
                     });
         return  dictionary;
     }
+
+    function setUserNameCookie(szName, szValue) {
+            document.cookie = szName + "=" + szValue + "; ";
+        }
     return {
         getExistingLanguages: getExistingLanguages,
         getLanguage: getLanguage,
         showAlert: showAlert,
         getCookie: getCookie,
-        dictionary : dictionary
+        dictionary : dictionary,
+        setUserNameCookie : setUserNameCookie
     };
 });

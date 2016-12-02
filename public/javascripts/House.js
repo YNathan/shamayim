@@ -23,35 +23,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
-    $scope.dictionary = {
-        "Dictionary": [{
-            "Dictionary": "English",
-            "HouseId": "Number Of House That Recording In The System",
-            "Address": "Address",
-            "State": "State",
-            "City": "City",
-            "Street": "Street",
-            "HouseNumber": "House Number",
-            "HouseKind": "Kind Of House",
-            "NumberOfRooms": "Number Of Rooms",
-            "NumberOfLivingRooms": "Number Of Living Rooms",
-            "NumberOfKitchens": "Number Of Kitchens",
-            "NumberOfBedrooms": "Number Of Bedrooms",
-            "NumberOfBathrooms": "Number Of Bathrooms",
-            "LocationKind": "LocationKind",
-            "Score": "Score",
-            "Comments": "Comments",
-            "PurchasePrice": "Purchase Price",
-            "TreatmentFees": "Treatment Fees",
-            "RenovationFeesForSale": "Renovation Fees For Sale",
-            "RenovationFeesForRenting": "Renovation Fees For Renting",
-            "GeneralHouseDetailes": "General House Details",
-            "FinancialHouseDetailes": "Financial House Details",
-            "DiversFees": "Divers Fees"
-        }]
-    };
-
-
+    $scope.dictionary;
+    var results;
     // For the house
     $scope.houses = {
         availableOptions: [],
@@ -145,13 +118,13 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-       ShamayimFunctions.getLanguage(szLanguageName);
-       ShamayimFunctions.getLanguage(szLanguageName);
-       $scope.dictionary = ShamayimFunctions.dictionary;
+      $scope.dictionary = ShamayimFunctions.getLanguage(szLanguageName);
     }
+    getLanguage("English");
     $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
             if (newVal != oldVal) {
                 HouseLanguageName = newVal;
+                getLanguage(newVal);
                 getLanguage(newVal);
 
             }
@@ -175,69 +148,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
 
 
-    var results = {
-        "results": [{
-            "address_components": [{
-                "long_name": "283",
-                "short_name": "283",
-                "types": ["street_number"]
-            }, {
-                "long_name": "Prince Street",
-                "short_name": "Prince St",
-                "types": ["route"]
-            }, {
-                "long_name": "Springfield/Belmont",
-                "short_name": "Springfield/Belmont",
-                "types": ["neighborhood", "political"]
-            }, {
-                "long_name": "Newark",
-                "short_name": "Newark",
-                "types": ["locality", "political"]
-            }, {
-                "long_name": "Essex County",
-                "short_name": "Essex County",
-                "types": ["administrative_area_level_2", "political"]
-            }, {
-                "long_name": "New Jersey",
-                "short_name": "NJ",
-                "types": ["administrative_area_level_1", "political"]
-            }, {
-                "long_name": "États-Unis",
-                "short_name": "US",
-                "types": ["country", "political"]
-            }, {
-                "long_name": "07108",
-                "short_name": "07108",
-                "types": ["postal_code"]
-            }, {
-                "long_name": "2629",
-                "short_name": "2629",
-                "types": ["postal_code_suffix"]
-            }],
-            "formatted_address": "283 Prince St, Newark, NJ 07108, États-Unis",
-            "geometry": {
-                "location": {
-                    "lat": 40.7269049,
-                    "lng": -74.1896381
-                },
-                "location_type": "ROOFTOP",
-                "viewport": {
-                    "northeast": {
-                        "lat": 40.7282538802915,
-                        "lng": -74.18828911970849
-                    },
-                    "southwest": {
-                        "lat": 40.7255559197085,
-                        "lng": -74.19098708029151
-                    }
-                }
-            },
-            "partial_match": true,
-            "place_id": "ChIJCcsncmtTwokR_9zF-itQG94",
-            "types": ["street_address"]
-        }],
-        "status": "OK"
-    }
+
 
 
     function newMapLocation(nNumberOfHouse, szStreetName, szCityName, szStateName) {
@@ -266,9 +177,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load maps");
                 });
 
-
-
-
     }
 
     $scope.toggleLeft = function() {
@@ -289,6 +197,5 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.goToHouse = function() {
         $state.go('House');
     }
-
 
 }]);

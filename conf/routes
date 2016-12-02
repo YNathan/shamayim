@@ -10,7 +10,6 @@ GET         /MAIN                                                               
 POST        /LOGIN/:Username/:Password                                                             controllers.getter.isLoginPermited(Username:String,Password:String)
 GET         /CHECK_USER_NAME/:USER_NAME                                                            controllers.getter.isUserNameAlreadyExist(USER_NAME:String)
 GET         /CHECK_EMAIL/:Email                                                                    controllers.getter.isEmailAlreadyExist(Email:String)
-GET         /GET_GELT/:userName                                                                    controllers.getter.getGelts(userName:String)
 GET         /GET_USERS/:userName                                                                   controllers.getter.getUsers(userName:String)
 POST        /INSERT_GELT/:szDebterName/:szAmount/:szEntitledName                                   controllers.setter.newGelt(szDebterName:String,szAmount:String,szEntitledName:String)
 POST        /REGISTER/:userName/:firstName/:lastName/:telephone/:email/:password/:birthdate        controllers.setter.registerNewUser(userName:String,firstName:String,lastName:String,telephone:String,email:String,password:String,birthdate:String)

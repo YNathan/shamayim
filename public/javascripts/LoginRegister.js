@@ -1,4 +1,4 @@
-app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', function($scope, $http, $filter, $state, $mdDialog) {
+app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 'ShamayimFunctions',function($scope, $http, $filter, $state, $mdDialog,ShamayimFunctions) {
     $scope.userName = 'RobertDupont';
     $scope.firstName = "Robert";
     $scope.lastName = "Dupont";
@@ -11,35 +11,6 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
     $scope.Username = 'Y.Nathan';
     $scope.Password = 'a';
 
-    function setUserNameCookie(szName, szValue) {
-        document.cookie = szName + "=" + szValue + "; ";
-    }
-
-    // Get value from the cookie
-    function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1);
-            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-        }
-        return "";
-    }
-    function showAlert(title, textContent, ariaLabel) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title(title)
-            .textContent(textContent)
-            .ariaLabel(ariaLabel)
-        );
-    }
-
 
 
     $scope.uploadFile = function(files) {
@@ -47,7 +18,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
         //Take the selected file
         fd.append("file", files[0]);
 
-        $http.post("/upload/" + getCookie("username"), fd, {
+        $http.post("/upload/" + ShamayimFunctions.getCookie("username"), fd, {
             withCredentials: true,
             headers: {
                 'Content-Type': undefined
@@ -79,7 +50,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                         })
                         .then(function successCallback(response) {
                                 var birthdateOrder = $filter('date')($scope.birthdate, 'yyyy-MM-dd');
-                                setUserNameCookie("username", userName);
+                                ShamayimFunctions.setUserNameCookie("username", userName);
                                 // Register new user
                                 $http({
                                     method: 'POST',
@@ -124,7 +95,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                     .ariaLabel('Alert Dialog Demo')
                     .ok('Lets start!')
                 );
-                setUserNameCookie("username", userName);
+                ShamayimFunctions.setUserNameCookie("username", userName);
                 // Go to the main application
                 $state.go('House');
             }

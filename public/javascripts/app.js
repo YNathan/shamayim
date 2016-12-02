@@ -1,15 +1,15 @@
 /**
  * Created by Yaacov on 29/12/2015.
  */
-app = angular.module('root', ['ui.router', 'ngMaterial', 'ngMessages','lfNgMdFileInput','ShamayimService']);
-app.config(function ($stateProvider, $urlRouterProvider,$mdIconProvider) {
-    $mdIconProvider.defaultIconSet('./svg/avatars.svg',128);
-    $mdIconProvider.icon('share','./svg/share.svg',24);
-    $mdIconProvider.icon('menu','./svg/menu.svg',24);
-    $mdIconProvider.icon('account_circle','./svg/account_circle.svg');
-    $mdIconProvider.icon('attach_money','./svg/attach_money.svg');
-    $mdIconProvider.icon('copyright','./svg/copyright.svg');
-    $mdIconProvider.icon('home','./svg/home.svg');
+app = angular.module('root', ['ui.router', 'ngMaterial', 'ngMessages', 'lfNgMdFileInput', 'ShamayimService']);
+app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
+    $mdIconProvider.defaultIconSet('./svg/avatars.svg', 128);
+    $mdIconProvider.icon('share', './svg/share.svg', 24);
+    $mdIconProvider.icon('menu', './svg/menu.svg', 24);
+    $mdIconProvider.icon('account_circle', './svg/account_circle.svg');
+    $mdIconProvider.icon('attach_money', './svg/attach_money.svg');
+    $mdIconProvider.icon('copyright', './svg/copyright.svg');
+    $mdIconProvider.icon('home', './svg/home.svg');
 
 
     //
