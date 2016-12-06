@@ -329,6 +329,29 @@ public class setter {
         }
     }
 
+
+    /**
+     * Get file(*can be a profile picture) from client and save in the server
+     *
+     * @return
+     * @throws IOException
+     */
+    public static play.mvc.Result setHousePictures(String szHouseName) throws IOException {
+        System.out.println("setHousePictures");
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        System.out.println("Get Boody From Multypart");
+        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
+        System.out.println("Get Pictures");
+        List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
+
+        setterBL.setFiles(szHouseName,pictures);
+        if (updateProfilePicture(szHouseName)) {
+            return redirect("assets/index.html");
+        } else {
+            flash("error", "Missing file");
+            return badRequest();
+        }
+    }
     public static boolean updateProfilePicture() {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
@@ -361,6 +384,25 @@ public class setter {
         } else {
             flash("error", "Missing file");
             return badRequest();
+        }
+    }
+    public static boolean updateHousePicture(String szUserName) {
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
+        if (picture != null) {
+            java.io.File sourceFile = picture.getFile();
+            File dest = new File(System.getProperty("user.dir") + "\\profilsPicture\\" + szUserName + ".jpg");
+            try {
+                play.Logger.info("<SETTER> save profile picture on file");
+                setterBL.copyFile(sourceFile, dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+                play.Logger.info(e.getMessage());
+            }
+            return true;
+        } else {
+            flash("error", "Missing file");
+            return false;
         }
     }
 

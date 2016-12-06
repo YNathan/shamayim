@@ -2,6 +2,8 @@ package BL;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import File.FileSetter;
 import DB.getterDB;
@@ -9,6 +11,9 @@ import DB.setterDB;
 import Entity.Gelt;
 import Entity.House;
 import Entity.WebResponce;
+import play.mvc.Http;
+
+import static play.mvc.Controller.flash;
 
 /**
  * @author Yaacov
@@ -502,5 +507,28 @@ public class setterBL {
             throw new IOException("Old location does not exist when transferring " + oldLocation.getPath() + " to "
                     + newLocation.getPath());
         }
+    }
+
+    public void setFiles(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
+        Iterator<Http.MultipartFormData.FilePart> filePartIterator = pictures.iterator();
+        while (filePartIterator.hasNext()) {
+            Http.MultipartFormData.FilePart picture = filePartIterator.next();
+
+            if (picture != null) {
+                File sourceFile = picture.getFile();
+                System.out.println(sourceFile);
+                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + picture.getFilename());
+                try {
+                    play.Logger.info("<SETTER> save profile picture on file");
+                    setterBL.copyFile(sourceFile, dest);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    play.Logger.info(e.getMessage());
+                }
+            } else {
+
+            }
+        }
+
     }
 }

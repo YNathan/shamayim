@@ -32,6 +32,7 @@ GET         /GET_LIST_OF_HOUSES                                                 
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 GET         /GET_LANGUAGE/:szLanguage                                                              controllers.getter.getLanguage(szLanguage:String)
+POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
 POST        /upload/:szUserName                                                                    controllers.setter.uploadFileWithName(szUserName:String)

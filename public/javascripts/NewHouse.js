@@ -1,5 +1,5 @@
 app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
-
+    $scope.files;
     $scope.strCaptionDragAndDrop = "Drag & drop files here...";
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
@@ -77,21 +77,19 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             HouseLanguage: 'default'
         }
     };
-  $scope.Languages = ShamayimFunctions.getExistingLanguages();
+    $scope.Languages = ShamayimFunctions.getExistingLanguages();
 
 
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-      $scope.dictionary = ShamayimFunctions.getLanguage(szLanguageName);
+        $scope.dictionary = ShamayimFunctions.getLanguage(szLanguageName);
     }
     getLanguage("English");
-    $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
             if (newVal != oldVal) {
                 HouseLanguageName = newVal;
                 getLanguage(newVal);
-                getLanguage(newVal);
-
             }
         })
         // End Of Language Section
@@ -126,9 +124,9 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     $scope.setNewHouse = function () {
         house.state = $scope.state;
-        house.city = $scope.city,
-            house.street = $scope.street,
-            house.house_number = $scope.house_number;
+        house.city = $scope.city;
+        house.street = $scope.street;
+        house.house_number = $scope.house_number;
         house.house_kind = $scope.house_kind;
         house.number_of_rooms = $scope.number_of_rooms;
         house.number_of_living_rooms = $scope.number_of_living_rooms;
@@ -195,17 +193,15 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             getHouse(newVal.house_id);
 
         }
-    })
- $scope.$watch('files.length',function(newVal,oldVal){
-            console.log($scope.files);
-        });
-    // Update profile picture
-    $scope.uploadFile = function (files) {
-        var fd = new FormData();
-        //Take the selected file
-        fd.append("file", files[0]);
+    });
+    $scope.$watch('files.length', function (newVal, oldVal) {
+        console.log($scope.files);
+    });
 
-        $http.post("/upload/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state, fd, {
+
+    // Update profile picture
+    function uploadFile(fd) {
+        $http.post("/SET_HOUSE_PICTURES/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state, fd, {
             withCredentials: true,
             headers: {
                 'Content-Type': undefined
@@ -217,8 +213,21 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             swal("Oups! something wrong was hapening")
         );
 
-    };
+    }
+    
+    
+    $scope.uploadFiles = function () {
+        var nCounter = 0;
+        var fd = new FormData();
 
+        while (nCounter < $scope.files.length) {
+            //Take the selected file
+            fd.append("file", $scope.files[nCounter]);
+            nCounter++;
+        }
+        uploadFile(fd);
+
+    }
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }
