@@ -340,7 +340,7 @@ public class setter {
         System.out.println("setHousePictures");
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         System.out.println("Get Boody From Multypart");
-        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
+        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("Object");
         System.out.println("Get Pictures");
         List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
 

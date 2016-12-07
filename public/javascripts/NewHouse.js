@@ -222,10 +222,11 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         while (nCounter < $scope.files.length) {
             //Take the selected file
-            fd.append("file", $scope.files[nCounter]);
+            fd.append("files", $scope.files[nCounter]); 
+            uploadFile(fd);
             nCounter++;
         }
-        uploadFile(fd);
+       
 
     }
     $scope.toggleLeft = function () {
