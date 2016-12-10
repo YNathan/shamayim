@@ -312,6 +312,7 @@ public class setter {
     public static boolean updateProfilePicture(String szUserName) {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
+        play.mvc.Http.MultipartFormData.FilePart picture1 = body.getFile("lfFile");
         if (picture != null) {
             java.io.File sourceFile = picture.getFile();
             File dest = new File(System.getProperty("user.dir") + "\\profilsPicture\\" + szUserName + ".jpg");
@@ -337,14 +338,12 @@ public class setter {
      * @throws IOException
      */
     public static play.mvc.Result setHousePictures(String szHouseName) throws IOException {
-        System.out.println("setHousePictures");
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-        System.out.println("Get Boody From Multypart");
-        play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("Object");
-        System.out.println("Get Pictures");
-        List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
 
-        setterBL.setFiles(szHouseName,pictures);
+        List<Http.MultipartFormData.FilePart> picture = body.getFiles();
+        System.out.println("Get Pictures");
+        Http.MultipartFormData.FilePart fp = picture.get(0);
+        setterBL.setFiles(szHouseName,fp);
         if (updateProfilePicture(szHouseName)) {
             return redirect("assets/index.html");
         } else {

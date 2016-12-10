@@ -200,7 +200,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
 
     // Update profile picture
-    function uploadFile(fd) {
+    function uploadFileaaa(fd) {
         $http.post("/SET_HOUSE_PICTURES/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state, fd, {
             withCredentials: true,
             headers: {
@@ -215,19 +215,56 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     }
     
+  
+    
+    
+    function uploadFile(files) {
+           var formData = new FormData();
+            angular.forEach($scope.files,function(obj){
+                formData.append('files[]', obj.lfFile);
+            });
+        
+
+        $http.post("/SET_HOUSE_PICTURES/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state,formData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+        }).success(
+            alert("Yeah!!!")
+        ).error(
+            alert("Oups! something wrong was hapening")
+        );
+
+    };
+    
+    function uploadFile544(files) {
+        var fd = new FormData();
+        //Take the selected file
+        fd.append("file", files);
+
+        $http.post("/upload/" + ShamayimFunctions.getCookie("username"), fd, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+        }).success(
+            alert("Yeah!!!")
+        ).error(
+            alert("Oups! something wrong was hapening")
+        );
+
+    };
+    
+    
+      
+
+    
     
     $scope.uploadFiles = function () {
-        var nCounter = 0;
-        var fd = new FormData();
-
-        while (nCounter < $scope.files.length) {
-            //Take the selected file
-            fd.append("files", $scope.files[nCounter]); 
-            uploadFile(fd);
-            nCounter++;
-        }
-       
-
+     uploadFile($scope.files);
     }
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();

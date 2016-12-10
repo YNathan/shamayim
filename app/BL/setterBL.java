@@ -531,4 +531,26 @@ public class setterBL {
         }
 
     }
+
+    public void setFiles(String szHouseName, Http.MultipartFormData.FilePart fp) {
+
+            Http.MultipartFormData.FilePart picture = fp;
+
+            if (picture != null) {
+                File sourceFile = picture.getFile();
+                System.out.println(sourceFile);
+                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + picture.getFilename());
+                try {
+                    play.Logger.info("<SETTER> save profile picture on file");
+                    setterBL.copyFile(sourceFile, dest);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    play.Logger.info(e.getMessage());
+                }
+            } else {
+
+            }
+        }
+
+
 }
