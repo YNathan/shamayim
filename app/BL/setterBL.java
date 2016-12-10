@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Entity.ESuccessFailed;
 import File.FileSetter;
 import DB.getterDB;
 import DB.setterDB;
@@ -23,6 +24,7 @@ public class setterBL {
     private getterDB getterDB = new getterDB();
     private getterBL getterBL = new getterBL();
     private FileSetter fileSetter = new FileSetter();
+    private WebResponce webResponce = new WebResponce();
 
     /**
      * Will do the algorithm for inserting a new debt
@@ -465,7 +467,7 @@ public class setterBL {
 
 
     public WebResponce insertHouseDetails(House m_house) {
-        WebResponce webResponceToReturn = new WebResponce();//setterDB.setNewHouseDetails(m_house);
+        WebResponce webResponceToReturn = new WebResponce();
         fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
         return webResponceToReturn;
     }
@@ -509,48 +511,7 @@ public class setterBL {
         }
     }
 
-    public void setFiles(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
-        Iterator<Http.MultipartFormData.FilePart> filePartIterator = pictures.iterator();
-        while (filePartIterator.hasNext()) {
-            Http.MultipartFormData.FilePart picture = filePartIterator.next();
-
-            if (picture != null) {
-                File sourceFile = picture.getFile();
-                System.out.println(sourceFile);
-                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + picture.getFilename());
-                try {
-                    play.Logger.info("<SETTER> save profile picture on file");
-                    setterBL.copyFile(sourceFile, dest);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    play.Logger.info(e.getMessage());
-                }
-            } else {
-
-            }
-        }
-
+    public WebResponce setFiles(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
+        return fileSetter.setFiles(szHouseName, pictures);
     }
-
-    public void setFiles(String szHouseName, Http.MultipartFormData.FilePart fp) {
-
-            Http.MultipartFormData.FilePart picture = fp;
-
-            if (picture != null) {
-                File sourceFile = picture.getFile();
-                System.out.println(sourceFile);
-                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + picture.getFilename());
-                try {
-                    play.Logger.info("<SETTER> save profile picture on file");
-                    setterBL.copyFile(sourceFile, dest);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    play.Logger.info(e.getMessage());
-                }
-            } else {
-
-            }
-        }
-
-
 }

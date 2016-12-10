@@ -5,9 +5,9 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.DebterName = "";
     $scope.house_id = "1";
-    $scope.state = "ca";
-    $scope.city = "la";
-    $scope.street = "bafla";
+    $scope.state = "israel";
+    $scope.city = "jerusalem";
+    $scope.street = "yirmiyahu";
     $scope.house_number = 32;
     $scope.house_kind = 3;
     $scope.number_of_rooms = 1;
@@ -25,10 +25,10 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     var houseName = "";
     var tempArr = [];
     var house = {
-        "state": "ca",
-        "city": "la",
-        "street": "blalba",
-        "house_number": "3",
+        "state": "israel",
+        "city": "jerusalem",
+        "street": "yirmiyahu",
+        "house_number": "32",
         "house_kind": "1",
         "number_of_rooms": "3",
         "number_of_living_rooms": "1",
@@ -198,74 +198,26 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         console.log($scope.files);
     });
 
-
-    // Update profile picture
-    function uploadFileaaa(fd) {
-        $http.post("/SET_HOUSE_PICTURES/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state, fd, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': undefined
-            },
-            transformRequest: angular.identity
-        }).success(
-            swal("File Upload")
-        ).error(
-            swal("Oups! something wrong was hapening")
-        );
-
-    }
-    
-  
-    
-    
-    function uploadFile(files) {
-           var formData = new FormData();
-            angular.forEach($scope.files,function(obj){
-                formData.append('files[]', obj.lfFile);
-            });
-        
-
-        $http.post("/SET_HOUSE_PICTURES/" + house.house_number + "_" + house.street + "_" + house.city + "_" + house.state,formData, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': undefined
-            },
-            transformRequest: angular.identity
-        }).success(
-            alert("Yeah!!!")
-        ).error(
-            alert("Oups! something wrong was hapening")
-        );
-
-    };
-    
-    function uploadFile544(files) {
-        var fd = new FormData();
-        //Take the selected file
-        fd.append("file", files);
-
-        $http.post("/upload/" + ShamayimFunctions.getCookie("username"), fd, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': undefined
-            },
-            transformRequest: angular.identity
-        }).success(
-            alert("Yeah!!!")
-        ).error(
-            alert("Oups! something wrong was hapening")
-        );
-
-    };
-    
-    
-      
-
-    
-    
+    // Upload File To The Server (House Pictures OR Some Else File)
     $scope.uploadFiles = function () {
-     uploadFile($scope.files);
+        var formData = new FormData();
+        angular.forEach($scope.files, function (obj) {
+            formData.append('files[]', obj.lfFile);
+        });
+
+        $http.post("/SET_HOUSE_PICTURES/" + house.state + "_" + house.city + "_" + house.street + "_" + house.house_number, formData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+        }).success(
+            alert("Yeah!!!")
+        ).error(
+            alert("Oups! something wrong was hapening")
+        );
     }
+    
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }

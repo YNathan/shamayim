@@ -339,18 +339,16 @@ public class setter {
      */
     public static play.mvc.Result setHousePictures(String szHouseName) throws IOException {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
-
-        List<Http.MultipartFormData.FilePart> picture = body.getFiles();
-        System.out.println("Get Pictures");
-        Http.MultipartFormData.FilePart fp = picture.get(0);
-        setterBL.setFiles(szHouseName,fp);
-        if (updateProfilePicture(szHouseName)) {
-            return redirect("assets/index.html");
+        List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
+        webResponce = setterBL.setFiles(szHouseName, pictures);
+        if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+            return badRequest(webResponce.getReason());
         } else {
-            flash("error", "Missing file");
-            return badRequest();
+            return ok(webResponce.getReason());
         }
+
     }
+
     public static boolean updateProfilePicture() {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
@@ -385,6 +383,7 @@ public class setter {
             return badRequest();
         }
     }
+
     public static boolean updateHousePicture(String szUserName) {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");
