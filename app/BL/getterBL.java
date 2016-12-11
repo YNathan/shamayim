@@ -1,5 +1,6 @@
 package BL;
 
+import java.io.File;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,7 +8,10 @@ import java.util.Iterator;
 
 import DB.getterDB;
 import Entity.*;
+import File.FileGetter;
 import play.Logger;
+import play.libs.F;
+import play.libs.Json;
 
 /**
  * Will do all the logic of the data who asked from the server
@@ -16,6 +20,8 @@ import play.Logger;
  */
 public class getterBL {
     getterDB getterDB = new getterDB();
+    FileGetter fileGetter = new FileGetter();
+    private static String HOUSE_DOCUMENTS_DIR = "HousesDocuments";
 
     /**
      * @param szUserName - the user-name that the user send
@@ -430,8 +436,7 @@ public class getterBL {
     }
 
 
-    public Dictionary getHouseLanguageByLanguage(String szLanguage)
-    {
+    public Dictionary getHouseLanguageByLanguage(String szLanguage) {
         Dictionary dictionaryToReturn = new Dictionary();
 
         dictionaryToReturn = getterDB.getHouseLanguageByLanguage(szLanguage);
@@ -439,8 +444,8 @@ public class getterBL {
         return dictionaryToReturn;
 
     }
-    public StringBuilder getListOFExistingLanguage()
-    {
+
+    public StringBuilder getListOFExistingLanguage() {
         StringBuilder sbExistingLanguageToReturn = new StringBuilder();
         sbExistingLanguageToReturn.append("{ \"languages\": [");
         ArrayList<String> lstExistingLaguages = getterDB.getListOFExistingLanguage();
@@ -451,7 +456,7 @@ public class getterBL {
             currHouseLanguage = ltrHouseLanguage.next();
         }
         while (currHouseLanguage != null) {
-            sbExistingLanguageToReturn.append("\""+currHouseLanguage+"\"");
+            sbExistingLanguageToReturn.append("\"" + currHouseLanguage + "\"");
             if (ltrHouseLanguage.hasNext()) {
                 sbExistingLanguageToReturn.append(",");
                 currHouseLanguage = ltrHouseLanguage.next();
@@ -462,5 +467,39 @@ public class getterBL {
         }
         sbExistingLanguageToReturn.append("]}");
         return sbExistingLanguageToReturn;
+    }
+
+    public StringBuilder getFilePaths(String szHouseId) {
+        int nHouseId = Integer.parseInt(szHouseId);
+        House house = getterDB.getHouseById(nHouseId);
+        StringBuilder sbExistingFilesToReturn = new StringBuilder();
+        sbExistingFilesToReturn.append("{ \"files\": [");
+        String szFolderName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
+        ArrayList<String> lstExistingFiles = fileGetter.getFilesName(HOUSE_DOCUMENTS_DIR, szFolderName);
+
+        Iterator<String> ltrFiles = lstExistingFiles.iterator();
+        String currFile = null;
+        if (ltrFiles.hasNext()) {
+            currFile = ltrFiles.next();
+        }
+        while (currFile != null) {
+            sbExistingFilesToReturn.append("\"" + currFile + "\"");
+            if (ltrFiles.hasNext()) {
+                sbExistingFilesToReturn.append(",");
+                currFile = ltrFiles.next();
+            } else {
+                currFile = null;
+            }
+
+        }
+        sbExistingFilesToReturn.append("]}");
+        return sbExistingFilesToReturn;
+    }
+
+    public File getAspecificFile(String szFolderName, String szFileName) {
+        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
+        File fileToReturn = fileGetter.getFile(szFullFilePath);
+        System.out.println("Get File " + szFullFilePath);
+        return fileToReturn;
     }
 }

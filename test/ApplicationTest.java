@@ -81,5 +81,13 @@ public class ApplicationTest {
         }
     }
 
+    @Test
+    public void replaceACharInAString() {
+        String a = "blabla/blabla.jpg";
+        String b = a.replace("/", "\\\\");
+        System.out.println("a" + a);
+        System.out.println("b" + b);
+    }
+
 
 }

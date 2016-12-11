@@ -9,6 +9,9 @@ background: green;
 .md-tabs{
 background: blue;
 }
+.md-tab.md-tab-body{
+    background: blue;
+}
 ng-scope.btn {
 	background: #34ced9;
 	background-image: -webkit-linear-gradient(top, #34ced9, #2980b9);

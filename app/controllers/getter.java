@@ -1,7 +1,20 @@
 package controllers;
 
+import com.sun.javafx.image.impl.ByteIndexed;
+import play.api.Configuration;
+import play.api.GlobalSettings;
+import play.api.Play;
+import play.api.Plugin;
+import play.api.mvc.*;
+import play.api.mvc.SimpleResult;
+import play.core.Router;
+import play.core.SourceMapper;
 import play.mvc.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,6 +25,14 @@ import BL.getterBL;
 import akka.event.Logging;
 import play.Logger;
 import play.libs.Json;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Results;
+import scala.Enumeration;
+import scala.Option;
+import scala.collection.Seq;
+import scala.concurrent.Future;
+import scala.reflect.ClassTag;
 
 import static play.mvc.Http.Context.Implicit.request;
 
@@ -169,7 +190,7 @@ public class getter extends Controller {
     }
 
     public static Result getHouseById(String szHouseId) {
-        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get House by id : "+szHouseId);
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get House by id : " + szHouseId);
         String szResponce = getterBL.getHouseById(szHouseId).toString();
         System.out.println(szResponce);
         return ok(szResponce);
@@ -183,9 +204,30 @@ public class getter extends Controller {
     }
 
     public static Result getLanguage(String szLanguage) {
-        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Language : "+szLanguage);
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Language : " + szLanguage);
         String szResponce = getterBL.getHouseLanguageByLanguage(szLanguage).toJson();
         System.out.println(szResponce);
         return ok(szResponce);
+    }
+
+    /***
+     * Get Files Of An House
+     * @param szHouseId - the id of the house az registred in the system
+     * @return - json who contain path of the files
+     * @throws IOException
+     */
+    public static Result getHouseFiles(String szHouseId) throws IOException {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szHouseId);
+        String szResponce = getterBL.getFilePaths(szHouseId).toString();
+        return ok(szResponce);
+    }
+
+    /***
+     * Get a specific file from server consserning a house
+     * @return
+     */
+    public static Result getSpecificFile(String szFolderName,String szFileName) {
+        File fileToReturn = getterBL.getAspecificFile(szFolderName,szFileName);
+        return ok(fileToReturn);
     }
 }
