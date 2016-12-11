@@ -133,40 +133,41 @@
             </div>
         </div>
 
-        <div class="container" layout="row" flex>
+       <div class="container" layout="row" flex>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+
+        <md-content layout-margin="" align="center">
+            <md-button class="account_circle" ng-click="goToUserInformation()">
+                <md-icon md-svg-icon="account_circle" align="center"></md-icon>
+                <div>{{userName}} Information</div>
+            </md-button>
+            </br>
+            <md-button class="house" ng-click="goToHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>house</div>
+            </md-button>
+            </br>
+            <md-button class="houses" ng-click="goToHouses()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div> Manage houses</div>
+            </md-button>
+            </br>
+            <md-button class="NewHouse" ng-click="goToNewHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>New House</div>
+            </md-button>
+            </br>
+            <md-button class="copyright" ng-click="goToCopyright()">
+                <md-icon md-svg-icon="copyright"></md-icon>
+                <div>copyright</div>
+            </md-button>
+            </br>
+        </md-content>
+
+    </md-sidenav>
 
 
-            <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-                <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">Menu</h1>
-                </md-toolbar>
-
-                <br layout-margin="" align="center">
-                <md-button class="account_circle" ng-click="goToUserInformation()">
-                    <md-icon md-svg-icon="account_circle" align="center"></md-icon>
-                    <div>{{userName}} Information</div>
-                </md-button>
-                </br>
-                <md-button class="house" ng-click="goToHouse()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div>house</div>
-                </md-button>
-                </br>
-                <md-button class="houses" ng-click="goToHouses()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div> Manage houses</div>
-                </md-button>
-                </br>
-                <md-button class="NewHouse" ng-click="goToNewHouse()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div>New House</div>
-                </md-button>
-                </br>
-                <md-button class="copyright" ng-click="goToCopyright()">
-                    <md-icon md-svg-icon="copyright"></md-icon>
-                    <div>copyright</div>
-                </md-button>
-                </br>
-                </md-content>
-            </md-sidenav>
-        </div>
+</div>

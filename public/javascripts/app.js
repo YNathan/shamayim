@@ -40,7 +40,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
         })
         .state('NewOrEditHouse', {
             url: "/neworedithouse",
-            templateUrl: "template/SetOrEditHouse.html",
+            templateUrl: "template/NewOrEditHouse.html",
             controller: 'neworedithouse'
         })
         .state('Copyright', {

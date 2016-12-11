@@ -38,6 +38,18 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         "location_kind": "dfg",
         "comments": "Nice area great place to have fun"
     }
+    $scope.dataTabs = {
+        selectedIndex: 0,
+        secondLocked: true,
+        secondLabel: "upload house files",
+        bottom: false
+    };
+    $scope.next = function () {
+        $scope.dataTabs.selectedIndex = Math.min($scope.dataTabs.selectedIndex + 1, 2);
+    };
+    $scope.previous = function () {
+        $scope.dataTabs.selectedIndex = Math.max($scope.dataTabs.selectedIndex - 1, 0);
+    };
     $scope.dictionary = {
         "Dictionary": [
             {
@@ -139,6 +151,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_NEW_HOUSE', house);
         res.success(function (data, status, headers, config) {
+               $scope.dataTabs.secondLocked = false;
             alert(data);
         });
         res.error(function (data, status, headers, config) {
@@ -147,7 +160,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             }));
         });
 
-
+     
     }
 
     // Logic methods section
@@ -217,7 +230,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             alert("Oups! something wrong was hapening")
         );
     }
-    
+
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }

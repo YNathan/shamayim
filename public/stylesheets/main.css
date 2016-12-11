@@ -1,9 +1,14 @@
 body {
-	background: url("../images/background.jpg");
+	background: url('../images/background.jpg');
 	background-size: 100% 100%;
 	background-repeat: repeat;
 }
-
+.md-tab{
+background: green;
+}
+.md-tabs{
+background: blue;
+}
 ng-scope.btn {
 	background: #34ced9;
 	background-image: -webkit-linear-gradient(top, #34ced9, #2980b9);
