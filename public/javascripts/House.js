@@ -1,25 +1,25 @@
-app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
+app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
 
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
-    $scope.house_id = "1";
-    $scope.state = "ca";
-    $scope.city = "la";
-    $scope.street = "bafla";
-    $scope.house_number = 32;
-    $scope.house_kind = 3;
-    $scope.number_of_rooms = 1;
-    $scope.number_of_living_rooms = 1;
-    $scope.number_of_kitchens = 1;
-    $scope.number_of_bedrooms = 1;
-    $scope.number_of_bathrooms = 1;
-    $scope.location_kind = 5;
-    $scope.comments = "אחלה של בית";
-    $scope.purchase_price = 0.0;
-    $scope.treatment_fees = 21.2;
-    $scope.renovation_fees_for_sale = 54.5;
-    $scope.renovation_fees_for_renting = 24.5;
-    $scope.divers_fees = 54.2;
+    $scope.house_id;
+    $scope.state;
+    $scope.city = "";
+    $scope.street = "";
+    $scope.house_number;
+    $scope.house_kind;
+    $scope.number_of_rooms;
+    $scope.number_of_living_rooms;
+    $scope.number_of_kitchens;
+    $scope.number_of_bedrooms;
+    $scope.number_of_bathrooms;
+    $scope.location_kind;
+    $scope.comments = "";
+    $scope.purchase_price;
+    $scope.treatment_fees;
+    $scope.renovation_fees_for_sale;
+    $scope.renovation_fees_for_renting;
+    $scope.divers_fees;
     $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
@@ -38,7 +38,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     // Get information conserning the
     $http.get("/GET_LIST_OF_HOUSES")
         .then(function successCallback(response) {
-                angular.forEach(response.data.houses, function(value, key) {
+                angular.forEach(response.data.houses, function (value, key) {
                     itemName = {
                         id: key,
                         house: value
@@ -51,24 +51,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
             });
 
-    function checkIfNeedConfirming() {
-        /*// Get information conserning the houses
-        $http.get("/GET_LIST_OF_HOUSES")
-            .then(function successCallback(response) {
-                    angular.forEach(response.data.houses, function(value, key) {
-                        itemName = {
-                            id: key,
-                            house: value
-                        }
-                        tempArr.push(itemName);
-                        $scope.houses.availableOptions.push(itemName.house);
-                    }, $scope.houses);
-                },
-                function error(response) {
-                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                });
-   */
-    }
+    function checkIfNeedConfirming() {}
     $interval(checkIfNeedConfirming, 200000);
 
 
@@ -102,6 +85,15 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 });
     }
 
+    $scope.houseImages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            imagesSource: 'default'
+        }
+    };
+
+
 
     // Language Section
     // For the Language
@@ -112,19 +104,23 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             HouseLanguage: 'default'
         }
     };
-  $scope.Languages = ShamayimFunctions.getExistingLanguages();
+    $scope.Languages = ShamayimFunctions.getExistingLanguages();
 
 
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-      $scope.dictionary = ShamayimFunctions.getLanguage(szLanguageName);
+        if(ShamayimFunctions.getLanguage(szLanguageName)== true)
+        {
+        $scope.dictionary = ShamayimFunctions.getDictionary();    
+        }
+        $scope.dictionary = ShamayimFunctions.getDictionary();
+
     }
     getLanguage("English");
-    $scope.$watch('Languages.selectedOption', function(newVal, oldVal) {
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
             if (newVal != oldVal) {
                 HouseLanguageName = newVal;
-                getLanguage(newVal);
                 getLanguage(newVal);
 
             }
@@ -137,7 +133,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         $state.go('wellcom');
     }
 
-    $scope.$watch('houses.selectedOption', function(newVal, oldVal) {
+    $scope.$watch('houses.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             houseName = newVal;
             getHouse(newVal.house_id);
@@ -179,22 +175,22 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
 
-    $scope.toggleLeft = function() {
+    $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }
-    $scope.goToCopyright = function() {
+    $scope.goToCopyright = function () {
         $state.go('Copyright');
     }
-    $scope.goToUserInformation = function() {
+    $scope.goToUserInformation = function () {
         $state.go('userInformation');
     }
-    $scope.goToHouses = function() {
+    $scope.goToHouses = function () {
         $state.go('Houses');
     }
-    $scope.goToNewHouse = function() {
+    $scope.goToNewHouse = function () {
         $state.go('NewOrEditHouse');
     }
-    $scope.goToHouse = function() {
+    $scope.goToHouse = function () {
         $state.go('House');
     }
 

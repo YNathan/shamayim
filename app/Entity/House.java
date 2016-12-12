@@ -124,7 +124,7 @@ public class House {
     }
 
     public void setHouseKind(EHouseKind ehouseKind) {
-        this.EHouseKind = EHouseKind;
+        this.EHouseKind = ehouseKind;
     }
 
     public int getNumberOfRooms() {

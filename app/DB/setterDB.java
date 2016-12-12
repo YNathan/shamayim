@@ -347,7 +347,7 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("insert into " + TABLE_HOUSE_NAME
-                    + " (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments) values (?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?)");
+                    + " (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments,purchase_price,treatment_fees,renovation_fees_for_sale,renovation_fees_for_renting,divers_fees) values (?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?,?,?,?,?,?)");
             play.Logger.info(" Insert new user to the data-base");
             // Parameters start with 1
             preparedStatement.setString(1, m_house.getState());
@@ -362,6 +362,11 @@ public class setterDB {
             preparedStatement.setInt(10, m_house.getNumberOfBathrooms());
             preparedStatement.setInt(11, m_house.getLocationKind().getValue());
             preparedStatement.setString(12, m_house.getComments());
+            preparedStatement.setDouble(13, m_house.getPurchasePrice());
+            preparedStatement.setDouble(14, m_house.getTreatmentFees());
+            preparedStatement.setDouble(15, m_house.getRenovationFeesForSale());
+            preparedStatement.setDouble(16, m_house.getRenovationFeesForRenting());
+            preparedStatement.setDouble(17, m_house.getDiversFees());
             preparedStatement.executeUpdate();
             System.out.println("registered successfully!!!");
             System.out.println("============================");
@@ -380,7 +385,6 @@ public class setterDB {
         return webResponceToReturn;
 
     }
-
 
 
     /**

@@ -467,9 +467,25 @@ public class setterBL {
 
 
     public WebResponce insertHouseDetails(House m_house) {
-        WebResponce webResponceToReturn = new WebResponce();
+        webResponce = new WebResponce();
+        boolean bIsStillExist = false;
+        ArrayList<House> lstExictingHouses = getterDB.getListOfHouse();
+        for (House currHouse : lstExictingHouses) {
+            if ((m_house.getState().equals(currHouse.getState()) &&
+                    (m_house.getCity().equals(currHouse.getCity())) &&
+                    (m_house.getStreet().equals(currHouse.getStreet())) &&
+                    (m_house.getHouseNumber() == currHouse.getHouseNumber()))) {
+                bIsStillExist = true;
+                break;
+            }
+        }
+        if (!bIsStillExist) {
+            setterDB.setNewHouseDetails(m_house);
+        } else {
+            webResponce.setReason("The house Still Exist In the System");
+        }
         fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
-        return webResponceToReturn;
+        return webResponce;
     }
 
     /**

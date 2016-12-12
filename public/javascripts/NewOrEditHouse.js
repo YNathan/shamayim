@@ -17,10 +17,10 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.number_of_bathrooms = 5;
     $scope.location_kind = 5;
     $scope.comments = "nice area have fun";
-    $scope.purchase_price = 0.0;
-    $scope.treatment_fees = 21.2;
-    $scope.renovation_fees = 54.5;
-    $scope.divers_fees = 54.2;
+    $scope.purchase_price;
+    $scope.treatment_fees;
+    $scope.renovation_fees;
+    $scope.divers_fees;
     $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
@@ -95,7 +95,8 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-        $scope.dictionary = ShamayimFunctions.getLanguage(szLanguageName);
+        ShamayimFunctions.getLanguage(szLanguageName);
+        $scope.dictionary = ShamayimFunctions.getDictionary();
     }
     getLanguage("English");
     $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
@@ -151,7 +152,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_NEW_HOUSE', house);
         res.success(function (data, status, headers, config) {
-               $scope.dataTabs.secondLocked = false;
+            $scope.dataTabs.secondLocked = false;
             alert(data);
         });
         res.error(function (data, status, headers, config) {
@@ -160,7 +161,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             }));
         });
 
-     
+
     }
 
     // Logic methods section
@@ -202,7 +203,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.$watch('houses.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             houseName = newVal;
-            //alert(newVal.house_number + " " + newVal.street + " " + newVal.city + " " + newVal.state + " " + newVal.house_id);
             getHouse(newVal.house_id);
 
         }

@@ -127,10 +127,6 @@
                                 </md-input-container></center>
                             </form>
                         </div>
-
-                        <div flex hide-sm hide-xs>
-
-                        </div>
                     </div>
 
                 </div>
@@ -156,7 +152,39 @@
         <md-tab id="tab3">
             <md-tab-label>{{dictionary.Dictionary[0].FinancialHouseDetailes}}</md-tab-label>
             <md-tab-body>
-                View for Item #3 <br/> dataTabs.selectedIndex = 2;
+                <div class="flex-container">
+                    <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
+                        <div flex=100>
+                            <form ng-submit="setNewHouse()" class="md-padding">
+                                <md-input-container>
+                                    <label> {{dictionary.Dictionary[0].PurchasePrice}} :</label>
+                                    <input type="number" ng-model="purchase_price" name="text" placeholder="מספר בית" required/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label> {{dictionary.Dictionary[0].TreatmentFees}} :</label>
+                                    <input type="number" ng-model="treatment_fees" name="text" placeholder="מספר בית" required/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>  {{dictionary.Dictionary[0].RenovationFeesForSale}} :</label>
+                                    <input type="number" ng-model="renovation_fees_for_sale" name="text" placeholder="מספר בית" required/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>  {{dictionary.Dictionary[0].RenovationFeesForRenting}} :</label>
+                                    <input type="number" ng-model="renovation_fees_for_renting" name="text" placeholder="מספר בית" required/>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label> {{dictionary.Dictionary[0].DiversFees}} :</label>
+                                    <input type="number" ng-model="divers_fees" name="text" placeholder="מספר בית" required/>
+                                </md-input-container>
+                               
+                               <center> <md-input-container>
+                                    <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
+                                </md-input-container></center>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
             </md-tab-body>
         </md-tab>
     </md-tabs>

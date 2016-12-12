@@ -2,7 +2,7 @@
 </br>
 </br>
 </br>
-	<div layout="row" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
+	<div layout="row" md-colors="{color: 'red-A100', border-color: 'primary-600'}" class="md-padding">
 		<div layout="column" flex="100">
 			<form ng-submit="register()">
 				<div layout="row">
@@ -28,7 +28,7 @@
 						<input type="number" ng-model="telephone" name="text" class="textar" placeholder="טלפון" required/>
 					</md-input-container>
 					<md-input-container>
-						<label> Email &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; :</label>
+						<label> Email :</label>
 						<input type="email" ng-model="email" name="text" class="textar" placeholder="אימייל" required/>
 					</md-input-container>
 				</div>
@@ -41,7 +41,7 @@
 						<label> password &nbsp;&nbsp; :</label>
 						<input type="text" ng-model="password" name="text" class="textar" placeholder="סיסמא" required/>
 					</md-input-container>
-				</div layout="row">
+				</div>
 				<md-input-container>
 					<md-button type="submit" id="submit">הירשם</md-button>
 				</md-input-container>
@@ -61,7 +61,7 @@
 					</md-input-container>
 				</div>
 				<div>
-					<md-button ng-click="login()" value="היכנס"/>
+					<md-button ng-click="login()" value="היכנס">
                 היכנס</md-button>
 			</div>
 		</form>

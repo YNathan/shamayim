@@ -1,20 +1,19 @@
 <!head>
-<div layout="row" layout-sm="column" flex>
+<div class="md-padding" layout="row" layout-sm="column" flex>
     <div flex>
         <md-button class="menu" ng-click="toggleLeft()">
             <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
-    </div>
-    <form ng-submit="submitHouse()">
-        <label>Language / שפה</label>
+    </div> 
+    <div flex: 100%>
         <md-input-container>
-            <md-select placeholder="Assign to Language" ng-model="Languages.selectedOption">
+            <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
                 <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
                     {{Language}}
                 </md-option>
             </md-select>
         </md-input-container>
-    </form>
+        </div>
 </div>
 <!/head>
 <div layout="column" layout-sm="column" flex>
@@ -35,105 +34,119 @@
                 </md-input-container>
             </form>
         </center>
-        </div>
+    </div>
 </div>
-</br> </br>
+</br>
+</br>
 
-        <div layout="row" layout-sm="column">
-            <div flex="5"></div>
-            <div flex>
-                <table class="rwd-table">
-                    <h1>House Table</h1>
-                    <tr>
-                        <th>entity</th>
-                        <th>detaile</th>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].HouseId}}</td>
-                        <td>{{house_id}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].Address}}</td>
-                        <td>{{house_number}} {{street}} {{city}} {{state}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].HouseKind}}</td>
-                        <td>{{house_kind}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].NumberOfRooms}}</td>
-                        <td>{{number_of_rooms}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</td>
-                        <td>{{number_of_living_rooms}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].NumberOfKitchens}}</td>
-                        <td>{{number_of_kitchens}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].NumberOfBedrooms}}</td>
-                        <td>{{number_of_bedrooms}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].NumberOfBatdrooms}}</td>
-                        <td>{{number_of_batdrooms}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].LocationKind}}</td>
-                        <td>{{location_kind}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].Comments}}</td>
-                        <td>{{comments}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].PurchasePrice}}</td>
-                        <td>{{purchase_price}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].TreatmentFees}}</td>
-                        <td>{{treatment_fees}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].RenovationFeesForSale}}</td>
-                        <td>{{renovation_fees_for_sale}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].RenovationFeesForRenting}}</td>
-                        <td>{{renovation_fees_for_renting}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{dictionary.Dictionary[0].DiversFees}}</td>
-                        <td>{{divers_fees}}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="myButton" ng-click="pay(x.Debter,x.Entitled,x.Amount)">check</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div flex><h3>Area On The Maps</h3>
-                <div id="map" style="height: 400px; width: 400px;"></div>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpC9Z3zA73VG-FgbPdijlztIkOjrq8mAI&callback=initMap">
-                </script>
-            </div>
+<div layout="row" layout-sm="column">
+    <div flex="5"></div>
+    <div flex>
+        <table class="rwd-table">
+            <h1>House Table</h1>
+            <tr>
+                <td>{{dictionary.Dictionary[0].HouseId}}</td>
+                <td>{{house_id}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].Address}}</td>
+                <td>{{house_number}} {{street}} {{city}} {{state}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].HouseKind}}</td>
+                <td>{{house_kind}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].NumberOfRooms}}</td>
+                <td>{{number_of_rooms}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</td>
+                <td>{{number_of_living_rooms}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].NumberOfKitchens}}</td>
+                <td>{{number_of_kitchens}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].NumberOfBedrooms}}</td>
+                <td>{{number_of_bedrooms}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].NumberOfBathrooms}}</td>
+                <td>{{number_of_batdrooms}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].LocationKind}}</td>
+                <td>{{location_kind}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].Comments}}</td>
+                <td>{{comments}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].PurchasePrice}}</td>
+                <td>{{purchase_price}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].TreatmentFees}}</td>
+                <td>{{treatment_fees}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].RenovationFeesForSale}}</td>
+                <td>{{renovation_fees_for_sale}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].RenovationFeesForRenting}}</td>
+                <td>{{renovation_fees_for_renting}}</td>
+            </tr>
+            <tr>
+                <td>{{dictionary.Dictionary[0].DiversFees}}</td>
+                <td>{{divers_fees}}</td>
+            </tr>
+        </table>
+    </div>
+    <div flex>
+        <h3>Area On The Maps</h3>
+        <div id="map" style="height: 400px; width: 400px;"></div>
+    </div>
+</div>
+
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+    
+      <md-card>
+        <img ng-src="images/background.jpg" class="md-card-image" alt="Washed Out">
+      </md-card>
+    </div>
+    
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <img ng-src="images/background.jpg" class="md-card-image" alt="Washed Out">
+      </md-card>
+    </div>
+  </md-content>
+
+
+
+
+
+
+<div class='md-padding' layout="row" flex>
+     <div layout="row" flex>
+        <div class="parent" layout="column" ng-repeat="img in houseImages" flex>
+          <div flex-xs flex-gt-xs="50" layout="column">
+      <md-card>
+        <img ng-src="images/background.jpg" class="md-card-image" alt="Washed Out">
+      </md-card>
+    </div>
         </div>
+     </div>
+  </div>
 
 
-        <div layout="row" layout-sm="column">
-            <div flex>
-                I'm above on mobile, and to the left on larger devices.
-            </div>
-            <div flex>
-                I'm below on mobile, and to the right on larger devices.
-            </div>
-        </div>
-
-       <div class="container" layout="row" flex>
+<div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo">
             <h1 class="md-toolbar-tools">Menu</h1>

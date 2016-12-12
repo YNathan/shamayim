@@ -1,7 +1,7 @@
 var ShamayimService = angular.module('ShamayimService', []);
 
-ShamayimService.factory('ShamayimFunctions', function($http, $mdDialog) {
-var dictionary = {
+ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
+    var dictionary = {
         "Dictionary": [{
             "Dictionary": "English",
             "HouseId": "Number Of House That Recording In The System",
@@ -29,6 +29,10 @@ var dictionary = {
         }]
     };
 
+    function getDictionary() {
+        return dictionary;
+    }
+
     function showAlert(title, textContent, ariaLabel) {
         // Appending dialog to document.body to cover sidenav in docs app
         // Modal dialogs should fully cover application
@@ -44,7 +48,7 @@ var dictionary = {
     }
 
     // Get value from the cookie
-    var getCookie = function(cname) {
+    var getCookie = function (cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
@@ -65,10 +69,10 @@ var dictionary = {
             HouseLanguage: 'default'
         }
     };
-    var getExistingLanguages = function() {
+    var getExistingLanguages = function () {
         $http.get('/GET_LIST_OF_EXISTING_LANGUAGES')
             .then(function successCallback(response) {
-                    angular.forEach(response.data.languages, function(value, key) {
+                    angular.forEach(response.data.languages, function (value, key) {
                         itemName = {
                             id: key,
                             HouseLanguage: value
@@ -82,27 +86,30 @@ var dictionary = {
                 });
         return Languages;
     }
-    var getLanguage = function(szLanguage) {
-            // Get information conserning the house
-            $http.get("/GET_LANGUAGE/" + szLanguage)
-                .then(function successCallback(response) {
-                        dictionary = response.data;
-                    },
-                    function error(response) {
-                        showAlert("Your attention please", response.data, "cant load houses");
-                    });
-        return  dictionary;
+    var getLanguage = function (szLanguage) {
+        // Get information conserning the house
+        $http.get("/GET_LANGUAGE/" + szLanguage)
+            .then(function successCallback(response) {
+                    dictionary = response.data;
+                    return true;
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                    return false;
+                });
+
     }
 
     function setUserNameCookie(szName, szValue) {
-            document.cookie = szName + "=" + szValue + "; ";
-        }
+        document.cookie = szName + "=" + szValue + "; ";
+    }
     return {
         getExistingLanguages: getExistingLanguages,
         getLanguage: getLanguage,
         showAlert: showAlert,
         getCookie: getCookie,
-        dictionary : dictionary,
-        setUserNameCookie : setUserNameCookie
+        dictionary: dictionary,
+        getDictionary: getDictionary,
+        setUserNameCookie: setUserNameCookie
     };
 });
