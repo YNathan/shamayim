@@ -25,7 +25,7 @@ public class Application extends Controller {
 
     public static Result CheackFromHtml() {
         System.out.println("\n[INFO] From Html Status: Ok\n");
-        return ok();
+        return ok("test");
     }
 
     public static Result Register() {

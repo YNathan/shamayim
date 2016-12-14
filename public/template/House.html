@@ -112,14 +112,14 @@
     </div>
 </div>
 
-
+{{fileToReturn}}
 
 <div class="md-padding" layout-xs="column" layout="row">
      <div layout="row" flex>
         <div class="parent" layout="column" ng-repeat="houseImages in housePathesImages.availableOptions" flex>
           <div flex-xs flex-gt-xs="50" layout="column">
       <md-card>
-        <img ng-src="@A()" class="md-card-image" alt="Washed Out">
+        <img ng-src="{{fileToReturn}}" class="md-card-image" alt="Washed Out">
       </md-card>
     </div>
         </div>

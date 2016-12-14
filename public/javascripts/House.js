@@ -70,18 +70,30 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             image: 'default'
         }
     };
+ $scope.fileToReturn;
 
-    $scope.getImages = function(szHouseImagesPath) {
-        var fileToReturn;
-        $http.get('/GET_SPECIFIC_FILE/' + szHouseImagesPath)
-            .then(function successCallback(response,file) {
-                    fileToReturn = file;
+    var getImages = function() {
+
+        $http.get('/GET_SPECIFIC_FILE/Newark_N.J_13th_718/littelitownavnue321.jpg')
+            .then(function successCallback(response) {
+                    $scope.fileToReturn = response.data;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
-        return fileToReturn;
     }
+ getImages();
+    $scope.getA = function() {
+            var fileToReturn;
+            $http.get('/A' )
+                .then(function successCallback(response) {
+                        fileToReturn = response.data;
+                    },
+                    function error(response) {
+                        ShamayimFunctions.showAlert(response.data, response.data, "cant load houses");
+                    });
+            return fileToReturn;
+        }
 
     function getHouseImages(nHouseId) {
         $http.get('/GET_FILES_PATHS/' + nHouseId)

@@ -7,7 +7,7 @@
 GET         /                                                                                      controllers.Application.index()
 GET         /REGISTER_PAGE                                                                         controllers.Application.Register()
 GET         /MAIN                                                                                  controllers.Application.Main()
-GET         /A                                                                                  controllers.Application.CheackFromHtml()
+GET         /A                                                                                     controllers.Application.CheackFromHtml()
 POST        /LOGIN/:Username/:Password                                                             controllers.getter.isLoginPermited(Username:String,Password:String)
 GET         /CHECK_USER_NAME/:USER_NAME                                                            controllers.getter.isUserNameAlreadyExist(USER_NAME:String)
 GET         /CHECK_EMAIL/:Email                                                                    controllers.getter.isEmailAlreadyExist(Email:String)

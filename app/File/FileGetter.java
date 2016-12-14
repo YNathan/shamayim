@@ -1,6 +1,7 @@
 package File;
 
 import Entity.WebResponce;
+import play.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class FileGetter {
     public ArrayList<String> getFilesName(String szDocumentsDir, String szFolderName) {
         ArrayList<String> lstFileNamesToReturn = new ArrayList<>();
         File folder = new File(System.getProperty("user.dir") + "\\" + szDocumentsDir + "\\" + szFolderName);
+        System.out.println("[FileGetter] Get list of file from folder "+szFolderName);
+        Logger.debug("[FileGetter] Get list of file from folder " + szFolderName);
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -28,6 +31,8 @@ public class FileGetter {
     }
 
     public File getFile(String szPathName) {
+        System.out.println("[FileGetter] Get File "+szPathName);
+        Logger.debug("[FileGetter] Get File "+szPathName);
         File fileToReturn = new File(szPathName);
         return fileToReturn;
     }
