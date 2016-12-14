@@ -27,7 +27,63 @@ public class Dictionary {
     private String dDiversFees;
     private String szGeneralHouseDetailes;
     private String szFinancialHouseDetailes;
+    private String UploadHouseFiles;
+    private String DragOrDropFilesHere;
+    private String HouseTable;
+    private String Menu;
+    private String Information;
+    private String House;
+    private String ManageHouses;
+    private String NewHouse;
+    private String Copyright;
+    private String WellcomToYourAccount;
+    private String SelectAHouse;
+    private String AreaOnTheMap;
+    private String HousesList;
+    private String Save;
 
+    public Dictionary() {
+    }
+
+    public Dictionary(String szHouseLanguage, String nHouseId, String szAddress, String szState, String szCity, String szStreet, String nHouseNumber, String EHouseKind, String nNumberOfRooms, String nNumberOfLivingRooms, String nNumberOfKitchens, String nNumberOfBedrooms, String nNumberOfBathrooms, String eLocationKind, String nScore, String szComments, String dPurchasePrice, String dTreatmentFees, String dRenovationFeesForSale, String dRenovationFeesForRenting, String dDiversFees, String szGeneralHouseDetailes, String szFinancialHouseDetailes, String uploadHouseFiles, String dragOrDropFilesHere, String houseTable, String menu, String information, String house, String manageHouses, String newHouse, String copyright, String WellcomToYourAccount, String selectAHouse, String areaOnTheMap, String housesList, String save) {
+        this.szHouseLanguage = szHouseLanguage;
+        this.nHouseId = nHouseId;
+        this.szAddress = szAddress;
+        this.szState = szState;
+        this.szCity = szCity;
+        this.szStreet = szStreet;
+        this.nHouseNumber = nHouseNumber;
+        this.EHouseKind = EHouseKind;
+        this.nNumberOfRooms = nNumberOfRooms;
+        this.nNumberOfLivingRooms = nNumberOfLivingRooms;
+        this.nNumberOfKitchens = nNumberOfKitchens;
+        this.nNumberOfBedrooms = nNumberOfBedrooms;
+        this.nNumberOfBathrooms = nNumberOfBathrooms;
+        this.eLocationKind = eLocationKind;
+        this.nScore = nScore;
+        this.szComments = szComments;
+        this.dPurchasePrice = dPurchasePrice;
+        this.dTreatmentFees = dTreatmentFees;
+        this.dRenovationFeesForSale = dRenovationFeesForSale;
+        this.dRenovationFeesForRenting = dRenovationFeesForRenting;
+        this.dDiversFees = dDiversFees;
+        this.szGeneralHouseDetailes = szGeneralHouseDetailes;
+        this.szFinancialHouseDetailes = szFinancialHouseDetailes;
+        this.UploadHouseFiles = uploadHouseFiles;
+        this.DragOrDropFilesHere = dragOrDropFilesHere;
+        this.HouseTable = houseTable;
+        this.Menu = menu;
+        this.Information = information;
+        this.House = house;
+        this.ManageHouses = manageHouses;
+        this.NewHouse = newHouse;
+        this.Copyright = copyright;
+        this.WellcomToYourAccount = WellcomToYourAccount;
+        this.SelectAHouse = selectAHouse;
+        this.AreaOnTheMap = areaOnTheMap;
+        this.HousesList = housesList;
+        this.Save = save;
+    }
 
     public String getHouseId() {
         return nHouseId;
@@ -165,6 +221,118 @@ public class Dictionary {
         this.dDiversFees = dDiversFees;
     }
 
+    public String getUploadHouseFiles() {
+        return UploadHouseFiles;
+    }
+
+    public void setUploadHouseFiles(String uploadHouseFiles) {
+        UploadHouseFiles = uploadHouseFiles;
+    }
+
+    public String getDragOrDropFilesHere() {
+        return DragOrDropFilesHere;
+    }
+
+    public void setDragOrDropFilesHere(String dragOrDropFilesHere) {
+        DragOrDropFilesHere = dragOrDropFilesHere;
+    }
+
+    public String getHouseTable() {
+        return HouseTable;
+    }
+
+    public void setHouseTable(String houseTable) {
+        HouseTable = houseTable;
+    }
+
+    public String getMenu() {
+        return Menu;
+    }
+
+    public void setMenu(String menu) {
+        Menu = menu;
+    }
+
+    public String getInformation() {
+        return Information;
+    }
+
+    public void setInformation(String information) {
+        Information = information;
+    }
+
+    public String getHouse() {
+        return House;
+    }
+
+    public void setHouse(String house) {
+        House = house;
+    }
+
+    public String getManageHouses() {
+        return ManageHouses;
+    }
+
+    public void setManageHouses(String manageHouses) {
+        ManageHouses = manageHouses;
+    }
+
+    public String getNewHouse() {
+        return NewHouse;
+    }
+
+    public void setNewHouse(String newHouse) {
+        NewHouse = newHouse;
+    }
+
+    public String getCopyright() {
+        return Copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        Copyright = copyright;
+    }
+
+    public String getWellcomToYourAccount() {
+        return WellcomToYourAccount;
+    }
+
+    public void setWellcomToYourAccount(String WellcomToYourAccount) {
+        this.WellcomToYourAccount = WellcomToYourAccount;
+    }
+
+    public String getSelectaHouse() {
+        return SelectAHouse;
+    }
+
+    public void setSelectAHouse(String selectAHouse) {
+        SelectAHouse = selectAHouse;
+    }
+
+    public String getAreaOnTheMap() {
+        return AreaOnTheMap;
+    }
+
+    public void setAreaOnTheMap(String areaOnTheMap) {
+        AreaOnTheMap = areaOnTheMap;
+    }
+
+    public String getHousesList() {
+        return HousesList;
+    }
+
+    public void setHousesList(String housesList) {
+        HousesList = housesList;
+    }
+
+    public String getSave() {
+        return Save;
+    }
+
+    public void setSave(String save) {
+        Save = save;
+    }
+
     public String getHouseLanguage() {
         return szHouseLanguage;
     }
@@ -235,9 +403,23 @@ public class Dictionary {
                 ",\"TreatmentFees\":\"" + dTreatmentFees + "\"" +
                 ",\"RenovationFeesForSale\":\"" + dRenovationFeesForSale + "\"" +
                 ",\"RenovationFeesForRenting\":\"" + dRenovationFeesForRenting + "\"" +
-                ",\"GeneralHouseDetailes\":\"" + szGeneralHouseDetailes+ "\"" +
+                ",\"GeneralHouseDetailes\":\"" + szGeneralHouseDetailes + "\"" +
                 ",\"FinancialHouseDetailes\":\"" + szFinancialHouseDetailes + "\"" +
                 ",\"DiversFees\":\"" + dDiversFees + "\"" +
+                ",\"UploadHouseFiles\":\"" + UploadHouseFiles + "\"" +
+                ",\"DragOrDropFilesHere\":\"" + DragOrDropFilesHere + "\"" +
+                ",\"HouseTable\":\"" + HouseTable + "\"" +
+                ",\"Menu\":\"" + Menu + "\"" +
+                ",\"Information\":\"" + Information + "\"" +
+                ",\"House\":\"" + House + "\"" +
+                ",\"ManageHouses\":\"" + ManageHouses + "\"" +
+                ",\"NewHouse\":\"" + NewHouse + "\"" +
+                ",\"Copyright\":\"" + Copyright + "\"" +
+                ",\"WellcomToYourAccount\":\"" + WellcomToYourAccount + "\"" +
+                ",\"SelectaHouse\":\"" + SelectAHouse + "\"" +
+                ",\"AreaOnTheMap\":\"" + AreaOnTheMap + "\"" +
+                ",\"HousesList\":\"" + HousesList + "\"" +
+                ",\"Save\":\"" + Save + "\"" +
                 "} ]}";
     }
 }

@@ -54,6 +54,51 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     function checkIfNeedConfirming() {}
     $interval(checkIfNeedConfirming, 200000);
 
+    // For Images
+    $scope.housePathesImages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            imagesSource: 'default'
+        }
+    };
+
+    $scope.houseImages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            image: 'default'
+        }
+    };
+
+    $scope.getImages = function(szHouseImagesPath) {
+        var fileToReturn;
+        $http.get('/GET_SPECIFIC_FILE/' + szHouseImagesPath)
+            .then(function successCallback(response,file) {
+                    fileToReturn = file;
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
+        return fileToReturn;
+    }
+
+    function getHouseImages(nHouseId) {
+        $http.get('/GET_FILES_PATHS/' + nHouseId)
+            .then(function successCallback(response) {
+                    angular.forEach(response.data.files, function (value, key) {
+                        itemName = {
+                            id: key,
+                            imagesSource: value
+                        }
+                        $scope.housePathesImages.availableOptions.push(itemName.imagesSource);
+                    }, $scope.housePathesImages);
+            
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+    }
 
     // Logic methods section
     function getHouse(nHouseId) {
@@ -83,15 +128,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
+
+        // Get images
+        $scope.houseImages.availableOptions = [];
+        $scope.housePathesImages.availableOptions = [];
+        getHouseImages(nHouseId);
+
     }
 
-    $scope.houseImages = {
-        availableOptions: [],
-        selectedOption: {
-            id: '1',
-            imagesSource: 'default'
-        }
-    };
 
 
 
@@ -110,9 +154,8 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-        if(ShamayimFunctions.getLanguage(szLanguageName)== true)
-        {
-        $scope.dictionary = ShamayimFunctions.getDictionary();    
+        if (ShamayimFunctions.getLanguage(szLanguageName) == true) {
+            $scope.dictionary = ShamayimFunctions.getDictionary();
         }
         $scope.dictionary = ShamayimFunctions.getDictionary();
 
@@ -132,7 +175,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         // Go to the main application
         $state.go('wellcom');
     }
-
+    getLanguage("English");
     $scope.$watch('houses.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             houseName = newVal;
@@ -174,7 +217,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 });
 
     }
-
+    $scope.imageSrc = "images/background.jpg";
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }

@@ -35,9 +35,10 @@ GET         /GET_LANGUAGE/:szLanguage                                           
 POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
-POST        /upload/:szUserName                                                                    controllers.setter.uploadFileWithName(szUserName:String)
-GET        /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHouseFiles(szHouseId:String)
-GET        /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificFile(szFolderName:String,szFileName:String)
+
+
+GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHouseFiles(szHouseId:String)
+GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificFile(szFolderName:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                                                                          controllers.Assets.at(path="/public", file)
 

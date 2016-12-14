@@ -59,13 +59,13 @@
 
 <md-content class="md-padding">
     <md-tabs class="md-accent" md-selected="dataTabs.selectedIndex" layout-fill md-align-tabs="{{dataTabs.bottom ? 'bottom' : 'top'}}">
-        
-	
-	
+
+
+
         <md-tab id="tab1">
             <md-tab-label>{{dictionary.Dictionary[0].GeneralHouseDetailes}}</md-tab-label>
             <md-tab-body>
-               
+
 
                 <div class="flex-container">
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
@@ -122,9 +122,11 @@
                                     <label> {{dictionary.Dictionary[0].Comments}} :</label>
                                     <input type="text" ng-model="comments" name="text" placeholder="רחוב" required/>
                                 </md-input-container>
-                               <center> <md-input-container>
-                                    <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
-                                </md-input-container></center>
+                                <center>
+                                    <md-input-container>
+                                        <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
+                                    </md-input-container>
+                                </center>
                             </form>
                         </div>
                     </div>
@@ -133,9 +135,9 @@
             </md-tab-body>
         </md-tab>
         <md-tab id="tab2" ng-disabled="dataTabs.secondLocked">
-            <md-tab-label>{{dataTabs.secondLabel}}</md-tab-label>
+            <md-tab-label> {{dictionary.Dictionary[0].UploadHouseFiles}}</md-tab-label>
             <md-tab-body>
-                              <form name="testForm" layout="column" class="md-padding"s>
+                <form name="testForm" layout="column" class="md-padding" s>
                     <lf-ng-md-file-input name="files" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
                     <div ng-messages="testForm.files00.$error" style="color:red;">
                         <div ng-message="required">This is required.</div>
@@ -149,7 +151,7 @@
 
             </md-tab-body>
         </md-tab>
-        <md-tab id="tab3">
+        <md-tab id="tab3" ng-disabled="dataTabs.thirdLocked">
             <md-tab-label>{{dictionary.Dictionary[0].FinancialHouseDetailes}}</md-tab-label>
             <md-tab-body>
                 <div class="flex-container">
@@ -176,10 +178,12 @@
                                     <label> {{dictionary.Dictionary[0].DiversFees}} :</label>
                                     <input type="number" ng-model="divers_fees" name="text" placeholder="מספר בית" required/>
                                 </md-input-container>
-                               
-                               <center> <md-input-container>
-                                    <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
-                                </md-input-container></center>
+
+                                <center>
+                                    <md-input-container>
+                                        <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
+                                    </md-input-container>
+                                </center>
                             </form>
                         </div>
                     </div>
@@ -189,5 +193,3 @@
         </md-tab>
     </md-tabs>
 </md-content>
-
-

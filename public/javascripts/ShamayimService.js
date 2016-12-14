@@ -25,7 +25,22 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
             "RenovationFeesForRenting": "Renovation Fees For Renting",
             "GeneralHouseDetailes": "General House Details",
             "FinancialHouseDetailes": "Financial House Details",
-            "DiversFees": "Divers Fees"
+            "DiversFees": "Divers Fees",
+            "UploadHouseFiles": "Upload House Files",
+            "DragOrDropFilesHere": "Drag & Drop Files Here",
+            "HouseTable": "House Details Table",
+            "Menu": "Menu",
+            "Information": "Information",
+            "House": "House",
+            "ManageHouses": "Manage Houses",
+            "NewHouse": "New House",
+            "Copyright": "About",
+            "WellcomToYourAccount": "Wellcom To Your Account",
+            "SelectaHouse": "Select A House",
+            "AreaOnTheMap": "Area On The Map",
+            "HousesList": "Houses List",
+            "Save": "Save"
+
         }]
     };
 
@@ -100,6 +115,21 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
 
     }
 
+    function setLanguageCookie(szLanguage)
+    {
+         document.cookie = "Language=" + szValue + "; ";
+    }
+    // Get value from the cookie
+    var getLanguageCookie = function () {
+        var name = "Language=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
     function setUserNameCookie(szName, szValue) {
         document.cookie = szName + "=" + szValue + "; ";
     }

@@ -41,7 +41,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.dataTabs = {
         selectedIndex: 0,
         secondLocked: true,
-        secondLabel: "upload house files",
+        thirdLocked: true,
         bottom: false
     };
     $scope.next = function () {
@@ -153,6 +153,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         var res = $http.post('/SET_NEW_HOUSE', house);
         res.success(function (data, status, headers, config) {
             $scope.dataTabs.secondLocked = false;
+            $scope.dataTabs.thirdLocked = false;
             alert(data);
         });
         res.error(function (data, status, headers, config) {

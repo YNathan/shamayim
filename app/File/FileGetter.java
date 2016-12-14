@@ -31,4 +31,4 @@ public class FileGetter {
         File fileToReturn = new File(szPathName);
         return fileToReturn;
     }
-}
+   }

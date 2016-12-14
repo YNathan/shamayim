@@ -11,7 +11,8 @@ import Entity.*;
 import File.FileGetter;
 import play.Logger;
 import play.libs.F;
-import play.libs.Json;
+
+import play.api.libs.json.*;
 
 /**
  * Will do all the logic of the data who asked from the server

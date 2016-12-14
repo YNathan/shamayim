@@ -1,4 +1,4 @@
-app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', function($scope, $http, $filter, $state, $mdDialog, $mdSidenav) {
+app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav','ShamayimFunctions', function($scope, $http, $filter, $state, $mdDialog, $mdSidenav,ShamayimFunctions) {
 
      // Get value from the cookie
     function getCookie(cname) {
@@ -79,6 +79,37 @@ app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '
         );
 
     };
+ // Language Section
+    // For the Language
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
+    $scope.Languages = ShamayimFunctions.getExistingLanguages();
+
+
+
+    function getLanguage(szLanguageName) {
+        // Get information conserning the house
+        if(ShamayimFunctions.getLanguage(szLanguageName)== true)
+        {
+        $scope.dictionary = ShamayimFunctions.getDictionary();    
+        }
+        $scope.dictionary = ShamayimFunctions.getDictionary();
+
+    }
+    getLanguage("English");
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
+            if (newVal != oldVal) {
+                HouseLanguageName = newVal;
+                getLanguage(newVal);
+
+            }
+        })
+        // End Of Language Section
 
  $scope.toggleLeft = function() {
      $mdSidenav('left').toggle();

@@ -1,24 +1,38 @@
-<md-button class="menu" ng-click="toggleLeft()">
-    <md-icon md-svg-icon="menu"></md-icon>
-</md-button>
+<!head>
+<div class="md-padding" layout="row" layout-sm="column" flex>
+    <div flex>
+        <md-button class="menu" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+    </div> 
+    <div flex: 100%>
+        <md-input-container>
+            <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
+                <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
+                    {{Language}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        </div>
+</div>
 
 <div flex="66">
     <table class="rwd-table">
-        <h1>Your Houses Information</h1>
+        <h1>{{dictionary.Dictionary[0].HousesList}}</h1>
         <tr>
-            <th>id</th>
-            <th>State</th>
-            <th>city</th>
-            <th>street</th>
-            <th>house number</th>
-            <th>house kind</th>
-            <th>number of rooms</th>
-            <th>number of living rooms</th>
-            <th>number of kitchens</th>
-            <th>number of bedrooms</th>
-            <th>number of bathrooms</th>
-            <th>location kind</th>
-            <th>comment</th>
+            <th>{{dictionary.Dictionary[0].HouseId}}</th>
+            <th>{{dictionary.Dictionary[0].State}}</th>
+            <th>{{dictionary.Dictionary[0].City}}</th>
+            <th>{{dictionary.Dictionary[0].Street}}</th>
+            <th>{{dictionary.Dictionary[0].HouseNumber}}</th>
+            <th>{{dictionary.Dictionary[0].HouseKind}}</th>
+            <th>{{dictionary.Dictionary[0].NumberOfRooms}}</th>
+            <th>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</th>
+            <th>{{dictionary.Dictionary[0].NumberOfKitchens}}</th>
+            <th>{{dictionary.Dictionary[0].NumberOfBedrooms}}</th>
+            <th>{{dictionary.Dictionary[0].NumberOfBathrooms}}</th>
+            <th>{{dictionary.Dictionary[0].LocationKind}}</th>
+            <th>{{dictionary.Dictionary[0].Comments}}</th>
 
         </tr>
         <tr ng-repeat="x in houses">
@@ -41,34 +55,34 @@
 </div>
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-        <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Menu</h1>
+        <md-toolbar class="md-theme-indigo md-padding">
+            <center><h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1></center>
         </md-toolbar>
 
         <md-content layout-margin="" align="center">
             <md-button class="account_circle" ng-click="goToUserInformation()">
                 <md-icon md-svg-icon="account_circle" align="center"></md-icon>
-                <div>{{userName}} Information</div>
+                <div>{{userName}} {{dictionary.Dictionary[0].Information}}</div>
             </md-button>
             </br>
             <md-button class="house" ng-click="goToHouse()">
                 <md-icon md-svg-icon="home"></md-icon>
-                <div>house</div>
+                <div>{{dictionary.Dictionary[0].House}}</div>
             </md-button>
             </br>
             <md-button class="houses" ng-click="goToHouses()">
                 <md-icon md-svg-icon="home"></md-icon>
-                <div> Manage houses</div>
+                <div> {{dictionary.Dictionary[0].ManageHouses}}</div>
             </md-button>
             </br>
             <md-button class="NewHouse" ng-click="goToNewHouse()">
                 <md-icon md-svg-icon="home"></md-icon>
-                <div>New House</div>
+                <div>{{dictionary.Dictionary[0].NewHouse}}</div>
             </md-button>
             </br>
             <md-button class="copyright" ng-click="goToCopyright()">
                 <md-icon md-svg-icon="copyright"></md-icon>
-                <div>copyright</div>
+                <div>{{dictionary.Dictionary[0].Copyright}}</div>
             </md-button>
             </br>
         </md-content>
