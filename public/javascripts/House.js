@@ -71,17 +71,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
-    $scope.getImages = function(szHouseImagesPath) {
-        var fileToReturn;
-        $http.get('/GET_SPECIFIC_FILE/' + szHouseImagesPath)
-            .then(function successCallback(response,file) {
-                    fileToReturn = file;
-                },
-                function error(response) {
-                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                });
-        return fileToReturn;
-    }
+
 
     function getHouseImages(nHouseId) {
         $http.get('/GET_FILES_PATHS/' + nHouseId)
@@ -237,4 +227,12 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         $state.go('House');
     }
 
-}]);
+}]).directive('lazyLoad', function($timeout) {
+       return {
+           restrict:'A',
+           scope: {},
+           link: function(scope, elem, attrs) {
+               $timeout(function(){ elem.attr('src', attrs.llSrc) });
+           },
+       }
+   });
