@@ -217,7 +217,8 @@ public class getter extends Controller {
      * @throws IOException
      */
     public static Result getHouseFiles(String szHouseId) throws IOException {
-        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szHouseId);
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Files Pathes For House : " + szHouseId);
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Files Pathes For House : " + szHouseId);
         String szResponce = getterBL.getFilePaths(szHouseId).toString();
         return ok(szResponce);
     }
@@ -226,8 +227,10 @@ public class getter extends Controller {
      * Get a specific file from server consserning a house
      * @return
      */
-    public static Result getSpecificFile(String szFolderName,String szFileName) {
-        File fileToReturn = getterBL.getAspecificFile(szFolderName,szFileName);
+    public static Result getSpecificFile(String szFolderName, String szFileName) {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
+        File fileToReturn = getterBL.getAspecificFile(szFolderName, szFileName);
         return ok(fileToReturn);
     }
 }

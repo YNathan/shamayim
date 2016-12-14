@@ -18,18 +18,23 @@ import views.html.*;
 
 public class Application extends Controller {
 
-	public static Result index() {
-		System.out.println("\n[INFO] Hello Server\n");
-return redirect("assets/index.html");
-	}
+    public static Result index() {
+        System.out.println("\n[INFO] Hello Server\n");
+        return redirect("assets/index.html");
+    }
 
-	public static Result Register() {
-		return redirect("assets/index.html");
-	}
+    public static Result CheackFromHtml() {
+        System.out.println("\n[INFO] From Html Status: Ok\n");
+        return ok();
+    }
 
-	public static Result Main() {
-		return redirect("assets/index.html");
-	}
+    public static Result Register() {
+        return redirect("assets/index.html");
+    }
+
+    public static Result Main() {
+        return redirect("assets/index.html");
+    }
 
 
 }
