@@ -51,104 +51,6 @@ public class getterBL {
     }
 
     /**
-     * Get all the debts from the data-base
-     *
-     * @return an array-list contain all debts
-     */
-    public ArrayList<Gelt> getGelts() {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get gelts");
-
-        return getterDB.getGelts();
-    }
-
-    /**
-     * Get all the debts from the data-base
-     *
-     * @return an array-list contain all debts
-     */
-    public ArrayList<Gelt> getGroupGelts(String szGroupId) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get gelts of group id :" + szGroupId);
-
-        return getterDB.getGelts(szGroupId);
-    }
-
-    /**
-     * @param szUserName - the name of the user who ask
-     * @return an array that will contain the debts that concern the user
-     */
-    public ArrayList<Gelt> getGeltsByName(String szUserName) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get gelt by name");
-
-        int nUserId = getIdByName(szUserName);
-        ArrayList<Gelt> getls = getterDB.getGelts();
-        ArrayList<Gelt> geltConcern = new ArrayList<>();
-        for (Gelt currGelts : getls) {
-            if (currGelts.getDebterID() == nUserId || currGelts.getEntitledID() == nUserId) {
-                geltConcern.add(currGelts);
-            }
-        }
-        return geltConcern;
-    }
-
-
-    /**
-     * Get all debts that concern the user and a group if he is a debter are user
-     *
-     * @param szUserName - the name of the user who ask
-     * @return an array that will contain the debts that concern the user
-     */
-    public StringBuilder getGeltsByNameAndGroupsForOutput(String szUserName, String szGroupName) {
-        // This array will contain all the debts that concern the user
-        ArrayList<Gelt> getlsConcerne = new ArrayList<>();
-        StringBuilder stringBuilder = new StringBuilder();
-        int nUserId = getIdByName(szUserName);
-        // Get all debts from the data-base
-        ArrayList<Gelt> getls = getterDB.getGelts(szGroupName);
-        // Looping over all debts from the data base and checking if there is
-        // concerned debts
-        for (Gelt currGelts : getls) {
-            // check if the debter or the entitled is this user
-            if ((currGelts.getDebterID() == nUserId) || (currGelts.getEntitledID() == nUserId)) {
-                // Put the concerned debts in an array that contain the
-                // concerned debts
-                getlsConcerne.add(currGelts);
-                // Print for the fun to the screen
-                play.Logger.info("<BUSINESS_LOGIC> Get debt " + getNameById(currGelts.getDebterID()) + " : "
-                        + currGelts.getAmount() + " : " + getNameById(currGelts.getEntitledID()));
-            }
-        }
-        stringBuilder.append("{ \"debts\":[");
-
-        Iterator<Gelt> curr = getlsConcerne.iterator();
-
-        Gelt currentGelt = null;
-        if (curr.hasNext()) {
-            currentGelt = curr.next();
-        }
-        while (currentGelt != null) {
-            if (currentGelt.getDebterID() == nUserId || currentGelt.getEntitledID() == nUserId) {
-                stringBuilder.append(" {\"Debter\":\"" + getNameById(currentGelt.getDebterID()) + "\",");
-                stringBuilder.append("\"Amount\":\"" + currentGelt.getAmount() + "\",");
-                stringBuilder.append("\"Entitled\":\"" + getNameById(currentGelt.getEntitledID()) + "\"}");
-
-                if (curr.hasNext()) {
-                    stringBuilder.append(",");
-                    currentGelt = curr.next();
-                } else {
-                    currentGelt = null;
-                }
-            }
-
-        }
-
-        stringBuilder.append(" ]}");
-        return stringBuilder;
-    }
-
-    /**
      * @param szUserName - the user-name that will found for hem the id
      * @return the id of the user in the system
      */
@@ -229,13 +131,6 @@ public class getterBL {
         return usersName;
     }
 
-    public ArrayList<String> getUserNameOfGroups(String szUserName, String szGroupName) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get users name of group id : " + szGroupName);
-        ArrayList<String> usersName = getterDB.getUserNamesOfGroup(szGroupName);
-        usersName.remove(szUserName);
-        return usersName;
-    }
 
     public Date getDateByString(String szDate) {
         // INFO
@@ -250,34 +145,6 @@ public class getterBL {
         String szDay = szDate.substring(8);
         int nDay = Integer.parseInt(szDay);
         return new Date(nYear, nMonth, nDay);
-    }
-
-    /**
-     * Check if there is debts concerning to this person Will return in a string
-     * the debt and will delete from the data base the temp debts
-     *
-     * @param szUserName - the user that suppose to be the debter
-     * @return a string with the amount and the entitled
-     */
-    public StringBuilder checkIfUserIsDebter(String szUserName) {
-
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get user if is a debter");
-        StringBuilder sbGeltToReturn = new StringBuilder();
-        ArrayList<Gelt> tempGelts = getterDB.getTempGelts();
-        Iterator<Gelt> itterGelt = tempGelts.iterator();
-
-        boolean bWasFound = false;
-        while ((itterGelt.hasNext()) && (!bWasFound)) {
-            Gelt currGelt = itterGelt.next();
-            if (currGelt.getDebterID() == getIdByName(szUserName)) {
-                sbGeltToReturn.append("{ \"currDebt\":[ {\"Amount\":\"" + currGelt.getAmount() + "\",\"Entitled\":\""
-                        + getNameById(currGelt.getEntitledID()) + "\",\"Group\":\"" + getterDB.getGroup(currGelt.getGroupID()).getGroupName() + "\"} ]}");
-
-                bWasFound = true;
-            }
-        }
-        return sbGeltToReturn;
     }
 
     /***
@@ -295,62 +162,6 @@ public class getterBL {
         return sbUserInformationToReturn;
     }
 
-    /***
-     *
-     * @param szUserName the name of the owner
-     * @return all personal information about a user
-     */
-    public StringBuilder getOwnerGroupInformation(String szUserName) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get user information with user name : " + szUserName);
-        int nUserId = getterDB.getUserIdByName(szUserName);
-        StringBuilder sbUserInformationToReturn = new StringBuilder();
-        User userToReturn = getterDB.getUser(nUserId);
-        sbUserInformationToReturn.append("{ \"user\":[ {\"user_name\":\"" + userToReturn.getUserName() + "\",\"email\":\"" + userToReturn.getEmail() + "\",\"telephone\":\"" + userToReturn.getTelephone() + "\"} ]}");
-        return sbUserInformationToReturn;
-    }
-
-    public StringBuilder getGroupsUser(String szUserName) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get the groups information for the user name : " + szUserName);
-        int nUserId = getterDB.getUserIdByName(szUserName);
-        StringBuilder sbUserInformationToReturn = new StringBuilder();
-        ArrayList<Group> lstGroupsToReturn = getterDB.getGroupsUser(nUserId);
-        sbUserInformationToReturn.append("{ \"groups\":[");
-
-        Iterator<Group> groupItr = lstGroupsToReturn.iterator();
-        Group currGroup = null;
-        if (groupItr.hasNext()) {
-            currGroup = groupItr.next();
-        }
-        while (currGroup != null) {
-            sbUserInformationToReturn.append(" {\"group_name\":\"" + currGroup.getGroupName() + "\",");
-            sbUserInformationToReturn.append("\"group_owner_name\":\"" + getterDB.getUserNameById(currGroup.getOwnerId()) + "\"}");
-
-            if (groupItr.hasNext()) {
-                sbUserInformationToReturn.append(",");
-                currGroup = groupItr.next();
-            } else {
-                currGroup = null;
-            }
-
-        }
-        sbUserInformationToReturn.append(" ]}");
-        return sbUserInformationToReturn;
-    }
-
-    /**
-     * @param szUserName - the user name of the a user
-     * @return a list of the groups name concerning the user
-     */
-    public ArrayList<String> getUserGroupsName(String szUserName) {
-        // INFO
-        play.Logger.info("<BUSINESS_LOGIC> Get the groups name for the user name : " + szUserName);
-
-        ArrayList<String> lstGroupsNameToReturn = getterDB.getUserGroupsName(szUserName);
-
-        return lstGroupsNameToReturn;
-    }
 
     public StringBuilder getListOfHouse() {
 

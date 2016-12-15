@@ -32,29 +32,7 @@ public class setter {
     private static setterBL setterBL = new setterBL();
 
     /**
-     * Inserting new debt without a group.
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result newGelt(String szDebterName, String szAmount, String szEntitledName) {
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null)) {
-            if (setterBL.insertGelt(szDebterName, szAmount, szEntitledName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an entitled-name!");
-        }
-    }
-
-    /**
-     * Inserting new debt without a group.
+     * Inserting new house.
      *
      * @return
      */
@@ -96,29 +74,6 @@ public class setter {
             }
             System.out.println("The House was Register correctly" + houseToRegistre.toString());
             return ok("The House was Register correctly");
-        }
-    }
-
-
-    /**
-     * Inserting new debt with a group.
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result newTempGelt(String szDebterName, String szAmount, String szEntitledName, String szGroupName) {
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null) && (szGroupName != null)) {
-            if (setterBL.insertGelt(szDebterName, szAmount, szEntitledName, szGroupName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the temp gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an entitled-name or an empty group-name!");
         }
     }
 
@@ -170,128 +125,6 @@ public class setter {
             return badRequest(
                     "Null pointer screw you! \nyou send your request with an empty user-name or an empty first-name or an last-name or an telephone or an email or an password or an birthdate!");
         }
-    }
-
-    /**
-     * Confirm from a debtor if the data of this debt is true
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result confirm(String szDebterName, String szAmount, String szEntitledName) {
-        play.Logger.info("<SETTER> Confiming");
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null)) {
-            if (setterBL.confirm(szDebterName, szAmount, szEntitledName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an entitled-name!");
-        }
-
-    }
-
-    /**
-     * Confirm from a debtor in a group if the data of this debt is true
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result confirmDebt(String szDebterName, String szAmount, String szEntitledName, String szGroupName) {
-        play.Logger.info("<SETTER> Confiming");
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null) && (szGroupName != null)) {
-            if (setterBL.confirmDebt(szDebterName, szAmount, szEntitledName, szGroupName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an empty entitled-name or an empty group name!");
-        }
-
-    }
-
-    /**
-     * Disapprove debt from a debtor if the data of this debt is true
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result notConfirm(String szDebterName, String szAmount, String szEntitledName) {
-        play.Logger.info("<SETTER> Not Confiming");
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null)) {
-            if (setterBL.notConfirm(szDebterName, szAmount, szEntitledName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an entitled-name!");
-        }
-
-    }
-
-    /**
-     * Disapprove debt from a debtor in a group if the data of this debt is true
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result notConfirmDebt(String szDebterName, String szAmount, String szEntitledName,
-                                        String szGroupName) {
-        play.Logger.info("<SETTER> Not Confiming");
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null) && (szGroupName != null)) {
-            if (setterBL.notConfirm(szDebterName, szAmount, szEntitledName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an empty entitled-name or an empty group name!");
-        }
-
-    }
-
-    /**
-     * pay a gelt
-     *
-     * @param szDebterName   - the debtor name
-     * @param szAmount       - the amount for inserting
-     * @param szEntitledName - the entitled name
-     * @return
-     */
-    public static Result pay(String szDebterName, String szAmount, String szEntitledName) {
-        play.Logger.info("<SETTER> " + szEntitledName + " Say that " + szDebterName
-                + " pay to hem the system send to delete the debt");
-        if ((szDebterName != null) && (szAmount != null) && (szEntitledName != null)) {
-            if (setterBL.pay(szDebterName, szAmount, szEntitledName)) {
-                return ok("true");
-            } else {
-                return badRequest("An internal error as ocurred when trying to insert the gelt");
-            }
-
-        } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty debter-name or an empty amount or an entitled-name!");
-        }
-
     }
 
     /**
