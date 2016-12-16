@@ -5,7 +5,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
     $scope.telephone;
     $scope.email = "Robert@gmail.com";
     $scope.password = "a";
-    $scope.birthdate;
+    $scope.birthdate = 1-1-2001;
 
     // For login scope
     $scope.Username = 'Y.Nathan';

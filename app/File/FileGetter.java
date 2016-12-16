@@ -16,10 +16,13 @@ public class FileGetter {
         File folder = new File(System.getProperty("user.dir") + "\\" + szDocumentsDir + "\\" + szFolderName);
         File[] listOfFiles = folder.listFiles();
 
+
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                lstFileNamesToReturn.add(szFolderName + "/" + listOfFiles[i].getName());
-                System.out.println("File " + szDocumentsDir + "/" + szFolderName + "/" + listOfFiles[i].getName());
+                if ((listOfFiles[i].getName().toLowerCase().contains(".jpg")) || (listOfFiles[i].getName().toLowerCase().contains(".png")) || (listOfFiles[i].getName().toLowerCase().contains(".jpeg"))) {
+                    lstFileNamesToReturn.add(szFolderName + "/" + listOfFiles[i].getName());
+                    System.out.println("File " + szDocumentsDir + "/" + szFolderName + "/" + listOfFiles[i].getName());
+                }
             } else if (listOfFiles[i].isDirectory()) {
                 System.out.println("Directory " + listOfFiles[i].getName());
             }
@@ -31,4 +34,4 @@ public class FileGetter {
         File fileToReturn = new File(szPathName);
         return fileToReturn;
     }
-   }
+}

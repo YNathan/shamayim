@@ -1,7 +1,53 @@
-app.controller('Copyright', ['$scope', '$mdSidenav', 'ShamayimFunctions', '$state', function ($scope, $mdSidenav, ShamayimFunctions, $state) {
+app.controller('Copyright', ['$scope', '$mdSidenav', 'ShamayimFunctions', '$state','$http', function ($scope, $mdSidenav, ShamayimFunctions, $state,$http) {
 
     $scope.userName = ShamayimFunctions.getCookie("username");
 
+      
+    // Language Section
+    $scope.dictionary;
+
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
+
+    $scope.Languages = ShamayimFunctions.getExistingLanguages();
+
+    function getLanguage(szLanguageName) {
+        // Get information conserning the house
+        $http.get("/GET_LANGUAGE/" + szLanguageName)
+            .then(function successCallback(response) {
+                    $scope.dictionary = response.data;
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
+        ShamayimFunctions.setLanguageCookie(szLanguageName);
+
+    }
+
+    var languageToGet = ShamayimFunctions.setLanguageCookie();
+
+    if(languageToGet == null)
+    {
+    languageToGet = "עברית";
+    }
+
+    getLanguage(languageToGet);
+
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
+            if (newVal != oldVal) {
+                HouseLanguageName = newVal;
+                getLanguage(newVal);
+
+            }
+        })
+
+     // End Of Language Section
+    
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }

@@ -14,8 +14,6 @@ GET         /CHECK_EMAIL/:Email                                                 
 GET         /GET_USERS/:userName                                                                   controllers.getter.getUsers(userName:String)
 POST        /REGISTER/:userName/:firstName/:lastName/:telephone/:email/:password/:birthdate        controllers.setter.registerNewUser(userName:String,firstName:String,lastName:String,telephone:String,email:String,password:String,birthdate:String)
 GET         /GET_USER_INFORMATION/:szUserName                                                      controllers.getter.getUserInformation(szUserName:String)
-GET         /GET_USERSNAME_OF_GROUPS/:szUserName/:szGroupId                                        controllers.getter.getUserNameOfGroup(szUserName:String,szGroupId:String)
-GET         /GET_GROUPS_USER/:szUserName/:szGroupId                                                controllers.getter.getGroupGelts(szUserName:String,szGroupId:String)
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
