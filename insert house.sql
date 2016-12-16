@@ -31,15 +31,15 @@ CREATE TABLE `house` (
   PRIMARY KEY (`house_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
 
+*
+-- Query: SELECT * FROM shamayim.house
+LIMIT 0, 1000
 
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
-values ('Newark', 'N.J', '13th', '718', '1', 7, 1, 1, 2, 1, 2,  'comments');
-
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
-values ('Washington', 'Baltimor', 'Prince', '12', '1', 7, 1, 1, 2, 1, 2,  'אחלה של בית');
-
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
-values ('Israel', 'jerusalem', 'Maanee Simcha', '28', '1', 7, 1, 1, 2, 1, 2,  'נוף מדהים');
+-- Date: 2016-12-16 14:03
+*/
+INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (1,'Newark','N.J','Prince',283,1,7,1,1,3,2.5,1,'בית מאד גדול למשפחה ובמצב מצויין לאחר שיפוץ',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (2,'Newark','N.J','13th',718,1,7,1,1,2,1,2,'בית פינתי כניסה לכל דירה מרחב אחר בנוסף יש בייסמנט שנוכל לשפץ לעוד יחידה החנייה ברחוב קטן ושקט, אין ג\'ארז פרטי הוצאות לפי 2 אופציות',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (3,'israel','jerusalem','yirmiyahu',32,1,1,1,1,3,5,2,'nice area have fun',0,0,0,0,0);
 
 CREATE TABLE `users` (
   `user_name` varchar(255) NOT NULL,
