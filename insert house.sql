@@ -25,8 +25,8 @@ CREATE TABLE `house` (
   `comments` varchar(20000) DEFAULT NULL,
   `purchase_price` double DEFAULT NULL,
   `treatment_fees` double DEFAULT NULL,
-  `renovation_fees_fo_sale` double DEFAULT NULL,
-  `renovation_fees_fo_renting` double DEFAULT NULL,
+  `renovation_fees_for_sale` double DEFAULT NULL,
+  `renovation_fees_for_renting` double DEFAULT NULL,
   `divers_fees` double DEFAULT NULL,
   PRIMARY KEY (`house_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
@@ -53,7 +53,6 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
 
-
 CREATE TABLE `dictionary` (
   `house_language` varchar(255) NOT NULL,
   `house_id` varchar(255) NOT NULL,
@@ -78,10 +77,19 @@ CREATE TABLE `dictionary` (
   `divers_fees` varchar(255) NOT NULL,
   `general_house_details` varchar(255) NOT NULL,
   `financial_house_details` varchar(255) NOT NULL,
+  `upload_house_files` varchar(255) DEFAULT NULL,
+  `drag_or_drop_files_here` varchar(255) DEFAULT NULL,
+  `house_table` varchar(255) DEFAULT NULL,
+  `menu` varchar(255) DEFAULT NULL,
+  `information` varchar(255) DEFAULT NULL,
+  `house` varchar(255) DEFAULT NULL,
+  `manage_houses` varchar(255) DEFAULT NULL,
+  `new_house` varchar(255) DEFAULT NULL,
+  `copyright` varchar(255) DEFAULT NULL,
+  `wellcom_to_your_account` varchar(255) DEFAULT NULL,
+  `select_a_house` varchar(255) DEFAULT NULL,
+  `area_on_the_map` varchar(255) DEFAULT NULL,
+  `houses_list` varchar(255) DEFAULT NULL,
+  `save` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`house_language`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-
-
-insert into shamayim.dictionary values("עברית","מספר רישום הבית במערכת","כתובת","מדינה","עיר","רחוב","מספר בית","סוג הבית","מספר חדרים","מספר חדרי סלון","מספר חדרי מטבח","מספר חדרי שינה","מספר חדרי שירותים/ מקלחת","מיקום","ציון","הערות","מחיר קניה","הוצאות טיפול","הוצאות שיפוץ למכירה","הוצאות שיפוץ להשכרה","הוצאות אחרות","נתונים כלליים","נתונים כלכליים");
-insert into shamayim.dictionary values("Francais","Numero De Maison Enregistrer Dans Le System","Address","Pays","Ville","Rue","Numero De Maison","Style De Maison","Nombre De Chambres","Numbre De Salle A Manger","Numbre De cuisins","Nombre De Chambre A Cousher","Nombre De Chambre De Toilette","Environnment","Score","Commentaires","Prix Dachat","Depance De Traitment","Depance De Renovation Pour Vente","Depance De Renovation Pour Location","Autre Depance","Detailles Generals","Detailles Financier");
-insert into shamayim.dictionary values("English","Number Of House That Recording In The System","Address","State","City","Street","House Number","Kind Of House","Number Of Rooms","Number Of Living Rooms","Number Of Kitchens","Number Of Bedrooms","Number Of Bathrooms","Location Kind","Score","Comments","Purchase Price","Treatment Fees","Renovation Fees For Sale","Renovation Fees For Reinting","Divers Fees","General Details","Financial Details");
