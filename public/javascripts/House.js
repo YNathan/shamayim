@@ -126,52 +126,61 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
 
+    $scope.sendMeMail = function(szHouseId) {
+        // Get information conserning the house
+        $http.get("/SEND_ME_THE_HOUSE/" + ShamayimFunctions.getCookie("username") + "/" + szHouseId)
+            .then(function successCallback(response) {
+                    ShamayimFunctions.showAlert("Operation Success Open You Mail To See The House", response.data, "");
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
+
+    }
 
 
+    // Language Section
 
-  // Language Section
+    $scope.Languages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            HouseLanguage: 'default'
+        }
+    };
 
-     $scope.Languages = {
-         availableOptions: [],
-         selectedOption: {
-             id: '1',
-             HouseLanguage: 'default'
-         }
-     };
+    $scope.Languages = ShamayimFunctions.getExistingLanguages();
 
-     $scope.Languages = ShamayimFunctions.getExistingLanguages();
+    function getLanguage(szLanguageName) {
+        // Get information conserning the house
+        $http.get("/GET_LANGUAGE/" + szLanguageName)
+            .then(function successCallback(response) {
+                    $scope.dictionary = response.data;
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
+        ShamayimFunctions.setLanguageCookie(szLanguageName);
 
-     function getLanguage(szLanguageName) {
-         // Get information conserning the house
-         $http.get("/GET_LANGUAGE/" + szLanguageName)
-             .then(function successCallback(response) {
-                     $scope.dictionary = response.data;
-                 },
-                 function error(response) {
-                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                 });
-         ShamayimFunctions.setLanguageCookie(szLanguageName);
+    }
 
-     }
+    var languageToGet = ShamayimFunctions.setLanguageCookie();
 
-     var languageToGet = ShamayimFunctions.setLanguageCookie();
+    if (languageToGet == null) {
+        languageToGet = "עברית";
+    }
 
-     if(languageToGet == null)
-     {
-     languageToGet = "עברית";
-     }
+    getLanguage(languageToGet);
 
-     getLanguage(languageToGet);
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+            HouseLanguageName = newVal;
+            getLanguage(newVal);
 
-     $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
-             if (newVal != oldVal) {
-                 HouseLanguageName = newVal;
-                 getLanguage(newVal);
+        }
+    })
 
-             }
-         })
-
-      // End Of Language Section
+    // End Of Language Section
 
     // Just check if there is a user name
     if (ShamayimFunctions.getCookie("username") == null) {

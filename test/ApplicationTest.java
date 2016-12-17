@@ -1,5 +1,6 @@
 import java.io.File;
 
+import javax.mail.MessagingException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
@@ -12,6 +13,7 @@ import org.w3c.dom.Element;
 import org.junit.*;
 
 import BL.getterBL;
+import BL.mailBL;
 
 /**
  * Simple (JUnit) tests that can call all parts of a play app.
@@ -19,6 +21,7 @@ import BL.getterBL;
  */
 public class ApplicationTest {
     getterBL getterBL = new getterBL();
+    mailBL mailBl = new mailBL();
 
     @Test
     public void getListOfExistingLanguage() {
@@ -87,6 +90,30 @@ public class ApplicationTest {
         String b = a.replace("/", "\\\\");
         System.out.println("a" + a);
         System.out.println("b" + b);
+    }
+
+    @Test
+    public void sendBodyMail()
+
+    {
+
+        try {
+            mailBl.sendHouse("Newark_N.J_Prince_283","1","yaacovisraelnathan@gmail.com");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void sendLoginMail()
+
+    {
+
+        try {
+            mailBl.sendLoginSuccess("Yaacov","127.0.0.1");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
 

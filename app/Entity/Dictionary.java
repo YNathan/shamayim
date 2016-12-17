@@ -1,5 +1,7 @@
 package Entity;
 
+import akka.io.SslTlsSupport;
+
 /**
  * Created by jacky on 18/11/2016.
  */
@@ -41,6 +43,7 @@ public class Dictionary {
     private String AreaOnTheMap;
     private String HousesList;
     private String Save;
+    private String SendMeThisHouseToMyMail;
 
     public Dictionary() {
     }
@@ -381,6 +384,14 @@ public class Dictionary {
         this.szFinancialHouseDetailes = szFinancialHouseDetailes;
     }
 
+    public String getSendMeThisHouseToMyMail() {
+        return SendMeThisHouseToMyMail;
+    }
+
+    public void setSendMeThisHouseToMyMail(String sendMeThisHouseToMyMail) {
+        SendMeThisHouseToMyMail = sendMeThisHouseToMyMail;
+    }
+
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
                 "\"Dictionary\":\"" + szHouseLanguage + "\"" +
@@ -420,6 +431,7 @@ public class Dictionary {
                 ",\"AreaOnTheMap\":\"" + AreaOnTheMap + "\"" +
                 ",\"HousesList\":\"" + HousesList + "\"" +
                 ",\"Save\":\"" + Save + "\"" +
+                ",\"SendMeThisHouseToMyMail\":\"" + SendMeThisHouseToMyMail + "\"" +
                 "} ]}";
     }
 }

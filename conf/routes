@@ -7,7 +7,7 @@
 GET         /                                                                                      controllers.Application.index()
 GET         /REGISTER_PAGE                                                                         controllers.Application.Register()
 GET         /MAIN                                                                                  controllers.Application.Main()
-GET         /A                                                                                  controllers.Application.CheackFromHtml()
+GET         /A                                                                                     controllers.Application.CheackFromHtml()
 POST        /LOGIN/:Username/:Password                                                             controllers.getter.isLoginPermited(Username:String,Password:String)
 GET         /CHECK_USER_NAME/:USER_NAME                                                            controllers.getter.isUserNameAlreadyExist(USER_NAME:String)
 GET         /CHECK_EMAIL/:Email                                                                    controllers.getter.isEmailAlreadyExist(Email:String)
@@ -20,10 +20,9 @@ GET         /GET_HOUSE_BY_ID/:nHouseId                                          
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 GET         /GET_LANGUAGE/:szLanguage                                                              controllers.getter.getLanguage(szLanguage:String)
 POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
+GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                                              controllers.setter.sendHouseMail(szUserName:String,szHouseId:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
-
-
 GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHouseFiles(szHouseId:String)
 GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificFile(szFolderName:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path

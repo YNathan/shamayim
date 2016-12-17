@@ -2,19 +2,17 @@ package BL;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 
 import Entity.ESuccessFailed;
 import File.FileSetter;
 import DB.getterDB;
 import DB.setterDB;
-import Entity.Gelt;
 import Entity.House;
 import Entity.WebResponce;
 import play.mvc.Http;
 
-import static play.mvc.Controller.flash;
 
 /**
  * @author Yaacov
@@ -25,7 +23,7 @@ public class setterBL {
     private getterBL getterBL = new getterBL();
     private FileSetter fileSetter = new FileSetter();
     private WebResponce webResponce = new WebResponce();
-
+    private mailBL mailBl = new mailBL();
 
     /**
      * Registering a new user into the system.
@@ -125,5 +123,27 @@ public class setterBL {
 
     public WebResponce setFiles(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
         return fileSetter.setFiles(szHouseName, pictures);
+    }
+
+    public WebResponce sendHouseMail(String szUserName, String szHouseId) {
+        webResponce = new WebResponce();
+        int nHouseId = 0;
+        try {
+            nHouseId = Integer.parseInt(szHouseId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("Your House Id Is Not A Number");
+        }
+        if (webResponce.getSuccessFailed() != ESuccessFailed.FAILED) {
+            // INFO
+            play.Logger.info("<BUSINESS_LOGIC> Get house by id : " + nHouseId);
+            House house = getterDB.getHouseById(nHouseId);
+            String szHouseName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
+            String szEmailUser = getterDB.getUser(getterDB.getUserIdByName(szUserName)).getEmail();
+            mailBl.sendHouse(szHouseName,house.toStringMailFormat(),szEmailUser);
+        }
+
+        return webResponce;
     }
 }

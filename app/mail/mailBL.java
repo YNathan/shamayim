@@ -59,4 +59,5 @@ public class mailBL {
 		mailServerProperties.put("mail.smtp.starttls.enable", "true");
 		Logger.info("<MAIL>Set the mail propeties ===> Mail Server Properties have been setup successfully..");
 	}
+
 }
