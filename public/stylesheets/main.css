@@ -1,10 +1,10 @@
 body {
 	background: url('../images/background.jpg');
 	background-size: 100% 100%;
-	background-repeat: repeat;
+	background-repeat: repeat-y;
 }
 .md-tab{
-background: green;
+background: blue;
 }
 .md-tabs{
 background: blue;
