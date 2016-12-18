@@ -11,6 +11,7 @@ import Entity.WebResponce;
 import File.FileGetter;
 import play.Logger;
 import DB.getterDB;
+
 import javax.activation.DataSource;
 
 /**
@@ -121,7 +122,7 @@ public class mailBL {
         Logger.info("<MAIL>Set the mail propeties ===> Mail Server Properties have been setup successfully..");
     }
 
-    private static void addAttachment(Multipart multipart, String szFilePath,String szFileName) throws MessagingException {
+    private static void addAttachment(Multipart multipart, String szFilePath, String szFileName) throws MessagingException {
         DataSource source = new FileDataSource(szFilePath);
         BodyPart messageBodyPart = new MimeBodyPart();
         messageBodyPart.setDataHandler(new DataHandler(source));
@@ -172,7 +173,7 @@ public class mailBL {
             while (currFile != null) {
                 String currFilePath = currFile.replace("/", "\\");
                 szFilePath = System.getProperty("user.dir") + "\\" + HOUSES_DOCUMENTS_DIR + "\\" + currFilePath;
-                addAttachment(multipart, szFilePath,currFilePath);
+                addAttachment(multipart, szFilePath, currFilePath);
                 if (ltrFiles.hasNext()) {
                     currFile = ltrFiles.next();
                 } else {
@@ -202,6 +203,32 @@ public class mailBL {
         }
     }
 
+    public void sendFunction(String clientIp, String szMessage) throws AddressException, MessagingException {
+        // Set the mail properties
+        setProperties();
 
+        // Send the mai;
+        Logger.info("<MAIL> Send the mail ===> get Mail Session..");
+        getMailSession = Session.getDefaultInstance(mailServerProperties, null);
+        generateMailMessage = new MimeMessage(getMailSession);
+        generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(DESTINATAIRE));
+        generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress(ENVOYER));
+        generateMailMessage.setSubject("Server say: a user was login");
+        String emailBody = "Information about a client in ip" + clientIp + "****************************<br>" + szMessage + ", <br>Shamayim Nadlan";
+        generateMailMessage.setContent(emailBody, "text/html");
+        Logger.info("<MAIL> Send the mail ===> Mail Session has been created successfully..");
+
+        // Step3
+        Logger.info("<MAIL> Send the mail ===> Get Session and Send mail");
+        Transport transport = getMailSession.getTransport("smtp");
+
+        // Enter your correct gmail UserID and Password
+        // if you have 2FA enabled then provide App Specific Password
+        transport.connect("smtp.gmail.com", username, password);
+        transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
+        transport.close();
+        Logger.info("<MAIL> Your Java Program has just sent an Email successfully. Check your email..");
+
+    }
 
 }
