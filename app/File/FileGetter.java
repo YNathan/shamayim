@@ -12,6 +12,25 @@ import java.util.ArrayList;
 public class FileGetter {
     WebResponce webResponce = new WebResponce();
 
+    public ArrayList<String> getImagesName(String szDocumentsDir, String szFolderName) {
+        ArrayList<String> lstFileNamesToReturn = new ArrayList<>();
+        File folder = new File(System.getProperty("user.dir") + "\\" + szDocumentsDir + "\\" + szFolderName);
+        File[] listOfFiles = folder.listFiles();
+
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                if ((listOfFiles[i].getName().toLowerCase().contains(".jpg")) || (listOfFiles[i].getName().toLowerCase().contains(".png")) || (listOfFiles[i].getName().toLowerCase().contains(".jpeg"))) {
+                    lstFileNamesToReturn.add(szFolderName + "/" + listOfFiles[i].getName());
+                    Logger.debug("File " + szDocumentsDir + "/" + szFolderName + "/" + listOfFiles[i].getName());
+                }
+            } else if (listOfFiles[i].isDirectory()) {
+                System.out.println("Directory " + listOfFiles[i].getName());
+            }
+        }
+        return lstFileNamesToReturn;
+    }
+
     public ArrayList<String> getFilesName(String szDocumentsDir, String szFolderName) {
         ArrayList<String> lstFileNamesToReturn = new ArrayList<>();
         File folder = new File(System.getProperty("user.dir") + "\\" + szDocumentsDir + "\\" + szFolderName);
@@ -19,10 +38,11 @@ public class FileGetter {
         Logger.debug("[FileGetter] Get list of file from folder " + szFolderName);
         File[] listOfFiles = folder.listFiles();
 
+
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 lstFileNamesToReturn.add(szFolderName + "/" + listOfFiles[i].getName());
-                System.out.println("File " + szDocumentsDir + "/" + szFolderName + "/" + listOfFiles[i].getName());
+                Logger.debug("File " + szDocumentsDir + "/" + szFolderName + "/" + listOfFiles[i].getName());
             } else if (listOfFiles[i].isDirectory()) {
                 System.out.println("Directory " + listOfFiles[i].getName());
             }
@@ -36,4 +56,4 @@ public class FileGetter {
         File fileToReturn = new File(szPathName);
         return fileToReturn;
     }
-   }
+}

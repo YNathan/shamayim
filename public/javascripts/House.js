@@ -83,7 +83,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                         }
                         $scope.housePathesImages.availableOptions.push(itemName.imagesSource);
                     }, $scope.housePathesImages);
-            
+
                 },
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
@@ -126,11 +126,21 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
 
+    $scope.sendMeMail = function(szHouseId) {
+        // Get information conserning the house
+        $http.get("/SEND_ME_THE_HOUSE/" + ShamayimFunctions.getCookie("username") + "/" + szHouseId)
+            .then(function successCallback(response) {
+                    ShamayimFunctions.showAlert("Operation Success Open You Mail To See The House", response.data, "");
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
 
+    }
 
 
     // Language Section
-    // For the Language
+
     $scope.Languages = {
         availableOptions: [],
         selectedOption: {
@@ -138,27 +148,39 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             HouseLanguage: 'default'
         }
     };
+
     $scope.Languages = ShamayimFunctions.getExistingLanguages();
-
-
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
-        if (ShamayimFunctions.getLanguage(szLanguageName) == true) {
-            $scope.dictionary = ShamayimFunctions.getDictionary();
-        }
-        $scope.dictionary = ShamayimFunctions.getDictionary();
+        $http.get("/GET_LANGUAGE/" + szLanguageName)
+            .then(function successCallback(response) {
+                    $scope.dictionary = response.data;
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
+        ShamayimFunctions.setLanguageCookie(szLanguageName);
 
     }
-    getLanguage("English");
-    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
-            if (newVal != oldVal) {
-                HouseLanguageName = newVal;
-                getLanguage(newVal);
 
-            }
-        })
-        // End Of Language Section
+    var languageToGet = ShamayimFunctions.setLanguageCookie();
+
+    if (languageToGet == null) {
+        languageToGet = "עברית";
+    }
+
+    getLanguage(languageToGet);
+
+    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+            HouseLanguageName = newVal;
+            getLanguage(newVal);
+
+        }
+    })
+
+    // End Of Language Section
 
     // Just check if there is a user name
     if (ShamayimFunctions.getCookie("username") == null) {
@@ -227,12 +249,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         $state.go('House');
     }
 
-}]).directive('lazyLoad', function($timeout) {
-       return {
-           restrict:'A',
-           scope: {},
-           link: function(scope, elem, attrs) {
-               $timeout(function(){ elem.attr('src', attrs.llSrc) });
-           },
-       }
-   });
+}]).directive('lazyLoad', function ($timeout) {
+    return {
+        restrict: 'A',
+        scope: {},
+        link: function (scope, elem, attrs) {
+            $timeout(function () {
+                elem.attr('src', attrs.llSrc)
+            });
+        },
+    }
+});

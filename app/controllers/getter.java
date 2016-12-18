@@ -97,16 +97,6 @@ public class getter extends Controller {
         }
     }
 
-    public static Result getUserNameOfGroup(String szUserName, String szGroupName) {
-        if (szUserName != null) {
-            return play.mvc.Results.ok(Json.toJson(getterBL.getUserNameOfGroups(szUserName, szGroupName)));
-        } else {
-            return play.mvc.Results
-                    .badRequest("Null pointer screw you! \nyou send your request with an empty user-name or a group id!");
-        }
-    }
-
-
     public static Result getUserInformation(String szUserName) {
         play.Logger.info("<GETTER> " + szUserName + " ask information on the user");
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER> " + szUserName + " in IP : " + request().remoteAddress() + " : ask information on user name : " + szUserName);

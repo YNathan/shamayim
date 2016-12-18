@@ -104,6 +104,9 @@
                 <td>{{dictionary.Dictionary[0].DiversFees}}</td>
                 <td>{{divers_fees}}</td>
             </tr>
+            <tr>
+                <td><center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)" value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}} /></center></td>
+            </tr>
         </table>
     </div>
     <div flex>
@@ -119,7 +122,7 @@
           <div flex-xs flex-gt-xs="50" layout="column">
       <md-card>
           <md-card-header-text>{{houseImages}}</md-card-header-text>
-        <img lazy-load ll-src='http://127.0.0.1:9000/GET_SPECIFIC_FILE/{{houseImages}}' class="md-card-image" alt="Washed Out">
+        <img lazy-load ll-src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImages}}' class="md-card-image" alt="Washed Out">
 
       </md-card>
     </div>

@@ -10,9 +10,6 @@ import DB.getterDB;
 import Entity.*;
 import File.FileGetter;
 import play.Logger;
-import play.libs.F;
-
-import play.api.libs.json.*;
 
 /**
  * Will do all the logic of the data who asked from the server
@@ -22,7 +19,7 @@ import play.api.libs.json.*;
 public class getterBL {
     getterDB getterDB = new getterDB();
     FileGetter fileGetter = new FileGetter();
-    private static String HOUSE_DOCUMENTS_DIR = "HousesDocuments";
+    private static String HOUSES_DOCUMENTS_DIR = "HousesDocuments";
 
     /**
      * @param szUserName - the user-name that the user send
@@ -214,11 +211,50 @@ public class getterBL {
             nHouseId = Integer.parseInt(szHouseId);
         } catch (Exception e) {
             Logger.error(e.getMessage());
-            return new StringBuilder("A Problem haz occured when try to get the house, נוצרה בעיה בעת נסיון קבלת הבית");
+            return new StringBuilder("A Problem has occured when try to get the house, נוצרה בעיה בעת נסיון קבלת הבית");
         }
 
         // INFO
         play.Logger.info("<BUSINESS_LOGIC> Get house by id : " + nHouseId);
+        House house = getterDB.getHouseById(nHouseId);
+
+        StringBuilder sbHousesInformationToReturn = new StringBuilder();
+        sbHousesInformationToReturn.append("{ \"house\":");
+
+        if (house != null) {
+            sbHousesInformationToReturn.append(" {\"house_id\":\"" + house.getHouseId() + "\",");
+            sbHousesInformationToReturn.append("\"state\":\"" + house.getState() + "\",");
+            sbHousesInformationToReturn.append("\"city\":\"" + house.getCity() + "\",");
+            sbHousesInformationToReturn.append("\"street\":\"" + house.getStreet() + "\",");
+            sbHousesInformationToReturn.append("\"house_number\":\"" + house.getHouseNumber() + "\",");
+            sbHousesInformationToReturn.append("\"house_kind\":\"" + house.getHouseKind() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_rooms\":\"" + house.getNumberOfRooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_living_rooms\":\"" + house.getNumberOfLivingRooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_kitchens\":\"" + house.getNumberOfKitchens() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_bedrooms\":\"" + house.getNumberOfBedrooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_bathrooms\":\"" + house.getNumberOfBathrooms() + "\",");
+            sbHousesInformationToReturn.append("\"location_kind\":\"" + house.getLocationKind() + "\",");
+            sbHousesInformationToReturn.append("\"comments\":\"" + house.getComments() + "\",");
+            sbHousesInformationToReturn.append("\"purchase_price\":\"" + house.getPurchasePrice() + "\",");
+            sbHousesInformationToReturn.append("\"treatment_fees\":\"" + house.getTreatmentFees() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"divers_fees\":\"" + house.getDiversFees() + "\"}");
+        }
+        sbHousesInformationToReturn.append(" }");
+        return sbHousesInformationToReturn;
+    }
+
+    public StringBuilder getHouseByIdToPrint(String szHouseId) {
+        int nHouseId = 0;
+        try {
+            nHouseId = Integer.parseInt(szHouseId);
+        } catch (Exception e) {
+            Logger.error(e.getMessage());
+            return new StringBuilder("A Problem has occured when try to get the house, נוצרה בעיה בעת נסיון קבלת הבית");
+        }
+
+        // INFO
+        play.Logger.info("<BUSINESS_LOGIC> Get house for print by id : " + nHouseId);
         House house = getterDB.getHouseById(nHouseId);
 
         StringBuilder sbHousesInformationToReturn = new StringBuilder();
@@ -287,7 +323,7 @@ public class getterBL {
         StringBuilder sbExistingFilesToReturn = new StringBuilder();
         sbExistingFilesToReturn.append("{ \"files\": [");
         String szFolderName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
-        ArrayList<String> lstExistingFiles = fileGetter.getFilesName(HOUSE_DOCUMENTS_DIR, szFolderName);
+        ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
 
         Iterator<String> ltrFiles = lstExistingFiles.iterator();
         String currFile = null;

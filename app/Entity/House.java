@@ -245,4 +245,26 @@ public class House {
                 ", dDiversFees=" + dDiversFees +
                 '}';
     }
+
+    public String toStringMailFormat() {
+        return "********************shamayim nadlan********************\n" +
+                "\n HouseId = " + nHouseId +
+                "\n State = " + szState  +
+                "\n City =" + szCity  +
+                "\n Street = " + szStreet +
+                "\n HouseNumber = " + nHouseNumber +
+                "\n HouseKind = " + EHouseKind +
+                "\n NumberOfRooms = " + nNumberOfRooms +
+                "\n NumberOfLivingRooms = " + nNumberOfLivingRooms +
+                "\n NumberOfKitchens = " + nNumberOfKitchens +
+                "\n NumberOfBedrooms = " + nNumberOfBedrooms +
+                "\n NumberOfBathrooms = " + nNumberOfBathrooms +
+                "\n LocationKind=" + eLocationKind +
+                "\n Comments =" + szComments +
+                "\n PurchasePrice = " + dPurchasePrice +
+                "\n TreatmentFees = " + dTreatmentFees +
+                "\n RenovationFeesForSale = " + dRenovationFeesForSale +
+                "\n DiversFees=" + dDiversFees
+                ;
+    }
 }

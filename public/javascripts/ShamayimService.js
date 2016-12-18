@@ -115,9 +115,8 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
 
     }
 
-    function setLanguageCookie(szLanguage)
-    {
-         document.cookie = "Language=" + szValue + "; ";
+    var setLanguageCookie = function(szLanguage){
+         document.cookie = "Language=" + szLanguage + "; ";
     }
     // Get value from the cookie
     var getLanguageCookie = function () {
@@ -140,6 +139,7 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
         getCookie: getCookie,
         dictionary: dictionary,
         getDictionary: getDictionary,
+        setLanguageCookie: setLanguageCookie,
         setUserNameCookie: setUserNameCookie
     };
 });

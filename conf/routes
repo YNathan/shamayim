@@ -14,18 +14,15 @@ GET         /CHECK_EMAIL/:Email                                                 
 GET         /GET_USERS/:userName                                                                   controllers.getter.getUsers(userName:String)
 POST        /REGISTER/:userName/:firstName/:lastName/:telephone/:email/:password/:birthdate        controllers.setter.registerNewUser(userName:String,firstName:String,lastName:String,telephone:String,email:String,password:String,birthdate:String)
 GET         /GET_USER_INFORMATION/:szUserName                                                      controllers.getter.getUserInformation(szUserName:String)
-GET         /GET_USERSNAME_OF_GROUPS/:szUserName/:szGroupId                                        controllers.getter.getUserNameOfGroup(szUserName:String,szGroupId:String)
-GET         /GET_GROUPS_USER/:szUserName/:szGroupId                                                controllers.getter.getGroupGelts(szUserName:String,szGroupId:String)
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 GET         /GET_LANGUAGE/:szLanguage                                                              controllers.getter.getLanguage(szLanguage:String)
 POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
+GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                                              controllers.setter.sendHouseMail(szUserName:String,szHouseId:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
-
-
 GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHouseFiles(szHouseId:String)
 GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificFile(szFolderName:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path
