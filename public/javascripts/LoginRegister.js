@@ -58,6 +58,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                                 }).then(
                                     function successCallback(response) {
                                         alert("Register successful!");
+                                        ShamayimFunctions.setPermissionCookie(1);
                                         $state.go('House')
                                     },
                                     function errorCallback(response) {
@@ -85,7 +86,8 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
             method: 'POST',
             url: '/LOGIN/' + userName + '/' + password
         }).then(function successCallback(response) {
-            if (response.data == "true") {
+        var szPermission = response.data;
+            if (szPermission != "-1") {
                 $mdDialog.show(
                     $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))
@@ -96,6 +98,7 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
                     .ok('Lets start!')
                 );
                 ShamayimFunctions.setUserNameCookie("username", userName);
+                ShamayimFunctions.setPermissionCookie(szPermission);
                 // Go to the main application
                 $state.go('House');
             }

@@ -38,6 +38,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         "location_kind": "dfg",
         "comments": "Nice area great place to have fun"
     }
+    
     $scope.dataTabs = {
         selectedIndex: 0,
         secondLocked: true,
@@ -221,7 +222,15 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             alert("Oups! something wrong was hapening")
         );
     }
-
+    $scope.isManager = function()
+    {
+        if(ShamayimFunctions.getPermissionCookie() == "0")
+            {
+            return true;
+        }else{
+         return false;   
+        }
+    }
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }

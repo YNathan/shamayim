@@ -1,5 +1,13 @@
 app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav','ShamayimFunctions', function($scope, $http, $filter, $state, $mdDialog, $mdSidenav,ShamayimFunctions) {
-
+    $scope.isManager = function()
+    {
+        if(ShamayimFunctions.getPermissionCookie() == "0")
+            {
+            return true;
+        }else{
+         return false;   
+        }
+    }
      // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";

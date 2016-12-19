@@ -177,7 +177,15 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
 
      // End Of Language Section
 
-
+    $scope.isManager = function()
+    {
+        if(ShamayimFunctions.getPermissionCookie() == "0")
+            {
+            return true;
+        }else{
+         return false;   
+        }
+    }
 
     $scope.toggleLeft = function () {
         $mdSidenav('left').toggle();

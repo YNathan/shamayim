@@ -1,6 +1,14 @@
 app.controller('index', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav) {
 
-
+    $scope.isManager = function()
+    {
+        if(ShamayimFunctions.getPermissionCookie() == "0")
+            {
+            return true;
+        }else{
+         return false;   
+        }
+    }
     // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";

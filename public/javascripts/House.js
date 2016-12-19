@@ -34,7 +34,15 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
-
+    $scope.isManager = function()
+    {
+        if(ShamayimFunctions.getPermissionCookie() == "0")
+            {
+            return true;
+        }else{
+         return false;   
+        }
+    }
     // Get information conserning the
     $http.get("/GET_LIST_OF_HOUSES")
         .then(function successCallback(response) {

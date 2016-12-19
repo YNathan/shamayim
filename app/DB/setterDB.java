@@ -118,7 +118,7 @@ public class setterDB {
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, password);
             preparedStatement.setDate(7, birthdate);
-            preparedStatement.setInt(7, 1);
+            preparedStatement.setInt(8, 1);
             preparedStatement.executeUpdate();
             System.out.println("registered successfully!!!");
             System.out.println("============================");

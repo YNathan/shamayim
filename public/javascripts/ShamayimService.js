@@ -118,6 +118,20 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
     var setLanguageCookie = function(szLanguage){
          document.cookie = "Language=" + szLanguage + "; ";
     }
+    var setPermissionCookie = function(szPermission){
+             document.cookie = "Permission=" + szPermission + "; ";
+        }
+         // Get value from the cookie
+            var getPermissionCookie = function () {
+                var name = "Permission=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1);
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            }
     // Get value from the cookie
     var getLanguageCookie = function () {
         var name = "Language=";
@@ -140,6 +154,8 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
         dictionary: dictionary,
         getDictionary: getDictionary,
         setLanguageCookie: setLanguageCookie,
-        setUserNameCookie: setUserNameCookie
+        setUserNameCookie: setUserNameCookie,
+        setPermissionCookie: setPermissionCookie,
+        getPermissionCookie: getPermissionCookie
     };
 });

@@ -39,7 +39,7 @@
                 <div> {{dictionary.Dictionary[0].ManageHouses}}</div>
             </md-button>
             </br>
-            <md-button class="NewHouse" ng-click="goToNewHouse()">
+            <md-button ng-show="isManager()" class="NewHouse" ng-click="goToNewHouse()">
                 <md-icon md-svg-icon="home"></md-icon>
                 <div>{{dictionary.Dictionary[0].NewHouse}}</div>
             </md-button>
