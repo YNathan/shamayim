@@ -3,6 +3,9 @@ body {
 	background-size: 100% 100%;
 	background-repeat: repeat-y;
 }
+.md-tabs{
+background: blue;
+}
 .md-tab{
 background: blue;
 }
