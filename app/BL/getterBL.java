@@ -11,6 +11,10 @@ import Entity.*;
 import File.FileGetter;
 import play.Logger;
 
+import javax.mail.MessagingException;
+
+import static play.mvc.Http.Context.Implicit.request;
+
 /**
  * Will do all the logic of the data who asked from the server
  *
@@ -19,6 +23,7 @@ import play.Logger;
 public class getterBL {
     getterDB getterDB = new getterDB();
     FileGetter fileGetter = new FileGetter();
+    mailBL mail = new mailBL();
     private static String HOUSES_DOCUMENTS_DIR = "HousesDocuments";
 
     /**
@@ -26,25 +31,24 @@ public class getterBL {
      * @param szPassword - the password that the user send
      * @return true is the user-name and the password is correct
      */
-    public boolean isLoginPermited(String szUserName, String szPassword) {
+    public String isLoginPermited(String szUserName, String szPassword) {
         // INFO
         play.Logger.info("<BUSINESS_LOGIC> Get is login permited");
-
+        String szPermission = "-1";
         ArrayList<User> userList = getterDB.getUsers();
         boolean isGreateLogin = false;
         for (User currUser : userList) {
             if (currUser.getUserName().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
-                isGreateLogin = true;
-                /*mailBL mail = new mailBL();
+                szPermission = currUser.getPermission();
                 try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
                     Logger.error(e.getMessage());
                     e.printStackTrace();
-                }*/
+                }
             }
         }
-        return isGreateLogin;
+        return szPermission;
     }
 
     /**

@@ -108,7 +108,7 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("insert into " + TABLE_USERS_NAME
-                    + " (user_name,first_name,last_name,telephone,email,password,birthdate) values (?, ?, ?, ?, ? , ?, ?)");
+                    + " (user_name,first_name,last_name,telephone,email,password,birthdate,permission) values (?, ?, ?, ?, ? , ?, ?,?)");
             play.Logger.info(" Insert new user to the data-base");
             // Parameters start with 1
             preparedStatement.setString(1, userName);
@@ -118,6 +118,7 @@ public class setterDB {
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, password);
             preparedStatement.setDate(7, birthdate);
+            preparedStatement.setInt(7, 1);
             preparedStatement.executeUpdate();
             System.out.println("registered successfully!!!");
             System.out.println("============================");

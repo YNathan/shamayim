@@ -14,9 +14,10 @@ public class User {
 	private String szPassword;
 	private String szBirthday;
 	private String szUserId;
+	private String szPermission;
 
 	public User(String szUserName, String szfirstName, String szLastName, String szTelephone, String szEmail,
-			String szPassword, String szBirthday, String szUserId) {
+			String szPassword, String szBirthday, String szUserId,String szPermission) {
 		super();
 		this.szUserName = szUserName;
 		this.szfirstName = szfirstName;
@@ -26,6 +27,7 @@ public class User {
 		this.szPassword = szPassword;
 		this.szBirthday = szBirthday;
 		this.szUserId = szUserId;
+		this.szPermission = szPermission;
 	}
 	public String getUserName() {
 		return szUserName;
@@ -91,12 +93,26 @@ public class User {
 		this.szUserId = szUserId;
 	}
 
-	@Override
-	public String toString() {
-		return "User [UserName=" + szUserName + ", firstName=" + szfirstName + ", LastName=" + szLastName
-				+ ", Telephone=" + szTelephone + ", Email=" + szEmail + ", Password=" + szPassword
-				+ ", Birthday=" + szBirthday + ", UserId=" + szUserId + "]";
+	public String getPermission() {
+		return szPermission;
 	}
 
+	public void setPermission(String szPermission) {
+		this.szPermission = szPermission;
+	}
 
+	@Override
+	public String toString() {
+		return "User{" +
+				"szUserName='" + szUserName + '\'' +
+				", szfirstName='" + szfirstName + '\'' +
+				", szLastName='" + szLastName + '\'' +
+				", szTelephone='" + szTelephone + '\'' +
+				", szEmail='" + szEmail + '\'' +
+				", szPassword='" + szPassword + '\'' +
+				", szBirthday='" + szBirthday + '\'' +
+				", szUserId='" + szUserId + '\'' +
+				", szPermission='" + szPermission + '\'' +
+				'}';
+	}
 }

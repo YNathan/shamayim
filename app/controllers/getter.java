@@ -48,14 +48,17 @@ public class getter extends Controller {
         System.out.println("<GETTER> Clien in IP : " + request().remoteAddress() + " Trying to connect");
 
         if ((szUserName != null) && (szPassword != null)) {
-            if (getterBL.isLoginPermited(szUserName, szPassword)) {
+            String szPermission = getterBL.isLoginPermited(szUserName, szPassword);
+            if (szPermission != "-1") {
                 play.Logger.info("<GETTER> " + szUserName + " is login from IP: " + request().remoteAddress());
                 System.out.println("<GETTER> " + szUserName + " is login from IP: " + request().remoteAddress());
-                return play.mvc.Results.ok("true");
+                return play.mvc.Results.ok(szPermission);
+            }else{
+
+                System.out.println("[INFO] Error when trying to connect with wrong user-name or password.\nUSER_NAME : '"
+                        + szUserName + "'\nPASSWORD : '" + szPassword + "'");
+                return play.mvc.Results.badRequest("The user-name or the password is incorrect");
             }
-            System.out.println("[INFO] Error when trying to connect with wrong user-name or password.\nUSER_NAME : '"
-                    + szUserName + "'\nPASSWORD : '" + szPassword + "'");
-            return play.mvc.Results.badRequest("The user-name or the password is incorrect");
         } else {
             return play.mvc.Results.badRequest(
                     "Null pointer screw you! \nyou send your request with an empty user-name or an empty password!");
