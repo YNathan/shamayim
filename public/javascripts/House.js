@@ -23,7 +23,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
-    $scope.dictionary;
+    $rootScope.dictionary;
     var results;
     // For the house
     $scope.houses = {
@@ -149,7 +149,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     // Language Section
 
-    $scope.Languages = {
+    $rootScope.Languages = {
         availableOptions: [],
         selectedOption: {
             id: '1',
@@ -157,14 +157,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
-    $scope.Languages = ShamayimFunctions.getExistingLanguages();
+    $rootScope.Languages = ShamayimFunctions.getExistingLanguages();
 
     function getLanguage(szLanguageName) {
         // Get information conserning the house
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
-                    $scope.dictionary = response.data;
-                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
+                    $rootScope.dictionary = response.data;
+                    $rootScope.pageDirection = $rootScope.dictionary.Dictionary[0].PageDirection;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
@@ -181,7 +181,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     getLanguage(languageToGet);
 
-    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
+    $rootScope.$watch('Languages.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             HouseLanguageName = newVal;
             getLanguage(newVal);
@@ -260,6 +260,15 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $rootScope.goToHouse = function() {
           $state.go('House');
     }
+    $rootScope.bIsLoged = true;
+    $rootScope.isLoged = function(){
+        if($rootScope.bIsLoged == true){
+            return true
+        }else{
+            return false;
+        }
+    }
+
 
 }]).directive('lazyLoad', function ($timeout) {
     return {

@@ -1,21 +1,3 @@
-<!head>
-<div layout="row" layout-sm="column" flex>
-    <div flex>
-        <md-button class="menu" ng-click="toggleLeft()">
-            <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-    </div>
-    <form ng-submit="submitHouse()">
-        <label>Language / שפה</label>
-        <md-input-container>
-            <md-select placeholder="Assign to Language" ng-model="Languages.selectedOption">
-                <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
-                    {{Language}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </form>
-</div>
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo md-padding">

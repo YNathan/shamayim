@@ -59,6 +59,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                                     function successCallback(response) {
                                         alert("Register successful!");
                                         ShamayimFunctions.setPermissionCookie(1);
+                                        $rootScope.bIsLoged = true;
                                         $state.go('House')
                                     },
                                     function errorCallback(response) {
@@ -99,6 +100,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                 );
                 ShamayimFunctions.setUserNameCookie("username", userName);
                 ShamayimFunctions.setPermissionCookie(szPermission);
+                $rootScope.bIsLoged = true;
                 // Go to the main application
                 $state.go('House');
             }

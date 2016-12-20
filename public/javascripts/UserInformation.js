@@ -48,22 +48,8 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
 
             },
             function error(response) {
-                showAlert("Your attention please", response.data, "cant load user information");
+                ShamayimFunctions.showAlert("Your attention please", response.data, "cant load user information");
             });
-
-    function showAlert(title, textContent, ariaLabel) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title(title)
-            .textContent(textContent)
-            .ariaLabel(ariaLabel)
-        );
-    }
 
 
     // Will input the user name into the cookie
@@ -132,51 +118,6 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
                 });
     };
 
-    // Language Section
-    $scope.dictionary;
-
-    $scope.Languages = {
-        availableOptions: [],
-        selectedOption: {
-            id: '1',
-            HouseLanguage: 'default'
-        }
-    };
-
-    $scope.Languages = ShamayimFunctions.getExistingLanguages();
-
-    function getLanguage(szLanguageName) {
-        // Get information conserning the house
-        $http.get("/GET_LANGUAGE/" + szLanguageName)
-            .then(function successCallback(response) {
-                    $scope.dictionary = response.data;
-                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
-                },
-                function error(response) {
-                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                });
-        ShamayimFunctions.setLanguageCookie(szLanguageName);
-
-    }
-
-    var languageToGet = ShamayimFunctions.setLanguageCookie();
-
-    if(languageToGet == null)
-    {
-    languageToGet = "עברית";
-    }
-
-    getLanguage(languageToGet);
-
-    $scope.$watch('Languages.selectedOption', function (newVal, oldVal) {
-            if (newVal != oldVal) {
-                HouseLanguageName = newVal;
-                getLanguage(newVal);
-
-            }
-        })
-
-     // End Of Language Section
 
     $scope.isManager = function()
     {

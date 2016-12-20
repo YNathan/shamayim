@@ -36,10 +36,17 @@
 
 <body ng-app="root" dir="{{$root.pageDirection}}">
     <md-toolbar style="min-height: 5%; color:#4682B4;" layout="row" layout-align="center center">
-        <md-button class="menu" ng-click="toggleLeft()">
+        <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
             <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
         <p flex style="text-align: center; color:black;">Shamayim Nadlan - שמיים נדל"ן</p>
+        <md-input-container ng-if="isLoged()">
+            <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
+                <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
+                    {{Language}}
+                </md-option>
+            </md-select>
+        </md-input-container>
     </md-toolbar>
     <div ui-view></div>
 </body>
