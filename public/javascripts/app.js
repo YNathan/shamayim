@@ -20,8 +20,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
     $stateProvider
         .state('wellcom', {
             url: "/wellcom",
-            templateUrl: "template/wellcom.html",
-            controller: 'wellcom'
+            templateUrl: "template/LoginRegister.html",
+            controller: 'loginRegister'
         })
         .state('userInformation', {
             url: "/userInformation",

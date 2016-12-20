@@ -1,4 +1,4 @@
-app.controller('Copyright', ['$scope', '$mdSidenav', 'ShamayimFunctions', '$state','$http', function ($scope, $mdSidenav, ShamayimFunctions, $state,$http) {
+app.controller('Copyright', ['$scope', '$mdSidenav', 'ShamayimFunctions', '$state','$http','$rootScope', function ($scope, $mdSidenav, ShamayimFunctions, $state,$http,$rootScope) {
 
     
     $scope.userName = ShamayimFunctions.getCookie("username");
@@ -30,6 +30,7 @@ app.controller('Copyright', ['$scope', '$mdSidenav', 'ShamayimFunctions', '$stat
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
                     $scope.dictionary = response.data;
+                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");

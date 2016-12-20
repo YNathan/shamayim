@@ -1,4 +1,4 @@
-app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
+app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions','$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions,$rootScope) {
     $scope.files;
     $scope.strCaptionDragAndDrop = "Drag & drop files here...";
     // Just print kind of 'hay message'
@@ -70,6 +70,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
                     $scope.dictionary = response.data;
+                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");

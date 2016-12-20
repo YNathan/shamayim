@@ -44,6 +44,7 @@ public class Dictionary {
     private String HousesList;
     private String Save;
     private String SendMeThisHouseToMyMail;
+    private String PageDirection;
 
     public Dictionary() {
     }
@@ -392,6 +393,14 @@ public class Dictionary {
         SendMeThisHouseToMyMail = sendMeThisHouseToMyMail;
     }
 
+    public String getPageDirection() {
+        return PageDirection;
+    }
+
+    public void setPageDirection(String pageDirection) {
+        PageDirection = pageDirection;
+    }
+
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
                 "\"Dictionary\":\"" + szHouseLanguage + "\"" +
@@ -432,6 +441,7 @@ public class Dictionary {
                 ",\"HousesList\":\"" + HousesList + "\"" +
                 ",\"Save\":\"" + Save + "\"" +
                 ",\"SendMeThisHouseToMyMail\":\"" + SendMeThisHouseToMyMail + "\"" +
+                ",\"PageDirection\":\"" + PageDirection + "\"" +
                 "} ]}";
     }
 }

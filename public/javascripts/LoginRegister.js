@@ -1,4 +1,4 @@
-app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 'ShamayimFunctions',function($scope, $http, $filter, $state, $mdDialog,ShamayimFunctions) {
+app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDialog', 'ShamayimFunctions','$mdToast','$rootScope',function($scope, $http, $filter, $state, $mdDialog,ShamayimFunctions,$mdToast,$rootScope) {
     $scope.userName = 'RobertDupont';
     $scope.firstName = "Robert";
     $scope.lastName = "Dupont";
@@ -108,5 +108,22 @@ app.controller('wellcom', ['$scope', '$http', '$filter', '$state', '$mdDialog', 
     };
 
 
+$scope.showCustomToast = function() {
+        $mdToast.show({
+          hideDelay   : 3000,
+          position    : 'top right',
+          controller  : 'ToastCtrl',
+          templateUrl : 'toast-template.html'
+        });
+      };
+   $scope.closeToast = function() {
+              if (isDlgOpen) return;
+
+              $mdToast
+                .hide()
+                .then(function() {
+                  isDlgOpen = false;
+                });
+            };
 
 }]);

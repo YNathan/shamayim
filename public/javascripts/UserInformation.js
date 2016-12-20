@@ -1,4 +1,4 @@
-app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions) {
+app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions','$rootScope', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions,$rootScope) {
 
     $scope.userName = getCookie("username");
     $scope.username = 'Developer';
@@ -150,6 +150,7 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
                     $scope.dictionary = response.data;
+                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");

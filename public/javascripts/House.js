@@ -1,4 +1,4 @@
-app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions) {
+app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions','$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions,$rootScope) {
 
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
@@ -164,6 +164,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         $http.get("/GET_LANGUAGE/" + szLanguageName)
             .then(function successCallback(response) {
                     $scope.dictionary = response.data;
+                    $rootScope.pageDirection = $scope.dictionary.Dictionary[0].PageDirection;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
