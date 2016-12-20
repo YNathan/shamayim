@@ -36,6 +36,9 @@
 
 <body ng-app="root" dir="{{$root.pageDirection}}">
     <md-toolbar style="min-height: 5%; color:#4682B4;" layout="row" layout-align="center center">
+        <md-button class="menu" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
         <p flex style="text-align: center; color:black;">Shamayim Nadlan - שמיים נדל"ן</p>
     </md-toolbar>
     <div ui-view></div>

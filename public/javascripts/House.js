@@ -239,23 +239,26 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
     $scope.imageSrc = "images/background.jpg";
-    $scope.toggleLeft = function () {
+    $rootScope.toggleLeft = function () {
         $mdSidenav('left').toggle();
     }
-    $scope.goToCopyright = function () {
+    $rootScope.goToCopyright = function () {
         $state.go('Copyright');
     }
-    $scope.goToUserInformation = function () {
+    $rootScope.goToUserInformation = function () {
         $state.go('userInformation');
     }
-    $scope.goToHouses = function () {
+    $rootScope.goToHouses = function () {
         $state.go('Houses');
     }
-    $scope.goToNewHouse = function () {
+    $rootScope.goToNewHouse = function () {
         $state.go('NewOrEditHouse');
     }
-    $scope.goToHouse = function () {
+    $rootScope.goToHouse = function () {
         $state.go('House');
+    }
+    $rootScope.goToHouse = function() {
+          $state.go('House');
     }
 
 }]).directive('lazyLoad', function ($timeout) {

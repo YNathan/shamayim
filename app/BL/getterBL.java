@@ -40,12 +40,12 @@ public class getterBL {
         for (User currUser : userList) {
             if (currUser.getUserName().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
                 szPermission = currUser.getPermission();
-                try {
+               /* try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
                     Logger.error(e.getMessage());
                     e.printStackTrace();
-                }
+                }*/
             }
         }
         return szPermission;
