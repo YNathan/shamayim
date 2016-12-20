@@ -28,9 +28,6 @@ public class setterDB {
     private static PreparedStatement preparedStatement;
     private static String TABLE_USERS_NAME = "shamayim.users";
     private static String TABLE_HOUSE_NAME = "shamayim.house";
-    private static String TABLE_HOUSE_FINANCIAL_NAME = "shamayim.house_financial";
-    private static String TABLE_BANK_NAME = "shamayim.bank";
-    private static String TABLE_TEMP_DEBTS_NAME = "shamayim.temp_debts";
     private static String DATA_BASE_USER_NAME = "root";
     private static String DATA_BASE_PASSWORD_NAME = "sh123456";
 

@@ -13,17 +13,6 @@
             </div>
             <div layout="row">
                 <md-input-container>
-                    <label> First Name :</label>
-                    <input type="text" ng-model="firstName" name="text" class="textar" placeholder="שם פרטי" required/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label> Last Name :</label>
-                    <input type="text" ng-model="lastName" name="text" class="textar" placeholder="שם משפחה" required/>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container>
                     <label> Telephone :</label>
                     <input type="number" ng-model="telephone" name="text" class="textar" placeholder="טלפון" required/>
                 </md-input-container>
@@ -33,14 +22,14 @@
                 </md-input-container>
             </div>
             <div layout="row">
-                <md-input-container flex>
-                    <label> password &nbsp;&nbsp; :</label>
+                <md-input-container>
+                    <label> password :</label>
                     <input type="text" ng-model="password" name="text" class="textar" placeholder="סיסמא" required/>
                 </md-input-container>
+                <md-input-container>
+                    <md-button type="submit" class="btn" id="submit">הירשם</md-button>
+                </md-input-container>
             </div>
-            <md-input-container>
-                <md-button type="submit" id="submit">הירשם</md-button>
-            </md-input-container>
         </form>
 
     </div>
@@ -53,12 +42,14 @@
                 </md-input-container>
                 <md-input-container>
                     <label>password :</label>
-                    <input type="password" ng-model="Password" name="text" class="textar" placeholder="Password" required/>
+                    <input type="password" ng-model="Password" name="text" class="textar" placeholder="Password"
+                           required/>
                 </md-input-container>
             </div>
             <div>
                 <md-button ng-click="login()" value="היכנס">
-                    היכנס</md-button>
+                    היכנס
+                </md-button>
             </div>
         </form>
 
