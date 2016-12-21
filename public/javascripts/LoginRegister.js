@@ -111,16 +111,116 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
 
 
 
+$scope.showCustomToast = function() {
+        $mdToast.show({
+          hideDelay   : 10000,
+          position    : 'top right',
+          height: '100% !important',
+          controller  : 'loginRegister',
+          templateUrl : 'template/lr.html'
+        });
+      };
+      $scope.closeToast = function() {
+              if (isDlgOpen) return;
+
+              $mdToast
+                .hide()
+                .then(function() {
+                  isDlgOpen = false;
+                });
+            };
+
+            $scope.openMoreInfo = function(e) {
+              if ( isDlgOpen ) return;
+              isDlgOpen = true;
+
+              $mdDialog
+                .show($mdDialog
+                  .alert()
+                  .title('More info goes here.')
+                  .textContent('Something witty.')
+                  .ariaLabel('More info')
+                  .ok('Got it')
+                  .targetEvent(e)
+                )
+                .then(function() {
+                  isDlgOpen = false;
+                })
+            };
+
 
                 $scope.showToast2 = function() {
-                   var toast = $mdToast.simple()
-                      .textContent('Hello World!')
-                      .action('OK')
-                      .highlightAction(false);
-                   $mdToast.show(toast).then(function(response) {
-                      if ( response == 'ok' ) {
-                         alert('You clicked \'OK\'.');
-                      }
-                   });
+
+                  $mdToast.show(
+                    $mdToast.testPreset()
+                  );
                 }
+
+
+
+
+
+                // Dialog
+                 $scope.status = '  ';
+                  $scope.customFullscreen = false;
+
+
+
+
+
+
+                  $scope.showAdvanced = function(ev) {
+                    $mdDialog.show({
+                      controller: 'loginRegister',
+                      templateUrl: 'template/lr.html',
+                      parent: angular.element(document.body),
+                      targetEvent: ev,
+                      clickOutsideToClose:true,
+                      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                    })
+                    .then(function(answer) {
+                      $scope.status = 'You said the information was "' + answer + '".';
+                    }, function() {
+                      $scope.status = 'You cancelled the dialog.';
+                    });
+                  };
+
+                  $scope.showTabDialog = function(ev) {
+                    $mdDialog.show({
+                      controller: DialogController,
+                      templateUrl: 'tabDialog.tmpl.html',
+                      parent: angular.element(document.body),
+                      targetEvent: ev,
+                      clickOutsideToClose:true
+                    })
+                        .then(function(answer) {
+                          $scope.status = 'You said the information was "' + answer + '".';
+                        }, function() {
+                          $scope.status = 'You cancelled the dialog.';
+                        });
+                  };
+
+                  $scope.showPrerenderedDialog = function(ev) {
+                    $mdDialog.show({
+                      controller: DialogController,
+                      contentElement: '#myDialog',
+                      parent: angular.element(document.body),
+                      targetEvent: ev,
+                      clickOutsideToClose: true
+                    });
+                  };
+
+                  function DialogController($scope, $mdDialog) {
+                    $scope.hide = function() {
+                      $mdDialog.hide();
+                    };
+
+                    $scope.cancel = function() {
+                      $mdDialog.cancel();
+                    };
+
+                    $scope.answer = function(answer) {
+                      $mdDialog.hide(answer);
+                    };
+                  }
 }]);
