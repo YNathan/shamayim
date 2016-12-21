@@ -53,6 +53,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
 
+drop table shamayim.dictionary;
 CREATE TABLE `dictionary` (
   `house_language` varchar(255) NOT NULL,
   `house_id` varchar(255) NOT NULL,
