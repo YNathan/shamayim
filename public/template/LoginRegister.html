@@ -56,20 +56,27 @@
     </div>
 
 </div>
+
+
+<md-button ng-click="showToast2()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">Show Alert with
+    callback
+</md-button>
+
 <!--md-button ng-click="showCustomToast()" class="md-raised" style="padding-left: 10px;padding-right: 10px;">
     Show Custom Toast
 </md-button-->
 
 </div>
-<script type="text/ng-template" id="toast-template.html"><md-toast>
-    <span class="md-toast-text" flex>Custom toast!</span>
-    <md-button class="md-highlight" ng-click="openMoreInfo($event)">
-        More info
-    </md-button>
-    <md-button ng-click="closeToast()">
-        Close
-    </md-button>
-    </md-toast>
+<script type="text/ng-template" id="bouya">
+    <md-toast>
+        <span class="md-toast-text" flex>Custom toast!</span>
+        <md-button class="md-highlight" ng-click="openMoreInfo($event)">
+            More info
+        </md-button>
+        <md-button ng-click="closeToast()">
+            Close
+        </md-button>
+        </md-toast>
 </script>
 </div>
 

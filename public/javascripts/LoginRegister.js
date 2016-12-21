@@ -110,22 +110,17 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     };
 
 
-$scope.showCustomToast = function() {
-        $mdToast.show({
-          hideDelay   : 3000,
-          position    : 'top right',
-          controller  : 'ToastCtrl',
-          templateUrl : 'toast-template.html'
-        });
-      };
-   $scope.closeToast = function() {
-              if (isDlgOpen) return;
 
-              $mdToast
-                .hide()
-                .then(function() {
-                  isDlgOpen = false;
-                });
-            };
 
+                $scope.showToast2 = function() {
+                   var toast = $mdToast.simple()
+                      .textContent('Hello World!')
+                      .action('OK')
+                      .highlightAction(false);
+                   $mdToast.show(toast).then(function(response) {
+                      if ( response == 'ok' ) {
+                         alert('You clicked \'OK\'.');
+                      }
+                   });
+                }
 }]);
