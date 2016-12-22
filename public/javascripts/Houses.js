@@ -1,14 +1,12 @@
-app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav','ShamayimFunctions','$rootScope', function($scope, $http, $filter, $state, $mdDialog, $mdSidenav,ShamayimFunctions,$rootScope) {
-    $scope.isManager = function()
-    {
-        if(ShamayimFunctions.getPermissionCookie() == "0")
-            {
-            return true;
-        }else{
-         return false;   
+app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
+    $scope.isManager = function () {
+            if (ShamayimFunctions.getPermissionCookie() == "0") {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
-     // Get value from the cookie
+        // Get value from the cookie
     function getCookie(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');
@@ -69,7 +67,7 @@ app.controller('houses', ['$scope', '$http', '$filter', '$state', '$mdDialog', '
             });
 
 
-    $scope.uploadFile = function(files) {
+    $scope.uploadFile = function (files) {
         var fd = new FormData();
         //Take the selected file
         fd.append("file", files[0]);

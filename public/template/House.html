@@ -87,7 +87,9 @@
                 <td>{{divers_fees}}</td>
             </tr>
             <tr>
-                <td><center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)" value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}} /></center></td>
+                <td>
+                    <center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)" value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}} /></center>
+                </td>
             </tr>
         </table>
     </div>
@@ -99,24 +101,26 @@
 
 
 <div class="md-padding" layout-xs="column" layout="row">
-     <div layout="row" flex>
+    <div layout="row" flex>
         <div class="parent" layout="column" ng-repeat="houseImages in housePathesImages.availableOptions" flex>
-          <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card>
-          <md-card-header-text>{{houseImages}}</md-card-header-text>
-        <img lazy-load ll-src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImages}}' class="md-card-image" alt="Washed Out">
+            <div flex-xs flex-gt-xs="50" layout="column">
+                <md-card>
+                    <md-card-header-text>{{houseImages}}</md-card-header-text>
+                    <img lazy-load ll-src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImages}}' class="md-card-image" alt="Washed Out">
 
-      </md-card>
-    </div>
+                </md-card>
+            </div>
         </div>
-     </div>
-  </div>
+    </div>
+</div>
 
 
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo md-padding">
-            <center><h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1></center>
+            <center>
+                <h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1>
+            </center>
         </md-toolbar>
 
         <md-content layout-margin="" align="center">

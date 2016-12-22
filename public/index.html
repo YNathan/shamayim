@@ -39,6 +39,9 @@
         <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
             <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
+        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)"  ng-if="bIsLoged==false">
+            Login/Register
+        </md-button>
         <p flex style="text-align: center; color:black;">Shamayim Nadlan - שמיים נדל"ן</p>
         <md-input-container ng-if="isLoged()">
             <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">

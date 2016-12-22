@@ -1,4 +1,4 @@
-app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions','$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions,$rootScope) {
+app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
@@ -34,16 +34,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
-    $scope.isManager = function()
-    {
-        if(ShamayimFunctions.getPermissionCookie() == "0")
-            {
-            return true;
-        }else{
-         return false;   
+    $scope.isManager = function () {
+            if (ShamayimFunctions.getPermissionCookie() == "0") {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
-    // Get information conserning the
+        // Get information conserning the
     $http.get("/GET_LIST_OF_HOUSES")
         .then(function successCallback(response) {
                 angular.forEach(response.data.houses, function (value, key) {
@@ -134,7 +132,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     }
 
-    $scope.sendMeMail = function(szHouseId) {
+    $scope.sendMeMail = function (szHouseId) {
         // Get information conserning the house
         $http.get("/SEND_ME_THE_HOUSE/" + ShamayimFunctions.getCookie("username") + "/" + szHouseId)
             .then(function successCallback(response) {
@@ -205,7 +203,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     })
 
-
+    $rootScope.bIsLoged = true;
 
 
 
@@ -257,14 +255,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $rootScope.goToHouse = function () {
         $state.go('House');
     }
-    $rootScope.goToHouse = function() {
-          $state.go('House');
+    $rootScope.goToHouse = function () {
+        $state.go('House');
     }
     $rootScope.bIsLoged = true;
-    $rootScope.isLoged = function(){
-        if($rootScope.bIsLoged == true){
+    $rootScope.isLoged = function () {
+        if ($rootScope.bIsLoged == true) {
             return true
-        }else{
+        } else {
             return false;
         }
     }

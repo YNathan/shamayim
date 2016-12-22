@@ -1,37 +1,29 @@
-</br></br></br></br>
+</br>
+</br>
+</br>
+</br>
 <div class="flex-container">
     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
         <div flex>
             <form ng-submit="register()" class="md-padding">
                 <md-input-container>
                     <label> User Name :</label>
-                    <input type="text" ng-model="username" name="text"  placeholder="שם משתמש" required/>
+                    <input type="text" ng-model="username" name="text" placeholder="שם משתמש" required/>
                 </md-input-container>
-
-                <md-input-container>
-                    <label> First Name :</label>
-                    <input type="text" ng-model="firstname" name="text"  placeholder="שם פרטי" required/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label> Last Name :</label>
-                    <input type="text" ng-model="lastname" name="text"  placeholder="שם משפחה" required/>
-                </md-input-container>
-
                 <md-input-container>
                     <label> Telephone :</label>
-                    <input type="number" ng-model="telephone" name="text"  placeholder="טלפון" required/>
+                    <input type="number" ng-model="telephone" name="text" placeholder="טלפון" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> Email &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; :</label>
-                    <input type="email" ng-model="email" name="text"  placeholder="אימייל" required/>
+                    <input type="email" ng-model="email" name="text" placeholder="אימייל" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> password &nbsp;&nbsp; :</label>
-                    <input type="text" ng-model="password" name="text"  placeholder="סיסמא" required/>
+                    <input type="text" ng-model="password" name="text" placeholder="סיסמא" required/>
                 </md-input-container>
                 <md-input-container>
-                    <input type="file" name="file"  onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </md-input-container>
                 <md-input-container>
                     <md-button type="submit" id="submit">שמור</md-button>
@@ -53,7 +45,9 @@
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo md-padding">
-            <center><h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1></center>
+            <center>
+                <h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1>
+            </center>
         </md-toolbar>
 
         <md-content layout-margin="" align="center">

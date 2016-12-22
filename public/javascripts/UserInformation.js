@@ -1,4 +1,4 @@
-app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions','$rootScope', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions,$rootScope) {
+app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $filter, $state, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
     $scope.userName = getCookie("username");
     $scope.username = 'Developer';
@@ -119,13 +119,11 @@ app.controller('userInformation', ['$scope', '$http', '$filter', '$state', '$mdD
     };
 
 
-    $scope.isManager = function()
-    {
-        if(ShamayimFunctions.getPermissionCookie() == "0")
-            {
+    $scope.isManager = function () {
+        if (ShamayimFunctions.getPermissionCookie() == "0") {
             return true;
-        }else{
-         return false;   
+        } else {
+            return false;
         }
     }
 

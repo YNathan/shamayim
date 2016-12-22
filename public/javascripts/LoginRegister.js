@@ -1,19 +1,19 @@
-app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDialog', 'ShamayimFunctions','$mdToast','$rootScope',function($scope, $http, $filter, $state, $mdDialog,ShamayimFunctions,$mdToast,$rootScope) {
+app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDialog', 'ShamayimFunctions', '$mdToast', '$rootScope', function ($scope, $http, $filter, $state, $mdDialog, ShamayimFunctions, $mdToast, $rootScope) {
     $scope.userName = 'RobertDupont';
     $scope.firstName = "Robert";
     $scope.lastName = "Dupont";
     $scope.telephone;
     $scope.email = "Robert@gmail.com";
     $scope.password = "a";
-    $scope.birthdate = 1-1-2001;
+    $scope.birthdate = 1 - 1 - 2001;
 
     // For login scope
     $scope.Username = 'Y.Nathan';
     $scope.Password = 'a';
+    $rootScope.bIsLoged = false;
 
 
-
-    $scope.uploadFile = function(files) {
+    $scope.uploadFile = function (files) {
         var fd = new FormData();
         //Take the selected file
         fd.append("file", files[0]);
@@ -33,7 +33,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     };
 
 
-    $scope.register = function() {
+    $scope.register = function () {
         var userName = $scope.userName;
         var email = $scope.email;
 
@@ -78,7 +78,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     };
 
 
-    $scope.login = function() {
+    $scope.login = function () {
         var userName = $scope.Username;
         var password = $scope.Password;
 
@@ -87,7 +87,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
             method: 'POST',
             url: '/LOGIN/' + userName + '/' + password
         }).then(function successCallback(response) {
-        var szPermission = response.data;
+            var szPermission = response.data;
             if (szPermission != "-1") {
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -111,116 +111,71 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
 
 
 
-$scope.showCustomToast = function() {
+    $scope.showCustomToast = function () {
         $mdToast.show({
-          hideDelay   : 10000,
-          position    : 'top right',
-          height: '100% !important',
-          controller  : 'loginRegister',
-          templateUrl : 'template/lr.html'
+            hideDelay: 10000,
+            position: 'top right',
+            height: '100% !important',
+            controller: 'loginRegister',
+            templateUrl: 'template/lr.html'
         });
-      };
-      $scope.closeToast = function() {
-              if (isDlgOpen) return;
+    };
+    $scope.closeToast = function () {
+        if (isDlgOpen) return;
 
-              $mdToast
-                .hide()
-                .then(function() {
-                  isDlgOpen = false;
-                });
-            };
+        $mdToast
+            .hide()
+            .then(function () {
+                isDlgOpen = false;
+            });
+    };
 
-            $scope.openMoreInfo = function(e) {
-              if ( isDlgOpen ) return;
-              isDlgOpen = true;
+    $scope.openMoreInfo = function (e) {
+        if (isDlgOpen) return;
+        isDlgOpen = true;
 
-              $mdDialog
-                .show($mdDialog
-                  .alert()
-                  .title('More info goes here.')
-                  .textContent('Something witty.')
-                  .ariaLabel('More info')
-                  .ok('Got it')
-                  .targetEvent(e)
-                )
-                .then(function() {
-                  isDlgOpen = false;
-                })
-            };
+        $mdDialog
+            .show($mdDialog
+                .alert()
+                .title('More info goes here.')
+                .textContent('Something witty.')
+                .ariaLabel('More info')
+                .ok('Got it')
+                .targetEvent(e)
+            )
+            .then(function () {
+                isDlgOpen = false;
+            })
+    };
 
+    // Dialog
+    $scope.status = '  ';
+    $scope.customFullscreen = false;
 
-                $scope.showToast2 = function() {
+    $rootScope.showAdvanced = function (ev) {
+        $mdDialog.show({
+                controller: 'loginRegister',
+                templateUrl: 'template/lr.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
 
-                  $mdToast.show(
-                    $mdToast.testPreset()
-                  );
-                }
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
 
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
 
-
-
-
-                // Dialog
-                 $scope.status = '  ';
-                  $scope.customFullscreen = false;
-
-
-
-
-
-
-                  $scope.showAdvanced = function(ev) {
-                    $mdDialog.show({
-                      controller: 'loginRegister',
-                      templateUrl: 'template/lr.html',
-                      parent: angular.element(document.body),
-                      targetEvent: ev,
-                      clickOutsideToClose:true,
-                      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-                    })
-                    .then(function(answer) {
-                      $scope.status = 'You said the information was "' + answer + '".';
-                    }, function() {
-                      $scope.status = 'You cancelled the dialog.';
-                    });
-                  };
-
-                  $scope.showTabDialog = function(ev) {
-                    $mdDialog.show({
-                      controller: DialogController,
-                      templateUrl: 'tabDialog.tmpl.html',
-                      parent: angular.element(document.body),
-                      targetEvent: ev,
-                      clickOutsideToClose:true
-                    })
-                        .then(function(answer) {
-                          $scope.status = 'You said the information was "' + answer + '".';
-                        }, function() {
-                          $scope.status = 'You cancelled the dialog.';
-                        });
-                  };
-
-                  $scope.showPrerenderedDialog = function(ev) {
-                    $mdDialog.show({
-                      controller: DialogController,
-                      contentElement: '#myDialog',
-                      parent: angular.element(document.body),
-                      targetEvent: ev,
-                      clickOutsideToClose: true
-                    });
-                  };
-
-                  function DialogController($scope, $mdDialog) {
-                    $scope.hide = function() {
-                      $mdDialog.hide();
-                    };
-
-                    $scope.cancel = function() {
-                      $mdDialog.cancel();
-                    };
-
-                    $scope.answer = function(answer) {
-                      $mdDialog.hide(answer);
-                    };
-                  }
+    }
 }]);
