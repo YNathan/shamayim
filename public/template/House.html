@@ -100,19 +100,22 @@
 </div>
 
 
-<div class="md-padding" layout-xs="column" layout="row">
-    <div layout="row" flex>
-        <div class="parent" layout="column" ng-repeat="houseImages in housePathesImages.availableOptions" flex>
-            <div flex-xs flex-gt-xs="50" layout="column">
-                <md-card>
-                    <md-card-header-text>{{houseImages}}</md-card-header-text>
-                    <img lazy-load ll-src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImages}}' class="md-card-image" alt="Washed Out">
+<div flex layout="column">
+   <center><section flex>
+        <md-content layout-padding="">
+            <h1>Haouse Images</h1>
+            <div>Loaded data form Page <strong>{{currentPage}}</strong></div>
+            <div>{{houseImage}}</div>
+            <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
+        </md-content>
+    </section>
+    <section layout="row" layout-padding="">
+        <cl-paging flex cl-pages="paging.total" , cl-steps="6" , cl-page-changed="paging.onPageChanged()" , cl-align="center center" , cl-current-page="paging.current"></cl-paging>
+    </section>
+   </center>
 
-                </md-card>
-            </div>
-        </div>
-    </div>
 </div>
+
 
 
 <div class="container" layout="row" flex>

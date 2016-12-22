@@ -31,6 +31,7 @@
     <script src="bower_components\angular-aria\angular-aria.min.js"></script>
     <script src="bower_components\angular-messages\angular-messages.min.js"></script>
     <script src="bower_components\angular-material\angular-material.min.js"></script>
+    <script src="bower_components\material-angular-paging\build\dist.min.js"></script>
 
 </head>
 
@@ -39,7 +40,7 @@
         <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
             <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
-        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)"  ng-if="bIsLoged==false">
+        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)"  ng-if="!showLrButton()">
             Login/Register
         </md-button>
         <p flex style="text-align: center; color:black;">Shamayim Nadlan - שמיים נדל"ן</p>

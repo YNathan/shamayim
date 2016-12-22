@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog style="background-color:powderblue;">
     <div class="md-dialog-content">
         <div layout="row" md-colors="{color: 'red-A100', border-color: 'primary-600'}" class="flex-container md-padding">
             <div layout="column" flex="40">
@@ -24,7 +24,7 @@
                             <input type="text" ng-model="password" name="text" class="textar" placeholder="סיסמא" required/>
                         </md-input-container>
                         <md-input-container>
-                            <md-button type="submit" class="btn" id="submit">הירשם</md-button>
+                            <md-button type="submit" class="md-primary md-raised" id="submit">הירשם</md-button>
                         </md-input-container>
                     </div>
                 </form>
@@ -38,7 +38,7 @@
                         </md-input-container>
                     </div>
                     <div>
-                        <md-button ng-click="login()" value="היכנס">היכנס</md-button>
+                        <md-button ng-click="login()" class="md-primary md-raised" value="היכנס">היכנס</md-button>
                     </div>
                 </form>
             </div>

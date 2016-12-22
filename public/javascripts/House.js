@@ -1,5 +1,6 @@
 app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
+    $rootScope.bIsLoged = true;
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.house_id;
@@ -77,9 +78,11 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
+    var totalPages = 0;
 
 
     function getHouseImages(nHouseId) {
+        totalPages = 0;
         $http.get('/GET_FILES_PATHS/' + nHouseId)
             .then(function successCallback(response) {
                     angular.forEach(response.data.files, function (value, key) {
@@ -87,9 +90,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                             id: key,
                             imagesSource: value
                         }
+                        totalPages++;
                         $scope.housePathesImages.availableOptions.push(itemName.imagesSource);
                     }, $scope.housePathesImages);
-
+$scope.paging = {
+    total: totalPages,
+    current: 1,
+    onPageChanged: loadPages,
+  };
                 },
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
@@ -266,6 +274,26 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
             return false;
         }
     }
+    $rootScope.showLrButton = function () {
+         if ($rootScope.bIsLoged == true) {
+              return false
+               } else {
+                 return true;
+                }
+        }
+
+
+$scope.currentPage = 0;
+  $scope.paging = {
+    total: totalPages,
+    current: 1,
+    onPageChanged: loadPages,
+  };
+  function loadPages() {
+    console.log('Current page is : ' + $scope.paging.current);
+    $scope.currentPage = $scope.paging.current;
+$scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPage - 1];
+  }
 
 
 }]).directive('lazyLoad', function ($timeout) {
