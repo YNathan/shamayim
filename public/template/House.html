@@ -100,15 +100,15 @@
 </div>
 
 
-<div flex layout="column" ng-if="houseWasLoaded">
-   <center><section flex>
-        <md-content layout-padding="">
+<div flex layout="column" ng-if="houseWasLoaded" style="background-color: #DDDDDD;">
+   <center><section flex style="background-color: #DDDDDD;">
+        <md-content layout-padding="" style="background-color: #DDDDDD;">
             <h1>Haouse Images</h1>
             <div>{{houseImage}}</div>
             <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
         </md-content>
     </section>
-    <section layout="row" layout-padding="">
+    <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
         <cl-paging flex cl-pages="paging.total" , cl-steps="6" , cl-page-changed="paging.onPageChanged()" , cl-align="center center" , cl-current-page="paging.current"></cl-paging>
     </section>
    </center>
