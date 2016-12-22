@@ -100,11 +100,10 @@
 </div>
 
 
-<div flex layout="column">
+<div flex layout="column" ng-if="houseWasLoaded">
    <center><section flex>
         <md-content layout-padding="">
             <h1>Haouse Images</h1>
-            <div>Loaded data form Page <strong>{{currentPage}}</strong></div>
             <div>{{houseImage}}</div>
             <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
         </md-content>

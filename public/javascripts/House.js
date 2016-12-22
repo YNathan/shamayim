@@ -1,6 +1,7 @@
 app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
     $rootScope.bIsLoged = true;
+    $scope.houseWasLoaded = false;
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.house_id;
@@ -128,6 +129,7 @@ $scope.paging = {
                     $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
                     $scope.divers_fees = response.data.house.divers_fees;
                     newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
+                    $scope.houseWasLoaded =  true;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
