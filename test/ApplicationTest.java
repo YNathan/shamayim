@@ -14,6 +14,7 @@ import org.junit.*;
 
 import BL.getterBL;
 import BL.mailBL;
+import File.FileGetter;
 
 /**
  * Simple (JUnit) tests that can call all parts of a play app.
@@ -98,7 +99,7 @@ public class ApplicationTest {
     {
 
         try {
-            mailBl.sendHouse("Newark_N.J_Prince_283","1","yaacovisraelnathan@gmail.com");
+            mailBl.sendHouse("Newark_N.J_Prince_283", "1", "yaacovisraelnathan@gmail.com");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,10 +111,17 @@ public class ApplicationTest {
     {
 
         try {
-            mailBl.sendLoginSuccess("Yaacov","127.0.0.1");
+            mailBl.sendLoginSuccess("Yaacov", "127.0.0.1");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void getDbPassword() {
+        FileGetter fileGetter = new FileGetter();
+        System.out.println(fileGetter.getDataBasePassword());
+
     }
 
 

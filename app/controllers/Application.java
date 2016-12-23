@@ -15,11 +15,16 @@ import play.*;
 import play.mvc.*;
 
 import views.html.*;
+import File.FileGetter;
 
 public class Application extends Controller {
 
+    public static String szDbPassword = "";
+
     public static Result index() {
         System.out.println("\n[INFO] Hello Server\n");
+        FileGetter fileGetter = new FileGetter();
+        szDbPassword = fileGetter.getDataBasePassword();
         return redirect("assets/index.html");
     }
 

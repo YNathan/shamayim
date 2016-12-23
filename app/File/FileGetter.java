@@ -3,7 +3,7 @@ package File;
 import Entity.WebResponce;
 import play.Logger;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +34,7 @@ public class FileGetter {
     public ArrayList<String> getFilesName(String szDocumentsDir, String szFolderName) {
         ArrayList<String> lstFileNamesToReturn = new ArrayList<>();
         File folder = new File(System.getProperty("user.dir") + "\\" + szDocumentsDir + "\\" + szFolderName);
-        System.out.println("[FileGetter] Get list of file from folder "+szFolderName);
+        System.out.println("[FileGetter] Get list of file from folder " + szFolderName);
         Logger.debug("[FileGetter] Get list of file from folder " + szFolderName);
         File[] listOfFiles = folder.listFiles();
 
@@ -51,9 +51,28 @@ public class FileGetter {
     }
 
     public File getFile(String szPathName) {
-        System.out.println("[FileGetter] Get File "+szPathName);
-        Logger.debug("[FileGetter] Get File "+szPathName);
+        System.out.println("[FileGetter] Get File " + szPathName);
+        Logger.debug("[FileGetter] Get File " + szPathName);
         File fileToReturn = new File(szPathName);
         return fileToReturn;
+    }
+
+    public String getDataBasePassword() {
+        String szDbPassToReturn = "";
+        String szDBFilePass = System.getProperty("user.dir") + "\\Dossier\\database";
+        File DbFilePass;
+        DbFilePass = new File(szDBFilePass);
+        try {
+            FileReader fileReader = new FileReader(szDBFilePass);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            szDbPassToReturn = bufferedReader.readLine();
+        } catch (FileNotFoundException e) {
+            Logger.error(e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.error(e.getMessage());
+        }
+        return szDbPassToReturn;
     }
 }

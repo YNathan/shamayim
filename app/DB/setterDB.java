@@ -16,6 +16,7 @@ import Entity.ESuccessFailed;
 import Entity.Gelt;
 import Entity.House;
 import Entity.WebResponce;
+import controllers.Application;
 
 import javax.sql.DataSource;
 
@@ -29,7 +30,7 @@ public class setterDB {
     private static String TABLE_USERS_NAME = "shamayim.users";
     private static String TABLE_HOUSE_NAME = "shamayim.house";
     private static String DATA_BASE_USER_NAME = "root";
-    private static String DATA_BASE_PASSWORD_NAME = "sh123456";
+    private static String DATA_BASE_PASSWORD_NAME = Application.szDbPassword;
 
 
 
