@@ -38,6 +38,7 @@ public class setter {
      */
 
     public static Result setNewHouse() {
+        webResponce = new WebResponce();
         JsonNode json = request().body().asJson();
         if (json == null) {
             return badRequest("Expecting Json data");
@@ -73,7 +74,7 @@ public class setter {
                 return badRequest(webResponce.toJson());
             }
             System.out.println("The House was Register correctly" + houseToRegistre.toString());
-            return ok("The House was Register correctly");
+            return ok(webResponce.getReason());
         }
     }
 

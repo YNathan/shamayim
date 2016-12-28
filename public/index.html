@@ -16,6 +16,7 @@
     <script src="javascripts/Copyright.js" type="text/javascript"></script>
     <script src="javascripts/NewOrEditHouse.js" type="text/javascript"></script>
     <script src="javascripts/ShamayimService.js" type="text/javascript"></script>
+    <script src="javascripts/welcome.js" type="text/javascript"></script>
 
     <!-- For Google Maps-->
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
@@ -40,11 +41,11 @@
         <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
             <md-icon md-svg-icon="menu"></md-icon>
         </md-button>
-        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)"  ng-if="!showLrButton()">
+        <md-button class="md-primary md-raised" ng-controller="loginRegister" ng-click="showAdvanced($event)"  ng-if="!showLrButton()">
             Login/Register
         </md-button>
         <p flex style="text-align: center; color:black;">Shamayim Nadlan - שמיים נדל"ן</p>
-        <md-input-container ng-if="isLoged()">
+        <md-input-container>
             <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
                 <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
                     {{Language}}

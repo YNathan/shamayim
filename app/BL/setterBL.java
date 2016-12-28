@@ -75,10 +75,11 @@ public class setterBL {
         }
         if (!bIsStillExist) {
             setterDB.setNewHouseDetails(m_house);
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
+            webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
         } else {
-            webResponce.setReason("The house Still Exist In the System");
+            webResponce.setReason("The house Still Exist In the System. הבית כבר קיים במערכת");
         }
-        fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
         return webResponce;
     }
 

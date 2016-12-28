@@ -14,14 +14,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $mdToa
 
     //
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/wellcom");
+    $urlRouterProvider.otherwise("/welcome");
     //
     // Now set up the states
     $stateProvider
-        .state('wellcom', {
-            url: "/wellcom",
-            templateUrl: "template/LoginRegister.html",
-            controller: 'loginRegister'
+        .state('welcome', {
+            url: "/welcome",
+            templateUrl: "template/Welcome.html",
+            controller: 'welcome'
         })
         .state('userInformation', {
             url: "/userInformation",
