@@ -6,30 +6,30 @@ package Entity;
  *
  */
 public class User {
-	private String szUserName;
+	private String szUsername;
 	private String szTelephone;
 	private String szEmail;
 	private String szPassword;
 	private String szUserId;
-	private String szPermission_manager;
-	private String szPermission_view;
+	private String szPermissionManager;
+	private String szPermissionView;
 
 	public User(String szUserName, String szTelephone, String szEmail,String szPassword, String szUserId,String szPermission_manager,String szPermission_view) {
 		super();
-		this.szUserName = szUserName;
+		this.szUsername = szUserName;
 		this.szTelephone = szTelephone;
 		this.szEmail = szEmail;
 		this.szPassword = szPassword;
 		this.szUserId = szUserId;
-		this.szPermission_manager = szPermission_manager;
-		this.szPermission_view = szPermission_view;
+		this.szPermissionManager = szPermission_manager;
+		this.szPermissionView = szPermission_view;
 	}
-	public String getUserName() {
-		return szUserName;
+	public String getUsername() {
+		return szUsername;
 	}
 
 	public void setUserName(String szUserName) {
-		this.szUserName = szUserName;
+		this.szUsername = szUserName;
 	}
 
 	public String getTelephone() {
@@ -64,44 +64,44 @@ public class User {
 		this.szUserId = szUserId;
 	}
 
-	public String getSzPermission_manager() {
-		return szPermission_manager;
+	public String getPermissionManager() {
+		return szPermissionManager;
 	}
 
-	public void setSzPermission_manager(String szPermission_manager) {
-		this.szPermission_manager = szPermission_manager;
+	public void setSzPermissionManager(String szPermissionManager) {
+		this.szPermissionManager = szPermissionManager;
 	}
 
-	public String getSzPermission_view() {
-		return szPermission_view;
+	public String getPermissionView() {
+		return szPermissionView;
 	}
 
-	public void setSzPermission_view(String szPermission_view) {
-		this.szPermission_view = szPermission_view;
+	public void setSzPermissionView(String szPermissionView) {
+		this.szPermissionView = szPermissionView;
 	}
 
 	@Override
 	public String toString() {
 		return "User{" +
-				"UserName='" + szUserName + '\'' +
+				"Username='" + szUsername + '\'' +
 				", Telephone='" + szTelephone + '\'' +
 				", Email='" + szEmail + '\'' +
 				", Password='" + szPassword + '\'' +
 				", UserId='" + szUserId + '\'' +
-				", Permission_manager='" + szPermission_manager + '\'' +
-				", Permission_view='" + szPermission_view + '\'' +
+				", PermissionManager='" + szPermissionManager + '\'' +
+				", PermissionView='" + szPermissionView + '\'' +
 				'}';
 	}
 
 	public String toJson() {
 		return "{ \"User\":[ {" +
-				"\"UserName=\":\"" + szUserName + "\"" +
+				"\"UserName=\":\"" + szUsername + "\"" +
 				",\"Telephone=\":\"" + szTelephone + "\"" +
 				",\"Email=\":\"" + szEmail + "\"" +
 				",\"Password=\":\"" + szPassword + "\"" +
 				",\"UserId=\":\"" + szUserId + "\"" +
-				",\"Permission_manager=\":\"" + szPermission_manager + "\"" +
-				",\"Permission_view=\":\"" + szPermission_view + "\"" +
+				",\"Permission_manager=\":\"" + szPermissionManager + "\"" +
+				",\"Permission_view=\":\"" + szPermissionView + "\"" +
 				"} ]}";
 	}
 }

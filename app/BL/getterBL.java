@@ -11,10 +11,6 @@ import Entity.*;
 import File.FileGetter;
 import play.Logger;
 
-import javax.mail.MessagingException;
-
-import static play.mvc.Http.Context.Implicit.request;
-
 /**
  * Will do all the logic of the data who asked from the server
  *
@@ -38,8 +34,8 @@ public class getterBL {
         ArrayList<User> userList = getterDB.getUsers();
         boolean isGreateLogin = false;
         for (User currUser : userList) {
-            if (currUser.getUserName().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
-                szPermission = currUser.getSzPermission_manager();
+            if (currUser.getUsername().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
+                szPermission = currUser.getPermissionManager();
                /* try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
@@ -62,7 +58,7 @@ public class getterBL {
         int nUserId = -1;
         ArrayList<User> userLst = getterDB.getUsers();
         for (User currUser : userLst) {
-            if (currUser.getUserName().equals(szUserName)) {
+            if (currUser.getUsername().equals(szUserName)) {
                 nUserId = Integer.parseInt(currUser.getUserId());
             }
         }
@@ -81,7 +77,7 @@ public class getterBL {
         ArrayList<User> userLst = getterDB.getUsers();
         for (User currUser : userLst) {
             if (Integer.parseInt(currUser.getUserId()) == nUserId) {
-                szUserName = currUser.getUserName();
+                szUserName = currUser.getUsername();
             }
         }
         return szUserName;
@@ -123,13 +119,41 @@ public class getterBL {
         return isEmailAlreadyExist;
     }
 
-    public ArrayList<String> getUsers(String szUserName) {
+    public ArrayList<String> getUsersName(String szUserName) {
         // INFO
         play.Logger.info("<BUSINESS_LOGIC> Get users");
 
         ArrayList<String> usersName = getterDB.getUserNames();
         usersName.remove(szUserName);
         return usersName;
+    }
+
+    public ArrayList<User> getUsers(String szUserName) {
+        ArrayList<User> usersToReturn = null;
+        ArrayList<User> lstToCheckIfIsManager = getterDB.getUsers();
+        Iterator<User> ltrUser = lstToCheckIfIsManager.iterator();
+
+        User currUser = null;
+        if (ltrUser.hasNext()) {
+            currUser = (User) ltrUser.next();
+        }
+        while (currUser != null) {
+
+            if ((currUser.getUsername().equals(szUserName)) && (currUser.getPermissionManager().equals("0"))) {
+                // INFO
+                play.Logger.info("<BUSINESS_LOGIC> Get users");
+
+                usersToReturn = getterDB.getUsers();
+            }
+            if (ltrUser.hasNext()) {
+                currUser = ltrUser.next();
+            } else {
+                currUser = null;
+            }
+
+        }
+
+        return usersToReturn;
     }
 
 

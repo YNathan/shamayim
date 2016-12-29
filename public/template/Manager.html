@@ -1,0 +1,24 @@
+<table>
+    <threat>
+        <tr>
+            <th>userId</th>
+            <th>username</th>
+            <th>telephone</th>
+            <th>email</th>
+            <th>password</th>
+            <th>permissionManager</th>
+            <th>permissionView</th>
+        </tr>
+    </threat>
+    <tbody >
+    <tr ng-repeat="usr in users">
+        <td>{{usr.userId}}</td>
+        <td>{{usr.username}}</td>
+        <td>{{usr.telephone}}</td>
+        <td>{{usr.email}}</td>
+        <td>{{usr.password}}</td>
+        <td>{{usr.permissionManager}}</td>
+        <td>{{usr.permissionView}}</td>
+    </tr>
+    </tbody>
+</table>

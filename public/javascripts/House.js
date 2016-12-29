@@ -262,6 +262,9 @@ $scope.paging = {
     $rootScope.goToNewHouse = function () {
         $state.go('NewOrEditHouse');
     }
+    $rootScope.goToSystemManager = function () {
+        $state.go('Manager');
+    }
     $rootScope.goToHouse = function () {
         $state.go('House');
     }

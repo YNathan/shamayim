@@ -46,6 +46,7 @@ public class Dictionary {
     private String SendMeThisHouseToMyMail;
     private String PageDirection;
     private String Logout;
+    private String SystemManager;
 
     public Dictionary() {
     }
@@ -410,6 +411,14 @@ public class Dictionary {
         Logout = logout;
     }
 
+    public String getSystemManager() {
+        return SystemManager;
+    }
+
+    public void setSystemManager(String systemManager) {
+        SystemManager = systemManager;
+    }
+
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
                 "\"Dictionary\":\"" + szHouseLanguage + "\"" +
@@ -452,6 +461,7 @@ public class Dictionary {
                 ",\"SendMeThisHouseToMyMail\":\"" + SendMeThisHouseToMyMail + "\"" +
                 ",\"PageDirection\":\"" + PageDirection + "\"" +
                 ",\"Logout\":\"" + Logout + "\"" +
+                ",\"SystemManager\":\"" + SystemManager + "\"" +
                 "} ]}";
     }
 }

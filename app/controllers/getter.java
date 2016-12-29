@@ -9,6 +9,7 @@ import play.api.mvc.*;
 import play.api.mvc.SimpleResult;
 import play.core.Router;
 import play.core.SourceMapper;
+import play.libs.F;
 import play.mvc.*;
 
 import java.io.File;
@@ -35,6 +36,7 @@ import scala.concurrent.Future;
 import scala.reflect.ClassTag;
 
 import static play.mvc.Http.Context.Implicit.request;
+import File.FileGetter;
 
 /**
  * @author Yaacov
@@ -42,8 +44,10 @@ import static play.mvc.Http.Context.Implicit.request;
 public class getter extends Controller {
     private static final Lock lock = new ReentrantLock();
     private static getterBL getterBL = new getterBL();
+    private static FileGetter fileGetter = new FileGetter();
 
     public static Result isLoginPermited(String szUserName, String szPassword) {
+        Application.szDbPassword = fileGetter.getDataBasePassword();
         Logger.info("<GETTER> Clien in IP : " + request().remoteAddress() + " Trying to connect");
         System.out.println("<GETTER> Clien in IP : " + request().remoteAddress() + " Trying to connect");
 
@@ -90,6 +94,15 @@ public class getter extends Controller {
 
     }
 
+
+    public static Result getUser(String szUserName) {
+        if (szUserName != null) {
+            return play.mvc.Results.ok(Json.toJson(getterBL.getUsersName(szUserName)));
+        } else {
+            return play.mvc.Results
+                    .badRequest("Null pointer screw you! \nyou send your request with an empty user-name!");
+        }
+    }
 
     public static Result getUsers(String szUserName) {
         if (szUserName != null) {
