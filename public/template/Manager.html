@@ -1,3 +1,4 @@
+
 <table>
     <threat>
         <tr>
@@ -10,7 +11,7 @@
             <th>permissionView</th>
         </tr>
     </threat>
-    <tbody >
+    <tbody>
     <tr ng-repeat="usr in users">
         <td>{{usr.userId}}</td>
         <td>{{usr.username}}</td>
@@ -19,6 +20,9 @@
         <td>{{usr.password}}</td>
         <td>{{usr.permissionManager}}</td>
         <td>{{usr.permissionView}}</td>
+        <td>
+            <md-button ng-click="editUser(usr)">save</md-button>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -13,5 +13,8 @@ $scope.users = [];
                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load users");
                });
 
-
+    $scope.editUser = function(usr)
+    {
+    alert(usr.userId );
+    }
 }]);
