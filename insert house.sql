@@ -43,15 +43,26 @@ INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_ki
 
 CREATE TABLE `users` (
   `user_name` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telephone` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `birthdate` varchar(45) NOT NULL,
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_manager` int(11) NOT NULL DEFAULT '1',
+  `permission_view` int(11) DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+
+/*
+-- Query: SELECT * FROM shamayim.users
+LIMIT 0, 1000
+
+-- Date: 2016-12-29 13:40
+*/
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Y.Nathan','yaacovisraelnathan@gmail.com','525','a',1,0,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Yaacov','biendityaacov@gmail.com','052-7879217','a',2,0,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('itamar','ashaya31@gmail.com','2','a',3,1,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('mendele','mendelebarak@gmail.com','0','a',4,1,1);
+
 
 drop table shamayim.dictionary;
 CREATE TABLE `dictionary` (
