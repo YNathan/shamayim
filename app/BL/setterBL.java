@@ -55,6 +55,15 @@ public class setterBL {
         return isRegitred;
     }
 
+    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email,String password, String sPermissionManager,String sPermissionView) throws Exception {
+        webResponce = new WebResponce();
+        int nUserId = Integer.parseInt(sUserId);
+        int nPermissionManager = Integer.parseInt(sPermissionManager);
+        int nPermissionView = Integer.parseInt(sPermissionView);
+       webResponce = setterDB.updateUser(nUserId,userName,telephone,email,password,nPermissionManager,nPermissionView);
+        return webResponce;
+    }
+
     public WebResponce insertHouseDetails(House m_house) {
         webResponce = new WebResponce();
         boolean bIsStillExist = false;

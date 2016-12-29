@@ -31,7 +31,7 @@ public class setterDB {
     private static String TABLE_HOUSE_NAME = "shamayim.house";
     private static String DATA_BASE_USER_NAME = "root";
     private static String DATA_BASE_PASSWORD_NAME = Application.szDbPassword;
-
+    private WebResponce webResponce = new WebResponce();
 
 
     /**
@@ -69,7 +69,7 @@ public class setterDB {
      * @throws Exception
      */
     public boolean registerNewUser(String userName, String telephone, String email,
-                                   String password, int nPermissionManager,int nPermissionView) throws Exception {
+                                   String password, int nPermissionManager, int nPermissionView) throws Exception {
 
         boolean bWasRegister = true;
         // INFO
@@ -100,7 +100,7 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("insert into " + TABLE_USERS_NAME
-                    + " (user_name,telephone,email,password,birthdate,permission_manager,permission_view) values (?, ?, ? , ?, ?,?)");
+                    + " (user_name,telephone,email,password,permission_manager,permission_view) values (?, ?, ? , ?, ?,?)");
             play.Logger.info(" Insert new user to the data-base");
             // Parameters start with 1
             preparedStatement.setString(1, userName);
@@ -127,6 +127,67 @@ public class setterDB {
 
     }
 
+
+    /**
+     * Register a new user into the data-base
+     *
+     * @param userName  - user name
+     * @param telephone - telephone
+     * @param email     - email
+     * @param password  - password
+     * @return
+     * @throws Exception
+     */
+    public WebResponce updateUser(int nUserId, String userName, String telephone, String email, String password, int nPermissionManager, int nPermissionView) throws Exception {
+        webResponce = new WebResponce();
+        // INFO
+        play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Update user : ");
+        System.out.println("============================");
+        System.out.println("For : User Id =>>");
+        System.out.println("User name : " + userName);
+        System.out.println("Telephone : " + telephone);
+        System.out.println("Email : " + email);
+        System.out.println("Password : " + password);
+        System.out.println("============================");
+
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("update " + TABLE_USERS_NAME + " set user_name='" + userName + "',telephone='" + telephone + "',email='" + email + "',password='" + password + "',permission_manager=" + nPermissionManager + ",permission_view=" + nPermissionView + " where user_id=" + nUserId + ";");
+            play.Logger.info(" Update user to the data-base");
+            preparedStatement.executeUpdate();
+            System.out.println("update successfully");
+            System.out.println("============================");
+            webResponce.setReason("update successfully");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to update");
+            System.out.println("==========================================");
+            play.Logger.info("<setterDB> " + e.getMessage());
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("a problem occurred when try to update");
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
+        return webResponce;
+
+    }
 
     public WebResponce setNewHouseDetails(House m_house) {
         WebResponce webResponceToReturn = new WebResponce();

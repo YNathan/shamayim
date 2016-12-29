@@ -156,6 +156,43 @@ public class setter {
     }
 
     /**
+     * update user into the system
+     * @return
+     * @throws Exception
+     */
+    public static Result updateUser(String sUserId, String userName, String telephone, String email,String password, String sPermissionManager,String sPermissionView) throws Exception {
+        // updateProfilePicture();
+        // INFO
+        play.Logger.info("<SETTER> Register new user : \n============================\nFor : =>>\nUser name : "
+                + userName +  "\nTelephone : "+ telephone + "\nEmail : " + email + "\nPassword : " + password
+                + "\n============================\n");
+
+        System.out.println("[INFO] " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Register new user : ");
+        System.out.println("============================");
+        System.out.println("For : =>>");
+        System.out.println("User name : " + userName);
+        System.out.println("Telephone : " + telephone);
+        System.out.println("Email : " + email);
+        System.out.println("Password : " + password);
+        System.out.println("============================");
+
+        if ((sUserId != null) && (userName != null)
+                && (email != null) && (password != null) && (sPermissionManager != null)&& (sPermissionView != null)) {
+            webResponce = setterBL.uodateUser(sUserId,userName,telephone,email,password,sPermissionManager,sPermissionView);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.SUCCESS) {
+                return ok("true");
+            } else {
+                return badRequest(webResponce.getReason());
+            }
+
+        } else {
+            return badRequest(
+                    "Null pointer screw you! \nyou send your request with an empty user-name or an telephone or an email or an password!");
+        }
+    }
+
+    /**
      * Get file(*can be a profile picture) from client and save in the server
      *
      * @return
