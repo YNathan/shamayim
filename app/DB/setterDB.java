@@ -62,17 +62,14 @@ public class setterDB {
      * Register a new user into the data-base
      *
      * @param userName  - user name
-     * @param firstName - first name
-     * @param lastName  - last name
      * @param telephone - telephone
      * @param email     - email
      * @param password  - password
-     * @param birthdate - birthdate
      * @return
      * @throws Exception
      */
-    public boolean registerNewUser(String userName, String firstName, String lastName, String telephone, String email,
-                                   String password, Date birthdate) throws Exception {
+    public boolean registerNewUser(String userName, String telephone, String email,
+                                   String password, int nPermissionManager,int nPermissionView) throws Exception {
 
         boolean bWasRegister = true;
         // INFO
@@ -81,12 +78,9 @@ public class setterDB {
         System.out.println("============================");
         System.out.println("For : =>>");
         System.out.println("User name : " + userName);
-        System.out.println("First name : " + firstName);
-        System.out.println("Last name : " + lastName);
         System.out.println("Telephone : " + telephone);
         System.out.println("Email : " + email);
         System.out.println("Password : " + password);
-        System.out.println("Birthdate : " + birthdate);
         System.out.println("============================");
 
         try {
@@ -106,17 +100,15 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("insert into " + TABLE_USERS_NAME
-                    + " (user_name,first_name,last_name,telephone,email,password,birthdate,permission) values (?, ?, ?, ?, ? , ?, ?,?)");
+                    + " (user_name,telephone,email,password,birthdate,permission_manager,permission_view) values (?, ?, ? , ?, ?,?)");
             play.Logger.info(" Insert new user to the data-base");
             // Parameters start with 1
             preparedStatement.setString(1, userName);
-            preparedStatement.setString(2, firstName);
-            preparedStatement.setString(3, lastName);
-            preparedStatement.setString(4, telephone);
-            preparedStatement.setString(5, email);
-            preparedStatement.setString(6, password);
-            preparedStatement.setDate(7, birthdate);
-            preparedStatement.setInt(8, 1);
+            preparedStatement.setString(2, telephone);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, nPermissionManager);
+            preparedStatement.setInt(6, nPermissionView);
             preparedStatement.executeUpdate();
             System.out.println("registered successfully!!!");
             System.out.println("============================");
@@ -163,26 +155,27 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("insert into " + TABLE_HOUSE_NAME
-                    + " (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments,purchase_price,treatment_fees,renovation_fees_for_sale,renovation_fees_for_renting,divers_fees) values (?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?,?,?,?,?,?)");
+                    + " (state, city, street, house_number,zip_code, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments,purchase_price,treatment_fees,renovation_fees_for_sale,renovation_fees_for_renting,divers_fees) values (?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ? , ?,?,?,?,?,?,?)");
             play.Logger.info(" Insert new user to the data-base");
             // Parameters start with 1
             preparedStatement.setString(1, m_house.getState());
             preparedStatement.setString(2, m_house.getCity());
             preparedStatement.setString(3, m_house.getStreet());
             preparedStatement.setInt(4, m_house.getHouseNumber());
-            preparedStatement.setInt(5, m_house.getHouseKind().getValue());
-            preparedStatement.setInt(6, m_house.getNumberOfRooms());
-            preparedStatement.setInt(7, m_house.getNumberOfLivingRooms());
-            preparedStatement.setInt(8, m_house.getNumberOfKitchens());
-            preparedStatement.setInt(9, m_house.getNumberOfBedrooms());
-            preparedStatement.setInt(10, m_house.getNumberOfBathrooms());
-            preparedStatement.setInt(11, m_house.getLocationKind().getValue());
-            preparedStatement.setString(12, m_house.getComments());
-            preparedStatement.setDouble(13, m_house.getPurchasePrice());
-            preparedStatement.setDouble(14, m_house.getTreatmentFees());
-            preparedStatement.setDouble(15, m_house.getRenovationFeesForSale());
-            preparedStatement.setDouble(16, m_house.getRenovationFeesForRenting());
-            preparedStatement.setDouble(17, m_house.getDiversFees());
+            preparedStatement.setInt(5, m_house.getZipCode());
+            preparedStatement.setInt(6, m_house.getHouseKind().getValue());
+            preparedStatement.setInt(7, m_house.getNumberOfRooms());
+            preparedStatement.setInt(8, m_house.getNumberOfLivingRooms());
+            preparedStatement.setInt(9, m_house.getNumberOfKitchens());
+            preparedStatement.setInt(10, m_house.getNumberOfBedrooms());
+            preparedStatement.setInt(11, m_house.getNumberOfBathrooms());
+            preparedStatement.setInt(12, m_house.getLocationKind().getValue());
+            preparedStatement.setString(13, m_house.getComments());
+            preparedStatement.setDouble(14, m_house.getPurchasePrice());
+            preparedStatement.setDouble(15, m_house.getTreatmentFees());
+            preparedStatement.setDouble(16, m_house.getRenovationFeesForSale());
+            preparedStatement.setDouble(17, m_house.getRenovationFeesForRenting());
+            preparedStatement.setDouble(18, m_house.getDiversFees());
             preparedStatement.executeUpdate();
             System.out.println("registered successfully!!!");
             System.out.println("============================");

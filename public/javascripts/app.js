@@ -10,6 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $mdToa
     $mdIconProvider.icon('attach_money', './svg/attach_money.svg');
     $mdIconProvider.icon('copyright', './svg/copyright.svg');
     $mdIconProvider.icon('home', './svg/home.svg');
+    $mdIconProvider.icon('logout', './svg/assignment_return.svg');
 
 
     //

@@ -45,6 +45,7 @@ public class Dictionary {
     private String Save;
     private String SendMeThisHouseToMyMail;
     private String PageDirection;
+    private String Logout;
 
     public Dictionary() {
     }
@@ -401,6 +402,14 @@ public class Dictionary {
         PageDirection = pageDirection;
     }
 
+    public String getLogout() {
+        return Logout;
+    }
+
+    public void setLogout(String logout) {
+        Logout = logout;
+    }
+
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
                 "\"Dictionary\":\"" + szHouseLanguage + "\"" +
@@ -442,6 +451,7 @@ public class Dictionary {
                 ",\"Save\":\"" + Save + "\"" +
                 ",\"SendMeThisHouseToMyMail\":\"" + SendMeThisHouseToMyMail + "\"" +
                 ",\"PageDirection\":\"" + PageDirection + "\"" +
+                ",\"Logout\":\"" + Logout + "\"" +
                 "} ]}";
     }
 }

@@ -109,6 +109,30 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     }
 
+        $scope.setNewHouseAddress = function () {
+            house.state = $scope.state;
+            house.city = $scope.city;
+            house.street = $scope.street;
+            house.house_number = $scope.house_number;
+            house.house_kind = $scope.house_kind;
+
+
+            var res = $http.post('/SET_NEW_HOUSE', house);
+            res.success(function (data, status, headers, config) {
+                $scope.dataTabs.secondLocked = false;
+                $scope.dataTabs.thirdLocked = false;
+                alert(data);
+            });
+            res.error(function (data, status, headers, config) {
+                alert("failure message: " + JSON.stringify({
+                    data: data
+                }));
+            });
+
+
+        }
+
+
     // Logic methods section
     function getHouse(nHouseId) {
         // Get information conserning the house

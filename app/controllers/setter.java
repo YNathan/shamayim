@@ -79,25 +79,56 @@ public class setter {
     }
 
     /**
+     * Inserting new house.
+     *
+     * @return
+     */
+
+    public static Result setNewHouseAdress() {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            House houseToRegistre = new House();
+            try {
+                System.out.println(json.toString());
+                houseToRegistre.setState(json.findPath("state").textValue());
+                houseToRegistre.setCity(json.findPath("city").textValue());
+                houseToRegistre.setStreet(json.findPath("street").textValue());
+                houseToRegistre.setHouseNumber(json.findPath("house_number").asInt());
+                houseToRegistre.setHouseNumber(json.findPath("zip_code").asInt());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            webResponce = setterBL.insertHouseDetails(houseToRegistre);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("The House was Register correctly" + houseToRegistre.toString());
+            return ok(webResponce.getReason());
+        }
+    }
+
+    /**
      * Register new user into the system
      *
      * @param szUserName  - user name
-     * @param szFirstName - first name
-     * @param szLastName  - last name
      * @param szTelephone - telephone
      * @param szEmail     - email
      * @param szPassword  - password
-     * @param szBirthdate - birthdate
      * @return
      * @throws Exception
      */
-    public static Result registerNewUser(String szUserName, String szFirstName, String szLastName, String szTelephone,
-                                         String szEmail, String szPassword, String szBirthdate) throws Exception {
+    public static Result registerNewUser(String szUserName, String szTelephone, String szEmail,String szPassword,String szPermission_manager,String szPermission_view) throws Exception {
         // updateProfilePicture();
         // INFO
         play.Logger.info("<SETTER> Register new user : \n============================\nFor : =>>\nUser name : "
-                + szUserName + "\nFirst name : " + szFirstName + "\nLast name : " + szLastName + "\nTelephone : "
-                + szTelephone + "\nEmail : " + szEmail + "\nPassword : " + szPassword + "\nBirthdate : " + szBirthdate
+                + szUserName +  "\nTelephone : "+ szTelephone + "\nEmail : " + szEmail + "\nPassword : " + szPassword
                 + "\n============================\n");
 
         System.out.println("[INFO] " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
@@ -105,18 +136,14 @@ public class setter {
         System.out.println("============================");
         System.out.println("For : =>>");
         System.out.println("User name : " + szUserName);
-        System.out.println("First name : " + szFirstName);
-        System.out.println("Last name : " + szLastName);
         System.out.println("Telephone : " + szTelephone);
         System.out.println("Email : " + szEmail);
         System.out.println("Password : " + szPassword);
-        System.out.println("Birthdate : " + szBirthdate);
         System.out.println("============================");
 
-        if ((szUserName != null) && (szFirstName != null) && (szLastName != null) && (szTelephone != null)
-                && (szEmail != null) && (szPassword != null) && (szBirthdate != null)) {
-            if (setterBL.registerNewUser(szUserName, szFirstName, szLastName, szTelephone, szEmail, szPassword,
-                    szBirthdate)) {
+        if ((szUserName != null) && (szTelephone != null)
+                && (szEmail != null) && (szPassword != null) && (szPermission_manager != null)&& (szPermission_view != null)) {
+            if (setterBL.registerNewUser(szUserName, szTelephone, szEmail, szPassword, szPermission_manager,szPermission_view)) {
                 return ok("true");
             } else {
                 return badRequest("An internal error as ocurred when trying to register");

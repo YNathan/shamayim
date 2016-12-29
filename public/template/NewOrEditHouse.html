@@ -45,13 +45,13 @@
     <md-tabs md-selected="dataTabs.selectedIndex" layout-fill md-align-tabs="{{dataTabs.bottom ? 'bottom' : 'top'}}">
 
         <md-tab id="tab1">
-            <md-tab-label>{{dictionary.Dictionary[0].GeneralHouseDetailes}}</md-tab-label>
+            <md-tab-label>{{dictionary.Dictionary[0].Address}}</md-tab-label>
             <md-tab-body>
 
                 <div class="flex-container">
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
                         <div flex=100>
-                            <form ng-submit="setNewHouse()" class="md-padding">
+                            <form ng-submit="setNewHouseAddress()" class="md-padding">
                                 <md-input-container>
                                     <label>{{dictionary.Dictionary[0].State}} :</label>
                                     <input type="text" ng-model="state" name="text" placeholder="ארץ" required/>
@@ -71,6 +71,27 @@
                                     <label> {{dictionary.Dictionary[0].HouseNumber}} :</label>
                                     <input type="number" ng-model="house_number" name="text" placeholder="מספר בית" required/>
                                 </md-input-container>
+                                <center>
+                                    <md-input-container>
+                                        <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
+                                    </md-input-container>
+                                </center>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </md-tab-body>
+        </md-tab>
+
+        <md-tab id="tab2">
+            <md-tab-label>{{dictionary.Dictionary[0].GeneralHouseDetailes}}</md-tab-label>
+            <md-tab-body>
+
+                <div class="flex-container">
+                    <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
+                        <div flex=100>
+                            <form ng-submit="setNewHouse()" class="md-padding">
                                 <md-input-container>
                                     <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
                                     <input type="number" ng-model="house_kind" name="text" placeholder="מספר בית" required/>

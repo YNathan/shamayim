@@ -45,7 +45,7 @@
             Login/Register
         </md-button>
         <p flex style="text-align: center; color:black;">Smim Global Newark LLC - שמיים נדל"ן</p>
-        <md-input-container>
+        <md-input-container ng-if="isLoged()">
             <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
                 <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
                     {{Language}}

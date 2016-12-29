@@ -268,6 +268,11 @@ $scope.paging = {
     $rootScope.goToHouse = function () {
         $state.go('House');
     }
+    $rootScope.logout = function () {
+    $rootScope.bIsLoged = false;
+        $state.go('welcome');
+
+    }
     $rootScope.bIsLoged = true;
     $rootScope.isLoged = function () {
         if ($rootScope.bIsLoged == true) {

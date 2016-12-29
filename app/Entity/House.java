@@ -4,32 +4,33 @@ package Entity;
  * Created by jacky on 18/11/2016.
  */
 public class House {
-    private int nHouseId;
-    private String szState;
-    private String szCity;
-    private String szStreet;
-    private int nHouseNumber;
-    private EHouseKind EHouseKind;
-    private int nNumberOfRooms;
-    private int nNumberOfLivingRooms;
-    private int nNumberOfKitchens;
-    private int nNumberOfBedrooms;
-    private int nNumberOfBathrooms;
-    private ELocationKind eLocationKind;
-    private String szComments;
-    private double dPurchasePrice;
-    private double dTreatmentFees;
-    private double dRenovationFeesForSale;
-    private double dRenovationFeesForRenting;
-    private double dDiversFees;
+    private int nHouseId = -1;
+    private String szState = "Newark";
+    private String szCity = "SNull";
+    private String szStreet = "SNull";
+    private int nHouseNumber = -1;
+    private int nZipCode = -1;
+    private EHouseKind eHouseKind = Entity.EHouseKind.FAMILLY;
+    private int nNumberOfRooms = -1;
+    private int nNumberOfLivingRooms = -1;
+    private int nNumberOfKitchens = -1;
+    private int nNumberOfBedrooms = -1;
+    private int nNumberOfBathrooms = -1;
+    private ELocationKind eLocationKind =  ELocationKind.WHITE;
+    private String szComments = "SNull";
+    private double dPurchasePrice = -1;
+    private double dTreatmentFees = -1;
+    private double dRenovationFeesForSale = -1;
+    private double dRenovationFeesForRenting = -1;
+    private double dDiversFees = -1;
 
-    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale,double dRenovationFeesForRenting, double dDiversFees) {
+    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber,int m_nZipCode ,Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale,double dRenovationFeesForRenting, double dDiversFees) {
         this.nHouseId = nHouseId;
         this.szState = szState;
         this.szCity = szCity;
         this.szStreet = szStreet;
         this.nHouseNumber = nHouseNumber;
-        this.EHouseKind = EHouseKind;
+        this.eHouseKind = EHouseKind;
         this.nNumberOfRooms = nNumberOfRooms;
         this.nNumberOfLivingRooms = nNumberOfLivingRooms;
         this.nNumberOfKitchens = nNumberOfKitchens;
@@ -42,6 +43,7 @@ public class House {
         this.dRenovationFeesForSale = dRenovationFeesForSale;
         this.dRenovationFeesForRenting = dRenovationFeesForRenting;
         this.dDiversFees = dDiversFees;
+        this.nZipCode = m_nZipCode;
     }
 
     /***
@@ -66,7 +68,7 @@ public class House {
         this.szCity = szCity;
         this.szStreet = szStreet;
         this.nHouseNumber = nHouseNumber;
-        this.EHouseKind = EHouseKind;
+        this.eHouseKind = EHouseKind;
         this.nNumberOfRooms = nNumberOfRooms;
         this.nNumberOfLivingRooms = nNumberOfLivingRooms;
         this.nNumberOfKitchens = nNumberOfKitchens;
@@ -119,12 +121,12 @@ public class House {
         this.nHouseNumber = nHouseNumber;
     }
 
-    public Entity.EHouseKind getHouseKind() {
-        return EHouseKind;
+    public EHouseKind getHouseKind() {
+        return eHouseKind;
     }
 
     public void setHouseKind(EHouseKind ehouseKind) {
-        this.EHouseKind = ehouseKind;
+        this.eHouseKind = ehouseKind;
     }
 
     public int getNumberOfRooms() {
@@ -223,6 +225,14 @@ public class House {
         this.dRenovationFeesForRenting = dRenovationFeesForRenting;
     }
 
+    public int getZipCode() {
+        return nZipCode;
+    }
+
+    public void setZipCode(int nZipCode) {
+        this.nZipCode = nZipCode;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -231,7 +241,7 @@ public class House {
                 ", szCity='" + szCity + '\'' +
                 ", szStreet='" + szStreet + '\'' +
                 ", nHouseNumber=" + nHouseNumber +
-                ", EHouseKind=" + EHouseKind +
+                ", EHouseKind=" + eHouseKind +
                 ", nNumberOfRooms=" + nNumberOfRooms +
                 ", nNumberOfLivingRooms=" + nNumberOfLivingRooms +
                 ", nNumberOfKitchens=" + nNumberOfKitchens +
@@ -243,6 +253,7 @@ public class House {
                 ", dTreatmentFees=" + dTreatmentFees +
                 ", dRenovationFeesForSale=" + dRenovationFeesForSale +
                 ", dDiversFees=" + dDiversFees +
+                ", ZipCode=" + nZipCode +
                 '}';
     }
 
@@ -253,7 +264,7 @@ public class House {
                 "\n City =" + szCity  +
                 "\n Street = " + szStreet +
                 "\n HouseNumber = " + nHouseNumber +
-                "\n HouseKind = " + EHouseKind +
+                "\n HouseKind = " + eHouseKind +
                 "\n NumberOfRooms = " + nNumberOfRooms +
                 "\n NumberOfLivingRooms = " + nNumberOfLivingRooms +
                 "\n NumberOfKitchens = " + nNumberOfKitchens +
@@ -264,7 +275,8 @@ public class House {
                 "\n PurchasePrice = " + dPurchasePrice +
                 "\n TreatmentFees = " + dTreatmentFees +
                 "\n RenovationFeesForSale = " + dRenovationFeesForSale +
-                "\n DiversFees=" + dDiversFees
+                "\n DiversFees=" + dDiversFees +
+                "\n ZipCode=" + nZipCode
                 ;
     }
 }

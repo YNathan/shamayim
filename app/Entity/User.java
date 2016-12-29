@@ -7,27 +7,22 @@ package Entity;
  */
 public class User {
 	private String szUserName;
-	private String szfirstName;
-	private String szLastName;
 	private String szTelephone;
 	private String szEmail;
 	private String szPassword;
-	private String szBirthday;
 	private String szUserId;
-	private String szPermission;
+	private String szPermission_manager;
+	private String szPermission_view;
 
-	public User(String szUserName, String szfirstName, String szLastName, String szTelephone, String szEmail,
-			String szPassword, String szBirthday, String szUserId,String szPermission) {
+	public User(String szUserName, String szTelephone, String szEmail,String szPassword, String szUserId,String szPermission_manager,String szPermission_view) {
 		super();
 		this.szUserName = szUserName;
-		this.szfirstName = szfirstName;
-		this.szLastName = szLastName;
 		this.szTelephone = szTelephone;
 		this.szEmail = szEmail;
 		this.szPassword = szPassword;
-		this.szBirthday = szBirthday;
 		this.szUserId = szUserId;
-		this.szPermission = szPermission;
+		this.szPermission_manager = szPermission_manager;
+		this.szPermission_view = szPermission_view;
 	}
 	public String getUserName() {
 		return szUserName;
@@ -35,22 +30,6 @@ public class User {
 
 	public void setUserName(String szUserName) {
 		this.szUserName = szUserName;
-	}
-
-	public String getfirstName() {
-		return szfirstName;
-	}
-
-	public void setfirstName(String szfirstName) {
-		this.szfirstName = szfirstName;
-	}
-
-	public String getLastName() {
-		return szLastName;
-	}
-
-	public void setLastName(String szLastName) {
-		this.szLastName = szLastName;
 	}
 
 	public String getTelephone() {
@@ -77,14 +56,6 @@ public class User {
 		this.szPassword = szPassword;
 	}
 
-	public String getBirthday() {
-		return szBirthday;
-	}
-
-	public void setBirthday(String szBirthday) {
-		this.szBirthday = szBirthday;
-	}
-
 	public String getUserId() {
 		return szUserId;
 	}
@@ -93,26 +64,44 @@ public class User {
 		this.szUserId = szUserId;
 	}
 
-	public String getPermission() {
-		return szPermission;
+	public String getSzPermission_manager() {
+		return szPermission_manager;
 	}
 
-	public void setPermission(String szPermission) {
-		this.szPermission = szPermission;
+	public void setSzPermission_manager(String szPermission_manager) {
+		this.szPermission_manager = szPermission_manager;
+	}
+
+	public String getSzPermission_view() {
+		return szPermission_view;
+	}
+
+	public void setSzPermission_view(String szPermission_view) {
+		this.szPermission_view = szPermission_view;
 	}
 
 	@Override
 	public String toString() {
 		return "User{" +
-				"szUserName='" + szUserName + '\'' +
-				", szfirstName='" + szfirstName + '\'' +
-				", szLastName='" + szLastName + '\'' +
-				", szTelephone='" + szTelephone + '\'' +
-				", szEmail='" + szEmail + '\'' +
-				", szPassword='" + szPassword + '\'' +
-				", szBirthday='" + szBirthday + '\'' +
-				", szUserId='" + szUserId + '\'' +
-				", szPermission='" + szPermission + '\'' +
+				"UserName='" + szUserName + '\'' +
+				", Telephone='" + szTelephone + '\'' +
+				", Email='" + szEmail + '\'' +
+				", Password='" + szPassword + '\'' +
+				", UserId='" + szUserId + '\'' +
+				", Permission_manager='" + szPermission_manager + '\'' +
+				", Permission_view='" + szPermission_view + '\'' +
 				'}';
+	}
+
+	public String toJson() {
+		return "{ \"User\":[ {" +
+				"\"UserName=\":\"" + szUserName + "\"" +
+				",\"Telephone=\":\"" + szTelephone + "\"" +
+				",\"Email=\":\"" + szEmail + "\"" +
+				",\"Password=\":\"" + szPassword + "\"" +
+				",\"UserId=\":\"" + szUserId + "\"" +
+				",\"Permission_manager=\":\"" + szPermission_manager + "\"" +
+				",\"Permission_view=\":\"" + szPermission_view + "\"" +
+				"} ]}";
 	}
 }

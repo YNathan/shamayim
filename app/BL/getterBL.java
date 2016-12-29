@@ -39,7 +39,7 @@ public class getterBL {
         boolean isGreateLogin = false;
         for (User currUser : userList) {
             if (currUser.getUserName().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
-                szPermission = currUser.getPermission();
+                szPermission = currUser.getSzPermission_manager();
                /* try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
@@ -153,14 +153,12 @@ public class getterBL {
      * @param szUserName the name of the user
      * @return all personal information about a user
      */
-    public StringBuilder getUserInformation(String szUserName) {
+    public String getUserInformation(String szUserName) {
         // INFO
         play.Logger.info("<BUSINESS_LOGIC> Get user information with user name : " + szUserName);
         int nUserId = getterDB.getUserIdByName(szUserName);
-        StringBuilder sbUserInformationToReturn = new StringBuilder();
         User userToReturn = getterDB.getUser(nUserId);
-        sbUserInformationToReturn.append("{ \"user\":[ {\"user_name\":\"" + userToReturn.getUserName() + "\",\"first_name\":\"" + userToReturn.getfirstName() + "\",\"last_name\":\"" + userToReturn.getLastName() + "\",\"email\":\"" + userToReturn.getEmail() + "\",\"telephone\":\"" + userToReturn.getTelephone() + "\",\"password\":\"" + userToReturn.getPassword() + "\",\"birthdate\":\"" + userToReturn.getBirthday() + "\",\"user_id\":\"" + userToReturn.getUserId() + "\"} ]}");
-        return sbUserInformationToReturn;
+        return userToReturn.toJson();
     }
 
 

@@ -24,8 +24,8 @@
 <div layout="row" layout-sm="column">
     <div flex="5"></div>
     <div flex>
-        <table class="rwd-table">
-            <h1>{{dictionary.Dictionary[0].HouseTable}}</h1>
+        <table class="rwd-table" ng-if="houseWasLoaded">
+            <h1  ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>
             <tr>
                 <td>{{dictionary.Dictionary[0].HouseId}}</td>
                 <td>{{house_id}}</td>
@@ -93,7 +93,7 @@
             </tr>
         </table>
     </div>
-    <div flex>
+    <div flex ng-if="houseWasLoaded">
         <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
         <div id="map" style="height: 400px; width: 400px;"></div>
     </div>
@@ -149,6 +149,11 @@
             <md-button class="copyright" ng-click="goToCopyright()">
                 <md-icon md-svg-icon="copyright"></md-icon>
                 <div>{{dictionary.Dictionary[0].Copyright}}</div>
+            </md-button>
+            </br>
+            <md-button class="logout" ng-click="logout()">
+                <md-icon md-svg-icon="logout"></md-icon>
+                <div>{{dictionary.Dictionary[0].Logout}}</div>
             </md-button>
             </br>
         </md-content>

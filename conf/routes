@@ -15,6 +15,7 @@ GET         /GET_USERS/:userName                                                
 POST        /REGISTER/:userName/:firstName/:lastName/:telephone/:email/:password/:birthdate        controllers.setter.registerNewUser(userName:String,firstName:String,lastName:String,telephone:String,email:String,password:String,birthdate:String)
 GET         /GET_USER_INFORMATION/:szUserName                                                      controllers.getter.getUserInformation(szUserName:String)
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
+POST        /SET_NEW_HOUSE_ADRESS                                                                  controllers.setter.setNewHouseAdress()
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
