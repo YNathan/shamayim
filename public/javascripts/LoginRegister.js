@@ -58,7 +58,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                                 }).then(
                                     function successCallback(response) {
                                         alert("Register successful!");
-                                        ShamayimFunctions.setPermissionCookie(1);
+                                        ShamayimFunctions.setPermissionCookie('false');
                                         $rootScope.bIsLoged = true;
                                         $state.go('House')
                                     },

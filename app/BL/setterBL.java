@@ -55,6 +55,33 @@ public class setterBL {
         return isRegitred;
     }
 
+    /**
+     * Registering a new user into the system.
+     *
+     * @param szUserName
+     * @param szTelephone
+     * @param szEmail
+     * @param szPassword
+     * @return
+     * @throws Exception
+     */
+    public WebResponce addNewUser(String szUserName, String szTelephone, String szEmail, String szPassword, String szPermissionManager,String szPermissionView) throws Exception {
+        webResponce = new WebResponce();
+        // INFO
+        play.Logger.info("<BUISNESS_LOGIC> Register new user : ");
+        play.Logger.info("============================");
+        play.Logger.info("For : =>>");
+        play.Logger.info("User name : " + szUserName);
+        play.Logger.info("Telephone : " + szTelephone);
+        play.Logger.info("Email : " + szEmail);
+        play.Logger.info("Password : " + szPassword);
+        play.Logger.info("============================");
+        int nPermissionManager = Integer.parseInt(szPermissionManager);
+        int nPermissionView = Integer.parseInt(szPermissionView);
+        webResponce = setterDB.addNewUser(szUserName, szTelephone, szEmail, szPassword,nPermissionManager,nPermissionView);
+        return webResponce;
+    }
+
     public WebResponce uodateUser(String sUserId, String userName, String telephone, String email,String password, String sPermissionManager,String sPermissionView) throws Exception {
         webResponce = new WebResponce();
         int nUserId = Integer.parseInt(sUserId);

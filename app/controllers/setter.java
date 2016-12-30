@@ -124,11 +124,11 @@ public class setter {
      * @return
      * @throws Exception
      */
-    public static Result registerNewUser(String szUserName, String szTelephone, String szEmail,String szPassword,String szPermission_manager,String szPermission_view) throws Exception {
+    public static Result registerNewUser(String szUserName, String szTelephone, String szEmail, String szPassword, String szPermission_manager, String szPermission_view) throws Exception {
         // updateProfilePicture();
         // INFO
         play.Logger.info("<SETTER> Register new user : \n============================\nFor : =>>\nUser name : "
-                + szUserName +  "\nTelephone : "+ szTelephone + "\nEmail : " + szEmail + "\nPassword : " + szPassword
+                + szUserName + "\nTelephone : " + szTelephone + "\nEmail : " + szEmail + "\nPassword : " + szPassword
                 + "\n============================\n");
 
         System.out.println("[INFO] " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
@@ -142,8 +142,8 @@ public class setter {
         System.out.println("============================");
 
         if ((szUserName != null) && (szTelephone != null)
-                && (szEmail != null) && (szPassword != null) && (szPermission_manager != null)&& (szPermission_view != null)) {
-            if (setterBL.registerNewUser(szUserName, szTelephone, szEmail, szPassword, szPermission_manager,szPermission_view)) {
+                && (szEmail != null) && (szPassword != null) && (szPermission_manager != null) && (szPermission_view != null)) {
+            if (setterBL.registerNewUser(szUserName, szTelephone, szEmail, szPassword, szPermission_manager, szPermission_view)) {
                 return ok("true");
             } else {
                 return badRequest("An internal error as ocurred when trying to register");
@@ -156,39 +156,80 @@ public class setter {
     }
 
     /**
-     * update user into the system
+     * add user into the system
+     *
      * @return
      * @throws Exception
      */
-    public static Result updateUser(String sUserId, String userName, String telephone, String email,String password, String sPermissionManager,String sPermissionView) throws Exception {
-        // updateProfilePicture();
-        // INFO
-        play.Logger.info("<SETTER> Register new user : \n============================\nFor : =>>\nUser name : "
-                + userName +  "\nTelephone : "+ telephone + "\nEmail : " + email + "\nPassword : " + password
-                + "\n============================\n");
-
-        System.out.println("[INFO] " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
-                + " <SETTER> Register new user : ");
-        System.out.println("============================");
-        System.out.println("For : =>>");
-        System.out.println("User name : " + userName);
-        System.out.println("Telephone : " + telephone);
-        System.out.println("Email : " + email);
-        System.out.println("Password : " + password);
-        System.out.println("============================");
-
-        if ((sUserId != null) && (userName != null)
-                && (email != null) && (password != null) && (sPermissionManager != null)&& (sPermissionView != null)) {
-            webResponce = setterBL.uodateUser(sUserId,userName,telephone,email,password,sPermissionManager,sPermissionView);
-            if (webResponce.getSuccessFailed() == ESuccessFailed.SUCCESS) {
-                return ok("true");
-            } else {
-                return badRequest(webResponce.getReason());
-            }
-
+    public static Result addUser() throws Exception {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
         } else {
-            return badRequest(
-                    "Null pointer screw you! \nyou send your request with an empty user-name or an telephone or an email or an password!");
+            User userToUpdate = new User();
+            try {
+                System.out.println(json.toString());
+                userToUpdate.setUserName(json.findPath("username").textValue());
+                userToUpdate.setEmail(json.findPath("email").textValue());
+                userToUpdate.setPassword(json.findPath("password").textValue());
+                userToUpdate.setEmail(json.findPath("email").textValue());
+                userToUpdate.setTelephone(json.findPath("telephone").textValue());
+                userToUpdate.setPermissionManager(json.findPath("permissionManager").booleanValue());
+                userToUpdate.setPermissionView(json.findPath("permissionView").booleanValue());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה את הנתונים" + userToUpdate.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("Update User: Receive User For Update: " + userToUpdate.toString());
+            webResponce = setterBL.addNewUser(userToUpdate.getUsername(), userToUpdate.getTelephone(), userToUpdate.getEmail(), userToUpdate.getPassword(), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionManager()), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionView()));
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("The User was added correctly" + userToUpdate.toString());
+            return ok(webResponce.getReason());
+        }
+    }
+    /**
+     * update user into the system
+     *
+     * @return
+     * @throws Exception
+     */
+    public static Result updateUser() throws Exception {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            User userToUpdate = new User();
+            try {
+                System.out.println(json.toString());
+                userToUpdate.setUserId(json.findPath("userId").textValue());
+                userToUpdate.setUserName(json.findPath("username").textValue());
+                userToUpdate.setEmail(json.findPath("email").textValue());
+                userToUpdate.setPassword(json.findPath("password").textValue());
+                userToUpdate.setEmail(json.findPath("email").textValue());
+                userToUpdate.setTelephone(json.findPath("telephone").textValue());
+                userToUpdate.setPermissionManager(json.findPath("permissionManager").booleanValue());
+                userToUpdate.setPermissionView(json.findPath("permissionView").booleanValue());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + userToUpdate.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("Update User: Receive User For Update: " + userToUpdate.toString());
+            webResponce = setterBL.uodateUser(userToUpdate.getUserId(), userToUpdate.getUsername(), userToUpdate.getTelephone(), userToUpdate.getEmail(), userToUpdate.getPassword(), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionManager()), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionView()));
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("The User was Update correctly" + userToUpdate.toString());
+            return ok(webResponce.getReason());
         }
     }
 

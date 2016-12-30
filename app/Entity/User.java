@@ -1,107 +1,157 @@
 package Entity;
 
 /**
- * 
  * @author Yaacov
- *
  */
 public class User {
-	private String szUsername;
-	private String szTelephone;
-	private String szEmail;
-	private String szPassword;
-	private String szUserId;
-	private String szPermissionManager;
-	private String szPermissionView;
+    private String szUsername;
+    private String szTelephone;
+    private String szEmail;
+    private String szPassword;
+    private String szUserId;
+    private boolean bPermissionManager;
+    private boolean bPermissionView;
 
-	public User(String szUserName, String szTelephone, String szEmail,String szPassword, String szUserId,String szPermission_manager,String szPermission_view) {
-		super();
-		this.szUsername = szUserName;
-		this.szTelephone = szTelephone;
-		this.szEmail = szEmail;
-		this.szPassword = szPassword;
-		this.szUserId = szUserId;
-		this.szPermissionManager = szPermission_manager;
-		this.szPermissionView = szPermission_view;
-	}
-	public String getUsername() {
-		return szUsername;
-	}
+    public User(String szUserName, String szTelephone, String szEmail, String szPassword, String szUserId, String szPermission_manager, String szPermission_view) {
+        super();
+        this.szUsername = szUserName;
+        this.szTelephone = szTelephone;
+        this.szEmail = szEmail;
+        this.szPassword = szPassword;
+        this.szUserId = szUserId;
+        this.bPermissionManager = convertFromStringDataBaseFormatToBoolean(szPermission_manager);
+        this.bPermissionView = convertFromStringDataBaseFormatToBoolean(szPermission_view);
+    }
 
-	public void setUserName(String szUserName) {
-		this.szUsername = szUserName;
-	}
+    public User() {
+    }
 
-	public String getTelephone() {
-		return szTelephone;
-	}
+    public String getUsername() {
+        return szUsername;
+    }
 
-	public void setTelephone(String szTelephone) {
-		this.szTelephone = szTelephone;
-	}
+    public void setUserName(String szUserName) {
+        this.szUsername = szUserName;
+    }
 
-	public String getEmail() {
-		return szEmail;
-	}
+    public String getTelephone() {
+        return szTelephone;
+    }
 
-	public void setEmail(String szEmail) {
-		this.szEmail = szEmail;
-	}
+    public void setTelephone(String szTelephone) {
+        this.szTelephone = szTelephone;
+    }
 
-	public String getPassword() {
-		return szPassword;
-	}
+    public String getEmail() {
+        return szEmail;
+    }
 
-	public void setPassword(String szPassword) {
-		this.szPassword = szPassword;
-	}
+    public void setEmail(String szEmail) {
+        this.szEmail = szEmail;
+    }
 
-	public String getUserId() {
-		return szUserId;
-	}
+    public String getPassword() {
+        return szPassword;
+    }
 
-	public void setUserId(String szUserId) {
-		this.szUserId = szUserId;
-	}
+    public void setPassword(String szPassword) {
+        this.szPassword = szPassword;
+    }
 
-	public String getPermissionManager() {
-		return szPermissionManager;
-	}
+    public String getUserId() {
+        return szUserId;
+    }
 
-	public void setSzPermissionManager(String szPermissionManager) {
-		this.szPermissionManager = szPermissionManager;
-	}
+    public void setUserId(String szUserId) {
+        this.szUserId = szUserId;
+    }
 
-	public String getPermissionView() {
-		return szPermissionView;
-	}
+    public boolean getPermissionManager() {
+        return bPermissionManager;
+    }
 
-	public void setSzPermissionView(String szPermissionView) {
-		this.szPermissionView = szPermissionView;
-	}
+    public void setPermissionManager(String szPermissionManager) {
+        this.bPermissionManager = convertFromStringClientToBoolean(szPermissionManager);
+    }
 
-	@Override
-	public String toString() {
-		return "User{" +
-				"Username='" + szUsername + '\'' +
-				", Telephone='" + szTelephone + '\'' +
-				", Email='" + szEmail + '\'' +
-				", Password='" + szPassword + '\'' +
-				", UserId='" + szUserId + '\'' +
-				", PermissionManager='" + szPermissionManager + '\'' +
-				", PermissionView='" + szPermissionView + '\'' +
-				'}';
-	}
+    public void setPermissionManager(boolean bPermissionManager) {
+        this.bPermissionManager = bPermissionManager;
+    }
 
-	public String toJson() {
-		return "{ \"User\":[ {" +
-				"\"UserName=\":\"" + szUsername + "\"" +
-				",\"Telephone=\":\"" + szTelephone + "\"" +
-				",\"Email=\":\"" + szEmail + "\"" +
-				",\"Password=\":\"" + szPassword + "\"" +
-				",\"UserId=\":\"" + szUserId + "\"" +
-				",\"Permission_manager=\":\"" + szPermissionManager + "\"" +
-				",\"Permission_view=\":\"" + szPermissionView + "\"" +
-				"} ]}";
-	}
+    public boolean getPermissionView() {
+        return bPermissionView;
+    }
+
+    public void setPermissionView(String szPermissionView) {
+        this.bPermissionView = convertFromStringClientToBoolean(szPermissionView);
+    }
+
+    public void setPermissionView(boolean bPermissionView) {
+        this.bPermissionView = bPermissionView;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Username='" + szUsername + '\'' +
+                ", Telephone='" + szTelephone + '\'' +
+                ", Email='" + szEmail + '\'' +
+                ", Password='" + szPassword + '\'' +
+                ", UserId='" + szUserId + '\'' +
+                ", PermissionManager='" + bPermissionManager + '\'' +
+                ", PermissionView='" + bPermissionView + '\'' +
+                '}';
+    }
+
+    public String toJson() {
+        return "{ \"User\":[ {" +
+                "\"UserName=\":\"" + szUsername + "\"" +
+                ",\"Telephone=\":\"" + szTelephone + "\"" +
+                ",\"Email=\":\"" + szEmail + "\"" +
+                ",\"Password=\":\"" + szPassword + "\"" +
+                ",\"UserId=\":\"" + szUserId + "\"" +
+                ",\"Permission_manager=\":\"" + bPermissionManager + "\"" +
+                ",\"Permission_view=\":\"" + bPermissionView + "\"" +
+                "} ]}";
+    }
+
+    public boolean convertFromStringDataBaseFormatToBoolean(String szBoolean) {
+        boolean bBooleanToReturn = false;
+        if (szBoolean.equals("0")) {
+            bBooleanToReturn = true;
+        } else if (szBoolean.equals("1")) {
+            bBooleanToReturn = false;
+        }
+        return bBooleanToReturn;
+    }
+
+    public boolean convertFromStringClientToBoolean(String szBoolean) {
+        boolean bBooleanToReturn = false;
+        if (szBoolean.equals("true")) {
+            bBooleanToReturn = true;
+        } else if (szBoolean.equals("false")) {
+            bBooleanToReturn = false;
+        }
+        return bBooleanToReturn;
+    }
+
+    public String convertBooleanToString(boolean bBoolean) {
+        String szBooleanToReturn = "false";
+        if (bBoolean == true) {
+            szBooleanToReturn = "true";
+        } else if (bBoolean == false) {
+            szBooleanToReturn = "false";
+        }
+        return szBooleanToReturn;
+    }
+
+    public String convertBooleanToDataBaseFormatString(boolean bBoolean) {
+        String szBooleanToReturn = "false";
+        if (bBoolean == true) {
+            szBooleanToReturn = "0";
+        } else if (bBoolean == false) {
+            szBooleanToReturn = "1";
+        }
+        return szBooleanToReturn;
+    }
 }

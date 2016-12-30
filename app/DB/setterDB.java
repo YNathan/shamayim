@@ -138,6 +138,77 @@ public class setterDB {
      * @return
      * @throws Exception
      */
+    public WebResponce addNewUser(String userName, String telephone, String email,
+                                   String password, int nPermissionManager, int nPermissionView) throws Exception {
+
+        webResponce = new WebResponce();
+        // INFO
+        play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Register new user : ");
+        System.out.println("============================");
+        System.out.println("For : =>>");
+        System.out.println("User name : " + userName);
+        System.out.println("Telephone : " + telephone);
+        System.out.println("Email : " + email);
+        System.out.println("Password : " + password);
+        System.out.println("============================");
+
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("insert into " + TABLE_USERS_NAME
+                    + " (user_name,telephone,email,password,permission_manager,permission_view) values (?, ?, ? , ?, ?,?)");
+            play.Logger.info(" Insert new user to the data-base");
+            // Parameters start with 1
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, telephone);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
+            preparedStatement.setInt(5, nPermissionManager);
+            preparedStatement.setInt(6, nPermissionView);
+            preparedStatement.executeUpdate();
+            System.out.println("registered successfully!!!");
+            System.out.println("============================");
+            webResponce.setReason("registered successfully!!!. המשתמש התווסף בהצלחה למערכת");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to add the new user. ארעה שגיעה במהלך הוספת המשתמש");
+            System.out.println("==========================================");
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("a problem occurred when try to add the new user. ארעה שגיעה במהלך הוספת המשתמש");
+            play.Logger.info("<setterDB> " + e.getMessage());
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
+        return webResponce;
+
+    }
+
+    /**
+     * Register a new user into the data-base
+     *
+     * @param userName  - user name
+     * @param telephone - telephone
+     * @param email     - email
+     * @param password  - password
+     * @return
+     * @throws Exception
+     */
     public WebResponce updateUser(int nUserId, String userName, String telephone, String email, String password, int nPermissionManager, int nPermissionView) throws Exception {
         webResponce = new WebResponce();
         // INFO

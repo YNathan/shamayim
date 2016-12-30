@@ -35,7 +35,7 @@ public class getterBL {
         boolean isGreateLogin = false;
         for (User currUser : userList) {
             if (currUser.getUsername().equals(szUserName) && currUser.getPassword().equals(szPassword)) {
-                szPermission = currUser.getPermissionManager();
+                szPermission = currUser.convertBooleanToString(currUser.getPermissionManager());
                /* try {
                     mail.sendLoginSuccess(szUserName, request().remoteAddress());
                 } catch (MessagingException e) {
@@ -139,7 +139,7 @@ public class getterBL {
         }
         while (currUser != null) {
 
-            if ((currUser.getUsername().equals(szUserName)) && (currUser.getPermissionManager().equals("0"))) {
+            if ((currUser.getUsername().equals(szUserName)) && (currUser.getPermissionManager() == true)) {
                 // INFO
                 play.Logger.info("<BUSINESS_LOGIC> Get users");
 

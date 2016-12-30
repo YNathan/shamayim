@@ -5,6 +5,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
 import Entity.Dictionary;
+import Entity.User;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -121,6 +122,13 @@ public class ApplicationTest {
     public void getDbPassword() {
         FileGetter fileGetter = new FileGetter();
         System.out.println(fileGetter.getDataBasePassword());
+
+    }
+
+    @Test
+    public void printUser() {
+        User user = new User("yaacov", "0527879217", "yaacov@gmail.com", "a", "15", "0", "1");
+        System.out.println(user.toString());
 
     }
 

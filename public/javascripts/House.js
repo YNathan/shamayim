@@ -37,7 +37,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     };
 
     $scope.isManager = function () {
-            if (ShamayimFunctions.getPermissionCookie() == "0") {
+            if (ShamayimFunctions.getPermissionCookie() == "true") {
                 return true;
             } else {
                 return false;
