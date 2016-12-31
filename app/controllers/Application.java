@@ -22,7 +22,7 @@ public class Application extends Controller {
     public static String szDbPassword = "";
 
     public static Result index() {
-        System.out.println("\n[INFO] Hello Server\n");
+        System.out.println("\n[INFO] Server: new session\n");
         FileGetter fileGetter = new FileGetter();
         szDbPassword = fileGetter.getDataBasePassword();
         return redirect("assets/index.html");

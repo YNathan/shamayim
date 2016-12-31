@@ -341,7 +341,7 @@ public class setterDB {
      * @return
      * @throws Exception
      */
-    public WebResponce updateHouseGeneralDetails(House m_House){
+    public WebResponce updateHouseFinancialDetails(House m_House){
         webResponce = new WebResponce();
         // INFO
         play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
@@ -393,7 +393,7 @@ public class setterDB {
      * @return
      * @throws Exception
      */
-    public WebResponce updateHouseFinancialDetails(House m_House){
+    public WebResponce updateHouseGeneralDetails(House m_House){
         webResponce = new WebResponce();
         // INFO
         play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
@@ -417,7 +417,7 @@ public class setterDB {
                     + "&password=" + DATA_BASE_PASSWORD_NAME);
 
             // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set house_kind=" + m_House.getHouseKind().getValue() + " ,number_of_rooms=" + m_House.getNumberOfRooms() + " ,number_of_living_rooms=" + m_House.getNumberOfLivingRooms() + " ,number_of_kitchens=" + m_House.getNumberOfKitchens() + " ,number_of_bedrooms=" + m_House.getNumberOfBedrooms() + " ,number_of_bathrooms=" + m_House.getNumberOfBathrooms() + " ,location_kind=" + m_House.getLocationKind()+ " ,comments=" + m_House.getComments() + " where house_id=" + m_House.getHouseId() + ";");
+            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set house_kind=" + m_House.getHouseKind().getValue() + " ,number_of_rooms=" + m_House.getNumberOfRooms() + " ,number_of_living_rooms=" + m_House.getNumberOfLivingRooms() + " ,number_of_kitchens=" + m_House.getNumberOfKitchens() + " ,number_of_bedrooms=" + m_House.getNumberOfBedrooms() + " ,number_of_bathrooms=" + m_House.getNumberOfBathrooms() + " ,location_kind=" + m_House.getLocationKind().getValue()+ " ,comments='" + m_House.getComments() + "' where house_id=" + m_House.getHouseId() + ";");
             play.Logger.info(" Update house general details to the data-base");
             preparedStatement.executeUpdate();
             System.out.println("update successfully");

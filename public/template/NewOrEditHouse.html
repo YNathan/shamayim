@@ -42,8 +42,7 @@
 </div>
 
 <md-content class="md-padding trns">
-    <md-tabs md-selected="dataTabs.selectedIndex" layout-fill md-align-tabs="{{dataTabs.bottom ? 'bottom' : 'top'}}">
-
+    <md-tabs class="md-padding" md-selected="dataTabs.selectedIndex" layout-fill md-align-tabs="{{dataTabs.bottom ? 'bottom' : 'top'}}">
         <md-tab id="tab1">
             <md-tab-label>{{dictionary.Dictionary[0].Address}}</md-tab-label>
             <md-tab-body>
@@ -84,14 +83,14 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab id="tab2">
+        <md-tab id="tab2" ng-disabled="dataTabs.TabsLocked">
             <md-tab-label>{{dictionary.Dictionary[0].GeneralHouseDetailes}}</md-tab-label>
             <md-tab-body>
 
                 <div class="flex-container">
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
                         <div flex=100>
-                            <form ng-submit="setNewHouse()" class="md-padding">
+                            <form ng-submit="setHouseGeneralDetails()" class="md-padding">
                                 <md-input-container>
                                     <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
                                     <input type="number" ng-model="house_kind" name="text" placeholder="מספר בית" required/>
@@ -136,13 +135,13 @@
                 </div>
             </md-tab-body>
         </md-tab>
-        <md-tab id="tab3" ng-disabled="dataTabs.secondLocked">
+        <md-tab id="tab3" ng-disabled="dataTabs.TabsLocked">
             <md-tab-label>{{dictionary.Dictionary[0].FinancialHouseDetailes}}</md-tab-label>
             <md-tab-body>
                 <div class="flex-container">
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
                         <div flex=100>
-                            <form ng-submit="setNewHouse()" class="md-padding">
+                            <form ng-submit="setHouseFinancialDetails()" class="md-padding">
                                 <md-input-container>
                                     <label> {{dictionary.Dictionary[0].PurchasePrice}} :</label>
                                     <input type="number" ng-model="purchase_price" name="text" placeholder="מספר בית" required/>
@@ -176,8 +175,26 @@
                 </div>
             </md-tab-body>
         </md-tab>
-        <md-tab id="tab4" ng-disabled="dataTabs.thirdLocked">
-            <md-tab-label> {{dictionary.Dictionary[0].UploadHouseFiles}}</md-tab-label>
+        <md-tab id="tab4" ng-disabled="dataTabs.TabsLocked">
+            <md-tab-label> {{dictionary.Dictionary[0].HouseProfilePicture}}</md-tab-label>
+            <md-tab-body>
+                <form name="testForm" layout="column" class="md-padding" s>
+                    <lf-ng-md-file-input name="houseProfilePicture" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+                    <div ng-messages="testForm.files00.$error" style="color:red;">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="maxcount">Too much files.</div>
+                        <div ng-message="filesize">File size too large.</div>
+                        <div ng-message="totalsize">Total size too large.</div>
+                        <div ng-message="mimetype">Mimetype error.</div>
+                    </div>
+                    <md-button type="button" class="md-raised md-primary" ng-click="uploadFiles()">Submit</md-button>
+                </form>
+
+            </md-tab-body>
+
+        </md-tab>
+        <md-tab id="tab5" ng-disabled="dataTabs.TabsLocked">
+            <md-tab-label> {{dictionary.Dictionary[0].UploadHousePictures}}</md-tab-label>
             <md-tab-body>
                 <form name="testForm" layout="column" class="md-padding" s>
                     <lf-ng-md-file-input name="files" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
@@ -194,45 +211,24 @@
             </md-tab-body>
 
         </md-tab>
-        <md-tab id="tab5" ng-disabled="dataTabs.thirdLocked">
-            <md-tab-label>{{dictionary.Dictionary[0].FinancialHouseDetailes}}</md-tab-label>
+        <md-tab id="tab6" ng-disabled="dataTabs.TabsLocked">
+            <md-tab-label> {{dictionary.Dictionary[0].UploadHouseFiles}}</md-tab-label>
             <md-tab-body>
-                <div class="flex-container">
-                    <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}">
-                        <div flex=100>
-                            <form ng-submit="setNewHouse()" class="md-padding">
-                                <md-input-container>
-                                    <label> {{dictionary.Dictionary[0].PurchasePrice}} :</label>
-                                    <input type="number" ng-model="purchase_price" name="text" placeholder="מספר בית" required/>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label> {{dictionary.Dictionary[0].TreatmentFees}} :</label>
-                                    <input type="number" ng-model="treatment_fees" name="text" placeholder="מספר בית" required/>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>  {{dictionary.Dictionary[0].RenovationFeesForSale}} :</label>
-                                    <input type="number" ng-model="renovation_fees_for_sale" name="text" placeholder="מספר בית" required/>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>  {{dictionary.Dictionary[0].RenovationFeesForRenting}} :</label>
-                                    <input type="number" ng-model="renovation_fees_for_renting" name="text" placeholder="מספר בית" required/>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label> {{dictionary.Dictionary[0].DiversFees}} :</label>
-                                    <input type="number" ng-model="divers_fees" name="text" placeholder="מספר בית" required/>
-                                </md-input-container>
-
-                                <center>
-                                    <md-input-container>
-                                        <md-button class="md-raised md-primary" type="submit" id="submit">שמור</md-button>
-                                    </md-input-container>
-                                </center>
-                            </form>
-                        </div>
+                <form name="testForm" layout="column" class="md-padding" s>
+                    <lf-ng-md-file-input name="houseDocuments" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+                    <div ng-messages="testForm.files00.$error" style="color:red;">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="maxcount">Too much files.</div>
+                        <div ng-message="filesize">File size too large.</div>
+                        <div ng-message="totalsize">Total size too large.</div>
+                        <div ng-message="mimetype">Mimetype error.</div>
                     </div>
+                    <md-button type="button" class="md-raised md-primary" ng-click="uploadFiles()">Submit</md-button>
+                </form>
 
-                </div>
             </md-tab-body>
+
         </md-tab>
+
     </md-tabs>
 </md-content>

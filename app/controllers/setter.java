@@ -386,6 +386,42 @@ public class setter {
 
     }
 
+    /**
+     * Get file(*can be a profile picture) from client and save in the server
+     *
+     * @return
+     * @throws IOException
+     */
+    public static play.mvc.Result setHouseDocuments(String szHouseName) throws IOException {
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
+        webResponce = setterBL.setHouseDocuments(szHouseName, pictures);
+        if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+            return badRequest(webResponce.getReason());
+        } else {
+            return ok(webResponce.getReason());
+        }
+
+    }
+
+    /**
+     * Setting the profile picture of the house will be displayed in the front of the house
+     *
+     * @return
+     * @throws IOException
+     */
+    public static play.mvc.Result setHouseProfilePictures(String szHouseName) throws IOException {
+        play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
+        List<Http.MultipartFormData.FilePart> pictures = body.getFiles();
+        webResponce = setterBL.setHouseProfilePictures(szHouseName, pictures);
+        if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+            return badRequest(webResponce.getReason());
+        } else {
+            return ok(webResponce.getReason());
+        }
+
+    }
+
     public static boolean updateProfilePicture() {
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
         play.mvc.Http.MultipartFormData.FilePart picture = body.getFile("file");

@@ -1,12 +1,3 @@
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments) 
-values ('Newark', 'N.J', '13th', '718', '1', 7, 1, 1, 2, 1, 2,  'comments');
-
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
-values ('Washington', 'Baltimor', 'Prince', '12', '1', 7, 1, 1, 2, 1, 2,  'אחלה של בית');
-
-insert into shamayim.house (state, city, street, house_number, house_kind, number_of_rooms, number_of_living_rooms, number_of_kitchens, number_of_bedrooms, number_of_bathrooms, location_kind, comments)
-values ('Israel', 'jerusalem', 'Maanee Simcha', '28', '1', 7, 1, 1, 2, 1, 2,  'נוף מדהים');
-
 CREATE DATABASE `shamayim` /*!40100 DEFAULT CHARACTER SET utf8 */
 
 CREATE TABLE `house` (
@@ -50,19 +41,21 @@ CREATE TABLE `users` (
   `permission_manager` int(11) NOT NULL DEFAULT '1',
   `permission_view` int(11) DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
-
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8
 /*
 -- Query: SELECT * FROM shamayim.users
 LIMIT 0, 1000
 
--- Date: 2016-12-29 13:40
+-- Date: 2016-12-31 17:39
 */
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Y.Nathan','yaacovisraelnathan@gmail.com','525','a',1,0,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Yaacov','biendityaacov@gmail.com','052-7879217','a',2,0,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('itamar','ashaya31@gmail.com','2','a',3,1,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('mendele','mendelebarak@gmail.com','0','a',4,1,1);
-
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''Y.Nathan'',''yaacovisraelnathan@gmail.com'',''525'',''a'',1,0,0);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''Yaacov'',''biendityaacov@gmail.com'',''052-7879217'',''1'',2,1,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''itamar'',''ashaya31@gmail.com'',''2'',''a'',3,1,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''mendele'',''mendelebarak@gmail.com'',''0'',''a'',4,1,0);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''dani'',''dani@gmail.com'',''0527879817'',''dfdf'',5,1,1);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''moysh'',''moyshe'',''05289789'',''as'',7,1,0);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''tsadic'',''tds@gmail.com'',''05278787'',''a'',8,0,0);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''lallalal'',''asd@tsasds.vp'',''0565865'',''1'',9,1,0);
 
 drop table shamayim.dictionary;
 CREATE TABLE `dictionary` (
@@ -104,22 +97,20 @@ CREATE TABLE `dictionary` (
   `houses_list` varchar(255) DEFAULT NULL,
   `save` varchar(255) DEFAULT NULL,
   `send_me_this_house_to_my_mail` varchar(255) DEFAULT NULL,
-  `direction_html` varchar(255) DEFAULT 'ltr',
+  `direction_html` varchar(255) DEFAULT ''ltr'',
+  `logout` varchar(255) DEFAULT ''Logout'',
+  `system_manager` varchar(255) DEFAULT ''System Manager'',
+  `upload_house_profile_picture` varchar(255) DEFAULT ''Upload House Profile Picture'',
+  `upload_house_pictures` varchar(255) DEFAULT ''Upload House Pictures'',
   PRIMARY KEY (`house_language`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 /*
 -- Query: SELECT * FROM shamayim.dictionary
-LIMIT 0, 50000
+LIMIT 0, 1000
 
--- Date: 2016-12-20 10:45
+-- Date: 2016-12-19 18:02
 */
-INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`,`direction_html`) VALUES ('English','Number Of House That Recording In The System','Address','State','City','Street','House Number','Kind Of House','Number Of Rooms','Number Of Living Rooms','Number Of Kitchens','Number Of Bedrooms','Number Of Bathrooms','Location Kind','Score','Comments','Purchase Price','Treatment Fees','Renovation Fees For Sale','Renovation Fees For Reinting','Divers Fees','General Details','Financial Details','Upload House Files','Drag & Drop Files Here','House Details Table','Menu','Information','House','Manage Houses','New House','About','Wellcom To Your Account','Select A House','Area On The Map','Houses List','Save','Send Me This House To My Mail','ltr');
-INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`,`direction_html`) VALUES ('Francais','Numero De Maison Enregistrer Dans Le System','Address','Pays','Ville','Rue','Numero De Maison','Style De Maison','Nombre De Chambres','Numbre De Salle A Manger','Numbre De cuisins','Nombre De Chambre A Cousher','Nombre De Chambre De Toilette','Environnment','Score','Commentaires','Prix Dachat','Depance De Traitment','Depance De Renovation Pour Vente','Depance De Renovation Pour Location','Autre Depance','Detailles Generals','Detailles Financier','Enregistrer Des Fichier Concernant La Maison','Tirez Ou Jeter Des Fichier Ici','Tableau détaillé de la maison','Menu Principal','Information','Maison','gerer les maisons','Nouvel Maison','A Propos','Bienvenu A Votre Compte','Choisissez Une Maison','Sur La Carte','List De Maisons','Sauvegarder','Envoi Moi Cette Maison Sur Ma Boite Mail','ltr');
-INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`,`direction_html`) VALUES ('עברית','מספר רישום הבית במערכת','כתובת','מדינה','עיר','רחוב','מספר בית','סוג הבית','מספר חדרים','מספר חדרי סלון','מספר חדרי מטבח','מספר חדרי שינה','מספר חדרי שירותים/ מקלחת','מיקום','ציון','הערות','מחיר קניה','הוצאות טיפול','הוצאות שיפוץ למכירה','הוצאות שיפוץ להשכרה','הוצאות אחרות','נתונים כלליים','נתונים כלכליים','העלאת קבצים','גרור או זרוק קבצים לפה','טבלת נתוני הבית','תפריט','פרטים על משתמש','בית','רשימת כלל הבתים','בית חדש','אודות','ברוך הבא לחשבונך','בחר בית',' על המפה','רשימת הבתים','שמור','שלח לי בית זה למייל','rtl');
+INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`) VALUES (''English'',''Number Of House That Recording In The System'',''Address'',''State'',''City'',''Street'',''House Number'',''Kind Of House'',''Number Of Rooms'',''Number Of Living Rooms'',''Number Of Kitchens'',''Number Of Bedrooms'',''Number Of Bathrooms'',''Location Kind'',''Score'',''Comments'',''Purchase Price'',''Treatment Fees'',''Renovation Fees For Sale'',''Renovation Fees For Reinting'',''Divers Fees'',''General Details'',''Financial Details'',''Upload House Files'',''Drag & Drop Files Here'',''House Details Table'',''Menu'',''Information'',''House'',''Manage Houses'',''New House'',''About'',''Wellcom To Your Account'',''Select A House'',''Area On The Map'',''Houses List'',''Save'',''Send Me This House To My Mail'');
+INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`) VALUES (''Francais'',''Numero De Maison Enregistrer Dans Le System'',''Address'',''Pays'',''Ville'',''Rue'',''Numero De Maison'',''Style De Maison'',''Nombre De Chambres'',''Numbre De Salle A Manger'',''Numbre De cuisins'',''Nombre De Chambre A Cousher'',''Nombre De Chambre De Toilette'',''Environnment'',''Score'',''Commentaires'',''Prix Dachat'',''Depance De Traitment'',''Depance De Renovation Pour Vente'',''Depance De Renovation Pour Location'',''Autre Depance'',''Detailles Generals'',''Detailles Financier'',''Enregistrer Des Fichier Concernant La Maison'',''Tirez Ou Jeter Des Fichier Ici'',''Tableau détaillé de la maison'',''Menu Principal'',''Information'',''Maison'',''gerer les maisons'',''Nouvel Maison'',''A Propos'',''Bienvenu A Votre Compte'',''Choisissez Une Maison'',''Sur La Carte'',''List De Maisons'',''Sauvegarder'',''Envoi Moi Cette Maison Sur Ma Boite Mail'');
+INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`) VALUES (''עברית'',''מספר רישום הבית במערכת'',''כתובת'',''מדינה'',''עיר'',''רחוב'',''מספר בית'',''סוג הבית'',''מספר חדרים'',''מספר חדרי סלון'',''מספר חדרי מטבח'',''מספר חדרי שינה'',''מספר חדרי שירותים/ מקלחת'',''מיקום'',''ציון'',''הערות'',''מחיר קניה'',''הוצאות טיפול'',''הוצאות שיפוץ למכירה'',''הוצאות שיפוץ להשכרה'',''הוצאות אחרות'',''נתונים כלליים'',''נתונים כלכליים'',''העלאת קבצים'',''גרור או זרוק קבצים לפה'',''טבלת נתוני הבית'',''תפריט'',''פרטים על משתמש'',''בית'',''רשימת כלל הבתים'',''בית חדש'',''אודות'',''ברוך הבא לחשבונך'',''בחר בית'','' על המפה'',''רשימת הבתים'',''שמור'',''שלח לי בית זה למייל'');
 
-
-
-
-insert into yankalee.users
-(user_name,first_name,last_name,telephone,email,password,birthdate)
-values ('Y.Nathan', 'yaavov', 'nathan', '0527879217', 'yaacovnathan@hotmail.fr', 'a', 1990-16-11)

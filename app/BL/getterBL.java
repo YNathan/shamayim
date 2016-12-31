@@ -216,7 +216,8 @@ public class getterBL {
             sbHousesInformationToReturn.append("\"comments\":\"" + currHouse.getComments() + "\",");
             sbHousesInformationToReturn.append("\"purchase_price\":\"" + currHouse.getPurchasePrice() + "\",");
             sbHousesInformationToReturn.append("\"treatment_fees\":\"" + currHouse.getTreatmentFees() + "\",");
-            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + currHouse.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_sale\":\"" + currHouse.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_renting\":\"" + currHouse.getRenovationFeesForRenting() + "\",");
             sbHousesInformationToReturn.append("\"divers_fees\":\"" + currHouse.getDiversFees() + "\"}");
 
             if (housesLtr.hasNext()) {
@@ -263,7 +264,8 @@ public class getterBL {
             sbHousesInformationToReturn.append("\"comments\":\"" + house.getComments() + "\",");
             sbHousesInformationToReturn.append("\"purchase_price\":\"" + house.getPurchasePrice() + "\",");
             sbHousesInformationToReturn.append("\"treatment_fees\":\"" + house.getTreatmentFees() + "\",");
-            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_sale\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_renting\":\"" + house.getRenovationFeesForRenting() + "\",");
             sbHousesInformationToReturn.append("\"divers_fees\":\"" + house.getDiversFees() + "\"}");
         }
         sbHousesInformationToReturn.append(" }");
@@ -302,7 +304,8 @@ public class getterBL {
             sbHousesInformationToReturn.append("\"comments\":\"" + house.getComments() + "\",");
             sbHousesInformationToReturn.append("\"purchase_price\":\"" + house.getPurchasePrice() + "\",");
             sbHousesInformationToReturn.append("\"treatment_fees\":\"" + house.getTreatmentFees() + "\",");
-            sbHousesInformationToReturn.append("\"renovation_fees\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_sale\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_renting\":\"" + house.getRenovationFeesForRenting() + "\",");
             sbHousesInformationToReturn.append("\"divers_fees\":\"" + house.getDiversFees() + "\"}");
         }
         sbHousesInformationToReturn.append(" }");

@@ -59,4 +59,56 @@ public class FileSetter {
         }
         return webResponce;
     }
+
+    public WebResponce setHouseDocuments(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
+        Iterator<Http.MultipartFormData.FilePart> filePartIterator = pictures.iterator();
+        while (filePartIterator.hasNext()) {
+            Http.MultipartFormData.FilePart picture = filePartIterator.next();
+            if (picture != null) {
+                File sourceFile = picture.getFile();
+                System.out.println(sourceFile);
+                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\Docs\\" + picture.getFilename());
+                try {
+                    play.Logger.info("<SETTER> save profile picture on file");
+                    setterBL.copyFile(sourceFile, dest);
+                    webResponce.setReason("Success Upload File To the Sever");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                    webResponce.setReason("Error When Upload File To Server");
+                    play.Logger.info(e.getMessage());
+                }
+            } else {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Error When Try To Upload A Null File To The Server");
+            }
+        }
+        return webResponce;
+    }
+
+    public WebResponce setHouseProfilePicture(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
+        Iterator<Http.MultipartFormData.FilePart> filePartIterator = pictures.iterator();
+        while (filePartIterator.hasNext()) {
+            Http.MultipartFormData.FilePart picture = filePartIterator.next();
+            if (picture != null) {
+                File sourceFile = picture.getFile();
+                System.out.println(sourceFile);
+                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + szHouseName +"_profile.jpg");
+                try {
+                    play.Logger.info("<SETTER> save profile picture on file");
+                    setterBL.copyFile(sourceFile, dest);
+                    webResponce.setReason("Success Upload File To the Sever");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                    webResponce.setReason("Error When Upload File To Server");
+                    play.Logger.info(e.getMessage());
+                }
+            } else {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Error When Try To Upload A Null File To The Server");
+            }
+        }
+        return webResponce;
+    }
 }

@@ -1,6 +1,8 @@
 app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
     var houseId = -1;
     $scope.files;
+    $scope.houseProfilePicture;
+    $scope.houseDocuments;
     $scope.strCaptionDragAndDrop = "Drag & drop files here...";
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
@@ -50,8 +52,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     $scope.dataTabs = {
         selectedIndex: 0,
-        secondLocked: true,
-        thirdLocked: true,
+        TabsLocked: true,
         bottom: false
     };
     $scope.next = function () {
@@ -80,8 +81,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_NEW_HOUSE', house);
         res.success(function (data, status, headers, config) {
-            $scope.dataTabs.secondLocked = false;
-            $scope.dataTabs.thirdLocked = false;
+            $scope.dataTabs.TabsLocked = false;
             alert(data);
         });
         res.error(function (data, status, headers, config) {
@@ -103,8 +103,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_NEW_HOUSE_ADDRESS', house);
         res.success(function (data, status, headers, config) {
-            $scope.dataTabs.secondLocked = false;
-            $scope.dataTabs.thirdLocked = false;
+            $scope.dataTabs.TabsLocked = false;
             alert(data.WebResponce[0].Reason);
             houseId = data.WebResponce[0].MoreDetails;
             alert(houseId);
@@ -132,8 +131,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_HOUSE_GENERAL_DETAILS', house);
         res.success(function (data, status, headers, config) {
-            $scope.dataTabs.secondLocked = false;
-            $scope.dataTabs.thirdLocked = false;
+            $scope.dataTabs.TabsLocked = false;
             alert(data.WebResponce[0].Reason);
             alert(houseId);
         });
@@ -157,8 +155,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
         var res = $http.post('/SET_HOUSE_FINANCIAL_DETAILS', house);
         res.success(function (data, status, headers, config) {
-            $scope.dataTabs.secondLocked = false;
-            $scope.dataTabs.thirdLocked = false;
+            $scope.dataTabs.TabsLocked = false;
             alert(data.WebResponce[0].Reason);
             alert(houseId);
         });
@@ -178,6 +175,33 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         $state.go('wellcom');
     }
 
+
+    // House Profile Pictures Section
+    $scope.$watch('files.length', function (newVal, oldVal) {
+        console.log($scope.houseProfilePicture);
+    });
+
+    // Upload File To The Server (House Pictures OR Some Else File)
+    $scope.uploadFiles = function () {
+        var formData = new FormData();
+        angular.forEach($scope.houseProfilePicture, function (obj) {
+            formData.append('files[]', obj.lfFile);
+        });
+
+        $http.post("/SET_HOUSE_PROFILE_PICTURE/" + house.state + "_" + house.city + "_" + house.street + "_" + house.house_number, formData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+        }).success(
+            alert("Yeah!!!")
+        ).error(
+            alert("Oups! something wrong was hapening")
+        );
+    }
+
+    // House Pictures Section
     $scope.$watch('files.length', function (newVal, oldVal) {
         console.log($scope.files);
     });
@@ -201,13 +225,31 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             alert("Oups! something wrong was hapening")
         );
     }
-    $scope.isManager = function () {
-        if (ShamayimFunctions.getPermissionCookie() == "0") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
+
+    // House Documents Section
+    $scope.$watch('files.length', function (newVal, oldVal) {
+        console.log($scope.houseDocuments);
+    });
+
+    // Upload File To The Server (House Pictures OR Some Else File)
+    $scope.uploadFiles = function () {
+        var formData = new FormData();
+        angular.forEach($scope.houseDocuments, function (obj) {
+            formData.append('files[]', obj.lfFile);
+        });
+
+        $http.post("/SET_HOUSE_DOCUMENTS/" + house.state + "_" + house.city + "_" + house.street + "_" + house.house_number, formData, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity
+        }).success(
+            alert("Yeah!!!")
+        ).error(
+            alert("Oups! something wrong was hapening")
+        );
+    }
 
 }]);

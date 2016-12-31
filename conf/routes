@@ -23,13 +23,17 @@ GET         /GET_USER_INFORMATION/:szUserName                                   
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
 POST        /SET_NEW_HOUSE_ADDRESS                                                                 controllers.setter.setNewHouseAdress()
 POST        /SET_HOUSE_GENERAL_DETAILS                                                             controllers.setter.setHouseGeneralDetails()
-POST        /SET_HOUSE_FINANCIAL_DETAILS                                                             controllers.setter.setHouseFinancialDetails()
+POST        /SET_HOUSE_FINANCIAL_DETAILS                                                           controllers.setter.setHouseFinancialDetails()
+POST        /SET_HOUSE_PROFILE_PICTURE/:szHouseName                                                controllers.setter.setHouseProfilePictures(szHouseName:String)
+POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
+POST        /SET_HOUSE_DOCUMENTS/:szHouseName                                                      controllers.setter.setHouseDocuments(szHouseName:String)
+
+
 
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 GET         /GET_LANGUAGE/:szLanguage                                                              controllers.getter.getLanguage(szLanguage:String)
-POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
 GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                                              controllers.setter.sendHouseMail(szUserName:String,szHouseId:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
