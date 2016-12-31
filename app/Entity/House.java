@@ -252,6 +252,7 @@ public class House {
                 ", dPurchasePrice=" + dPurchasePrice +
                 ", dTreatmentFees=" + dTreatmentFees +
                 ", dRenovationFeesForSale=" + dRenovationFeesForSale +
+                ", RenovationFeesForRenting=" + dRenovationFeesForRenting +
                 ", dDiversFees=" + dDiversFees +
                 ", ZipCode=" + nZipCode +
                 '}';
@@ -275,6 +276,7 @@ public class House {
                 "\n PurchasePrice = " + dPurchasePrice +
                 "\n TreatmentFees = " + dTreatmentFees +
                 "\n RenovationFeesForSale = " + dRenovationFeesForSale +
+                "\n RenovationFeesForRenting = " + dRenovationFeesForRenting +
                 "\n DiversFees=" + dDiversFees +
                 "\n ZipCode=" + nZipCode
                 ;

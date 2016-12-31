@@ -1,4 +1,5 @@
 app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
+    var houseId = -1;
     $scope.files;
     $scope.strCaptionDragAndDrop = "Drag & drop files here...";
     // Just print kind of 'hay message'
@@ -17,14 +18,16 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.number_of_bathrooms = 5;
     $scope.location_kind = 5;
     $scope.comments = "nice area have fun";
-    $scope.purchase_price;
-    $scope.treatment_fees;
-    $scope.renovation_fees;
-    $scope.divers_fees;
+    $scope.purchase_price = 0.0;
+    $scope.treatment_fees = 0.0;
+    $scope.divers_fees = 0.0;
+    $scope.renovation_fees_for_sale = 0.0;
+    $scope.renovation_fees_for_renting = 0.0;
     $scope.userName = ShamayimFunctions.getCookie("username");
     var houseName = "";
     var tempArr = [];
     var house = {
+        "houseId": "-1",
         "state": "israel",
         "city": "jerusalem",
         "street": "yirmiyahu",
@@ -36,7 +39,13 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         "number_of_bedrooms": "1",
         "number_of_bathrooms": "1",
         "location_kind": "dfg",
-        "comments": "Nice area great place to have fun"
+        "comments": "Nice area great place to have fun",
+        "purchase_price": "0.0",
+        "treatment_fees": "0.0",
+        "renovation_fees": "0.0",
+        "divers_fees": "0.0",
+        "renovation_fees_for_renting": "0.0",
+        "renovation_fees_for_sale": "0.0"
     }
 
     $scope.dataTabs = {
@@ -52,33 +61,8 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         $scope.dataTabs.selectedIndex = Math.max($scope.dataTabs.selectedIndex - 1, 0);
     };
 
-    // For the house
-    $scope.houses = {
-        availableOptions: [],
-        selectedOption: {
-            id: '1',
-            house: 'default'
-        }
-    };
-
-
 
     // Get information conserning the
-    $http.get("/GET_LIST_OF_HOUSES")
-        .then(function successCallback(response) {
-                angular.forEach(response.data.houses, function (value, key) {
-                    itemName = {
-                        id: key,
-                        house: value
-                    }
-                    tempArr.push(itemName);
-                    $scope.houses.availableOptions.push(itemName.house);
-                }, $scope.houses);
-            },
-            function error(response) {
-                ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-            });
-
     $scope.setNewHouse = function () {
         house.state = $scope.state;
         house.city = $scope.city;
@@ -102,65 +86,90 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         });
         res.error(function (data, status, headers, config) {
             alert("failure message: " + JSON.stringify({
-                data: data
-            }));
+                    data: data
+                }));
         });
 
 
     }
 
-        $scope.setNewHouseAddress = function () {
-            house.state = $scope.state;
-            house.city = $scope.city;
-            house.street = $scope.street;
-            house.house_number = $scope.house_number;
-            house.house_kind = $scope.house_kind;
+    $scope.setNewHouseAddress = function () {
+        house.state = $scope.state;
+        house.city = $scope.city;
+        house.street = $scope.street;
+        house.house_number = $scope.house_number;
+        house.house_kind = $scope.house_kind;
 
 
-            var res = $http.post('/SET_NEW_HOUSE', house);
-            res.success(function (data, status, headers, config) {
-                $scope.dataTabs.secondLocked = false;
-                $scope.dataTabs.thirdLocked = false;
-                alert(data);
-            });
-            res.error(function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({
+        var res = $http.post('/SET_NEW_HOUSE_ADDRESS', house);
+        res.success(function (data, status, headers, config) {
+            $scope.dataTabs.secondLocked = false;
+            $scope.dataTabs.thirdLocked = false;
+            alert(data.WebResponce[0].Reason);
+            houseId = data.WebResponce[0].MoreDetails;
+            alert(houseId);
+        });
+        res.error(function (data, status, headers, config) {
+            alert("failure message: " + JSON.stringify({
                     data: data
                 }));
-            });
+        });
 
 
-        }
-
-
-    // Logic methods section
-    function getHouse(nHouseId) {
-        // Get information conserning the house
-        $http.get("/GET_HOUSE_BY_ID/" + nHouseId)
-            .then(function successCallback(response) {
-                    $scope.house_id = response.data.house.house_id;
-                    $scope.state = response.data.house.state;
-                    $scope.city = response.data.house.city;
-                    $scope.street = response.data.house.street;
-                    $scope.house_number = response.data.house.house_number;
-                    $scope.house_kind = response.data.house.house_kind;
-                    $scope.number_of_rooms = response.data.house.number_of_rooms;
-                    $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
-                    $scope.number_of_kitchens = response.data.house.number_of_kitchens;
-                    $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
-                    $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
-                    $scope.location_kind = response.data.house.location_kind;
-                    $scope.comments = response.data.house.comments;
-                    $scope.purchase_price = response.data.house.purchase_price;
-                    $scope.treatment_fees = response.data.house.treatment_fees;
-                    $scope.renovation_fees = response.data.house.renovation_fees;
-                    $scope.divers_fees = response.data.house.divers_fees;
-                },
-                function error(response) {
-                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                });
     }
 
+    $scope.setHouseGeneralDetails = function () {
+        house.houseId = houseId;
+        house.house_kind = $scope.house_kind;
+        house.number_of_rooms = $scope.number_of_rooms;
+        house.number_of_living_rooms = $scope.number_of_living_rooms;
+        house.number_of_kitchens = $scope.number_of_kitchens;
+        house.number_of_bedrooms = $scope.number_of_bedrooms;
+        house.number_of_bathrooms = $scope.number_of_bathrooms;
+        house.location_kind = $scope.location_kind;
+        house.comments = $scope.comments;
+
+
+        var res = $http.post('/SET_HOUSE_GENERAL_DETAILS', house);
+        res.success(function (data, status, headers, config) {
+            $scope.dataTabs.secondLocked = false;
+            $scope.dataTabs.thirdLocked = false;
+            alert(data.WebResponce[0].Reason);
+            alert(houseId);
+        });
+        res.error(function (data, status, headers, config) {
+            alert("failure message: " + JSON.stringify({
+                    data: data
+                }));
+        });
+
+
+    }
+
+    $scope.setHouseFinancialDetails = function () {
+        house.houseId = houseId;
+        house.purchase_price = $scope.purchase_price;
+        house.treatment_fees = $scope.treatment_fees;
+        house.renovation_fees_for_sale = $scope.renovation_fees_for_sale;
+        house.renovation_fees_for_renting = $scope.renovation_fees_for_renting;
+        house.divers_fees = $scope.divers_fees;
+
+
+        var res = $http.post('/SET_HOUSE_FINANCIAL_DETAILS', house);
+        res.success(function (data, status, headers, config) {
+            $scope.dataTabs.secondLocked = false;
+            $scope.dataTabs.thirdLocked = false;
+            alert(data.WebResponce[0].Reason);
+            alert(houseId);
+        });
+        res.error(function (data, status, headers, config) {
+            alert("failure message: " + JSON.stringify({
+                    data: data
+                }));
+        });
+
+
+    }
 
 
     // Just check if there is a user name
@@ -169,13 +178,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         $state.go('wellcom');
     }
 
-    $scope.$watch('houses.selectedOption', function (newVal, oldVal) {
-        if (newVal != oldVal) {
-            houseName = newVal;
-            getHouse(newVal.house_id);
-
-        }
-    });
     $scope.$watch('files.length', function (newVal, oldVal) {
         console.log($scope.files);
     });

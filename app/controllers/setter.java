@@ -2,21 +2,16 @@ package controllers;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
+import File.FileGetter;
 import BL.setterBL;
 import Entity.*;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.ning.http.multipart.FilePart;
-import play.api.mvc.MultipartFormData;
-import play.mvc.BodyParser;
 import play.mvc.Http;
 import play.mvc.Result;
+import play.mvc.Results;
 
 import static play.mvc.Controller.flash;
 import static play.mvc.Controller.request;
@@ -30,6 +25,8 @@ import static play.mvc.Results.redirect;
 public class setter {
     private static WebResponce webResponce = new WebResponce();
     private static setterBL setterBL = new setterBL();
+    private static FileGetter fileGetter = new FileGetter();
+
 
     /**
      * Inserting new house.
@@ -97,20 +94,96 @@ public class setter {
                 houseToRegistre.setCity(json.findPath("city").textValue());
                 houseToRegistre.setStreet(json.findPath("street").textValue());
                 houseToRegistre.setHouseNumber(json.findPath("house_number").asInt());
-                houseToRegistre.setHouseNumber(json.findPath("zip_code").asInt());
             } catch (Exception e) {
                 webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
                 webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
                 e.printStackTrace();
                 return badRequest(webResponce.toJson());
             }
-            webResponce = setterBL.insertHouseDetails(houseToRegistre);
+            webResponce = setterBL.insertHouseAddress(houseToRegistre);
             if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
                 System.out.println(webResponce.toString());
                 return badRequest(webResponce.toJson());
             }
-            System.out.println("The House was Register correctly" + houseToRegistre.toString());
-            return ok(webResponce.getReason());
+            return ok(webResponce.toJson());
+        }
+    }
+
+    /**
+     * Inserting house general details.
+     *
+     * @return
+     */
+    public static Result setHouseGeneralDetails() {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            House houseToRegistre = new House();
+            try {
+                System.out.println(json.toString());
+                EHouseKind eHouseKind = EHouseKind.ALONE;
+                eHouseKind.setValue(json.findPath("house_kind").asInt());
+                houseToRegistre.setHouseId(json.findPath("houseId").asInt());
+                houseToRegistre.setHouseKind(eHouseKind);
+                houseToRegistre.setNumberOfRooms(json.findPath("number_of_rooms").asInt());
+                houseToRegistre.setNumberOfLivingRooms(json.findPath("number_of_living_rooms").asInt());
+                houseToRegistre.setNumberOfKitchens(json.findPath("number_of_kitchens").asInt());
+                houseToRegistre.setNumberOfBedrooms(json.findPath("number_of_bedrooms").intValue());
+                houseToRegistre.setNumberOfBathrooms(json.findPath("number_of_bathrooms").intValue());
+                ELocationKind eLocationKind = ELocationKind.WHITE;
+                eLocationKind.setValue(json.findPath("location_kind").asInt());
+                houseToRegistre.setLocationKind(eLocationKind);
+                houseToRegistre.setComments(json.findPath("comments").textValue());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            webResponce = setterBL.updateHouseGeneralDetails(houseToRegistre);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            return ok(webResponce.toJson());
+        }
+    }
+
+
+    /**
+     * Inserting house financial details.
+     *
+     * @return
+     */
+    public static Result setHouseFinancialDetails() {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            House houseToRegistre = new House();
+            try {
+                System.out.println(json.toString());
+                houseToRegistre.setHouseId(json.findPath("houseId").asInt());
+                houseToRegistre.setPurchasePrice(json.findPath("purchase_price").asDouble());
+                houseToRegistre.setTreatmentFees(json.findPath("treatment_fees").asDouble());
+                houseToRegistre.setRenovationFeesForRenting(json.findPath("renovation_fees_for_renting").asDouble());
+                houseToRegistre.setRenovationFeesForSale(json.findPath("renovation_fees_for_sale").asDouble());
+                houseToRegistre.setDiversFees(json.findPath("divers_fees").asDouble());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            webResponce = setterBL.updateHouseFinancialDetails(houseToRegistre);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            return ok(webResponce.toJson());
         }
     }
 
@@ -170,13 +243,7 @@ public class setter {
             User userToUpdate = new User();
             try {
                 System.out.println(json.toString());
-                userToUpdate.setUserName(json.findPath("username").textValue());
-                userToUpdate.setEmail(json.findPath("email").textValue());
-                userToUpdate.setPassword(json.findPath("password").textValue());
-                userToUpdate.setEmail(json.findPath("email").textValue());
-                userToUpdate.setTelephone(json.findPath("telephone").textValue());
-                userToUpdate.setPermissionManager(json.findPath("permissionManager").booleanValue());
-                userToUpdate.setPermissionView(json.findPath("permissionView").booleanValue());
+                jsonToUserEntity(json, userToUpdate);
             } catch (Exception e) {
                 webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
                 webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה את הנתונים" + userToUpdate.toString());
@@ -193,6 +260,52 @@ public class setter {
             return ok(webResponce.getReason());
         }
     }
+
+    /**
+     * add user into the system
+     *
+     * @return
+     * @throws Exception
+     */
+    public static Result deleteUser() throws Exception {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            User userToDelete = new User();
+            jsonToUserEntity(json, userToDelete);
+            System.out.println("Delete User: Receive User For Delete: " + userToDelete.toString());
+            webResponce = setterBL.deleteUser(userToDelete);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("The User was deleted correctly" + userToDelete.toString());
+            return ok(webResponce.getReason());
+        }
+    }
+
+    private static Results.Status jsonToUserEntity(JsonNode json, User userToUpdate) {
+        try {
+            System.out.println(json.toString());
+            userToUpdate.setUserId(json.findPath("userId").textValue());
+            userToUpdate.setUserName(json.findPath("username").textValue());
+            userToUpdate.setEmail(json.findPath("email").textValue());
+            userToUpdate.setPassword(json.findPath("password").textValue());
+            userToUpdate.setEmail(json.findPath("email").textValue());
+            userToUpdate.setTelephone(json.findPath("telephone").textValue());
+            userToUpdate.setPermissionManager(json.findPath("permissionManager").booleanValue());
+            userToUpdate.setPermissionView(json.findPath("permissionView").booleanValue());
+        } catch (Exception e) {
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה את הנתונים" + userToUpdate.toString());
+            e.printStackTrace();
+            return badRequest(webResponce.toJson());
+        }
+        return null;
+    }
+
     /**
      * update user into the system
      *
@@ -206,22 +319,7 @@ public class setter {
             return badRequest("Expecting Json data");
         } else {
             User userToUpdate = new User();
-            try {
-                System.out.println(json.toString());
-                userToUpdate.setUserId(json.findPath("userId").textValue());
-                userToUpdate.setUserName(json.findPath("username").textValue());
-                userToUpdate.setEmail(json.findPath("email").textValue());
-                userToUpdate.setPassword(json.findPath("password").textValue());
-                userToUpdate.setEmail(json.findPath("email").textValue());
-                userToUpdate.setTelephone(json.findPath("telephone").textValue());
-                userToUpdate.setPermissionManager(json.findPath("permissionManager").booleanValue());
-                userToUpdate.setPermissionView(json.findPath("permissionView").booleanValue());
-            } catch (Exception e) {
-                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
-                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + userToUpdate.toString());
-                e.printStackTrace();
-                return badRequest(webResponce.toJson());
-            }
+            jsonToUserEntity(json, userToUpdate);
             System.out.println("Update User: Receive User For Update: " + userToUpdate.toString());
             webResponce = setterBL.uodateUser(userToUpdate.getUserId(), userToUpdate.getUsername(), userToUpdate.getTelephone(), userToUpdate.getEmail(), userToUpdate.getPassword(), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionManager()), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionView()));
             if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {

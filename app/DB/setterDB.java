@@ -17,7 +17,7 @@ import Entity.Gelt;
 import Entity.House;
 import Entity.WebResponce;
 import controllers.Application;
-
+import File.FileGetter;
 import javax.sql.DataSource;
 
 /**
@@ -32,22 +32,28 @@ public class setterDB {
     private static String DATA_BASE_USER_NAME = "root";
     private static String DATA_BASE_PASSWORD_NAME = Application.szDbPassword;
     private WebResponce webResponce = new WebResponce();
+    private static FileGetter fileGetter = new FileGetter();
 
+    public setterDB() {
+        Application.szDbPassword = fileGetter.getDataBasePassword();
+    }
 
     /**
-     * This method its for helping the testing and init the table that asked
+     * This method wiil delete a user
      *
-     * @param tableName the table that want to delete
+     * @param nUserId the table that want to delete
      */
-    public void deleteTable(String tableName) {
+    public WebResponce deleteUser(int nUserId) {
+        webResponce = new WebResponce();
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
                     + "&password=" + DATA_BASE_PASSWORD_NAME);
             // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect.prepareStatement("DELETE FROM " + tableName + ";");
+            preparedStatement = connect.prepareStatement("DELETE FROM " + TABLE_USERS_NAME + " WHERE user_id="+nUserId+";");
             preparedStatement.executeUpdate();
         } catch (Exception e) {
+            webResponce = new WebResponce(ESuccessFailed.FAILED,"Error When Try To Delete A User");
             e.printStackTrace();
             play.Logger.error(e.getMessage());
         } finally {
@@ -56,6 +62,8 @@ public class setterDB {
         }
         // Commit changes
         commit();
+        webResponce.setReason("Delete User Success. המשתמש הוסר בהצלחה");
+        return webResponce;
     }
 
     /**
@@ -327,7 +335,108 @@ public class setterDB {
 
     }
 
+    /**
+     * update a house general details into the data-base
+     *
+     * @return
+     * @throws Exception
+     */
+    public WebResponce updateHouseGeneralDetails(House m_House){
+        webResponce = new WebResponce();
+        // INFO
+        play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Update house : "+m_House.toStringMailFormat());
+        System.out.println("Update house :" + m_House.toStringMailFormat());
 
+
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set purchase_price=" + m_House.getPurchasePrice() + " ,treatment_fees=" + m_House.getTreatmentFees() + " ,renovation_fees_for_sale=" + m_House.getRenovationFeesForSale() + " ,renovation_fees_for_renting=" + m_House.getRenovationFeesForRenting() + " ,divers_fees=" + m_House.getDiversFees() + " where house_id=" + m_House.getHouseId() + ";");
+            play.Logger.info(" Update house general details to the data-base");
+            preparedStatement.executeUpdate();
+            System.out.println("update successfully");
+            System.out.println("============================");
+            webResponce.setReason("update successfully");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to update house financial details");
+            System.out.println("==========================================");
+            play.Logger.info("<setterDB> " + e.getMessage());
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("a problem occurred when try to update house financial details");
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
+        return webResponce;
+    }
+
+
+    /**
+     * update a house financial details into the data-base
+     *
+     * @return
+     * @throws Exception
+     */
+    public WebResponce updateHouseFinancialDetails(House m_House){
+        webResponce = new WebResponce();
+        // INFO
+        play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Update house : "+m_House.toStringMailFormat());
+        System.out.println("Update house :" + m_House.toStringMailFormat());
+
+
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set house_kind=" + m_House.getHouseKind().getValue() + " ,number_of_rooms=" + m_House.getNumberOfRooms() + " ,number_of_living_rooms=" + m_House.getNumberOfLivingRooms() + " ,number_of_kitchens=" + m_House.getNumberOfKitchens() + " ,number_of_bedrooms=" + m_House.getNumberOfBedrooms() + " ,number_of_bathrooms=" + m_House.getNumberOfBathrooms() + " ,location_kind=" + m_House.getLocationKind()+ " ,comments=" + m_House.getComments() + " where house_id=" + m_House.getHouseId() + ";");
+            play.Logger.info(" Update house general details to the data-base");
+            preparedStatement.executeUpdate();
+            System.out.println("update successfully");
+            System.out.println("============================");
+            webResponce.setReason("update successfully");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to update house general details");
+            System.out.println("==========================================");
+            play.Logger.info("<setterDB> " + e.getMessage());
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("a problem occurred when try to update house general details");
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
+        return webResponce;
+    }
     /**
      * Commit changes of data base
      */

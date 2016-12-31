@@ -15,7 +15,6 @@
     </video>
     </center>
 </div>
-
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
         <md-toolbar class="md-theme-indigo md-padding">
@@ -45,9 +44,19 @@
                 <div>{{dictionary.Dictionary[0].NewHouse}}</div>
             </md-button>
             </br>
+            <md-button ng-if="isManager()" class="NewHouse" ng-click="goToSystemManager()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>{{dictionary.Dictionary[0].SystemManager}}</div>
+            </md-button>
+            </br>
             <md-button class="copyright" ng-click="goToCopyright()">
                 <md-icon md-svg-icon="copyright"></md-icon>
                 <div>{{dictionary.Dictionary[0].Copyright}}</div>
+            </md-button>
+            </br>
+            <md-button class="logout" ng-click="logout()">
+                <md-icon md-svg-icon="logout"></md-icon>
+                <div>{{dictionary.Dictionary[0].Logout}}</div>
             </md-button>
             </br>
         </md-content>

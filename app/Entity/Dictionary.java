@@ -47,6 +47,7 @@ public class Dictionary {
     private String PageDirection;
     private String Logout;
     private String SystemManager;
+    private String HouseProfilePicture;
 
     public Dictionary() {
     }
@@ -419,6 +420,14 @@ public class Dictionary {
         SystemManager = systemManager;
     }
 
+    public String getHouseProfilePicture() {
+        return HouseProfilePicture;
+    }
+
+    public void setHouseProfilePicture(String houseProfilePicture) {
+        HouseProfilePicture = houseProfilePicture;
+    }
+
     public String toJson() {
         return "{ \"Dictionary\":[ {" +
                 "\"Dictionary\":\"" + szHouseLanguage + "\"" +
@@ -462,6 +471,7 @@ public class Dictionary {
                 ",\"PageDirection\":\"" + PageDirection + "\"" +
                 ",\"Logout\":\"" + Logout + "\"" +
                 ",\"SystemManager\":\"" + SystemManager + "\"" +
+                ",\"HouseProfilePicture\":\"" + HouseProfilePicture + "\"" +
                 "} ]}";
     }
 }

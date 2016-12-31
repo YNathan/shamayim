@@ -6,10 +6,24 @@ package Entity;
 public class WebResponce {
     private ESuccessFailed eSuccessFailed;
     private String szReason;
+    private String szMoreDetails;
 
     public WebResponce() {
         this.eSuccessFailed = ESuccessFailed.SUCCESS;
         this.szReason = "Operation Success";
+    }
+
+    public WebResponce(ESuccessFailed eSuccessFailed, String szReason) {
+        this.eSuccessFailed = eSuccessFailed;
+        this.szReason = szReason;
+    }
+
+    public String getMoreDetails() {
+        return szMoreDetails;
+    }
+
+    public void setMoreDetails(String szMoreDetails) {
+        this.szMoreDetails = szMoreDetails;
     }
 
     public ESuccessFailed getSuccessFailed() {
@@ -33,13 +47,15 @@ public class WebResponce {
         return "WebResponce{" +
                 "eSuccessFailed=" + eSuccessFailed +
                 ", szReason='" + szReason + '\'' +
+                ", szMoreDetails='" + szMoreDetails + '\'' +
                 '}';
     }
 
     public String toJson() {
-        return "WebResponce{" +
-                "eSuccessFailed=" + eSuccessFailed +
-                ", szReason='" + szReason + '\'' +
-                '}';
+        return "{ \"WebResponce\":[ {" +
+                "\"SuccessFailed\":\"" + eSuccessFailed +"\""+
+                ",\"Reason\":\"" + szReason +"\""+
+                ",\"MoreDetails\":\"" + szMoreDetails +"\""+
+                "} ]}";
     }
 }

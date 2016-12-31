@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entity.ESuccessFailed;
+import Entity.User;
 import File.FileSetter;
 import DB.getterDB;
 import DB.setterDB;
@@ -36,7 +37,7 @@ public class setterBL {
      * @throws Exception
      */
     public boolean registerNewUser(String szUserName, String szTelephone,
-                                   String szEmail, String szPassword, String szPermissionManager,String szPermissionView) throws Exception {
+                                   String szEmail, String szPassword, String szPermissionManager, String szPermissionView) throws Exception {
         // INFO
         play.Logger.info("<BUISNESS_LOGIC> Register new user : ");
         play.Logger.info("============================");
@@ -49,7 +50,7 @@ public class setterBL {
         int nPermissionManager = Integer.parseInt(szPermissionManager);
         int nPermissionView = Integer.parseInt(szPermissionView);
         boolean isRegitred = false;
-        if (setterDB.registerNewUser(szUserName, szTelephone, szEmail, szPassword,nPermissionManager,nPermissionView)) {
+        if (setterDB.registerNewUser(szUserName, szTelephone, szEmail, szPassword, nPermissionManager, nPermissionView)) {
             isRegitred = true;
         }
         return isRegitred;
@@ -65,7 +66,7 @@ public class setterBL {
      * @return
      * @throws Exception
      */
-    public WebResponce addNewUser(String szUserName, String szTelephone, String szEmail, String szPassword, String szPermissionManager,String szPermissionView) throws Exception {
+    public WebResponce addNewUser(String szUserName, String szTelephone, String szEmail, String szPassword, String szPermissionManager, String szPermissionView) throws Exception {
         webResponce = new WebResponce();
         // INFO
         play.Logger.info("<BUISNESS_LOGIC> Register new user : ");
@@ -78,16 +79,22 @@ public class setterBL {
         play.Logger.info("============================");
         int nPermissionManager = Integer.parseInt(szPermissionManager);
         int nPermissionView = Integer.parseInt(szPermissionView);
-        webResponce = setterDB.addNewUser(szUserName, szTelephone, szEmail, szPassword,nPermissionManager,nPermissionView);
+        webResponce = setterDB.addNewUser(szUserName, szTelephone, szEmail, szPassword, nPermissionManager, nPermissionView);
         return webResponce;
     }
 
-    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email,String password, String sPermissionManager,String sPermissionView) throws Exception {
+    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email, String password, String sPermissionManager, String sPermissionView) throws Exception {
         webResponce = new WebResponce();
         int nUserId = Integer.parseInt(sUserId);
         int nPermissionManager = Integer.parseInt(sPermissionManager);
         int nPermissionView = Integer.parseInt(sPermissionView);
-       webResponce = setterDB.updateUser(nUserId,userName,telephone,email,password,nPermissionManager,nPermissionView);
+        webResponce = setterDB.updateUser(nUserId, userName, telephone, email, password, nPermissionManager, nPermissionView);
+        return webResponce;
+    }
+
+    public WebResponce deleteUser(User m_user) {
+        int nUserId = Integer.parseInt(m_user.getUserId());
+        webResponce = setterDB.deleteUser(nUserId);
         return webResponce;
     }
 
@@ -113,6 +120,48 @@ public class setterBL {
         }
         return webResponce;
     }
+
+    public WebResponce updateHouseGeneralDetails(House m_house) {
+        webResponce = new WebResponce();
+        webResponce = setterDB.updateHouseGeneralDetails(m_house);
+        return webResponce;
+    }
+
+    public WebResponce updateHouseFinancialDetails(House m_house) {
+        webResponce = new WebResponce();
+        webResponce = setterDB.updateHouseFinancialDetails(m_house);
+        return webResponce;
+    }
+
+
+    public WebResponce insertHouseAddress(House m_house) {
+        int nHouseId = -1;
+        webResponce = new WebResponce();
+        boolean bIsStillExist = false;
+        ArrayList<House> lstExictingHouses = getterDB.getListOfHouse();
+        for (House currHouse : lstExictingHouses) {
+            if ((m_house.getState().equals(currHouse.getState()) &&
+                    (m_house.getCity().equals(currHouse.getCity())) &&
+                    (m_house.getStreet().equals(currHouse.getStreet())) &&
+                    (m_house.getHouseNumber() == currHouse.getHouseNumber()))) {
+                bIsStillExist = true;
+                nHouseId = currHouse.getHouseId();
+                break;
+            }
+        }
+        if (!bIsStillExist) {
+            setterDB.setNewHouseDetails(m_house);
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
+            webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
+            nHouseId = getterDB.getHouseAddress(m_house.getState(), m_house.getCity(), m_house.getStreet(), m_house.getHouseNumber()).getHouseId();
+            webResponce.setMoreDetails(String.valueOf(nHouseId));
+        } else {
+            webResponce.setReason("The house Still Exist In the System. הבית כבר קיים במערכת");
+            webResponce.setMoreDetails(String.valueOf(nHouseId));
+        }
+        return webResponce;
+    }
+
 
     /**
      * Copy file from old location to a new location in the system we will use
@@ -173,7 +222,7 @@ public class setterBL {
             House house = getterDB.getHouseById(nHouseId);
             String szHouseName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
             String szEmailUser = getterDB.getUser(getterDB.getUserIdByName(szUserName)).getEmail();
-            mailBl.sendHouse(szHouseName,house.toStringMailFormat(),szEmailUser);
+            mailBl.sendHouse(szHouseName, house.toStringMailFormat(), szEmailUser);
         }
 
         return webResponce;

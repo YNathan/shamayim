@@ -36,7 +36,6 @@ import scala.concurrent.Future;
 import scala.reflect.ClassTag;
 
 import static play.mvc.Http.Context.Implicit.request;
-import File.FileGetter;
 
 /**
  * @author Yaacov
@@ -44,10 +43,8 @@ import File.FileGetter;
 public class getter extends Controller {
     private static final Lock lock = new ReentrantLock();
     private static getterBL getterBL = new getterBL();
-    private static FileGetter fileGetter = new FileGetter();
 
     public static Result isLoginPermited(String szUserName, String szPassword) {
-        Application.szDbPassword = fileGetter.getDataBasePassword();
         Logger.info("<GETTER> Clien in IP : " + request().remoteAddress() + " Trying to connect");
         System.out.println("<GETTER> Clien in IP : " + request().remoteAddress() + " Trying to connect");
 
