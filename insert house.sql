@@ -1,7 +1,9 @@
 CREATE DATABASE `shamayim` /*!40100 DEFAULT CHARACTER SET utf8 */
 
+drop table shamayim.house;
 CREATE TABLE `house` (
   `house_id` int(11) NOT NULL AUTO_INCREMENT,
+  `zip_code` int(11) DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
@@ -19,18 +21,18 @@ CREATE TABLE `house` (
   `renovation_fees_for_sale` double DEFAULT NULL,
   `renovation_fees_for_renting` double DEFAULT NULL,
   `divers_fees` double DEFAULT NULL,
+  `housecol` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
-
-*
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*
 -- Query: SELECT * FROM shamayim.house
 LIMIT 0, 1000
 
--- Date: 2016-12-16 14:03
+-- Date: 2016-12-31 17:56
 */
-INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (1,'Newark','N.J','Prince',283,1,7,1,1,3,2.5,1,'בית מאד גדול למשפחה ובמצב מצויין לאחר שיפוץ',NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (2,'Newark','N.J','13th',718,1,7,1,1,2,1,2,'בית פינתי כניסה לכל דירה מרחב אחר בנוסף יש בייסמנט שנוכל לשפץ לעוד יחידה החנייה ברחוב קטן ושקט, אין ג\'ארז פרטי הוצאות לפי 2 אופציות',NULL,NULL,NULL,NULL,NULL);
-INSERT INTO `house` (`house_id`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`) VALUES (3,'israel','jerusalem','yirmiyahu',32,1,1,1,1,3,5,2,'nice area have fun',0,0,0,0,0);
+INSERT INTO `house` (`house_id`,`zip_code`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`housecol`) VALUES (1,NULL,'Newark','N.J','Prince',283,1,7,1,1,3,2.5,1,'בית מאד גדול למשפחה ובמצב מצויין לאחר שיפוץ',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `house` (`house_id`,`zip_code`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`housecol`) VALUES (2,NULL,'Newark','N.J','13th',718,1,7,1,1,2,1,2,'בית פינתי כניסה לכל דירה מרחב אחר בנוסף יש בייסמנט שנוכל לשפץ לעוד יחידה החנייה ברחוב קטן ושקט, אין ג\'ארז פרטי הוצאות לפי 2 אופציות',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `house` (`house_id`,`zip_code`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`housecol`) VALUES (3,NULL,'israel','jerusalem','yirmiyahu',32,3,1,1,65,3,5,5,'nice area have fun',0,0,98,0,0,NULL);
 
 CREATE TABLE `users` (
   `user_name` varchar(255) NOT NULL,
@@ -41,14 +43,14 @@ CREATE TABLE `users` (
   `permission_manager` int(11) NOT NULL DEFAULT '1',
   `permission_view` int(11) DEFAULT '1',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*
 -- Query: SELECT * FROM shamayim.users
 LIMIT 0, 1000
 
 -- Date: 2016-12-31 17:39
 */
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''Y.Nathan'',''yaacovisraelnathan@gmail.com'',''525'',''a'',1,0,0);
+INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Y.Nathan','yaacovisraelnathan@gmail.com','525','a',1,0,0);
 INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''Yaacov'',''biendityaacov@gmail.com'',''052-7879217'',''1'',2,1,1);
 INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''itamar'',''ashaya31@gmail.com'',''2'',''a'',3,1,1);
 INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''mendele'',''mendelebarak@gmail.com'',''0'',''a'',4,1,0);
