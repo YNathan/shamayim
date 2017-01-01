@@ -159,8 +159,19 @@ public class getter extends Controller {
     public static Result getHousePicturesProfilePaths() throws IOException {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House");
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House ");
-        String szResponce = "hay";//getterBL.getHousePicturesPaths().toString();
+        String szResponce = getterBL.getHousePicturesProfilePaths().toString();
         return ok(szResponce);
+    }
+
+    /***
+     * Get a specific house picture from server
+     * @return
+     */
+    public static Result getHouseProfilePicture(String szFolderHouseName,String szFolderProfileName,String szFileName) {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderHouseName + ": File Name:" + szFileName);
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderHouseName + ": File Name:" + szFileName);
+        File fileToReturn = getterBL.getProfileHousePicture(szFolderHouseName, szFolderProfileName,szFileName);
+        return ok(fileToReturn);
     }
 
     /***

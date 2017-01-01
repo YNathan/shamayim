@@ -25,7 +25,7 @@
     <div flex="5"></div>
     <div flex>
         <table class="rwd-table" ng-if="houseWasLoaded">
-            <h1  ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>
+            <h1 ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>
             <tr>
                 <td>{{dictionary.Dictionary[0].HouseId}}</td>
                 <td>{{house_id}}</td>
@@ -88,7 +88,8 @@
             </tr>
             <tr>
                 <td>
-                    <center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)" value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}} /></center>
+                    <center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)"
+                                   value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}}/></center>
                 </td>
             </tr>
         </table>
@@ -101,19 +102,53 @@
 
 
 <div flex layout="column" ng-if="houseWasLoaded" style="background-color: #DDDDDD;">
-   <center><section flex style="background-color: #DDDDDD;">
-        <md-content layout-padding="" style="background-color: #DDDDDD;">
-            <h1>Haouse Images</h1>
-            <div>{{houseImage}}</div>
-            <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
-        </md-content>
-    </section>
-    <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
-        <cl-paging flex cl-pages="paging.total" , cl-steps="6" , cl-page-changed="paging.onPageChanged()" , cl-align="center center" , cl-current-page="paging.current"></cl-paging>
-    </section>
-   </center>
+    <center>
+        <section flex style="background-color: #DDDDDD;">
+            <md-content layout-padding="" style="background-color: #DDDDDD;">
+                <h1>Haouse Images</h1>
+                <div>{{houseImage}}</div>
+                <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
+            </md-content>
+        </section>
+        <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
+            <cl-paging flex cl-pages="paging.total" , cl-steps="6" , cl-page-changed="paging.onPageChanged()" ,
+                       cl-align="center center" , cl-current-page="paging.current"></cl-paging>
+        </section>
+    </center>
 
 </div>
+
+
+<center>
+    <md-button ng-click="backToTheCatalog()">{{backToButton}}</md-button>
+    </br>
+    <div layout="row" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions">
+        <div flex>
+            <img src=http://127.0.0.1:9000/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
+        </div>
+    </div>
+
+    <table ng-if="houseWasChosen">
+        <threat>
+            <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            <threat>
+                <tbody>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tbody>
+
+                <table>
+</center>
 
 
 

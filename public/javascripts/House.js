@@ -79,6 +79,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
+    $scope.houseProfilePathesImages = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+             imagesSource: 'default'
+        }
+    };
+
     var totalPages = 0;
 
 
@@ -103,6 +111,39 @@ $scope.paging = {
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
                 });
+    }
+
+    // Get Profile Images
+    function getHouseProfileImages() {
+        totalPages = 0;
+        $http.get('/HOUSE_PICTURES_PROFILE_PATHES')
+            .then(function successCallback(response) {
+                    angular.forEach(response.data.files, function (value, key) {
+                        itemName = {
+                            id: key,
+                            imagesSource: value
+                        }
+                        totalPages++;
+                        $scope.houseProfilePathesImages.availableOptions.push(itemName.imagesSource);
+                    }, $scope.houseProfilePathesImages);
+
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+    }
+    getHouseProfileImages();
+    $scope.houseWasChosen = false;
+    $scope.backToButton = "Chose A House";
+
+    $scope.houseClicked = function(src){
+        $scope.houseWasChosen = true;
+        $scope.backToButton = "Back To Catalog";
+    }
+
+    $scope.backToTheCatalog = function(src){
+        $scope.houseWasChosen = false;
+        $scope.backToButton = "Chose A House";
     }
 
     // Logic methods section

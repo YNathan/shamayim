@@ -348,31 +348,46 @@ public class getterBL {
 
     /**
      * Get house profile pictures
-     * @param szHouseId
+     *
      * @return
      */
-    public StringBuilder getHousePicturesProfilePaths(String szHouseId) {
-        int nHouseId = Integer.parseInt(szHouseId);
-        House house = getterDB.getHouseById(nHouseId);
+    public StringBuilder getHousePicturesProfilePaths() {
         StringBuilder sbExistingFilesToReturn = new StringBuilder();
         sbExistingFilesToReturn.append("{ \"files\": [");
-        String szFolderName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
-        ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
-
-        Iterator<String> ltrFiles = lstExistingFiles.iterator();
-        String currFile = null;
-        if (ltrFiles.hasNext()) {
-            currFile = ltrFiles.next();
+        ArrayList<House> lstHouses = getterDB.getListOfHouse();
+        Iterator<House> houseIterator = lstHouses.iterator();
+        House currHouse = null;
+        if (houseIterator.hasNext()) {
+            currHouse = houseIterator.next();
         }
-        while (currFile != null) {
-            sbExistingFilesToReturn.append("\"" + currFile + "\"");
-            if (ltrFiles.hasNext()) {
-                sbExistingFilesToReturn.append(",");
-                currFile = ltrFiles.next();
-            } else {
-                currFile = null;
-            }
+        while (currHouse != null) {
 
+            String szFolderName = currHouse.getState() + "_" + currHouse.getCity() + "_" + currHouse.getStreet() + "_" + currHouse.getHouseNumber() + "/Profile";
+            ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
+            // Littel While run over the picture in the profile folder
+            Iterator<String> ltrFiles = lstExistingFiles.iterator();
+            String currFile = null;
+            if (ltrFiles.hasNext()) {
+                currFile = ltrFiles.next();
+            }
+            while (currFile != null) {
+                sbExistingFilesToReturn.append("\"" + currFile + "\"");
+                if (ltrFiles.hasNext()) {
+                    sbExistingFilesToReturn.append(",");
+                    currFile = ltrFiles.next();
+                } else {
+                    currFile = null;
+                }
+
+            }
+            if(houseIterator.hasNext())
+            {
+                sbExistingFilesToReturn.append(",");
+                currHouse = houseIterator.next();
+            }else
+            {
+                currHouse = null;
+            }
         }
         sbExistingFilesToReturn.append("]}");
         return sbExistingFilesToReturn;
@@ -380,6 +395,7 @@ public class getterBL {
 
     /**
      * Get house pictures
+     *
      * @param szHouseId
      * @return
      */
@@ -412,6 +428,7 @@ public class getterBL {
 
     /**
      * Get house pictures
+     *
      * @param szHouseId
      * @return
      */
@@ -443,12 +460,13 @@ public class getterBL {
     }
 
     // Get Profile House Picture
-    public File getProfileHousePicture(String szFolderName, String szFileName) {
-        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
+    public File getProfileHousePicture(String szFolderName,String szFolderProfilName, String szFileName) {
+        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\"+szFolderProfilName+"\\" + szFileName;
         File fileToReturn = fileGetter.getFile(szFullFilePath);
         System.out.println("Get File " + szFullFilePath);
         return fileToReturn;
     }
+
     // Get Specific Picture
     public File getSpecificPicture(String szFolderName, String szFileName) {
         String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
