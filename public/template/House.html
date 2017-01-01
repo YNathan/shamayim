@@ -21,88 +21,12 @@
 </br>
 </br>
 
-<div layout="row" layout-sm="column">
-    <div flex="5"></div>
-    <div flex>
-        <table class="rwd-table" ng-if="houseWasLoaded">
-            <h1 ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>
-            <tr>
-                <td>{{dictionary.Dictionary[0].HouseId}}</td>
-                <td>{{house_id}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].Address}}</td>
-                <td>{{house_number}} {{street}} {{city}} {{state}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].HouseKind}}</td>
-                <td>{{house_kind}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].NumberOfRooms}}</td>
-                <td>{{number_of_rooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</td>
-                <td>{{number_of_living_rooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].NumberOfKitchens}}</td>
-                <td>{{number_of_kitchens}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].NumberOfBedrooms}}</td>
-                <td>{{number_of_bedrooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].NumberOfBathrooms}}</td>
-                <td>{{number_of_bathrooms}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].LocationKind}}</td>
-                <td>{{location_kind}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].Comments}}</td>
-                <td>{{comments}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].PurchasePrice}}</td>
-                <td>{{purchase_price}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].TreatmentFees}}</td>
-                <td>{{treatment_fees}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].RenovationFeesForSale}}</td>
-                <td>{{renovation_fees_for_sale}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].RenovationFeesForRenting}}</td>
-                <td>{{renovation_fees_for_renting}}</td>
-            </tr>
-            <tr>
-                <td>{{dictionary.Dictionary[0].DiversFees}}</td>
-                <td>{{divers_fees}}</td>
-            </tr>
-            <tr>
-                <td>
-                    <center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)"
-                                   value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}}/></center>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div flex ng-if="houseWasLoaded">
-        <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
-        <div id="map" style="height: 400px; width: 400px;"></div>
-    </div>
-</div>
 
 
-<div flex layout="column" ng-if="houseWasLoaded" style="background-color: #DDDDDD;">
+<div flex layout="column" ng-if="houseWasLoaded">
     <center>
+        <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
+        <div id="map" style="height: 300px; width: 800px;"></div>
         <section flex style="background-color: #DDDDDD;">
             <md-content layout-padding="" style="background-color: #DDDDDD;">
                 <h1>Haouse Images</h1>
@@ -124,30 +48,79 @@
     </br>
     <div layout="row" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions">
         <div flex>
-            <img src=http://127.0.0.1:9000/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
+            <img id="imgProfileImages" src=http://127.0.0.1:9000/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
         </div>
     </div>
 
-    <table ng-if="houseWasChosen">
-        <threat>
-            <tr>
-                <th>
-                </th>
-                <th>
-                </th>
-            </tr>
-
-            <threat>
-                <tbody>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-                <tbody>
-
-                <table>
+    <table class="rwd-table" ng-if="houseWasLoaded">
+        <h1 ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>
+        <tr>
+            <td>{{dictionary.Dictionary[0].HouseId}}</td>
+            <td>{{house_id}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].Address}}</td>
+            <td>{{house_number}} {{street}} {{city}} {{state}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].HouseKind}}</td>
+            <td>{{house_kind}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].NumberOfRooms}}</td>
+            <td>{{number_of_rooms}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].NumberOfLivingRooms}}</td>
+            <td>{{number_of_living_rooms}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].NumberOfKitchens}}</td>
+            <td>{{number_of_kitchens}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].NumberOfBedrooms}}</td>
+            <td>{{number_of_bedrooms}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].NumberOfBathrooms}}</td>
+            <td>{{number_of_bathrooms}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].LocationKind}}</td>
+            <td>{{location_kind}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].Comments}}</td>
+            <td>{{comments}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].PurchasePrice}}</td>
+            <td>{{purchase_price}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].TreatmentFees}}</td>
+            <td>{{treatment_fees}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].RenovationFeesForSale}}</td>
+            <td>{{renovation_fees_for_sale}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].RenovationFeesForRenting}}</td>
+            <td>{{renovation_fees_for_renting}}</td>
+        </tr>
+        <tr>
+            <td>{{dictionary.Dictionary[0].DiversFees}}</td>
+            <td>{{divers_fees}}</td>
+        </tr>
+        <tr>
+            <td>
+                <center><input type="submit" id="submit" class="myButton" ng-click="sendMeMail(house_id)"
+                               value={{dictionary.Dictionary[0].SendMeThisHouseToMyMail}}/></center>
+            </td>
+        </tr>
+    </table>
 </center>
 
 

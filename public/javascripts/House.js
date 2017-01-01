@@ -134,16 +134,20 @@ $scope.paging = {
     }
     getHouseProfileImages();
     $scope.houseWasChosen = false;
-    $scope.backToButton = "Chose A House";
+    $scope.backToButton = "בחר בית";
 
     $scope.houseClicked = function(src){
-        $scope.houseWasChosen = true;
-        $scope.backToButton = "Back To Catalog";
+    getHouseByAddress(src);
+    $scope.houseProfilePathesImages.availableOptions = [];
+        $scope.houseWasLoaded = true;
+        $scope.backToButton = "חזור לקטלוג";
     }
 
     $scope.backToTheCatalog = function(src){
-        $scope.houseWasChosen = false;
-        $scope.backToButton = "Chose A House";
+     $scope.houseWasLoaded = false;
+      $scope.backToButton = "בחר בית";
+    getHouseProfileImages();
+
     }
 
     // Logic methods section
@@ -171,17 +175,56 @@ $scope.paging = {
                     $scope.divers_fees = response.data.house.divers_fees;
                     newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
                     $scope.houseWasLoaded =  true;
+                     // Get images
+                            $scope.houseImages.availableOptions = [];
+                            $scope.housePathesImages.availableOptions = [];
+                            getHouseImages(nHouseId);
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
 
-        // Get images
-        $scope.houseImages.availableOptions = [];
-        $scope.housePathesImages.availableOptions = [];
-        getHouseImages(nHouseId);
+
 
     }
+
+
+
+    function getHouseByAddress(szHouseAddressProfilePath) {
+            // Get information conserning the house
+            $http.get("/GET_HOUSE_BY_ADDRESS_PROFILE_PATH/" + szHouseAddressProfilePath)
+                .then(function successCallback(response) {
+                        $scope.house_id = response.data.house.house_id;
+                        $scope.state = response.data.house.state;
+                        $scope.city = response.data.house.city;
+                        $scope.street = response.data.house.street;
+                        $scope.house_number = response.data.house.house_number;
+                        $scope.house_kind = response.data.house.house_kind;
+                        $scope.number_of_rooms = response.data.house.number_of_rooms;
+                        $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
+                        $scope.number_of_kitchens = response.data.house.number_of_kitchens;
+                        $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
+                        $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
+                        $scope.location_kind = response.data.house.location_kind;
+                        $scope.comments = response.data.house.comments;
+                        $scope.purchase_price = response.data.house.purchase_price;
+                        $scope.treatment_fees = response.data.house.treatment_fees;
+                        $scope.renovation_fees_for_sale = response.data.house.renovation_fees_for_sale;
+                        $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
+                        $scope.divers_fees = response.data.house.divers_fees;
+                        newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
+                        $scope.houseWasLoaded =  true;
+                        // Get images
+                          $scope.houseImages.availableOptions = [];
+                           getHouseImages($scope.house_id);
+                    },
+                    function error(response) {
+                        ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                    });
+
+
+
+        }
 
     $scope.sendMeMail = function (szHouseId) {
         // Get information conserning the house
@@ -192,7 +235,6 @@ $scope.paging = {
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
-
     }
 
 
@@ -347,14 +389,5 @@ $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPage
   }
 
 
-}]).directive('lazyLoad', function ($timeout) {
-    return {
-        restrict: 'A',
-        scope: {},
-        link: function (scope, elem, attrs) {
-            $timeout(function () {
-                elem.attr('src', attrs.llSrc)
-            });
-        },
-    }
-});
+}])
+
