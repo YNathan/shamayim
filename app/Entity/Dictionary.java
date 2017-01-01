@@ -50,6 +50,7 @@ public class Dictionary {
     private String HouseProfilePicture;
 
     private String UploadHousePictures;
+    private String BackToTheCatalog;
 
     public Dictionary() {
     }
@@ -434,6 +435,14 @@ public class Dictionary {
         return UploadHousePictures;
     }
 
+    public String getBackToTheCatalog() {
+        return BackToTheCatalog;
+    }
+
+    public void setBackToTheCatalog(String backToTheCatalog) {
+        BackToTheCatalog = backToTheCatalog;
+    }
+
     public void setUploadHousePictures(String uploadHousePictures) {
         UploadHousePictures = uploadHousePictures;
     }
@@ -482,6 +491,7 @@ public class Dictionary {
                 ",\"SystemManager\":\"" + SystemManager + "\"" +
                 ",\"HouseProfilePicture\":\"" + HouseProfilePicture + "\"" +
                 ",\"UploadHousePictures\":\"" + UploadHousePictures + "\"" +
+                ",\"BackToTheCatalog\":\"" + BackToTheCatalog + "\"" +
                 "} ]}";
     }
 }

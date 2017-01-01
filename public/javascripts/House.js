@@ -2,6 +2,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     $rootScope.bIsLoged = true;
     $scope.houseWasLoaded = false;
+    $scope.backToButton = "בחר בית";
     // Just print kind of 'hay message'
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.house_id;
@@ -37,13 +38,13 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     };
 
     $rootScope.isManager = function () {
-            if (ShamayimFunctions.getPermissionCookie() == "true") {
-                return true;
-            } else {
-                return false;
-            }
+        if (ShamayimFunctions.getPermissionCookie() == "true") {
+            return true;
+        } else {
+            return false;
         }
-        // Get information conserning the
+    }
+    // Get information conserning the
     $http.get("/GET_LIST_OF_HOUSES")
         .then(function successCallback(response) {
                 angular.forEach(response.data.houses, function (value, key) {
@@ -59,7 +60,9 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
             });
 
-    function checkIfNeedConfirming() {}
+    function checkIfNeedConfirming() {
+    }
+
     $interval(checkIfNeedConfirming, 200000);
 
     // For Images
@@ -83,7 +86,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         availableOptions: [],
         selectedOption: {
             id: '1',
-             imagesSource: 'default'
+            imagesSource: 'default'
         }
     };
 
@@ -102,11 +105,11 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                         totalPages++;
                         $scope.housePathesImages.availableOptions.push(itemName.imagesSource);
                     }, $scope.housePathesImages);
-$scope.paging = {
-    total: totalPages,
-    current: 1,
-    onPageChanged: loadPages,
-  };
+                    $scope.paging = {
+                        total: totalPages,
+                        current: 1,
+                        onPageChanged: loadPages,
+                    };
                 },
                 function error(response) {
                     showAlert("Your attention please", response.data, "cant load houses");
@@ -132,23 +135,9 @@ $scope.paging = {
                     showAlert("Your attention please", response.data, "cant load houses");
                 });
     }
-    getHouseProfileImages();
-    $scope.houseWasChosen = false;
-    $scope.backToButton = "בחר בית";
 
-    $scope.houseClicked = function(src){
-    getHouseByAddress(src);
-    $scope.houseProfilePathesImages.availableOptions = [];
-        $scope.houseWasLoaded = true;
-        $scope.backToButton = "חזור לקטלוג";
-    }
-
-    $scope.backToTheCatalog = function(src){
-     $scope.houseWasLoaded = false;
-      $scope.backToButton = "בחר בית";
     getHouseProfileImages();
 
-    }
 
     // Logic methods section
     function getHouse(nHouseId) {
@@ -174,57 +163,54 @@ $scope.paging = {
                     $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
                     $scope.divers_fees = response.data.house.divers_fees;
                     newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
-                    $scope.houseWasLoaded =  true;
-                     // Get images
-                            $scope.houseImages.availableOptions = [];
-                            $scope.housePathesImages.availableOptions = [];
-                            getHouseImages(nHouseId);
+                    $scope.houseWasLoaded = true;
+                    // Get images
+                    $scope.houseImages.availableOptions = [];
+                    $scope.housePathesImages.availableOptions = [];
+                    getHouseImages(nHouseId);
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
                 });
 
 
-
     }
 
 
-
     function getHouseByAddress(szHouseAddressProfilePath) {
-            // Get information conserning the house
-            $http.get("/GET_HOUSE_BY_ADDRESS_PROFILE_PATH/" + szHouseAddressProfilePath)
-                .then(function successCallback(response) {
-                        $scope.house_id = response.data.house.house_id;
-                        $scope.state = response.data.house.state;
-                        $scope.city = response.data.house.city;
-                        $scope.street = response.data.house.street;
-                        $scope.house_number = response.data.house.house_number;
-                        $scope.house_kind = response.data.house.house_kind;
-                        $scope.number_of_rooms = response.data.house.number_of_rooms;
-                        $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
-                        $scope.number_of_kitchens = response.data.house.number_of_kitchens;
-                        $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
-                        $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
-                        $scope.location_kind = response.data.house.location_kind;
-                        $scope.comments = response.data.house.comments;
-                        $scope.purchase_price = response.data.house.purchase_price;
-                        $scope.treatment_fees = response.data.house.treatment_fees;
-                        $scope.renovation_fees_for_sale = response.data.house.renovation_fees_for_sale;
-                        $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
-                        $scope.divers_fees = response.data.house.divers_fees;
-                        newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
-                        $scope.houseWasLoaded =  true;
-                        // Get images
-                          $scope.houseImages.availableOptions = [];
-                           getHouseImages($scope.house_id);
-                    },
-                    function error(response) {
-                        ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                    });
+        // Get information conserning the house
+        $http.get("/GET_HOUSE_BY_ADDRESS_PROFILE_PATH/" + szHouseAddressProfilePath)
+            .then(function successCallback(response) {
+                    $scope.house_id = response.data.house.house_id;
+                    $scope.state = response.data.house.state;
+                    $scope.city = response.data.house.city;
+                    $scope.street = response.data.house.street;
+                    $scope.house_number = response.data.house.house_number;
+                    $scope.house_kind = response.data.house.house_kind;
+                    $scope.number_of_rooms = response.data.house.number_of_rooms;
+                    $scope.number_of_living_rooms = response.data.house.number_of_living_rooms;
+                    $scope.number_of_kitchens = response.data.house.number_of_kitchens;
+                    $scope.number_of_bedrooms = response.data.house.number_of_bedrooms;
+                    $scope.number_of_bathrooms = response.data.house.number_of_bathrooms;
+                    $scope.location_kind = response.data.house.location_kind;
+                    $scope.comments = response.data.house.comments;
+                    $scope.purchase_price = response.data.house.purchase_price;
+                    $scope.treatment_fees = response.data.house.treatment_fees;
+                    $scope.renovation_fees_for_sale = response.data.house.renovation_fees_for_sale;
+                    $scope.renovation_fees_for_renting = response.data.house.renovation_fees_for_renting;
+                    $scope.divers_fees = response.data.house.divers_fees;
+                    newMapLocation($scope.house_number, $scope.street, $scope.city, $scope.state);
+                    $scope.houseWasLoaded = true;
+                    // Get images
+                    $scope.houseImages.availableOptions = [];
+                    getHouseImages($scope.house_id);
+                },
+                function error(response) {
+                    ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
+                });
 
 
-
-        }
+    }
 
     $scope.sendMeMail = function (szHouseId) {
         // Get information conserning the house
@@ -256,6 +242,7 @@ $scope.paging = {
             .then(function successCallback(response) {
                     $rootScope.dictionary = response.data;
                     $rootScope.pageDirection = $rootScope.dictionary.Dictionary[0].PageDirection;
+                    $scope.backToButton = $rootScope.dictionary.Dictionary[0].SelectaHouse;
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
@@ -282,6 +269,22 @@ $scope.paging = {
 
     // End Of Language Section
 
+    $scope.houseWasChosen = false;
+
+    $scope.houseClicked = function (src) {
+        getHouseByAddress(src);
+        $scope.houseProfilePathesImages.availableOptions = [];
+        $scope.houseWasLoaded = true;
+        $scope.backToButton = $rootScope.dictionary.Dictionary[0].BackToTheCatalog;
+    }
+
+    $scope.backToTheCatalog = function (src) {
+        $scope.houseWasLoaded = false;
+        $scope.backToButton = $rootScope.dictionary.Dictionary[0].SelectaHouse;
+        getHouseProfileImages();
+
+    }
+
     // Just check if there is a user name
     if (ShamayimFunctions.getCookie("username") == null) {
         // Go to the main application
@@ -297,9 +300,6 @@ $scope.paging = {
     })
 
     $rootScope.bIsLoged = true;
-
-
-
 
 
     function newMapLocation(nNumberOfHouse, szStreetName, szCityName, szStateName) {
@@ -329,6 +329,7 @@ $scope.paging = {
                 });
 
     }
+
     $scope.imageSrc = "images/background.jpg";
     $rootScope.toggleLeft = function () {
         $mdSidenav('left').toggle();
@@ -355,7 +356,7 @@ $scope.paging = {
         $state.go('House');
     }
     $rootScope.logout = function () {
-    $rootScope.bIsLoged = false;
+        $rootScope.bIsLoged = false;
         $state.go('welcome');
 
     }
@@ -368,25 +369,25 @@ $scope.paging = {
         }
     }
     $rootScope.showLrButton = function () {
-         if ($rootScope.bIsLoged == true) {
-              return false
-               } else {
-                 return true;
-                }
+        if ($rootScope.bIsLoged == true) {
+            return false
+        } else {
+            return true;
         }
+    }
 
 
-$scope.currentPage = 0;
-  $scope.paging = {
-    total: totalPages,
-    current: 1,
-    onPageChanged: loadPages,
-  };
-  function loadPages() {
-    console.log('Current page is : ' + $scope.paging.current);
-    $scope.currentPage = $scope.paging.current;
-$scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPage - 1];
-  }
+    $scope.currentPage = 0;
+    $scope.paging = {
+        total: totalPages,
+        current: 1,
+        onPageChanged: loadPages,
+    };
+    function loadPages() {
+        console.log('Current page is : ' + $scope.paging.current);
+        $scope.currentPage = $scope.paging.current;
+        $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPage - 1];
+    }
 
 
 }])

@@ -3,26 +3,13 @@
         <center><label class="myFont">{{dictionary.Dictionary[0].WellcomToYourAccount}} {{message}}</label></center>
     </div>
     </br>
-    <div flex>
-        <center>
-            <form ng-submit="submitHouse()">
-                <label class="myFont">{{dictionary.Dictionary[0].SelectaHouse}}</label>
-                <md-input-container>
-                    <md-select placeholder="Assign to House" ng-model="houses.selectedOption">
-                        <md-option ng-value="house" ng-repeat="house in houses.availableOptions">
-                            {{house.house_number}} {{house.street}} {{house.city}} {{house.state}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-            </form>
-        </center>
-    </div>
 </div>
 </br>
 </br>
 
 
-
+<md-button ng-click="backToTheCatalog()">{{backToButton}}</md-button>
+</br>
 <div flex layout="column" ng-if="houseWasLoaded">
     <center>
         <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
@@ -44,11 +31,10 @@
 
 
 <center>
-    <md-button ng-click="backToTheCatalog()">{{backToButton}}</md-button>
-    </br>
+
     <div layout="row" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions">
         <div flex>
-            <img id="imgProfileImages" src=http://127.0.0.1:9000/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
+            <img id="imgProfileImages" src=http://127.0.0.1/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
         </div>
     </div>
 
