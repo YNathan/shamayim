@@ -51,13 +51,7 @@ LIMIT 0, 1000
 -- Date: 2016-12-31 17:39
 */
 INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES ('Y.Nathan','yaacovisraelnathan@gmail.com','525','a',1,0,0);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''Yaacov'',''biendityaacov@gmail.com'',''052-7879217'',''1'',2,1,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''itamar'',''ashaya31@gmail.com'',''2'',''a'',3,1,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''mendele'',''mendelebarak@gmail.com'',''0'',''a'',4,1,0);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''dani'',''dani@gmail.com'',''0527879817'',''dfdf'',5,1,1);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''moysh'',''moyshe'',''05289789'',''as'',7,1,0);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''tsadic'',''tds@gmail.com'',''05278787'',''a'',8,0,0);
-INSERT INTO `users` (`user_name`,`email`,`telephone`,`password`,`user_id`,`permission_manager`,`permission_view`) VALUES (''lallalal'',''asd@tsasds.vp'',''0565865'',''1'',9,1,0);
+
 
 drop table shamayim.dictionary;
 CREATE TABLE `dictionary` (
