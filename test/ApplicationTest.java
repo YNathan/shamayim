@@ -132,5 +132,14 @@ public class ApplicationTest {
 
     }
 
+    @Test
+    public void getAdressFromPath() {
+        String testString = "Real|How|To|||";
+        System.out.println(java.util.Arrays.toString(testString.split("\\|")));
+        // output : [Real, How, To]
+    }
+
+
+
 
 }

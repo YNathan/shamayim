@@ -1,16 +1,6 @@
 package controllers;
 
-import com.sun.javafx.image.impl.ByteIndexed;
-import play.api.Configuration;
-import play.api.GlobalSettings;
-import play.api.Play;
-import play.api.Plugin;
-import play.api.mvc.*;
-import play.api.mvc.SimpleResult;
-import play.core.Router;
-import play.core.SourceMapper;
-import play.libs.F;
-import play.mvc.*;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -23,17 +13,11 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import BL.getterBL;
-import akka.event.Logging;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Results;
-import scala.Enumeration;
-import scala.Option;
-import scala.collection.Seq;
-import scala.concurrent.Future;
-import scala.reflect.ClassTag;
+
 
 import static play.mvc.Http.Context.Implicit.request;
 
@@ -134,6 +118,14 @@ public class getter extends Controller {
     public static Result getHouseById(String szHouseId) {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get House by id : " + szHouseId);
         String szResponce = getterBL.getHouseById(szHouseId).toString();
+        System.out.println(szResponce);
+        return ok(szResponce);
+    }
+
+    public static Result getHouseByAddressProfilePictures(String szHouseAddres,String szProfileDir,String szPictureName)
+    {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get House by adress from path : " + szHouseAddres);
+        String szResponce = getterBL.getHouseByAddress(szHouseAddres,szProfileDir,szPictureName).toString();
         System.out.println(szResponce);
         return ok(szResponce);
     }

@@ -32,6 +32,7 @@ POST        /SET_HOUSE_DOCUMENTS/:szHouseName                                   
 
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
+GET         /GET_HOUSE_BY_ADDRESS_PROFILE_PATH/:szHouseAddress/:szProfileDir/:szPictureName        controllers.getter.getHouseByAddressProfilePictures(szHouseAddress:String,szProfileDir:String,szPictureName:String)
 GET         /GET_LIST_OF_EXISTING_LANGUAGES                                                        controllers.getter.getListOfExistingLanguages()
 GET         /GET_LANGUAGE/:szLanguage                                                              controllers.getter.getLanguage(szLanguage:String)
 GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                                              controllers.setter.sendHouseMail(szUserName:String,szHouseId:String)

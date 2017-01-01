@@ -272,6 +272,42 @@ public class getterBL {
         return sbHousesInformationToReturn;
     }
 
+    public StringBuilder getHouseByAddress(String szHouseAddres,String szProfileDir,String szPictureName) {
+
+        String[] address = new String[30];
+        address = szHouseAddres.split("_");
+        int nHouseNumber = Integer.parseInt(address[3]);
+        // INFO
+        play.Logger.info("<BUSINESS_LOGIC> Get house by house addres : " + szHouseAddres);
+        House house = getterDB.getHouseAddress(address[0],address[1],address[2],nHouseNumber);
+
+        StringBuilder sbHousesInformationToReturn = new StringBuilder();
+        sbHousesInformationToReturn.append("{ \"house\":");
+
+        if (house != null) {
+            sbHousesInformationToReturn.append(" {\"house_id\":\"" + house.getHouseId() + "\",");
+            sbHousesInformationToReturn.append("\"state\":\"" + house.getState() + "\",");
+            sbHousesInformationToReturn.append("\"city\":\"" + house.getCity() + "\",");
+            sbHousesInformationToReturn.append("\"street\":\"" + house.getStreet() + "\",");
+            sbHousesInformationToReturn.append("\"house_number\":\"" + house.getHouseNumber() + "\",");
+            sbHousesInformationToReturn.append("\"house_kind\":\"" + house.getHouseKind() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_rooms\":\"" + house.getNumberOfRooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_living_rooms\":\"" + house.getNumberOfLivingRooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_kitchens\":\"" + house.getNumberOfKitchens() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_bedrooms\":\"" + house.getNumberOfBedrooms() + "\",");
+            sbHousesInformationToReturn.append("\"number_of_bathrooms\":\"" + house.getNumberOfBathrooms() + "\",");
+            sbHousesInformationToReturn.append("\"location_kind\":\"" + house.getLocationKind() + "\",");
+            sbHousesInformationToReturn.append("\"comments\":\"" + house.getComments() + "\",");
+            sbHousesInformationToReturn.append("\"purchase_price\":\"" + house.getPurchasePrice() + "\",");
+            sbHousesInformationToReturn.append("\"treatment_fees\":\"" + house.getTreatmentFees() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_sale\":\"" + house.getRenovationFeesForSale() + "\",");
+            sbHousesInformationToReturn.append("\"renovation_fees_for_renting\":\"" + house.getRenovationFeesForRenting() + "\",");
+            sbHousesInformationToReturn.append("\"divers_fees\":\"" + house.getDiversFees() + "\"}");
+        }
+        sbHousesInformationToReturn.append(" }");
+        return sbHousesInformationToReturn;
+    }
+
     public StringBuilder getHouseByIdToPrint(String szHouseId) {
         int nHouseId = 0;
         try {
