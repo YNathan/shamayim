@@ -346,6 +346,75 @@ public class getterBL {
         return sbExistingLanguageToReturn;
     }
 
+    /**
+     * Get house profile pictures
+     * @param szHouseId
+     * @return
+     */
+    public StringBuilder getHousePicturesProfilePaths(String szHouseId) {
+        int nHouseId = Integer.parseInt(szHouseId);
+        House house = getterDB.getHouseById(nHouseId);
+        StringBuilder sbExistingFilesToReturn = new StringBuilder();
+        sbExistingFilesToReturn.append("{ \"files\": [");
+        String szFolderName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
+        ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
+
+        Iterator<String> ltrFiles = lstExistingFiles.iterator();
+        String currFile = null;
+        if (ltrFiles.hasNext()) {
+            currFile = ltrFiles.next();
+        }
+        while (currFile != null) {
+            sbExistingFilesToReturn.append("\"" + currFile + "\"");
+            if (ltrFiles.hasNext()) {
+                sbExistingFilesToReturn.append(",");
+                currFile = ltrFiles.next();
+            } else {
+                currFile = null;
+            }
+
+        }
+        sbExistingFilesToReturn.append("]}");
+        return sbExistingFilesToReturn;
+    }
+
+    /**
+     * Get house pictures
+     * @param szHouseId
+     * @return
+     */
+    public StringBuilder getHousePicturesPaths(String szHouseId) {
+        int nHouseId = Integer.parseInt(szHouseId);
+        House house = getterDB.getHouseById(nHouseId);
+        StringBuilder sbExistingFilesToReturn = new StringBuilder();
+        sbExistingFilesToReturn.append("{ \"files\": [");
+        String szFolderName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
+        ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
+
+        Iterator<String> ltrFiles = lstExistingFiles.iterator();
+        String currFile = null;
+        if (ltrFiles.hasNext()) {
+            currFile = ltrFiles.next();
+        }
+        while (currFile != null) {
+            sbExistingFilesToReturn.append("\"" + currFile + "\"");
+            if (ltrFiles.hasNext()) {
+                sbExistingFilesToReturn.append(",");
+                currFile = ltrFiles.next();
+            } else {
+                currFile = null;
+            }
+
+        }
+        sbExistingFilesToReturn.append("]}");
+        return sbExistingFilesToReturn;
+    }
+
+    /**
+     * Get house pictures
+     * @param szHouseId
+     * @return
+     */
     public StringBuilder getFilePaths(String szHouseId) {
         int nHouseId = Integer.parseInt(szHouseId);
         House house = getterDB.getHouseById(nHouseId);
@@ -373,10 +442,28 @@ public class getterBL {
         return sbExistingFilesToReturn;
     }
 
-    public File getAspecificFile(String szFolderName, String szFileName) {
+    // Get Profile House Picture
+    public File getProfileHousePicture(String szFolderName, String szFileName) {
         String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
         File fileToReturn = fileGetter.getFile(szFullFilePath);
         System.out.println("Get File " + szFullFilePath);
         return fileToReturn;
     }
+    // Get Specific Picture
+    public File getSpecificPicture(String szFolderName, String szFileName) {
+        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
+        File fileToReturn = fileGetter.getFile(szFullFilePath);
+        System.out.println("Get File " + szFullFilePath);
+        return fileToReturn;
+    }
+
+    // Get Specific Documents
+    public File getSpecificDocuments(String szFolderName, String szFileName) {
+        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
+        File fileToReturn = fileGetter.getFile(szFullFilePath);
+        System.out.println("Get File " + szFullFilePath);
+        return fileToReturn;
+    }
+
+
 }

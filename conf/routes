@@ -37,8 +37,9 @@ GET         /GET_LANGUAGE/:szLanguage                                           
 GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                                              controllers.setter.sendHouseMail(szUserName:String,szHouseId:String)
 # Upload file to the server
 POST        /upload                                                                                controllers.setter.uploadFile
-GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHouseFiles(szHouseId:String)
-GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificFile(szFolderName:String,szFileName:String)
+# Houses
+GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHousePicturesPaths(szHouseId:String)
+GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificPicture(szFolderName:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                                                                          controllers.Assets.at(path="/public", file)
 

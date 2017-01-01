@@ -93,7 +93,7 @@ public class FileSetter {
             if (picture != null) {
                 File sourceFile = picture.getFile();
                 System.out.println(sourceFile);
-                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\" + szHouseName +"_profile.jpg");
+                File dest = new File(System.getProperty("user.dir") + "\\HousesDocuments\\" + szHouseName + "\\Profile\\" + szHouseName +"_profile.jpg");
                 try {
                     play.Logger.info("<SETTER> save profile picture on file");
                     setterBL.copyFile(sourceFile, dest);

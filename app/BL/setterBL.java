@@ -115,6 +115,7 @@ public class setterBL {
             setterDB.setNewHouseDetails(m_house);
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Docs");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Profile");
             webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
         } else {
             webResponce.setReason("The house Still Exist In the System. הבית כבר קיים במערכת");
@@ -154,6 +155,7 @@ public class setterBL {
             setterDB.setNewHouseDetails(m_house);
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Docs");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Profile");
             webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
             nHouseId = getterDB.getHouseAddress(m_house.getState(), m_house.getCity(), m_house.getStreet(), m_house.getHouseNumber()).getHouseId();
             webResponce.setMoreDetails(String.valueOf(nHouseId));

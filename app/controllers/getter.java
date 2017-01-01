@@ -152,26 +152,38 @@ public class getter extends Controller {
     }
 
     /***
+     * Get profile Of An House
+     * @return - json who contain path of the files
+     * @throws IOException
+     */
+    public static Result getHousePicturesProfilePaths() throws IOException {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House");
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House ");
+        String szResponce = "hay";//getterBL.getHousePicturesPaths().toString();
+        return ok(szResponce);
+    }
+
+    /***
      * Get Files Of An House
      * @param szHouseId - the id of the house az registred in the system
      * @return - json who contain path of the files
      * @throws IOException
      */
-    public static Result getHouseFiles(String szHouseId) throws IOException {
+    public static Result getHousePicturesPaths(String szHouseId) throws IOException {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Files Pathes For House : " + szHouseId);
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Files Pathes For House : " + szHouseId);
-        String szResponce = getterBL.getFilePaths(szHouseId).toString();
+        String szResponce = getterBL.getHousePicturesPaths(szHouseId).toString();
         return ok(szResponce);
     }
 
     /***
-     * Get a specific file from server consserning a house
+     * Get a specific house picture from server
      * @return
      */
-    public static Result getSpecificFile(String szFolderName, String szFileName) {
+    public static Result getSpecificPicture(String szFolderName, String szFileName) {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
-        File fileToReturn = getterBL.getAspecificFile(szFolderName, szFileName);
+        File fileToReturn = getterBL.getSpecificPicture(szFolderName, szFileName);
         return ok(fileToReturn);
     }
 }
