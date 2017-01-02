@@ -232,8 +232,8 @@ public class setterBL {
             play.Logger.info("<BUSINESS_LOGIC> Get house by id : " + nHouseId);
             House house = getterDB.getHouseById(nHouseId);
             String szHouseName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
-            String szEmailUser = getterDB.getUser(getterDB.getUserIdByName(szUserName)).getEmail();
-            mailBl.sendHouse(szHouseName, house.toStringMailFormat(), szEmailUser);
+            User userToSend = getterDB.getUser(getterDB.getUserIdByName(szUserName));
+            mailBl.sendHouse(szHouseName, house.toStringMailFormat(), userToSend.getEmail(),userToSend.getPermissionView());
         }
 
         return webResponce;
