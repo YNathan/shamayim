@@ -10,7 +10,6 @@
     <script src="javascripts/angular-ui-router.min.js" type="text/javascript"></script>
     <script src="javascripts/app.js" type="text/javascript"></script>
     <script src="javascripts/LoginRegister.js" type="text/javascript"></script>
-    <script src="javascripts/UserInformation.js" type="text/javascript"></script>
     <script src="javascripts/Houses.js" type="text/javascript"></script>
     <script src="javascripts/House.js" type="text/javascript"></script>
     <script src="javascripts/Copyright.js" type="text/javascript"></script>
@@ -64,11 +63,6 @@
             </md-toolbar>
 
             <md-content layout-margin="" align="center">
-                <md-button class="account_circle" ng-click="goToUserInformation()">
-                    <md-icon md-svg-icon="account_circle" align="center"></md-icon>
-                    <div>{{userName}} {{dictionary.Dictionary[0].Information}}</div>
-                </md-button>
-                </br>
                 <md-button class="house" ng-click="goToHouse()">
                     <md-icon md-svg-icon="home"></md-icon>
                     <div>{{dictionary.Dictionary[0].House}}</div>

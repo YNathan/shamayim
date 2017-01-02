@@ -24,11 +24,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $mdToa
             templateUrl: "template/Welcome.html",
             controller: 'welcome'
         })
-        .state('userInformation', {
-            url: "/userInformation",
-            templateUrl: "template/userInformation.html",
-            controller: 'userInformation'
-        })
         .state('Manager', {
             url: "/manager",
             templateUrl: "template/Manager.html",

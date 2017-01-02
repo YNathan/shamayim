@@ -337,9 +337,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $rootScope.goToCopyright = function () {
         $state.go('Copyright');
     }
-    $rootScope.goToUserInformation = function () {
-        $state.go('userInformation');
-    }
     $rootScope.goToHouses = function () {
         $state.go('Houses');
     }

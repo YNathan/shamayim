@@ -1,6 +1,12 @@
 <div layout="column" layout-sm="column" flex>
     <div>
-        <center><label class="myFont">{{dictionary.Dictionary[0].WellcomToYourAccount}} {{message}}</label></center>
+        <center><label class="myFont">{{dictionary.Dictionary[0].WellcomToYourAccount}} {{message}}</label>
+        </center>
+    </div>
+    <div>
+        <center>
+            <md-button ng-click="backToTheCatalog()"><label class="myFont">{{backToButton}}</label></md-button>
+        </center>
     </div>
     </br>
 </div>
@@ -8,7 +14,6 @@
 </br>
 
 
-<md-button ng-click="backToTheCatalog()">{{backToButton}}</md-button>
 </br>
 <div flex layout="column" ng-if="houseWasLoaded">
     <center>
@@ -18,7 +23,7 @@
             <md-content layout-padding="" style="background-color: #DDDDDD;">
                 <h1>Haouse Images</h1>
                 <div>{{houseImage}}</div>
-                <img src='http://nathangager.from-ca.com/GET_SPECIFIC_FILE/{{houseImage}}'>
+                <img src=/GET_SPECIFIC_FILE/{{houseImage}}>
             </md-content>
         </section>
         <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
@@ -34,7 +39,9 @@
 
     <div layout="row" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions">
         <div flex>
-            <img id="imgProfileImages" src=http://shamayimnadlan.selfip.net/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}} ng-click="houseClicked(srcProfileImage)">
+            <img id="imgProfileImages"
+                 src=/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}}
+                 ng-click="houseClicked(srcProfileImage)">
         </div>
     </div>
 
