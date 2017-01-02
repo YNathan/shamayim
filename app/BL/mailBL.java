@@ -130,7 +130,7 @@ public class mailBL {
         multipart.addBodyPart(messageBodyPart);
     }
 
-    public void sendHouse(String szHouseName, String szHouseToPrint, String szEmailAdressClient,boolean isPermitedToViewDocuments) {
+    public void sendHouse(String szHouseName, String szHouseToPrint, String szEmailAdressClient, boolean isPermitedToViewDocuments) {
         webResponce = new WebResponce();
         // Set the mail properties
         setProperties();
@@ -163,12 +163,16 @@ public class mailBL {
             String szFilePath;
 
             // Itterrate Over Files To Add An Attachment To The Mail
-            ArrayList<String> lstExistingFiles = fileGetter.getFilesName(HOUSES_DOCUMENTS_DIR, szHouseName);
+            ArrayList<String> lstExistingFiles = new ArrayList<>();
+            // ArrayList<String> lstExistingFiles = fileGetter.getFilesName(HOUSES_DOCUMENTS_DIR, szHouseName);
             ArrayList<String> lstHousePhotos = fileGetter.getFilesName(HOUSES_DOCUMENTS_DIR, szHouseName);
-
-            ArrayList<String> lstHouseDocuments = fileGetter.getFilesName(HOUSES_DOCUMENTS_DIR, szHouseName + "\\Docs");
             lstExistingFiles.addAll(lstHousePhotos);
-            lstExistingFiles.addAll(lstHouseDocuments);
+            // if he as persmissoin to view documnets
+            if(isPermitedToViewDocuments)
+            {
+                ArrayList<String> lstHouseDocuments = fileGetter.getFilesName(HOUSES_DOCUMENTS_DIR, szHouseName + "\\Docs");
+                lstExistingFiles.addAll(lstHouseDocuments);
+            }
             Iterator<String> ltrFiles = lstExistingFiles.iterator();
             String currFile = null;
             if (ltrFiles.hasNext()) {
