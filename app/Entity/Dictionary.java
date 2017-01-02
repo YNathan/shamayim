@@ -187,8 +187,8 @@ public class Dictionary {
         return eLocationKind;
     }
 
-    public void setLocationKind(String eLocationKind) {
-        eLocationKind = eLocationKind;
+    public void setLocationKind(String m_locationKind) {
+        eLocationKind = m_locationKind;
     }
 
     public String getComments() {
