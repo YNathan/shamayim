@@ -177,12 +177,12 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
 
     // House Profile Pictures Section
-    $scope.$watch('files.length', function (newVal, oldVal) {
-        console.log($scope.houseProfilePicture);
+    $scope.$watch('houseProfilePicture.length', function (newVal, oldVal) {
+      console.log($scope.houseProfilePicture);
     });
 
     // Upload File To The Server (House Pictures OR Some Else File)
-    $scope.uploadFiles = function () {
+    $scope.uploadHouseProfilePicture = function () {
         var formData = new FormData();
         angular.forEach($scope.houseProfilePicture, function (obj) {
             formData.append('files[]', obj.lfFile);
@@ -207,7 +207,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     });
 
     // Upload File To The Server (House Pictures OR Some Else File)
-    $scope.uploadFiles = function () {
+    $scope.uploadHousePictures = function () {
         var formData = new FormData();
         angular.forEach($scope.files, function (obj) {
             formData.append('files[]', obj.lfFile);
@@ -228,7 +228,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
 
     // House Documents Section
-    $scope.$watch('files.length', function (newVal, oldVal) {
+    $scope.$watch('houseDocuments.length', function (newVal, oldVal) {
         console.log($scope.houseDocuments);
     });
 

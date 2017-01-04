@@ -167,6 +167,17 @@ public class getter extends Controller {
     }
 
     /***
+     * Get a Comments for a specific house
+     * @return
+     */
+    public static Result getHouseComments(String szFolderHouseName,String szFolderProfileName,String szFileName) {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Comments For House : " + szFolderHouseName);
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Comments For House : " + szFolderHouseName);
+        String szRecponce = getterBL.getHouseComments(szFolderHouseName, szFolderProfileName,szFileName);
+        return ok(szRecponce);
+    }
+
+    /***
      * Get Files Of An House
      * @param szHouseId - the id of the house az registred in the system
      * @return - json who contain path of the files

@@ -2,7 +2,6 @@ body {
 	background: url('../images/background.jpg');
 	background-size: 100% 100%;
 	background-repeat: repeat-y;
-	background-color: blue;
 }
 .md-tabs{
 background: #4682B4;
@@ -206,6 +205,7 @@ h1 {
 }
 
 .rwd-table {
+
 	background: #34495E;
 	color: #fff;
 	border-radius: .4em;

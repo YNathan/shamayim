@@ -41,6 +41,7 @@ POST        /upload                                                             
 # Houses
 GET         /HOUSE_PICTURES_PROFILE_PATHES                                                         controllers.getter.getHousePicturesProfilePaths()
 GET         /GET_SPECIFIC_HOUSE_PROFILE_PICTURES/:szFolderName/:szFolderProfileName/:szFileName    controllers.getter.getHouseProfilePicture(szFolderName:String,szFolderProfileName:String,szFileName:String)
+GET         /GET_HOUSE_COMMENTS/:szFolderName/:szFolderProfileName/:szFileName                     controllers.getter.getHouseComments(szFolderName:String,szFolderProfileName:String,szFileName:String)
 GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHousePicturesPaths(szHouseId:String)
 GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificPicture(szFolderName:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path

@@ -15,6 +15,20 @@
 
 
 </br>
+
+
+<div ng-cloak="" class="carddemoCardActionButtons">
+    <md-content class="md-padding" layout-xs="column" layout="row" style="background-color:transparent;">
+        <div flex-xs="" flex-gt-xs="50" layout="column" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions">
+            <md-card>
+                <img ng-src=/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}}
+                     ng-click="houseClicked(srcProfileImage)" class="md-card-image" alt="Washed Out">
+            </md-card>
+        </div>
+    </md-content>
+</div>
+
+
 <div flex layout="column" ng-if="houseWasLoaded">
     <center>
         <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
@@ -22,7 +36,6 @@
         <section flex style="background-color: #DDDDDD;">
             <md-content layout-padding="" style="background-color: #DDDDDD;">
                 <h1>Haouse Images</h1>
-                <div>{{houseImage}}</div>
                 <img src=/GET_SPECIFIC_FILE/{{houseImage}}>
             </md-content>
         </section>
@@ -37,13 +50,6 @@
 
 <center>
 
-    <div layout="row" ng-repeat="srcProfileImage in houseProfilePathesImages.availableOptions" class="md-padding">
-        <div flex>
-            <img id="imgProfileImages"
-                 src=/GET_SPECIFIC_HOUSE_PROFILE_PICTURES/{{srcProfileImage}}
-                 ng-click="houseClicked(srcProfileImage)">
-        </div>
-    </div>
 
     <table class="rwd-table" ng-if="houseWasLoaded">
         <h1 ng-if="houseWasLoaded">{{dictionary.Dictionary[0].HouseTable}}</h1>

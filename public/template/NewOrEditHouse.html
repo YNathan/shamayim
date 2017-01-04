@@ -138,7 +138,7 @@
             <md-tab-body>
                 </br></br>
                 <form name="testForm" layout="column" class="md-padding" s  style="background-color: #DDDDDD;">
-                    <lf-ng-md-file-input name="houseProfilePicture" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+                    <lf-ng-md-file-input name="files" lf-files="houseProfilePicture" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
                     <div ng-messages="testForm.files00.$error" style="color:red;">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="maxcount">Too much files.</div>
@@ -146,7 +146,7 @@
                         <div ng-message="totalsize">Total size too large.</div>
                         <div ng-message="mimetype">Mimetype error.</div>
                     </div>
-                    <md-button type="button" class="md-raised md-primary" ng-click="uploadFiles()">Submit</md-button>
+                    <md-button type="button" class="md-raised md-primary" ng-click="uploadHouseProfilePicture()">Submit</md-button>
                 </form>
 
             </md-tab-body>
@@ -165,7 +165,7 @@
                         <div ng-message="totalsize">Total size too large.</div>
                         <div ng-message="mimetype">Mimetype error.</div>
                     </div>
-                    <md-button type="button" class="md-raised md-primary" ng-click="uploadFiles()">Submit</md-button>
+                    <md-button type="button" class="md-raised md-primary" ng-click="uploadHousePictures()">Submit</md-button>
                 </form>
 
             </md-tab-body>
@@ -176,7 +176,7 @@
             <md-tab-body>
                 </br></br>
                 <form name="testForm" layout="column" class="md-padding" s  style="background-color: #DDDDDD;">
-                    <lf-ng-md-file-input name="houseDocuments" lf-files="files" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
+                    <lf-ng-md-file-input name="files" lf-files="houseDocuments" lf-api="api" lf-required lf-maxcount="5" lf-filesize="10MB" lf-totalsize="20MB" lf-mimetype="image/*" multiple drag preview></lf-ng-md-file-input>
                     <div ng-messages="testForm.files00.$error" style="color:red;">
                         <div ng-message="required">This is required.</div>
                         <div ng-message="maxcount">Too much files.</div>

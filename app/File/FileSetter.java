@@ -87,7 +87,7 @@ public class FileSetter {
     }
 
     public WebResponce setHouseProfilePicture(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
-        Iterator<Http.MultipartFormData.FilePart> filePartIterator = pictures.iterator();
+        Iterator<Http.MultipartFormData.FilePart> filePartIterator =  pictures.iterator();
         while (filePartIterator.hasNext()) {
             Http.MultipartFormData.FilePart picture = filePartIterator.next();
             if (picture != null) {

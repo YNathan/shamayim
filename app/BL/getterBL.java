@@ -272,14 +272,14 @@ public class getterBL {
         return sbHousesInformationToReturn;
     }
 
-    public StringBuilder getHouseByAddress(String szHouseAddres,String szProfileDir,String szPictureName) {
+    public StringBuilder getHouseByAddress(String szHouseAddres, String szProfileDir, String szPictureName) {
 
         String[] address = new String[30];
         address = szHouseAddres.split("_");
         int nHouseNumber = Integer.parseInt(address[3]);
         // INFO
         play.Logger.info("<BUSINESS_LOGIC> Get house by house addres : " + szHouseAddres);
-        House house = getterDB.getHouseAddress(address[0],address[1],address[2],nHouseNumber);
+        House house = getterDB.getHouseAddress(address[0], address[1], address[2], nHouseNumber);
 
         StringBuilder sbHousesInformationToReturn = new StringBuilder();
         sbHousesInformationToReturn.append("{ \"house\":");
@@ -416,12 +416,10 @@ public class getterBL {
                 }
 
             }
-            if(houseIterator.hasNext())
-            {
+            if (houseIterator.hasNext()) {
                 sbExistingFilesToReturn.append(",");
                 currHouse = houseIterator.next();
-            }else
-            {
+            } else {
                 currHouse = null;
             }
         }
@@ -496,8 +494,20 @@ public class getterBL {
     }
 
     // Get Profile House Picture
-    public File getProfileHousePicture(String szFolderName,String szFolderProfilName, String szFileName) {
-        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\"+szFolderProfilName+"\\" + szFileName;
+    public String getHouseComments(String szHouseAddress, String szFolderProfilName, String szFileName) {
+        String[] address = new String[30];
+        address = szHouseAddress.split("_");
+        int nHouseNumber = Integer.parseInt(address[3]);
+        // INFO
+        play.Logger.info("<BUSINESS_LOGIC> Get Comments for house in address : " + szHouseAddress);
+        House house = getterDB.getHouseAddress(address[0], address[1], address[2], nHouseNumber);
+        return house.getComments();
+    }
+
+
+    // Get Profile House Picture
+    public File getProfileHousePicture(String szFolderName, String szFolderProfilName, String szFileName) {
+        String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFolderProfilName + "\\" + szFileName;
         File fileToReturn = fileGetter.getFile(szFullFilePath);
         System.out.println("Get File " + szFullFilePath);
         return fileToReturn;
