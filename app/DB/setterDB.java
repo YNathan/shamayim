@@ -1,24 +1,17 @@
 package DB;
 
-import java.beans.PropertyVetoException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import Entity.ESuccessFailed;
-import Entity.Gelt;
 import Entity.House;
 import Entity.WebResponce;
 import controllers.Application;
 import File.FileGetter;
-import javax.sql.DataSource;
 
 /**
  * @author Yaacov

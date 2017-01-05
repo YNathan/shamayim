@@ -133,7 +133,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         res.success(function (data, status, headers, config) {
             $scope.dataTabs.TabsLocked = false;
             alert(data.WebResponce[0].Reason);
-            alert(houseId);
         });
         res.error(function (data, status, headers, config) {
             alert("failure message: " + JSON.stringify({
@@ -157,7 +156,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         res.success(function (data, status, headers, config) {
             $scope.dataTabs.TabsLocked = false;
             alert(data.WebResponce[0].Reason);
-            alert(houseId);
         });
         res.error(function (data, status, headers, config) {
             alert("failure message: " + JSON.stringify({
@@ -195,7 +193,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             },
             transformRequest: angular.identity
         }).success(
-            alert("Yeah!!!")
+            alert("הועלה בהצלחה")
         ).error(
             alert("Oups! something wrong was hapening")
         );
@@ -220,7 +218,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             },
             transformRequest: angular.identity
         }).success(
-            alert("Yeah!!!")
+            alert("התמונות הועלו בהצלחה")
         ).error(
             alert("Oups! something wrong was hapening")
         );
@@ -246,7 +244,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             },
             transformRequest: angular.identity
         }).success(
-            alert("Yeah!!!")
+            alert("הועלו בהצלחה")
         ).error(
             alert("Oups! something wrong was hapening")
         );
