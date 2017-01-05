@@ -24,7 +24,15 @@ public class House {
     private double dRenovationFeesForRenting = -1;
     private double dDiversFees = -1;
 
-    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber,int m_nZipCode ,Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale,double dRenovationFeesForRenting, double dDiversFees) {
+    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber) {
+        this.nHouseId = nHouseId;
+        this.szState = szState;
+        this.szCity = szCity;
+        this.szStreet = szStreet;
+        this.nHouseNumber = nHouseNumber;
+    }
+
+    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, int m_nZipCode , Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale, double dRenovationFeesForRenting, double dDiversFees) {
         this.nHouseId = nHouseId;
         this.szState = szState;
         this.szCity = szCity;

@@ -28,7 +28,9 @@ POST        /SET_HOUSE_PROFILE_PICTURE/:szHouseName                             
 POST        /SET_HOUSE_PICTURES/:szHouseName                                                       controllers.setter.setHousePictures(szHouseName:String)
 POST        /SET_HOUSE_DOCUMENTS/:szHouseName                                                      controllers.setter.setHouseDocuments(szHouseName:String)
 
+# System Manager
 
+GET         /GET_PERMITED_TO_VIEW_LIST                                                              controllers.getter.getPermitedToView()
 
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)

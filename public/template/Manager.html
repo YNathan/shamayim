@@ -1,37 +1,73 @@
 <div layout="column">
-<table flex>
-    <threat>
-        <tr>
-            <th>מספר משתמש במערכת</th>
-            <th>שם משתמש</th>
-            <th>מס' טלפון</th>
-            <th>אימייל</th>
-            <th>קוד כניסה</th>
-            <th>הרשאות מנהל</th>
-            <th>הרשאות צפייה</th>
+    <table flex>
+        <threat>
+            <tr>
+                <th>מספר משתמש במערכת</th>
+                <th>שם משתמש</th>
+                <th>מס' טלפון</th>
+                <th>אימייל</th>
+                <th>קוד כניסה</th>
+                <th>הרשאות מנהל</th>
+                <th>הרשאות צפייה</th>
+            </tr>
+        </threat>
+        <tbody>
+        <tr ng-repeat="usr in users">
+            <td>{{usr.userId}}</td>
+            <td>
+                <input type="text" ng-model=usr.username name="text"/>
+            </td>
+            <td><input type="text" ng-model=usr.telephone name="text"/></td>
+            <td><input type="text" ng-model=usr.email name="text"/></td>
+            <td><input type="text" ng-model=usr.password name="text"/></td>
+            <td>
+                <center>
+                    <md-checkbox ng-model="usr.permissionManager"></md-checkbox>
+                </center>
+            </td>
+            <td>
+                <center>
+                    <md-checkbox ng-model="usr.permissionView"></md-checkbox>
+                </center>
+            </td>
+            <td>
+                <md-button ng-click="editUser(usr)" class="md-primary md-raised">שמור</md-button>
+            </td>
+            <td>
+                <md-button ng-click="deleteUser(usr)" class="md-primary md-raised">מחק משתמש</md-button>
+            </td>
         </tr>
-    </threat>
-    <tbody>
-    <tr ng-repeat="usr in users">
-        <td>{{usr.userId}}</td>
-        <td>
-          <input type="text" ng-model=usr.username name="text"/>
-         </td>
-        <td> <input type="text" ng-model=usr.telephone name="text"/></td>
-        <td> <input type="text" ng-model=usr.email name="text"/></td>
-        <td><input type="text" ng-model=usr.password name="text"/></td>
-       <td><center> <md-checkbox ng-model="usr.permissionManager"></md-checkbox></center> </td>
-        <td><center><md-checkbox ng-model="usr.permissionView"></md-checkbox></center> </td>
-        <td>
-            <md-button ng-click="editUser(usr)" class="md-primary md-raised">שמור</md-button>
-        </td>
-		<td>
-            <md-button ng-click="deleteUser(usr)" class="md-primary md-raised">מחק משתמש</md-button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
     <div flex>
-<md-button ng-click="addUser()" layout-align="center center" class="md-primary md-raised">הוסף משתמש</md-button>
+        <md-button ng-click="addUser()" layout-align="center center" class="md-primary md-raised">הוסף משתמש</md-button>
+    </div>
+
+    <div flex="30">
+        <table flex>
+            <threat>
+                <tr>
+                    <th>שם משתמש</th>
+                    <th>בית</th>
+                    <th>בית</th>
+                    <th>בית</th>
+                    <th>בית</th>
+                    <th>בית</th>
+                    <th>בית</th>
+                </tr>
+            </threat>
+            <tbody>
+            <tr ng-repeat="ptv in PermissionedToView">
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+                <td>{{ptv.UserName}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+

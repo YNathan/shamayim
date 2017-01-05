@@ -112,3 +112,9 @@ INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`
 INSERT INTO `dictionary` (`house_language`,`house_id`,`address`,`state`,`city`,`street`,`house_number`,`house_kind`,`number_of_rooms`,`number_of_living_rooms`,`number_of_kitchens`,`number_of_bedrooms`,`number_of_bathrooms`,`location_kind`,`score`,`comments`,`purchase_price`,`treatment_fees`,`renovation_fees_for_sale`,`renovation_fees_for_renting`,`divers_fees`,`general_house_details`,`financial_house_details`,`upload_house_files`,`drag_or_drop_files_here`,`house_table`,`menu`,`information`,`house`,`manage_houses`,`new_house`,`copyright`,`wellcom_to_your_account`,`select_a_house`,`area_on_the_map`,`houses_list`,`save`,`send_me_this_house_to_my_mail`,`direction_html`,`logout`,`system_manager`,`upload_house_profile_picture`,`upload_house_pictures`) VALUES ('עברית','מספר רישום הבית במערכת','כתובת','מדינה','עיר','רחוב','מספר בית','סוג הבית','מספר חדרים','מספר חדרי סלון','מספר חדרי מטבח','מספר חדרי שינה','מספר חדרי שירותים/ מקלחת','מיקום','ציון','הערות','מחיר קניה','הוצאות טיפול','הוצאות שיפוץ למכירה','הוצאות שיפוץ להשכרה','הוצאות אחרות','נתונים כלליים','נתונים כלכליים','העלאת קבצים','גרור או זרוק קבצים לפה','טבלת נתוני הבית','תפריט','פרטים על משתמש','בית','רשימת כלל הבתים','בית חדש','אודות','ברוך הבא לחשבונך','בחר בית',' על המפה','רשימת הבתים','שמור','שלח לי בית זה למייל','rtl','צא','ניהול המשתמשים','תמונת פרופיל של הבית','תמונות הבית');
 
 
+
+CREATE TABLE `shamayim.permissions_view` (
+  `user_id` int(11) NOT NULL,
+  `house_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+

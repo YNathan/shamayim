@@ -3,7 +3,9 @@ package BL;
 import java.io.File;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 
 import DB.getterDB;
@@ -529,5 +531,52 @@ public class getterBL {
         return fileToReturn;
     }
 
+
+    /**
+     * Get house profile pictures
+     *
+     * @return
+     */
+    public StringBuilder getListOfPermitedToView() {
+        StringBuilder sbExistingFilesToReturn = new StringBuilder();
+        sbExistingFilesToReturn.append("{ \"PermissionedToView\": [");
+        ArrayList<Integer> lstPermissionsViews = new ArrayList<>();
+        lstPermissionsViews = getterDB.getListOfPermitedToView();
+
+        // Creating LinkedHashSet
+        LinkedHashSet<Integer> lhs = new LinkedHashSet<>();
+
+     /* Adding ArrayList elements to the LinkedHashSet
+      * in order to remove the duplicate elements and
+      * to preserve the insertion order.
+      */
+        lhs.addAll(lstPermissionsViews);
+
+        // Removing ArrayList elements
+        lstPermissionsViews.clear();
+
+        // Adding LinkedHashSet elements to the ArrayList
+        lstPermissionsViews.addAll(lhs);
+
+
+        Iterator<Integer> permitedToViewIterator = lstPermissionsViews.iterator();
+        PermissionsView currPermitedToView = null;
+        if (permitedToViewIterator.hasNext()) {
+            currPermitedToView = new PermissionsView(permitedToViewIterator.next());
+        }
+        while (currPermitedToView != null) {
+            sbExistingFilesToReturn.append(currPermitedToView.toJson());
+            if (permitedToViewIterator.hasNext()) {
+                sbExistingFilesToReturn.append(",");
+                currPermitedToView = new PermissionsView(permitedToViewIterator.next());
+            } else {
+                currPermitedToView = null;
+            }
+
+        }
+
+        sbExistingFilesToReturn.append("]}");
+        return sbExistingFilesToReturn;
+    }
 
 }

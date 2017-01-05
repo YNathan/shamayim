@@ -1,7 +1,6 @@
 package controllers;
 
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +37,7 @@ public class getter extends Controller {
                 play.Logger.info("<GETTER> " + szUserName + " is login from IP: " + request().remoteAddress());
                 System.out.println("<GETTER> " + szUserName + " is login from IP: " + request().remoteAddress());
                 return play.mvc.Results.ok(szPermission);
-            }else{
+            } else {
 
                 System.out.println("[INFO] Error when trying to connect with wrong user-name or password.\nUSER_NAME : '"
                         + szUserName + "'\nPASSWORD : '" + szPassword + "'");
@@ -122,10 +121,9 @@ public class getter extends Controller {
         return ok(szResponce);
     }
 
-    public static Result getHouseByAddressProfilePictures(String szHouseAddres,String szProfileDir,String szPictureName)
-    {
+    public static Result getHouseByAddressProfilePictures(String szHouseAddres, String szProfileDir, String szPictureName) {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get House by adress from path : " + szHouseAddres);
-        String szResponce = getterBL.getHouseByAddress(szHouseAddres,szProfileDir,szPictureName).toString();
+        String szResponce = getterBL.getHouseByAddress(szHouseAddres, szProfileDir, szPictureName).toString();
         System.out.println(szResponce);
         return ok(szResponce);
     }
@@ -159,10 +157,10 @@ public class getter extends Controller {
      * Get a specific house picture from server
      * @return
      */
-    public static Result getHouseProfilePicture(String szFolderHouseName,String szFolderProfileName,String szFileName) {
+    public static Result getHouseProfilePicture(String szFolderHouseName, String szFolderProfileName, String szFileName) {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderHouseName + ": File Name:" + szFileName);
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderHouseName + ": File Name:" + szFileName);
-        File fileToReturn = getterBL.getProfileHousePicture(szFolderHouseName, szFolderProfileName,szFileName);
+        File fileToReturn = getterBL.getProfileHousePicture(szFolderHouseName, szFolderProfileName, szFileName);
         return ok(fileToReturn);
     }
 
@@ -170,10 +168,10 @@ public class getter extends Controller {
      * Get a Comments for a specific house
      * @return
      */
-    public static Result getHouseComments(String szFolderHouseName,String szFolderProfileName,String szFileName) {
+    public static Result getHouseComments(String szFolderHouseName, String szFolderProfileName, String szFileName) {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Comments For House : " + szFolderHouseName);
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Comments For House : " + szFolderHouseName);
-        String szRecponce = getterBL.getHouseComments(szFolderHouseName, szFolderProfileName,szFileName);
+        String szRecponce = getterBL.getHouseComments(szFolderHouseName, szFolderProfileName, szFileName);
         return ok(szRecponce);
     }
 
@@ -199,5 +197,16 @@ public class getter extends Controller {
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
         File fileToReturn = getterBL.getSpecificPicture(szFolderName, szFileName);
         return ok(fileToReturn);
+    }
+
+    /***
+     * Get a specific house picture from server
+     * @return
+     */
+    public static Result getPermitedToView() {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Permited To View List");
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Permited To View List");
+        String szResponce = getterBL.getListOfPermitedToView().toString();
+        return ok(szResponce);
     }
 }
