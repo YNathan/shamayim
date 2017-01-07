@@ -20,7 +20,7 @@
 
     <!-- For Google Maps-->
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-   
+
 
     <!-- Angular Material Fileinput -->
     <link rel="stylesheet" href="./lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
@@ -37,67 +37,66 @@
 </head>
 
 <body ng-app="root">
-    <md-toolbar style="min-height: 5%; color:#4682B4;" layout="row" layout-align="center center">
-        <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
-            <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-        <md-button class="md-primary md-raised" ng-controller="loginRegister" ng-click="showAdvanced($event)"  ng-if="!showLrButton()">
-            Login/Register
-        </md-button>
-        <p flex style="text-align: center; color:black;">Smim Global Newark LLC - שמיים נדל"ן</p>
-        <md-input-container ng-if="isLoged()">
-            <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
-                <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
-                    {{Language}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </md-toolbar>
+<md-toolbar style="min-height: 5%; color:#4682B4;" layout="row" layout-align="center center">
+    <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <md-button class="login" ng-controller="loginRegister" ng-click="showAdvanced($event)" ng-if="!isLoged()">
+        <md-icon md-svg-icon="login"></md-icon>
+    </md-button>
+    <p flex style="text-align: center; color:black;">Smim Global Newark LLC - שמיים נדל"ן</p>
+    <md-input-container ng-if="isLoged()">
+        <md-select placeholder="Language/שפה" ng-model="Languages.selectedOption">
+            <md-option ng-value="Language" ng-repeat="Language in Languages.availableOptions">
+                {{Language}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+</md-toolbar>
 
-    <div class="container" layout="row" flex>
-        <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-            <md-toolbar class="md-theme-indigo md-padding">
-                <center>
-                    <h1 class="md-toolbar-tools">{{dictionary.Dictionary[0].Menu}}</h1>
-                </center>
-            </md-toolbar>
+<div class="container" layout="row" flex>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="2"
+                style="background-color: #DDDDDD;">
+        <md-toolbar class="md-theme-indigo md-padding" align="center">
+            <h1 class="md-toolbar-tools md-padding" align="center">{{dictionary.Dictionary[0].Menu}}</h1>
+        </md-toolbar>
 
-            <md-content layout-margin="" align="center">
-                <md-button class="house" ng-click="goToHouse()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div>{{dictionary.Dictionary[0].House}}</div>
-                </md-button>
-                </br>
-                <md-button class="houses" ng-click="goToHouses()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div> {{dictionary.Dictionary[0].ManageHouses}}</div>
-                </md-button>
-                </br>
-                <md-button ng-if="isManager()" class="NewHouse" ng-click="goToNewHouse()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div>{{dictionary.Dictionary[0].NewHouse}}</div>
-                </md-button>
-                </br>
-                <md-button ng-if="isManager()" class="NewHouse" ng-click="goToSystemManager()">
-                    <md-icon md-svg-icon="home"></md-icon>
-                    <div>{{dictionary.Dictionary[0].SystemManager}}</div>
-                </md-button>
-                </br>
-                <md-button class="copyright" ng-click="goToCopyright()">
-                    <md-icon md-svg-icon="copyright"></md-icon>
-                    <div>{{dictionary.Dictionary[0].Copyright}}</div>
-                </md-button>
-                </br>
-                <md-button class="logout" ng-click="logout()">
-                    <md-icon md-svg-icon="logout"></md-icon>
-                    <div>{{dictionary.Dictionary[0].Logout}}</div>
-                </md-button>
-                </br>
-            </md-content>
+        <md-content layout-margin="" align="center" style="background-color: #DDDDDD;">
+            <md-button class="house" ng-click="goToHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>{{dictionary.Dictionary[0].House}}</div>
+            </md-button>
+            </br>
+            <md-button class="houses" ng-click="goToHouses()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div> {{dictionary.Dictionary[0].ManageHouses}}</div>
+            </md-button>
+            </br>
+            <md-button ng-if="isManager()" class="NewHouse" ng-click="goToNewHouse()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>{{dictionary.Dictionary[0].NewHouse}}</div>
+            </md-button>
+            </br>
+            <md-button ng-if="isManager()" class="NewHouse" ng-click="goToSystemManager()">
+                <md-icon md-svg-icon="home"></md-icon>
+                <div>{{dictionary.Dictionary[0].SystemManager}}</div>
+            </md-button>
+            </br>
+            <md-button class="copyright" ng-click="goToCopyright()">
+                <md-icon md-svg-icon="copyright"></md-icon>
+                <div>{{dictionary.Dictionary[0].Copyright}}</div>
+            </md-button>
+            </br>
+            <md-button class="logout" ng-click="logout()">
+                <md-icon md-svg-icon="logout"></md-icon>
+                <div>{{dictionary.Dictionary[0].Logout}}</div>
+            </md-button>
+            </br>
+        </md-content>
 
-        </md-sidenav>
-    </div>
-    <div ui-view dir="{{$root.pageDirection}}"></div>
+    </md-sidenav>
+</div>
+<div ui-view dir="{{$root.pageDirection}}"></div>
 </body>
 
 </html>

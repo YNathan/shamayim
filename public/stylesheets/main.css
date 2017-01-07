@@ -2,6 +2,7 @@ body {
 	background: url('../images/background.jpg');
 	background-size: 100% 100%;
 	background-repeat: repeat-y;
+	background-color: #DDDDDD;
 }
 .md-tabs{
 background: #4682B4;

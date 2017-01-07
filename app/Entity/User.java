@@ -1,5 +1,12 @@
 package Entity;
 
+import DB.getterDB;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
 /**
  * @author Yaacov
  */
@@ -11,6 +18,7 @@ public class User {
     private String szUserId;
     private boolean bPermissionManager;
     private boolean bPermissionView;
+    ArrayList<HousePermitedToView> housePermitedToViews;
 
     public User(String szUserName, String szTelephone, String szEmail, String szPassword, String szUserId, String szPermission_manager, String szPermission_view) {
         super();
@@ -21,9 +29,11 @@ public class User {
         this.szUserId = szUserId;
         this.bPermissionManager = convertFromStringDataBaseFormatToBoolean(szPermission_manager);
         this.bPermissionView = convertFromStringDataBaseFormatToBoolean(szPermission_view);
+        housePermitedToViews = new ArrayList<>();
     }
 
     public User() {
+        housePermitedToViews = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -90,6 +100,14 @@ public class User {
         this.bPermissionView = bPermissionView;
     }
 
+    public ArrayList<HousePermitedToView> getHousePermitedToViews() {
+        return housePermitedToViews;
+    }
+
+    public void setHousePermitedToViews(ArrayList<HousePermitedToView> housePermitedToViews) {
+        this.housePermitedToViews = housePermitedToViews;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -153,5 +171,30 @@ public class User {
             szBooleanToReturn = "1";
         }
         return szBooleanToReturn;
+    }
+
+    public void loadPermitionsToView(ArrayList<House> houses) {
+        // Get current user id
+        int nThisUserId = Integer.parseInt(szUserId);
+
+        // Getting a list of house that the user has the right to see
+        ArrayList<House> housesPTV = new getterDB().getHouseesAdressPermitedByUserId(nThisUserId);
+
+        // Adding all house in the system and putting hem in false value
+        for (House currentHouse : houses) {
+            housePermitedToViews.add(new HousePermitedToView(currentHouse.getHouseId(), currentHouse.GetHouseAddessForLazy(), false));
+        }
+
+        // Ruuning over the house that the user haz the permission to see and torn the flag to true
+        for (HousePermitedToView currHPTV : housePermitedToViews) {
+            for (House currentHousePTV : housesPTV) {
+                if (currHPTV.getHouseAdress().equals(currentHousePTV.GetHouseAddessForLazy())) {
+                    currHPTV.setIsPermitedToView(true);
+                }
+
+            }
+        }
+
+
     }
 }

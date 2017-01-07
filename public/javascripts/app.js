@@ -11,6 +11,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $mdToa
     $mdIconProvider.icon('copyright', './svg/copyright.svg');
     $mdIconProvider.icon('home', './svg/home.svg');
     $mdIconProvider.icon('logout', './svg/assignment_return.svg');
+    $mdIconProvider.icon('login', './svg/login.svg');
 
 
     //

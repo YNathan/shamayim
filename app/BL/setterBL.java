@@ -3,15 +3,14 @@ package BL;
 import java.io.*;
 import java.util.ArrayList;
 
+import java.util.Iterator;
 import java.util.List;
 
-import Entity.ESuccessFailed;
-import Entity.User;
+import Entity.*;
 import File.FileSetter;
 import DB.getterDB;
 import DB.setterDB;
-import Entity.House;
-import Entity.WebResponce;
+import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.Http;
 
 
@@ -83,13 +82,35 @@ public class setterBL {
         return webResponce;
     }
 
-    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email, String password, String sPermissionManager, String sPermissionView) throws Exception {
+    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email, String password, String sPermissionManager, String sPermissionView, Iterator<JsonNode> lsthousePermitedToViews) throws Exception {
         webResponce = new WebResponce();
+        ArrayList<House> houses = getterDB.getListOfHouse();
+        ArrayList<HousePermitedToView> lstHousePermitedToViews = getArrayListOfHousePermissionToView(lsthousePermitedToViews);
+
+
         int nUserId = Integer.parseInt(sUserId);
         int nPermissionManager = Integer.parseInt(sPermissionManager);
         int nPermissionView = Integer.parseInt(sPermissionView);
         webResponce = setterDB.updateUser(nUserId, userName, telephone, email, password, nPermissionManager, nPermissionView);
         return webResponce;
+    }
+
+    private ArrayList<HousePermitedToView> getArrayListOfHousePermissionToView(Iterator<JsonNode> lsthousePermitedToViews) {
+        ArrayList<HousePermitedToView> lstHousePermitedToViewsToReturn = new ArrayList<>();
+        HousePermitedToView housePermitedToView = new HousePermitedToView();
+        JsonNode currJsonNode = null;
+        if (lsthousePermitedToViews.hasNext()) {
+            currJsonNode = lsthousePermitedToViews.next();
+        }
+        while (currJsonNode != null) {
+            lstHousePermitedToViewsToReturn.add(new HousePermitedToView(currJsonNode.findPath("houseId").asInt(), currJsonNode.findPath("houseAdress").textValue(), currJsonNode.findPath("isPermitedToView").asBoolean()));
+            if (lsthousePermitedToViews.hasNext()) {
+                currJsonNode = lsthousePermitedToViews.next();
+            } else {
+                currJsonNode = null;
+            }
+        }
+        return lstHousePermitedToViewsToReturn;
     }
 
     public WebResponce deleteUser(User m_user) {
@@ -114,8 +135,8 @@ public class setterBL {
         if (!bIsStillExist) {
             setterDB.setNewHouseDetails(m_house);
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Docs");
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Profile");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Docs");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Profile");
             webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
         } else {
             webResponce.setReason("The house Still Exist In the System. הבית כבר קיים במערכת");
@@ -154,8 +175,8 @@ public class setterBL {
         if (!bIsStillExist) {
             setterDB.setNewHouseDetails(m_house);
             fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Docs");
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber()+"\\Profile");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Docs");
+            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Profile");
             webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
             nHouseId = getterDB.getHouseAddress(m_house.getState(), m_house.getCity(), m_house.getStreet(), m_house.getHouseNumber()).getHouseId();
             webResponce.setMoreDetails(String.valueOf(nHouseId));
@@ -213,6 +234,7 @@ public class setterBL {
     public WebResponce setHouseDocuments(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
         return fileSetter.setHouseDocuments(szHouseName, pictures);
     }
+
     public WebResponce setHouseProfilePictures(String szHouseName, List<Http.MultipartFormData.FilePart> pictures) {
         return fileSetter.setHouseProfilePicture(szHouseName, pictures);
     }
@@ -233,7 +255,7 @@ public class setterBL {
             House house = getterDB.getHouseById(nHouseId);
             String szHouseName = house.getState() + "_" + house.getCity() + "_" + house.getStreet() + "_" + house.getHouseNumber();
             User userToSend = getterDB.getUser(getterDB.getUserIdByName(szUserName));
-            mailBl.sendHouse(szHouseName, house.toStringMailFormat(), userToSend.getEmail(),userToSend.getPermissionView());
+            mailBl.sendHouse(szHouseName, house.toStringMailFormat(), userToSend.getEmail(), userToSend.getPermissionView());
         }
 
         return webResponce;

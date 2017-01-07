@@ -78,55 +78,8 @@ app.controller('manager', ['$scope', '$http', '$state', '$interval', '$mdDialog'
 
     }
 
-   $scope.PermissionedToView ={ "PermissionedToView": [
-                              	{ "UserName":"Y.Nathan", "ListOfHouses" : [
-                              		{ "HouseId":"1","HouseAddress":"Newark_N.J_Prince_283"},
-                              		{ "HouseId":"2","HouseAddress":"Newark_N.J_13th_718"},
-                              		{ "HouseId":"3","HouseAddress":"israel_jerusalem_yirmiyahu_32"}]},
-                              	{ "UserName":"Nikol", "ListOfHouses" : [
-                              		{ "HouseId":"1","HouseAddress":"Newark_N.J_Prince_283"},
-                              		{ "HouseId":"4","HouseAddress":"france_neuilly sur seine_delabordère_11"}]
-                              	}]
-                              };
 
-    // For the ptv
-    $scope.PermissionedToView = {
-        availableOptions: [],
-        selectedOption: {
-            id: '1',
-            permited: 'default'
-        }
-    };
-    function check()
-    {
-
-
-    var a = 4;
-    var PermissionedToView = { "PermissionedToView": [
-     	{ "UserName":"Y.Nathan", "ListOfHouses" : [
-     		{ "HouseId":"1","HouseAddress":"Newark_N.J_Prince_283"},
-     		{ "HouseId":"2","HouseAddress":"Newark_N.J_13th_718"},
-     		{ "HouseId":"3","HouseAddress":"israel_jerusalem_yirmiyahu_32"}]},
-     	{ "UserName":"Nikol", "ListOfHouses" : [
-     		{ "HouseId":"1","HouseAddress":"Newark_N.J_Prince_283"},
-     		{ "HouseId":"4","HouseAddress":"france_neuilly sur seine_delabordère_11"}]
-     	}]
-     };
-
-        // Get information conserning the
-            $http.get("/GET_PERMITED_TO_VIEW_LIST")
-                .then(function successCallback(response) {
-                        angular.forEach(response.data.PermissionedToView, function (value, key) {
-                            itemName = {
-                                id: key,
-                                permited: value
-                            }
-                             $scope.PermissionedToView.availableOptions.push(itemName.house);
-                        }, $scope.PermissionedToView);
-                    },
-                    function error(response) {
-                        ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
-                    });
+    $scope.updateName = function (username, houseId) {
+        alert(username + " house number " + houseId);
     }
-    $interval(check(),20000);
 }]);

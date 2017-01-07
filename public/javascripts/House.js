@@ -1,6 +1,6 @@
 app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
-    $rootScope.bIsLoged = true;
+    ShamayimFunctions.setIsLoggedCookie("true");
     $scope.houseWasLoaded = false;
     $scope.backToButton = "בחר בית";
     // Just print kind of 'hay message'
@@ -253,12 +253,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     var languageToGet = ShamayimFunctions.setLanguageCookie();
 
-    if (languageToGet == null) {
-        languageToGet = "עברית";
-    }
-
-    getLanguage(languageToGet);
-
     $rootScope.$watch('Languages.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             HouseLanguageName = newVal;
@@ -290,7 +284,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         // Go to the main application
         $state.go('wellcom');
     }
-    getLanguage("English");
+    getLanguage("עברית");
     $scope.$watch('houses.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
             houseName = newVal;
@@ -299,7 +293,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     })
 
-    $rootScope.bIsLoged = true;
 
 
     function newMapLocation(nNumberOfHouse, szStreetName, szCityName, szStateName) {
@@ -331,47 +324,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     }
 
     $scope.imageSrc = "images/background.jpg";
-    $rootScope.toggleLeft = function () {
-        $mdSidenav('left').toggle();
-    }
-    $rootScope.goToCopyright = function () {
-        $state.go('Copyright');
-    }
-    $rootScope.goToHouses = function () {
-        $state.go('Houses');
-    }
-    $rootScope.goToNewHouse = function () {
-        $state.go('NewOrEditHouse');
-    }
-    $rootScope.goToSystemManager = function () {
-        $state.go('Manager');
-    }
-    $rootScope.goToHouse = function () {
-        $state.go('House');
-    }
-    $rootScope.goToHouse = function () {
-        $state.go('House');
-    }
-    $rootScope.logout = function () {
-        $rootScope.bIsLoged = false;
-        $state.go('welcome');
-
-    }
-    $rootScope.bIsLoged = true;
-    $rootScope.isLoged = function () {
-        if ($rootScope.bIsLoged == true) {
-            return true
-        } else {
-            return false;
-        }
-    }
-    $rootScope.showLrButton = function () {
-        if ($rootScope.bIsLoged == true) {
-            return false
-        } else {
-            return true;
-        }
-    }
 
 
     $scope.currentPage = 0;

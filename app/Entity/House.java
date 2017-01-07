@@ -16,7 +16,7 @@ public class House {
     private int nNumberOfKitchens = -1;
     private int nNumberOfBedrooms = -1;
     private int nNumberOfBathrooms = -1;
-    private ELocationKind eLocationKind =  ELocationKind.WHITE;
+    private ELocationKind eLocationKind = ELocationKind.WHITE;
     private String szComments = "SNull";
     private double dPurchasePrice = -1;
     private double dTreatmentFees = -1;
@@ -32,7 +32,7 @@ public class House {
         this.nHouseNumber = nHouseNumber;
     }
 
-    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, int m_nZipCode , Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale, double dRenovationFeesForRenting, double dDiversFees) {
+    public House(int nHouseId, String szState, String szCity, String szStreet, int nHouseNumber, int m_nZipCode, Entity.EHouseKind EHouseKind, int nNumberOfRooms, int nNumberOfLivingRooms, int nNumberOfKitchens, int nNumberOfBedrooms, int numberOfBathrooms, ELocationKind locationKind, String szComments, double dPurchasePrice, double dTreatmentFees, double dRenovationFeesForSale, double dRenovationFeesForRenting, double dDiversFees) {
         this.nHouseId = nHouseId;
         this.szState = szState;
         this.szCity = szCity;
@@ -241,6 +241,11 @@ public class House {
         this.nZipCode = nZipCode;
     }
 
+
+    public String GetHouseAddessForLazy() {
+        return this.szState + " " + this.szCity + " " + this.szStreet + " " + this.nHouseNumber;
+    }
+
     @Override
     public String toString() {
         return "House{" +
@@ -269,8 +274,8 @@ public class House {
     public String toStringMailFormat() {
         return "********************shamayim nadlan********************\n" +
                 "\n HouseId = " + nHouseId +
-                "\n State = " + szState  +
-                "\n City =" + szCity  +
+                "\n State = " + szState +
+                "\n City =" + szCity +
                 "\n Street = " + szStreet +
                 "\n HouseNumber = " + nHouseNumber +
                 "\n HouseKind = " + eHouseKind +

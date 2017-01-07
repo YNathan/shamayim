@@ -1,6 +1,6 @@
 app.controller('welcome', ['$scope', '$http', '$state', '$interval', '$mdDialog', '$mdSidenav', 'ShamayimFunctions', '$rootScope', function ($scope, $http, $state, $interval, $mdDialog, $mdSidenav, ShamayimFunctions, $rootScope) {
 
-
+    ShamayimFunctions.setIsLoggedCookie("false");
     // Language Section
 
     $rootScope.Languages = {
@@ -27,11 +27,8 @@ app.controller('welcome', ['$scope', '$http', '$state', '$interval', '$mdDialog'
 
     }
 
-    var languageToGet = ShamayimFunctions.setLanguageCookie();
-    if (languageToGet == null) {
-        languageToGet = "עברית";
-    }
-    getLanguage(languageToGet);
+
+    getLanguage("עברית");
 
     $rootScope.$watch('Languages.selectedOption', function (newVal, oldVal) {
         if (newVal != oldVal) {
@@ -42,6 +39,49 @@ app.controller('welcome', ['$scope', '$http', '$state', '$interval', '$mdDialog'
     })
 
     // End Of Language Section
+
+
+    $rootScope.toggleLeft = function () {
+        $mdSidenav('left').toggle();
+    }
+    $rootScope.goToCopyright = function () {
+        $state.go('Copyright');
+    }
+    $rootScope.goToHouses = function () {
+        $state.go('Houses');
+    }
+    $rootScope.goToNewHouse = function () {
+        $state.go('NewOrEditHouse');
+    }
+    $rootScope.goToSystemManager = function () {
+        $state.go('Manager');
+    }
+    $rootScope.goToHouse = function () {
+        $state.go('House');
+    }
+    $rootScope.goToHouse = function () {
+        $state.go('House');
+    }
+    $rootScope.logout = function () {
+        ShamayimFunctions.setIsLoggedCookie("false");
+        $state.go('welcome');
+
+    }
+    $rootScope.isLoged = function () {
+        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
+            return true
+        } else {
+            return false;
+        }
+    }
+    $rootScope.showLrButton = function () {
+        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
+            return false
+        } else {
+            return true;
+        }
+    }
+
 
 }]).directive('lazyLoad', function ($timeout) {
     return {

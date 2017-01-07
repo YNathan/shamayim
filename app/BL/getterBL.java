@@ -154,7 +154,10 @@ public class getterBL {
             }
 
         }
-
+        ArrayList<House> houses = getterDB.getListOfHouse();
+        for (User currentUser : usersToReturn) {
+            currentUser.loadPermitionsToView(houses);
+        }
         return usersToReturn;
     }
 

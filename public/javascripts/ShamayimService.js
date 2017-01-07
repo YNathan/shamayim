@@ -114,7 +114,9 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
                 });
 
     }
-
+    var setIsLoggedCookie = function (szbIsLogged) {
+        document.cookie = "Logged=" + szbIsLogged + "; ";
+    }
     var setLanguageCookie = function (szLanguage) {
         document.cookie = "Language=" + szLanguage + "; ";
     }
@@ -132,9 +134,19 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
             }
             return "";
         }
-        // Get value from the cookie
+    // Get language from the cookie
     var getLanguageCookie = function () {
         var name = "Language=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    var getIsLoggedCookie = function () {
+        var name = "Logged=";
         var ca = document.cookie.split(';');
         for (var i = 0; i < ca.length; i++) {
             var c = ca[i];
@@ -157,6 +169,8 @@ ShamayimService.factory('ShamayimFunctions', function ($http, $mdDialog) {
         setLanguageCookie: setLanguageCookie,
         setUserNameCookie: setUserNameCookie,
         setPermissionCookie: setPermissionCookie,
-        getPermissionCookie: getPermissionCookie
+        getPermissionCookie: getPermissionCookie,
+        setIsLoggedCookie : setIsLoggedCookie,
+        getIsLoggedCookie : getIsLoggedCookie
     };
 });
