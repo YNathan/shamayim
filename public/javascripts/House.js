@@ -90,6 +90,14 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         }
     };
 
+    $scope.houseDocumentsPathes = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            documnetsPath: 'default'
+        }
+    };
+
     var totalPages = 0;
 
 
@@ -105,10 +113,16 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                         totalPages++;
                         $scope.housePathesImages.availableOptions.push(itemName.imagesSource);
                     }, $scope.housePathesImages);
-                    $scope.paging = {
+                    $scope.pagingImage = {
                         total: totalPages,
                         current: 1,
-                        onPageChanged: loadPages,
+                        onPageChanged: loadPagesImage,
+                    };
+
+                    $scope.pagingDocument = {
+                        total: totalPages,
+                        current: 1,
+                        onPageChanged: loadPagesDocuments,
                     };
                 },
                 function error(response) {
@@ -129,6 +143,27 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                         totalPages++;
                         $scope.houseProfilePathesImages.availableOptions.push(itemName.imagesSource);
                     }, $scope.houseProfilePathesImages);
+
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+    }
+
+
+    // Get Profile Images
+    function getHouseDocumetns(nHouseId) {
+        totalPages = 0;
+        $http.get('/HOUSE_DOCUMENTS_PATHES/' + nHouseId + '/' + ShamayimFunctions.getCookie("username"))
+            .then(function successCallback(response) {
+                    angular.forEach(response.data.files, function (value, key) {
+                        itemName = {
+                            id: key,
+                            documnetsPath: value
+                        }
+                        totalPages++;
+                        $scope.houseDocumentsPathes.availableOptions.push(itemName.documnetsPath);
+                    }, $scope.houseDocumentsPathes);
 
                 },
                 function error(response) {
@@ -167,7 +202,10 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     // Get images
                     $scope.houseImages.availableOptions = [];
                     $scope.housePathesImages.availableOptions = [];
+                    $scope.houseDocumentsPathes.availableOptions = [];
                     getHouseImages(nHouseId);
+                    getHouseDocumetns(nHouseId);
+
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
@@ -204,6 +242,9 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                     // Get images
                     $scope.houseImages.availableOptions = [];
                     getHouseImages($scope.house_id);
+                    // Get documents
+                    $scope.houseDocumentsPathes.availableOptions = [];
+                    getHouseDocumetns($scope.house_id)
                 },
                 function error(response) {
                     ShamayimFunctions.showAlert("Your attention please", response.data, "cant load houses");
@@ -294,7 +335,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     })
 
 
-
     function newMapLocation(nNumberOfHouse, szStreetName, szCityName, szStateName) {
         var longitude = 0.0;
         var latitude = 0.0;
@@ -326,16 +366,28 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     $scope.imageSrc = "images/background.jpg";
 
 
-    $scope.currentPage = 0;
-    $scope.paging = {
+    $scope.currentPageImage = 0;
+    $scope.pagingImage = {
         total: totalPages,
         current: 1,
-        onPageChanged: loadPages,
+        onPageChanged: loadPagesImage,
     };
-    function loadPages() {
-        console.log('Current page is : ' + $scope.paging.current);
-        $scope.currentPage = $scope.paging.current;
-        $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPage - 1];
+    function loadPagesImage() {
+        console.log('Current page is : ' + $scope.pagingImage.current);
+        $scope.currentPageImage = $scope.pagingImage.current;
+        $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPageImage ];
+    }
+
+    $scope.currentPageDocuments = 0;
+    $scope.pagingDocument = {
+        total: totalPages,
+        current: 1,
+        onPageChanged: loadPagesDocuments,
+    };
+    function loadPagesDocuments() {
+        console.log('Current page is : ' + $scope.pagingDocument.current);
+        $scope.currentPageDocuments = $scope.pagingDocument.current;
+        $scope.houseDocument = $scope.houseDocumentsPathes.availableOptions[$scope.currentPageDocuments ];
     }
 
 

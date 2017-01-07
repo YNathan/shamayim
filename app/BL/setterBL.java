@@ -82,13 +82,44 @@ public class setterBL {
         return webResponce;
     }
 
-    public WebResponce uodateUser(String sUserId, String userName, String telephone, String email, String password, String sPermissionManager, String sPermissionView, Iterator<JsonNode> lsthousePermitedToViews) throws Exception {
+    public WebResponce updateUser(String sUserId, String userName, String telephone, String email, String password, String sPermissionManager, String sPermissionView, Iterator<JsonNode> lsthousePermitedToViewsAsJsonNode) throws Exception {
         webResponce = new WebResponce();
         ArrayList<House> houses = getterDB.getListOfHouse();
-        ArrayList<HousePermitedToView> lstHousePermitedToViews = getArrayListOfHousePermissionToView(lsthousePermitedToViews);
-
-
+        ArrayList<HousePermitedToView> lstHousePermitedToViewsFromClient = getArrayListOfHousePermissionToView(lsthousePermitedToViewsAsJsonNode);
         int nUserId = Integer.parseInt(sUserId);
+
+        ArrayList<House> lstHousePermitedToViewFromServer = getterDB.getHouseesAdressPermitedByUserId(nUserId);
+
+        // Looping over list from client
+        for (HousePermitedToView currentHouseFromClient : lstHousePermitedToViewsFromClient) {
+            boolean bPermissionWasFounded = false;
+
+            // In the case that is a false flag that is mean that the manager want to delete the permission
+            if (currentHouseFromClient.getIsPermitedToView() == false) {
+                // Looping over the permission list from server
+                for (House currentHouseFromServer : lstHousePermitedToViewFromServer) {
+                    // When the house was founded we need to delete because is a false flag the manager want to delete the permission
+                    if (currentHouseFromServer.getHouseId() == currentHouseFromClient.getHouseId()) {
+                        // Delete the permission
+                        setterDB.deletePermitedToView(nUserId, currentHouseFromServer.getHouseId());
+                    }
+                }
+            } else if (currentHouseFromClient.getIsPermitedToView() == true) {
+                // Looping over the permission list from server
+                for (House currentHouseFromServer : lstHousePermitedToViewFromServer) {
+                    // We check If The permission Already exist in the server
+                    if (currentHouseFromServer.getHouseId() == currentHouseFromClient.getHouseId()) {
+                        bPermissionWasFounded = true;
+                    }
+                }
+                // The permission was'nt founded so we need to add
+                if (bPermissionWasFounded == false) {
+                    // Adding the new permission
+                    setterDB.addNewPremitedToView(nUserId, currentHouseFromClient.getHouseId());
+                }
+            }
+        }
+
         int nPermissionManager = Integer.parseInt(sPermissionManager);
         int nPermissionView = Integer.parseInt(sPermissionView);
         webResponce = setterDB.updateUser(nUserId, userName, telephone, email, password, nPermissionManager, nPermissionView);

@@ -1,0 +1,274 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<META NAME="GENERATOR" Content="Evolution online ltd.">
+<title>zoomap - מנוע חיפוש תמונות בתים ורחובות - ירושלים&nbsp;ירמיהו&nbsp;42</title>
+<script src="/__utm.js" type="text/javascript"></script>
+<link href="style2.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	function prepareNewSiteLink(){
+		document.getElementById("newSiteLink").href=document.getElementById("GoHomeLink").href;
+		setTimeout(function(){ document.getElementById("newSiteDiv").style.visibility="visible"; }, 1000);
+	
+	}
+</script>
+<style>
+	.newSiteRight {
+    right: 0;
+    left: inherit;
+    top: 35%;
+}
+
+.newSiteWindow {
+    position: fixed;
+    width: 352px;
+    height: 300px;
+    top: 20%;
+    left: 0;
+    z-index: 1000;
+}
+
+.newSiteRightClose {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 9999;
+    background: url(http://alaxon.co.il/wp-content/uploads/2016/06/close.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.newSiteWindow .bird {
+    
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    right: 0;
+    left: inherit;
+}
+
+.newSiteRight .bird {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.innerNewSite {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    background: white;
+    border: 1px solid black;
+    line-height: 25px;
+    -webkit-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+}
+
+.newSiteRight .innerNewSite h2 {
+    text-align: left;
+}
+.innerNewSite h2 {
+    font-size: 15px;
+    text-decoration: underline;
+    text-decoration-color: #dd6049;
+    font-weight: bold;
+}
+</style>
+
+
+<script type="text/javascript" src="includes/js/common.js"></script>
+<script type="text/javascript">
+var citiesArr  = new Array('אבן יהודה','אופקים','אור יהודה','אור עקיבא','אורנית','אזור','אילת','אלפי מנשה','אריאל','אשדוד','אשקלון','באר יעקב','באר שבע','בית דגן','בית שאן','בית שמש','בני ברק','בני דרור','בנימינה','בת ים','גבעת שמואל','גבעתיים','גדרה','גן יבנה','גני יהודה','גני תקווה','דימונה','הוד השרון','הר אדר','הרצליה','זכרון יעקב','חדרה','חולון','חיפה','טבריה','טירת כרמל','יבנה','יהוד','יוקנעם עילית','ירוחם','ירושלים','כוכב יאיר','כפר אז"ר','כפר יונה','כפר סבא','כפר שמריהו','כרמיאל','להבים','לוד','מבשרת ציון','מגדל העמק','מודיעין','מזכרת בתיה','מיתר','מכבים','מעלה אדומים','נהריה','נווה אפרים מונוסון','נס ציונה','נצרת עילית','נשר','נתיבות','נתניה','סביון','עומר','עכו','עפולה','ערד','עתלית','פרדס חנה כרכור','פרדסיה','פתח תקווה','צור יגאל','צור משה','צורן','צפת','קדימה','קיסריה','קרית אונו','קרית אתא','קרית ביאליק','קרית גת','קרית טבעון','קרית ים','קרית מוצקין','קרית מלאכי','קרית עקרון','קרית שמונה','ראש העין','ראש פינה','ראשון לציון','רחובות','רמות השבים','רמלה','רמת אפעל','רמת גן','רמת השרון','רמת פנקס','רעות','רעננה','שדרות','שוהם','תל אביב יפו','תל מונד');
+var streetsArr = new Array();
+
+function gonewLink()
+{
+   var newLink_m = document.getElementById("newLink_m");
+   if(newLink_m)
+     newLink_m.click();   
+   
+   }
+
+</script>
+</head>
+
+
+		<body onLoad="getStreets();prepareNewSiteLink();">
+	
+
+
+<div class="container">
+	
+		<form action="search.asp" method="get" id="searchForm">
+		<table>
+			<tr>
+				<td><a href="http://www.zoomap.co.il/"><img src="images/logo7-small.jpg" width="196" height="80" alt="zoomap ישראל" /></a></td>
+				<td class="padIt">
+					<b>עיר:</b><br />
+					<input type="text" name="citiesText" id="citiesText" value="&#1497;&#1512;&#1493;&#1513;&#1500;&#1497;&#1501;" autocomplete="off" size="20" onkeyup="getStreets();" onblur="getStreets();" /><br /><br />
+				</td>
+				<td class="padIt">
+					<b>רחוב:</b><br />
+					<input type="text" name="streetsText" id="streetsText" value="&#1497;&#1512;&#1502;&#1497;&#1492;&#1493;" autocomplete="off" size="20" /><br /><br />
+				</td>
+				<td class="padIt">
+					<b>מספר:</b><br />
+					<input type="text" name="buildText" id="buildText" value="42" autocomplete="off" size="1" /><br /><br />
+				</td>
+				<td class="padIt">
+					<b>&nbsp;</b><br />
+					<input type="submit" value="חיפוש" /><br /><br />
+				</td>
+				
+			</tr>
+		</table>
+		</form>
+	
+<div id="newSiteDiv" class="newSiteWindow newSiteRight" style="visibility:hidden;">
+            <span class="newSiteRightClose" onclick="document.getElementById('newSiteDiv').style.visibility = 'hidden' "></span>
+            <img src="http://zoomap.co.il/b.png" alt="האתר החדש" class="bird">
+            <div class="innerNewSite">
+                <a id="newSiteLink" target="_blank" href="http://lechhabayta.zoomap.co.il/Maps/Index/%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91%20%D7%99%D7%A4%D7%95">
+                    <h2> לאתר החדש  </h2>
+                </a>
+            </div>
+        </div>
+</div>
+
+<div class="dotsBorder"></div>
+
+<div class="container">
+	
+	
+		<br /><a href="default.asp">דף ראשי</a>&nbsp;&gt;&nbsp;<a href="search.asp">ערים</a>&nbsp;&gt;&nbsp;<a href="search.asp?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D">ירושלים</a>&nbsp;&gt;&nbsp;<a href="search.asp?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95">ירמיהו</a>&nbsp;&gt;&nbsp;בית מספר 42
+		<a id="GoHomeLink" href="http://lechhabayta.zoomap.co.il/Maps/Index/42/ירמיהו/ירושלים" target="_blank" id="newLink_m" style="position: absolute;left: 22%;color:blue;">לך הביתה!&nbsp;ירמיהו&nbsp;42, ירושלים</a>
+        
+	<div id="instructionsDiv" name="instructionsDiv" style="display:none; "></div>
+	
+</div>
+
+<div class="containerCenter">
+
+<table class="fullTable">
+	<tr>
+		<td>
+	<table><tr><td class="bigImage"><table><tr><td class="streetText" name="enlargedStr" id="enlargedStr">רחוב ירמיהו&nbsp;42, ירושלים</td></tr><tr><td class="streetPic"><a href="#" onClick="swithThumbs();"><img src="files/images/buildings/enlarged/1C45EFC01C457B23.jpg" alt="ירמיהו&nbsp;42, ירושלים" id="enlargedPic" name="enlargedPic" /></a></td></tr></table><table class="fullTable"><tr><td class="firstBlock"><a href="?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95&buildText=21"><img src="images/a2-R.gif" width="93" height="15" alt="הראשון ברחוב" /></a></td><td class="midBlock"><a href="?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95&buildText=40"><img src="images/a1-R.gif" width="53" height="15" alt="הקודם" align="absmiddle" /></a>&nbsp;<a href="?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95&buildText=44"><img src="images/a1-L.gif" width="43" height="15" alt="הבא" align="absmiddle" /></a></td><td class="lastBlock"><a href="?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95&buildText=76"><img src="images/a2-L.gif" width="93" height="15" alt="האחרון ברחוב" /></a></td></tr></table></td><td class="midTd"><table class="fullTable"><tr><td height="50%" class="allBuildings"><a href="?citiesText=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D&streetsText=%D7%99%D7%A8%D7%9E%D7%99%D7%94%D7%95">לכל הבתים ברחוב</a><br><br><input type="button" onclick="gonewLink();" value="חפש באתר החדש"/><br><br><font style="color:black;font-size:12px;">רוצה תמונה חיה של בית זה?</font><br><a href='http://lechhabayta.zoomap.co.il/Maps/Index/42/ירמיהו/ירושלים' target="_blank" style="color:blue;">לך הביתה! ירמיהו 42,ירושלים</a></td></tr><tr><td height="50%"><table><tr><td class="streetText" name=" thumbStr" id="thumbStr">רחוב ירמיהו, ירושלים</td></tr><tr><td class="streetPic"><a href="#" onClick="swithThumbs();"><img src="files/images/streets/thumbs/1BEE49071BEDCBCB.JPG" alt="&#1497;&#1512;&#1502;&#1497;&#1492;&#1493;" id="thumbPic" name="thumbPic" /></a></td></tr></table></td></tr></table></td></tr></table>
+
+		<script type="text/javascript">
+
+   	 
+	 
+		function simpleLayerWrite(id,text) {
+			document.getElementById(id).innerHTML = text
+		}
+		
+		var thumbStreet = new Image() 
+		var thumbBuilding = new Image()
+		var enlargedStreet = new Image() 
+		var enlargedBuilding = new Image()
+		var strStreet = 'רחוב ירמיהו, ירושלים';
+		var strBuilding = 'רחוב ירמיהו&nbsp;42,&nbsp;ירושלים';
+		
+		
+		thumbStreet = 'files/images/streets/thumbs/1BEE49071BEDCBCB.JPG';
+		enlargedStreet = 'files/images/streets/enlarged/1BEE49071BEDCBCB.JPG';		
+		
+		thumbBuilding = 'files/images/buildings/thumbs/1C45EFC01C457B23.jpg';
+		enlargedBuilding = 'files/images/buildings/enlarged/1C45EFC01C457B23.jpg';		
+		
+		
+		function swithThumbs(){
+			
+			var elem1 = document.getElementById('enlargedPic');
+			var elem2 = document.getElementById('thumbPic');
+			var elem1Src = elem1.src;
+			var elem2Src = elem2.src;
+			
+			//if the current pic is of a building
+			if (elem1Src.indexOf('buildings') >= 0)
+				{
+					elem1.src = enlargedStreet;
+					elem2.src = thumbBuilding;
+					simpleLayerWrite('enlargedStr',strStreet);
+					simpleLayerWrite('thumbStr',strBuilding);
+				}
+			else
+				{
+					elem1.src = enlargedBuilding;
+					elem2.src = thumbStreet;
+					simpleLayerWrite('thumbStr',strStreet);
+					simpleLayerWrite('enlargedStr',strBuilding);
+				}
+		}
+		</script>
+	
+	
+
+		</td>
+		<td class="adsTd">
+			<!-- paid links -->
+			
+			<!-- paid links -->
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="dotsBorder"></div>
+
+<!-- search mode: full -->
+
+
+<center>
+
+<!--<div style="padding-right: 117px;">-->
+
+
+<div class="container" style="width:300px;">
+    <div class="containerCenter" style="width:300px;">
+	<a href="javascript:void(0);" onClick="window.external.AddFavorite('http://www.zoomap.co.il', document.title);"class="smallLink">הוסף למועדפים</a> | <a href="terms.asp" class="smallLink">תקנון שימוש</a> | <a href=mailto:info@zoomap.co.il class="smallLink">כתוב לנו</a> | <a href="sendFriend.asp" class="smallLink">שלח לחבר</a> <br />
+	Copyright &copy; 2017 zoomap Ltd. All rights reserved
+	
+	</div> 
+</div>
+</center>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+<!-- 
+var sc_project=927016; 
+var sc_invisible=1; 
+var sc_partition=7; 
+var sc_security="1882f029"; 
+var sc_remove_link=1; 
+//-->
+</script>
+
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><img  src="http://c8.statcounter.com/counter.php?sc_project=927016&amp;java=0&amp;security=1882f029&amp;invisible=1" alt="free website hit counter" border="0"> </noscript>
+<!-- End of StatCounter Code -->
+
+<script type="text/javascript" src="includes/js/declareObjects.js"></script>
+<iframe src="guidedSearchStreet.asp" name="guidedSearchStreet" id="guidedSearchStreet" style="display: none;" width="700" height="30"></iframe>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1118162-19");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

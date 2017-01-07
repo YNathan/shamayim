@@ -30,8 +30,7 @@ POST        /SET_HOUSE_DOCUMENTS/:szHouseName                                   
 
 # System Manager
 
-GET         /GET_PERMITED_TO_VIEW_LIST                                                              controllers.getter.getPermitedToView()
-
+GET         /GET_PERMITED_TO_VIEW_LIST                                                             controllers.getter.getPermitedToView()
 GET         /GET_LIST_OF_HOUSES                                                                    controllers.getter.getListOfHouses()
 GET         /GET_HOUSE_BY_ID/:nHouseId                                                             controllers.getter.getHouseById(nHouseId:String)
 GET         /GET_HOUSE_BY_ADDRESS_PROFILE_PATH/:szHouseAddress/:szProfileDir/:szPictureName        controllers.getter.getHouseByAddressProfilePictures(szHouseAddress:String,szProfileDir:String,szPictureName:String)
@@ -42,10 +41,12 @@ GET         /SEND_ME_THE_HOUSE/:szUserName/:szHouseId                           
 POST        /upload                                                                                controllers.setter.uploadFile
 # Houses
 GET         /HOUSE_PICTURES_PROFILE_PATHES                                                         controllers.getter.getHousePicturesProfilePaths()
+GET         /HOUSE_DOCUMENTS_PATHES/:szHouseId/:szUserName                                         controllers.getter.getHouseDocumentsPaths(szHouseId:String,szUserName:String)
 GET         /GET_SPECIFIC_HOUSE_PROFILE_PICTURES/:szFolderName/:szFolderProfileName/:szFileName    controllers.getter.getHouseProfilePicture(szFolderName:String,szFolderProfileName:String,szFileName:String)
 GET         /GET_HOUSE_COMMENTS/:szFolderName/:szFolderProfileName/:szFileName                     controllers.getter.getHouseComments(szFolderName:String,szFolderProfileName:String,szFileName:String)
 GET         /GET_FILES_PATHS/:szHouseId                                                            controllers.getter.getHousePicturesPaths(szHouseId:String)
 GET         /GET_SPECIFIC_FILE/:szFolderName/:szFileName                                           controllers.getter.getSpecificPicture(szFolderName:String,szFileName:String)
+GET         /GET_SPECIFIC_DOCUMENTS/:szHouseAddressFolderName/:szFolderDocumentsDir/:szFileName         controllers.getter.getSpecificDocument(szHouseAddressFolderName:String,szFolderDocumentsDir:String,szFileName:String)
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                                                                          controllers.Assets.at(path="/public", file)
 

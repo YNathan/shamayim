@@ -387,11 +387,51 @@ public class getterBL {
         return sbExistingLanguageToReturn;
     }
 
+
+    /**
+     * Get house documents
+     *
+     * @return
+     */
+    public StringBuilder getHouseDocumentPaths(String szHouseId, String szUserName) {
+        int nUserId = getterDB.getUserIdByName(szUserName);
+        int nHouseId = Integer.parseInt(szHouseId);
+        StringBuilder sbExistingFilesToReturn = new StringBuilder();
+        sbExistingFilesToReturn.append("{ \"files\": [");
+        boolean isPermitedToViewDocumentForThisHouse = getterDB.getisPermitedToViewDocumentForThisHouse(nUserId, nHouseId);
+
+        if (isPermitedToViewDocumentForThisHouse == true) {
+            House houseToGetHesFiles = getterDB.getHouseById(nHouseId);
+
+            String szFolderName = houseToGetHesFiles.getState() + "_" + houseToGetHesFiles.getCity() + "_" + houseToGetHesFiles.getStreet() + "_" + houseToGetHesFiles.getHouseNumber() + "/Docs";
+            ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
+            Iterator<String> ltrFiles = lstExistingFiles.iterator();
+            String currFile = null;
+            if (ltrFiles.hasNext()) {
+                currFile = ltrFiles.next();
+            }
+            while (currFile != null) {
+                sbExistingFilesToReturn.append("\"" + currFile + "\"");
+                if (ltrFiles.hasNext()) {
+                    sbExistingFilesToReturn.append(",");
+                    currFile = ltrFiles.next();
+                } else {
+                    currFile = null;
+                }
+
+            }
+
+        }
+        sbExistingFilesToReturn.append("]}");
+        return sbExistingFilesToReturn;
+    }
+
     /**
      * Get house profile pictures
      *
      * @return
      */
+
     public StringBuilder getHousePicturesProfilePaths() {
         StringBuilder sbExistingFilesToReturn = new StringBuilder();
         sbExistingFilesToReturn.append("{ \"files\": [");

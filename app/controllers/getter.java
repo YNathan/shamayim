@@ -146,6 +146,18 @@ public class getter extends Controller {
      * @return - json who contain path of the files
      * @throws IOException
      */
+    public static Result getHouseDocumentsPaths(String szHouseId, String szUserName) throws IOException {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House");
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House ");
+        String szResponce = getterBL.getHouseDocumentPaths(szHouseId, szUserName).toString();
+        return ok(szResponce);
+    }
+
+    /***
+     * Get profile Of An House
+     * @return - json who contain path of the files
+     * @throws IOException
+     */
     public static Result getHousePicturesProfilePaths() throws IOException {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House");
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get Profile Picture Pathes For House ");
@@ -196,6 +208,17 @@ public class getter extends Controller {
         System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
         Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
         File fileToReturn = getterBL.getSpecificPicture(szFolderName, szFileName);
+        return ok(fileToReturn);
+    }
+
+    /***
+     * Get a specific house picture from server
+     * @return
+     */
+    public static Result getSpecificDocument(String szFolderName, String szDocumentsDir, String szFileName) {
+        System.out.println(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
+        Logger.debug(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()) + " <GETTER>  in IP : " + request().remoteAddress() + " : Get File For House : " + szFolderName + ": File Name:" + szFileName);
+        File fileToReturn = getterBL.getSpecificPicture(szFolderName + "\\" + szDocumentsDir, szFileName);
         return ok(fileToReturn);
     }
 

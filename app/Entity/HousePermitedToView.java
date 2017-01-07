@@ -33,7 +33,7 @@ public class HousePermitedToView {
         this.szHouseAdress = szHouseAdress;
     }
 
-    public boolean isIsPermitedToView() {
+    public boolean getIsPermitedToView() {
         return bIsPermitedToView;
     }
 

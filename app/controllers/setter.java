@@ -10,13 +10,9 @@ import File.FileGetter;
 import BL.setterBL;
 import Entity.*;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Results;
-import scala.util.parsing.json.JSONArray;
-import scala.util.parsing.json.JSONObject;
 
 import static play.mvc.Controller.flash;
 import static play.mvc.Controller.request;
@@ -327,7 +323,7 @@ public class setter {
             jsonToUserEntity(json, userToUpdate);
             Iterator<JsonNode> lsthousePermitedToViews = json.findPath("housePermitedToViews").elements();
             System.out.println("Receive user for update : Receive User For Update: " + userToUpdate.toString());
-            webResponce = setterBL.uodateUser(userToUpdate.getUserId(), userToUpdate.getUsername(), userToUpdate.getTelephone(), userToUpdate.getEmail(), userToUpdate.getPassword(), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionManager()), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionView()), lsthousePermitedToViews);
+            webResponce = setterBL.updateUser(userToUpdate.getUserId(), userToUpdate.getUsername(), userToUpdate.getTelephone(), userToUpdate.getEmail(), userToUpdate.getPassword(), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionManager()), userToUpdate.convertBooleanToDataBaseFormatString(userToUpdate.getPermissionView()), lsthousePermitedToViews);
             if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
                 System.out.println(webResponce.toString());
                 return badRequest(webResponce.toJson());

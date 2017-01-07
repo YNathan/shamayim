@@ -22,6 +22,7 @@ public class setterDB {
     private static PreparedStatement preparedStatement;
     private static String TABLE_USERS_NAME = "shamayim.users";
     private static String TABLE_HOUSE_NAME = "shamayim.house";
+    private static String TABLE_PERMITED_VIEW_NAME = "shamayim.permissions_view";
     private static String DATA_BASE_USER_NAME = "root";
     private static String DATA_BASE_PASSWORD_NAME = Application.szDbPassword;
     private WebResponce webResponce = new WebResponce();
@@ -43,10 +44,10 @@ public class setterDB {
             connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
                     + "&password=" + DATA_BASE_PASSWORD_NAME);
             // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect.prepareStatement("DELETE FROM " + TABLE_USERS_NAME + " WHERE user_id="+nUserId+";");
+            preparedStatement = connect.prepareStatement("DELETE FROM " + TABLE_USERS_NAME + " WHERE user_id=" + nUserId + ";");
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            webResponce = new WebResponce(ESuccessFailed.FAILED,"Error When Try To Delete A User");
+            webResponce = new WebResponce(ESuccessFailed.FAILED, "Error When Try To Delete A User");
             e.printStackTrace();
             play.Logger.error(e.getMessage());
         } finally {
@@ -140,7 +141,7 @@ public class setterDB {
      * @throws Exception
      */
     public WebResponce addNewUser(String userName, String telephone, String email,
-                                   String password, int nPermissionManager, int nPermissionView) throws Exception {
+                                  String password, int nPermissionManager, int nPermissionView) throws Exception {
 
         webResponce = new WebResponce();
         // INFO
@@ -334,11 +335,11 @@ public class setterDB {
      * @return
      * @throws Exception
      */
-    public WebResponce updateHouseFinancialDetails(House m_House){
+    public WebResponce updateHouseFinancialDetails(House m_House) {
         webResponce = new WebResponce();
         // INFO
         play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
-                + " <SETTER> Update house : "+m_House.toStringMailFormat());
+                + " <SETTER> Update house : " + m_House.toStringMailFormat());
         System.out.println("Update house :" + m_House.toStringMailFormat());
 
 
@@ -386,11 +387,11 @@ public class setterDB {
      * @return
      * @throws Exception
      */
-    public WebResponce updateHouseGeneralDetails(House m_House){
+    public WebResponce updateHouseGeneralDetails(House m_House) {
         webResponce = new WebResponce();
         // INFO
         play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
-                + " <SETTER> Update house : "+m_House.toStringMailFormat());
+                + " <SETTER> Update house : " + m_House.toStringMailFormat());
         System.out.println("Update house :" + m_House.toStringMailFormat());
 
 
@@ -410,7 +411,7 @@ public class setterDB {
                     + "&password=" + DATA_BASE_PASSWORD_NAME);
 
             // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set house_kind=" + m_House.getHouseKind().getValue() + " ,number_of_rooms=" + m_House.getNumberOfRooms() + " ,number_of_living_rooms=" + m_House.getNumberOfLivingRooms() + " ,number_of_kitchens=" + m_House.getNumberOfKitchens() + " ,number_of_bedrooms=" + m_House.getNumberOfBedrooms() + " ,number_of_bathrooms=" + m_House.getNumberOfBathrooms() + " ,location_kind=" + m_House.getLocationKind().getValue()+ " ,comments=\"" + m_House.getComments() + "\" where house_id=" + m_House.getHouseId() + ";");
+            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME + " set house_kind=" + m_House.getHouseKind().getValue() + " ,number_of_rooms=" + m_House.getNumberOfRooms() + " ,number_of_living_rooms=" + m_House.getNumberOfLivingRooms() + " ,number_of_kitchens=" + m_House.getNumberOfKitchens() + " ,number_of_bedrooms=" + m_House.getNumberOfBedrooms() + " ,number_of_bathrooms=" + m_House.getNumberOfBathrooms() + " ,location_kind=" + m_House.getLocationKind().getValue() + " ,comments=\"" + m_House.getComments() + "\" where house_id=" + m_House.getHouseId() + ";");
             play.Logger.info(" Update house general details to the data-base");
             preparedStatement.executeUpdate();
             System.out.println("update successfully");
@@ -430,6 +431,7 @@ public class setterDB {
         commit();
         return webResponce;
     }
+
     /**
      * Commit changes of data base
      */
@@ -467,6 +469,69 @@ public class setterDB {
         } catch (Exception e) {
 
         }
+    }
+
+    public void deletePermitedToView(int nUserId, int houseId) {
+        webResponce = new WebResponce();
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("DELETE FROM " + TABLE_PERMITED_VIEW_NAME + " WHERE user_id=" + nUserId + " AND house_id=" + houseId + ";");
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            webResponce = new WebResponce(ESuccessFailed.FAILED, "Error When Try To Delete A the permission");
+            e.printStackTrace();
+            play.Logger.error(e.getMessage());
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes
+        commit();
+        webResponce.setReason("Delete User Success. המשתמש הוסר בהצלחה");
+    }
+
+    public void addNewPremitedToView(int nUserId, int houseId) {
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("insert into " + TABLE_PERMITED_VIEW_NAME
+                    + " (user_id,house_id) values (?, ?)");
+            play.Logger.info(" Insert new user to the data-base");
+            // Parameters start with 1
+            preparedStatement.setInt(1, nUserId);
+            preparedStatement.setInt(2, houseId);
+            preparedStatement.executeUpdate();
+            System.out.println("add permission to view for user-id : " + nUserId + " To House-Id : " + houseId + " successfully!!!");
+            System.out.println("============================");
+            webResponce.setReason("add permission to view for user-id : " + nUserId + " To House-Id : " + houseId + " successfully!!!");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to add the permission to view for user-id : " + nUserId + " To House-Id : " + houseId + ". ארעה שגיעה במהלך הוספת המשתמש");
+            System.out.println("==========================================");
+            webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponce.setReason("a problem occurred when try to add the permission to view for user-id : " + nUserId + " To House-Id : " + houseId + ". ארעה שגיעה במהלך הוספת המשתמש");
+            play.Logger.info("<setterDB> " + e.getMessage());
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
     }
 }
 
