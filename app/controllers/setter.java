@@ -90,7 +90,7 @@ public class setter {
         } else {
             House houseToRegistre = new House();
             try {
-                System.out.println(json.toString());
+                System.out.println("Server get house adress to update :"+json.toString());
                 houseToRegistre.setState(json.findPath("state").textValue());
                 houseToRegistre.setCity(json.findPath("city").textValue());
                 houseToRegistre.setStreet(json.findPath("street").textValue());

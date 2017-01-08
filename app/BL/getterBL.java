@@ -1,6 +1,9 @@
 package BL;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -12,6 +15,8 @@ import DB.getterDB;
 import Entity.*;
 import File.FileGetter;
 import play.Logger;
+
+import javax.imageio.ImageIO;
 
 /**
  * Will do all the logic of the data who asked from the server
@@ -559,12 +564,13 @@ public class getterBL {
     }
 
     // Get Specific Picture
-    public File getSpecificPicture(String szFolderName, String szFileName) {
+    public File getSpecificPicture(String szFolderName, String szFileName)  {
         String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
         File fileToReturn = fileGetter.getFile(szFullFilePath);
-        System.out.println("Get File " + szFullFilePath);
         return fileToReturn;
     }
+
+
 
     // Get Specific Documents
     public File getSpecificDocuments(String szFolderName, String szFileName) {
@@ -621,5 +627,6 @@ public class getterBL {
         sbExistingFilesToReturn.append("]}");
         return sbExistingFilesToReturn;
     }
+
 
 }

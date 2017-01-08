@@ -387,7 +387,5 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         $scope.currentPageDocuments = $scope.pagingDocument.current;
         $scope.houseDocument = $scope.houseDocumentsPathes.availableOptions[$scope.currentPageDocuments -1];
     }
-
-
 }])
 
