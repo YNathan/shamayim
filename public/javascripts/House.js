@@ -103,6 +103,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
 
     function getHouseImages(nHouseId) {
         totalPages = 0;
+        $scope.housePathesImages.availableOptions = [];
         $http.get('/GET_FILES_PATHS/' + nHouseId)
             .then(function successCallback(response) {
                     angular.forEach(response.data.files, function (value, key) {
@@ -149,6 +150,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     // Get Profile Images
     function getHouseDocumetns(nHouseId) {
         totalDocumentPage = 0;
+        $scope.houseDocumentsPathes.availableOptions = [];
         $http.get('/HOUSE_DOCUMENTS_PATHES/' + nHouseId + '/' + ShamayimFunctions.getCookie("username"))
             .then(function successCallback(response) {
                     angular.forEach(response.data.files, function (value, key) {
@@ -371,7 +373,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         onPageChanged: loadPagesImage,
     };
     function loadPagesImage() {
-        console.log('Current page is : ' + $scope.pagingImage.current);
+        console.log('Current image page is : ' + $scope.pagingImage.current);
         $scope.currentPageImage = $scope.pagingImage.current;
         $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPageImage -1];
     }
@@ -383,7 +385,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         onPageChanged: loadPagesDocuments,
     };
     function loadPagesDocuments() {
-        console.log('Current page is : ' + $scope.pagingDocument.current);
+        console.log('Current document page is : ' + $scope.pagingDocument.current);
         $scope.currentPageDocuments = $scope.pagingDocument.current;
         $scope.houseDocument = $scope.houseDocumentsPathes.availableOptions[$scope.currentPageDocuments -1];
     }

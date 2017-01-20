@@ -13,25 +13,6 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     ShamayimFunctions.setIsLoggedCookie("false")
 
 
-    $scope.uploadFile = function (files) {
-        var fd = new FormData();
-        //Take the selected file
-        fd.append("file", files[0]);
-
-        $http.post("/upload/" + ShamayimFunctions.getCookie("username"), fd, {
-            withCredentials: true,
-            headers: {
-                'Content-Type': undefined
-            },
-            transformRequest: angular.identity
-        }).success(
-            swal("Yeah!!!")
-        ).error(
-            swal("Oups! something wrong was hapening")
-        );
-
-    };
-
 
     $scope.login = function () {
         var userName = $scope.Username;
@@ -52,7 +33,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                 $state.go('House');
             }
         }, function error(response) {
-            alert(response.data);
+            ShamayimFunctions.showAlert("כניסה למערכת","הכנס שם משתמש וסיסמא תקניים","נכשל");
         });
     };
 
