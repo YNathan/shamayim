@@ -34,13 +34,13 @@
     <center>
         <h3>{{dictionary.Dictionary[0].AreaOnTheMap}}</h3>
         <div id="map" style="height: 300px; width: 800px;"></div>
-        <section flex style="background-color: #DDDDDD;">
+        <section flex style="max-height: 500px; background-color: #DDDDDD;">
             <md-content layout-padding="" style="background-color: #DDDDDD;">
                 <h1>Haouse Images</h1>
                 <img src=/GET_SPECIFIC_FILE/{{houseImage}}>
             </md-content>
         </section>
-        <section layout="row" layout-padding="" style="max-height: 500px;background-color: #DDDDDD;">
+        <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
             <cl-paging flex cl-pages="pagingImage.total" , cl-steps="6" , cl-page-changed="pagingImage.onPageChanged()",
                        cl-align="center center" , cl-current-page="pagingImage.current"></cl-paging>
         </section>
@@ -126,13 +126,13 @@
 
 <div flex layout="column" ng-if="houseWasLoaded">
     <center>
-        <section flex style="background-color: #DDDDDD;">
+        <section flex style="max-height: 500px; background-color: #DDDDDD;">
             <md-content layout-padding="" style="background-color: #DDDDDD;">
                 <h1>Haouse Documetns</h1>
                 <img src=/GET_SPECIFIC_DOCUMENTS/{{houseDocument}}>
             </md-content>
         </section>
-        <section layout="row" layout-padding="" style="max-height: 500px; background-color: #DDDDDD;">
+        <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
             <cl-paging flex cl-pages="pagingDocument.total" , cl-steps="6" , cl-page-changed="pagingDocument.onPageChanged()" ,
                        cl-align="center center" , cl-current-page="pagingDocument.current"></cl-paging>
         </section>
