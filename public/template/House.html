@@ -40,7 +40,7 @@
                 <img src=/GET_SPECIFIC_FILE/{{houseImage}}>
             </md-content>
         </section>
-        <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
+        <section layout="row" layout-padding="" style="max-height: 500px;background-color: #DDDDDD;">
             <cl-paging flex cl-pages="pagingImage.total" , cl-steps="6" , cl-page-changed="pagingImage.onPageChanged()",
                        cl-align="center center" , cl-current-page="pagingImage.current"></cl-paging>
         </section>
@@ -132,7 +132,7 @@
                 <img src=/GET_SPECIFIC_DOCUMENTS/{{houseDocument}}>
             </md-content>
         </section>
-        <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
+        <section layout="row" layout-padding="" style="max-height: 500px; background-color: #DDDDDD;">
             <cl-paging flex cl-pages="pagingDocument.total" , cl-steps="6" , cl-page-changed="pagingDocument.onPageChanged()" ,
                        cl-align="center center" , cl-current-page="pagingDocument.current"></cl-paging>
         </section>
