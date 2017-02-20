@@ -48,7 +48,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
-            flex: 50,
+            flex: 0,
         })
             .then(function (answer) {
                 $scope.status = 'You said the information was "' + answer + '".';
