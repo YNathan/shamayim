@@ -341,7 +341,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
         var latitude = 0.0;
 
         // Get information conserning the house
-        $http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + nNumberOfHouse + "," + szStreetName + "," + szCityName + "," + szStateName + "&key=AIzaSyCOx3ErCzTt9zayUQluJsKo_Gpnp4ztMbI")
+        $http.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + nNumberOfHouse + "," + szStreetName + "," + szCityName + "," + szStateName + "&key=AIzaSyDiEizMb95sLkzDtvQ-eRoZb-LzYmv2VVI")
             .then(function successCallback(response) {
                     latitude = response.data.results[0].geometry.location.lat;
                     longitude = response.data.results[0].geometry.location.lng;
