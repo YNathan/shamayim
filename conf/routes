@@ -15,11 +15,12 @@ GET         /CHECK_EMAIL/:Email                                                 
 GET         /GET_USER/:userName                                                                    controllers.getter.getUsers(userName:String)
 GET         /GET_USERS/:userName                                                                   controllers.getter.getUsers(userName:String)
 POST        /REGISTER/:userName/:telephone/:email/:password/:permission_manager/:permission_view   controllers.setter.registerNewUser(userName:String,telephone:String,email:String,password:String,permission_manager:String,permission_view:String)
-POST        /ADD_USER                                                                             controllers.setter.addUser()
+POST        /ADD_USER                                                                              controllers.setter.addUser()
 POST        /UPDATE_USER                                                                           controllers.setter.updateUser()
 POST        /DELETE_USER                                                                           controllers.setter.deleteUser()
 GET         /GET_USER_INFORMATION/:szUserName                                                      controllers.getter.getUserInformation(szUserName:String)
 # Update Houses
+POST        /UPDATE_HOUSE                                                                          controllers.setter.updateHouse()
 POST        /SET_NEW_HOUSE                                                                         controllers.setter.setNewHouse()
 POST        /SET_NEW_HOUSE_ADDRESS                                                                 controllers.setter.setNewHouseAdress()
 POST        /SET_HOUSE_GENERAL_DETAILS                                                             controllers.setter.setHouseGeneralDetails()

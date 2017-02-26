@@ -150,6 +150,13 @@ public class setterBL {
         return webResponce;
     }
 
+    public WebResponce updateHouse(House m_house) {
+        webResponce = new WebResponce();
+        webResponce.setReason("The house was update In the System. הבית עודכן בהצלחה");
+        setterDB.updateHouseDetails(m_house);
+        return webResponce;
+    }
+
     public WebResponce insertHouseDetails(House m_house) {
         webResponce = new WebResponce();
         boolean bIsStillExist = false;
@@ -163,12 +170,9 @@ public class setterBL {
                 break;
             }
         }
-        if (!bIsStillExist) {
+        if (bIsStillExist) {
             setterDB.setNewHouseDetails(m_house);
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber());
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Docs");
-            fileSetter.CreateFolder(m_house.getState() + "_" + m_house.getCity() + "_" + m_house.getStreet() + "_" + m_house.getHouseNumber() + "\\Profile");
-            webResponce.setReason("The house was registred In the System. הבית נרשם במערכת");
+            webResponce.setReason("The house was update In the System. הבית נרשם במערכת");
         } else {
             webResponce.setReason("The house Still Exist In the System. הבית כבר קיים במערכת");
         }

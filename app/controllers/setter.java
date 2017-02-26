@@ -82,6 +82,59 @@ public class setter {
      * @return
      */
 
+    public static Result updateHouse() {
+        webResponce = new WebResponce();
+        JsonNode json = request().body().asJson();
+        if (json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            House houseToRegistre = new House();
+            try {
+                System.out.println(json.toString());
+                houseToRegistre.setState(json.findPath("state").textValue());
+                houseToRegistre.setCity(json.findPath("city").textValue());
+                houseToRegistre.setStreet(json.findPath("street").textValue());
+                houseToRegistre.setHouseNumber(json.findPath("house_number").asInt());
+                EHouseKind eHouseKind = EHouseKind.ALONE;
+                eHouseKind.setValue(json.findPath("house_kind").asInt());
+                houseToRegistre.setHouseKind(eHouseKind);
+                houseToRegistre.setNumberOfRooms(json.findPath("number_of_rooms").asInt());
+                houseToRegistre.setNumberOfLivingRooms(json.findPath("number_of_living_rooms").asInt());
+                houseToRegistre.setNumberOfKitchens(json.findPath("number_of_kitchens").asInt());
+                houseToRegistre.setNumberOfBedrooms(json.findPath("number_of_bedrooms").intValue());
+                houseToRegistre.setNumberOfBathrooms(json.findPath("number_of_bathrooms").intValue());
+                ELocationKind eLocationKind = ELocationKind.WHITE;
+                eLocationKind.setValue(json.findPath("location_kind").asInt());
+                houseToRegistre.setLocationKind(eLocationKind);
+                houseToRegistre.setComments(json.findPath("comments").textValue());
+                houseToRegistre.setPurchasePrice(json.findPath("purchase_price").asDouble());
+                houseToRegistre.setTreatmentFees(json.findPath("treatment_fees").asDouble());
+                houseToRegistre.setRenovationFeesForRenting(json.findPath("renovation_fees_for_renting").asDouble());
+                houseToRegistre.setRenovationFeesForSale(json.findPath("renovation_fees_for_sale").asDouble());
+                houseToRegistre.setDiversFees(json.findPath("divers_fees").asDouble());
+            } catch (Exception e) {
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Missing parameter the system did'nt save the details ,חסר פרטים המערכת לא שמרה ת הנתונים" + houseToRegistre.toString());
+                e.printStackTrace();
+                return badRequest(webResponce.toJson());
+            }
+            webResponce = setterBL.updateHouse(houseToRegistre);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                System.out.println(webResponce.toString());
+                return badRequest(webResponce.toJson());
+            }
+            System.out.println("The House was Register correctly" + houseToRegistre.toString());
+            return ok(webResponce.getReason());
+        }
+    }
+
+
+    /**
+     * Inserting new house.
+     *
+     * @return
+     */
+
     public static Result setNewHouseAdress() {
         webResponce = new WebResponce();
         JsonNode json = request().body().asJson();
@@ -90,7 +143,7 @@ public class setter {
         } else {
             House houseToRegistre = new House();
             try {
-                System.out.println("Server get house adress to update :"+json.toString());
+                System.out.println("Server get house adress to update :" + json.toString());
                 houseToRegistre.setState(json.findPath("state").textValue());
                 houseToRegistre.setCity(json.findPath("city").textValue());
                 houseToRegistre.setStreet(json.findPath("street").textValue());

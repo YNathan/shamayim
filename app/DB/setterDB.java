@@ -262,6 +262,72 @@ public class setterDB {
 
     }
 
+    public WebResponce updateHouseDetails(House m_house) {
+        WebResponce webResponceToReturn = new WebResponce();
+        // INFO
+        play.Logger.info(" " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime())
+                + " <SETTER> Update house : ");
+        System.out.println("============================");
+        System.out.println("For : =>>");
+        System.out.println(m_house.toStringMailFormat());
+        System.out.println("============================");
+
+        try {
+            // The newInstance() call is a work around for some broken Java
+            // implementations
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+
+            String url = "jdbc:mysql://localhost/shamayim?characterEncoding=UTF-8";
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //connect = DriverManager.getConnection(url, DATA_BASE_USER_NAME, DATA_BASE_USER_NAME);
+
+            // String strConnection=
+            // "Server=127.0.0.1;Port=3306;Database=shamayim;Uid=root;password=Ny7516399;";
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME
+                    + " set state = ?,set city = ?, set street = ?, set house_number = ?, set zip_code  = ?, set house_kind  = ?, set number_of_rooms = ?, set number_of_living_rooms = ?, set number_of_kitchens = ?, set number_of_bedrooms = ?, set number_of_bathrooms = ?, set location_kind = ?, set comments = ?, set purchase_price  = ?, set treatment_fees  = ?, set renovation_fees_for_sale  = ?, set renovation_fees_for_renting = ?, set divers_fees  = ? WHERE house_id=" + m_house.getHouseId() + ";");
+            play.Logger.info(" update house in the data-base");
+
+            preparedStatement.setString(1, m_house.getState());
+            preparedStatement.setString(2, m_house.getCity());
+            preparedStatement.setString(3, m_house.getStreet());
+            preparedStatement.setInt(4, m_house.getHouseNumber());
+            preparedStatement.setInt(5, m_house.getZipCode());
+            preparedStatement.setInt(6, m_house.getHouseKind().getValue());
+            preparedStatement.setInt(7, m_house.getNumberOfRooms());
+            preparedStatement.setInt(8, m_house.getNumberOfLivingRooms());
+            preparedStatement.setInt(9, m_house.getNumberOfKitchens());
+            preparedStatement.setInt(10, m_house.getNumberOfBedrooms());
+            preparedStatement.setInt(11, m_house.getNumberOfBathrooms());
+            preparedStatement.setInt(12, m_house.getLocationKind().getValue());
+            preparedStatement.setString(13, m_house.getComments());
+            preparedStatement.setDouble(14, m_house.getPurchasePrice());
+            preparedStatement.setDouble(15, m_house.getTreatmentFees());
+            preparedStatement.setDouble(16, m_house.getRenovationFeesForSale());
+            preparedStatement.setDouble(17, m_house.getRenovationFeesForRenting());
+            preparedStatement.setDouble(18, m_house.getDiversFees());
+            preparedStatement.executeUpdate();
+            System.out.println("update successfully!");
+        } catch (Exception e) {
+            System.out.println("a problem occurred when try to update");
+            System.out.println("=====================================");
+            webResponceToReturn.seteSuccessFailed(ESuccessFailed.FAILED);
+            webResponceToReturn.setReason("a problem occurred when try to update");
+            play.Logger.info("<setterDB> " + e.getMessage());
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes;
+        commit();
+        return webResponceToReturn;
+
+    }
+
     public WebResponce setNewHouseDetails(House m_house) {
         WebResponce webResponceToReturn = new WebResponce();
         // INFO

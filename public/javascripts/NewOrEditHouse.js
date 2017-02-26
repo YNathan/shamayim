@@ -26,6 +26,8 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.renovation_fees_for_sale = 0.0;
     $scope.renovation_fees_for_renting = 0.0;
     $scope.userName = ShamayimFunctions.getCookie("username");
+    $scope.isNewHouseChecked = true;
+    $scope.houseWasChosen = false;
     var houseName = "";
     var tempArr = [];
     var house = {
@@ -49,6 +51,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
         "renovation_fees_for_renting": "0.0",
         "renovation_fees_for_sale": "0.0"
     }
+
 
     $scope.dataTabs = {
         selectedIndex: 0,
@@ -249,5 +252,73 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             alert("Oups! something wrong was hapening")
         );
     }
+
+    // Houses For Edit Section
+    $scope.tempArr = [];
+    $scope.Houses = {
+        availableOptions: [],
+        selectedOption: {
+            id: '1',
+            House: 'default'
+        }
+    };
+        $http.get('/GET_LIST_OF_HOUSES')
+            .then(function successCallback(response) {
+                    angular.forEach(response.data.houses, function (value, key) {
+                        itemName = {
+                            id: key,
+                            House: value
+                        }
+                        tempArr.push(itemName);
+                        $scope.Houses.availableOptions.push(itemName.House);
+                    }, $scope.Houses);
+                },
+                function error(response) {
+                    showAlert("Your attention please", response.data, "cant load houses");
+                });
+
+                 $scope.$watch('Houses.selectedOption', function (newVal, oldVal) {
+                        if (newVal != oldVal) {
+                            $scope.houseWasChosen = true;
+                            updateEditerHouse(newVal);
+
+                        }
+                    })
+                  function updateEditerHouse(house){
+                      $scope.house_id = house.house_id;
+                      $scope.state = house.state;
+                      $scope.city =house.city;
+                      $scope.street = house.street;
+                      $scope.house_number =house.house_number;
+                      $scope.house_kind = house.house_kind;
+                      $scope.number_of_rooms = house.number_of_rooms;
+                      $scope.number_of_living_rooms = house.number_of_living_rooms;
+                      $scope.number_of_kitchens = house.number_of_kitchens;
+                      $scope.number_of_bedrooms = house.number_of_bedrooms;
+                      $scope.number_of_bathrooms = house.number_of_bathrooms;
+                      $scope.location_kind = house.location_kind;
+                      $scope.comments = house.comments;
+                      $scope.purchase_price =house.purchase_price;
+                      $scope.treatment_fees = house.treatment_fees;
+                      $scope.divers_fees = house.divers_fees;
+                      $scope.renovation_fees_for_sale = house.renovation_fees_for_sale;
+                      $scope.renovation_fees_for_renting = house.renovation_fees_for_renting;
+                  }
+
+
+                  $scope.updateHouse = function()
+                  {
+
+                   var res = $http.post('/UPDATE_HOUSE', house);
+                          res.success(function (data, status, headers, config) {
+                              alert(data);
+                          });
+                          res.error(function (data, status, headers, config) {
+                              alert("failure message: " + JSON.stringify({
+                                      data: data
+                                  }));
+                          });
+
+                  }
 
 }]);
