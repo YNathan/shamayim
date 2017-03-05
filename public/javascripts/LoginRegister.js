@@ -12,8 +12,6 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     $scope.Password = 'a';
     ShamayimFunctions.setIsLoggedCookie("false")
 
-
-
     $scope.login = function () {
         var userName = $scope.Username;
         var password = $scope.Password;
@@ -29,6 +27,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                 ShamayimFunctions.setPermissionCookie(szPermission);
                 ShamayimFunctions.setIsLoggedCookie("true");
                 closeAlert();
+
                 // Go to the main application
                 $state.go('House');
             }
@@ -72,4 +71,13 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
         };
 
     }
+
+
+     $rootScope.isLoged = function () {
+                        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
+                            return true
+                        } else {
+                            return false;
+                        }
+                    }
 }]);

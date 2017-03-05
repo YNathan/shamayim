@@ -238,93 +238,81 @@
     </md-tabs>
 </md-content>
 <!-Editing house section-->
-<md-content class="md-padding trns" style="background: url('../images/background.jpg');" ng-if="!isNewHouseChecked && houseWasChosen">
+<md-content class="md-padding" style="background: url('../images/background.jpg');" ng-if="!isNewHouseChecked && houseWasChosen">
     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}" style="background-color: #DDDDDD;">
         <div flex=100>
             <form ng-submit="updateHouse()" class="md-padding">
                 <md-input-container>
                     <label>{{dictionary.Dictionary[0].State}} :</label>
-                    <input type="text" ng-model="state" name="text" placeholder="ארץ" required/>
+                    <input type="text" ng-model="houseToEdit.state" name="text" placeholder="ארץ" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].City}} :</label>
-                    <input type="text" ng-model="city" name="text" placeholder="עיר" required/>
+                    <input type="text" ng-model="houseToEdit.city" name="text" placeholder="עיר" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].Street}} :</label>
-                    <input type="text" ng-model="street" name="text" placeholder="רחוב" required/>
+                    <input type="text" ng-model="houseToEdit.street" name="text" placeholder="רחוב" required/>
                 </md-input-container>
 
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].HouseNumber}} :</label>
-                    <input type="number" ng-model="house_number" name="text" placeholder="מספר בית"
-                           required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
-                    <input type="number" ng-model="house_kind" name="text" placeholder="מספר בית"
-                           required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].NumberOfRooms}}:</label>
-                    <input type="number" ng-model="number_of_rooms" name="text" placeholder="מספר בית"
-                           required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].NumberOfLivingRooms }}:</label>
-                    <input type="number" ng-model="number_of_living_rooms" name="text"
-                           placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label>{{dictionary.Dictionary[0].NumberOfKitchens }}:</label>
-                    <input type="number" ng-model="number_of_kitchens" name="text"
-                           placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].NumberOfBedrooms}} :</label>
-                    <input type="number" ng-model="number_of_bedrooms" name="text"
-                           placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].NumberOfBathrooms}} :</label>
-                    <input type="number" ng-model="number_of_bathrooms" name="text"
-                           placeholder="מספר בית" required/>
-                </md-input-container>
-                <md-input-container>
-                    <label> {{dictionary.Dictionary[0].LocationKind}} :</label>
-                    <input type="number" ng-model="location_kind" name="text" placeholder="מספר בית"
+                    <input type="number" ng-model="houseToEdit.house_number" name="text" placeholder="מספר בית"
                            required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].Comments}} :</label>
-                    <input type="text" ng-model="comments" name="text" placeholder="רחוב" required/>
+                    <input type="text" ng-model="houseToEdit.comments" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
+                    <input type="number" ng-model="houseToEdit.house_kind" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].NumberOfRooms}}:</label>
+                    <input type="number" ng-model="houseToEdit.number_of_rooms" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].NumberOfLivingRooms }}:</label>
+                    <input type="number" ng-model="houseToEdit.number_of_living_rooms" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label>{{dictionary.Dictionary[0].NumberOfKitchens }}:</label>
+                    <input type="number" ng-model="houseToEdit.number_of_kitchens" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].NumberOfBedrooms}} :</label>
+                    <input type="number" ng-model="houseToEdit.number_of_bedrooms" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].NumberOfBathrooms}} :</label>
+                    <input type="number" ng-model="houseToEdit.number_of_bathrooms" name="text" required/>
+                </md-input-container>
+                <md-input-container>
+                    <label> {{dictionary.Dictionary[0].LocationKind}} :</label>
+                    <input type="number" ng-model="houseToEdit.location_kind" name="text" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].PurchasePrice}} :</label>
-                    <input type="number" ng-model="purchase_price" name="text" placeholder="מספר בית"
-                           required/>
+                    <input type="number" ng-model="houseToEdit.purchase_price" name="text" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].TreatmentFees}} :</label>
-                    <input type="number" ng-model="treatment_fees" name="text" placeholder="מספר בית"
-                           required/>
+                    <input type="number" ng-model="houseToEdit.treatment_fees" name="text" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].RenovationFeesForSale}} :</label>
-                    <input type="number" ng-model="renovation_fees_for_sale" name="text"
-                           placeholder="מספר בית" required/>
+                    <input type="number" ng-model="houseToEdit.renovation_fees_for_sale" name="text" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].RenovationFeesForRenting}} :</label>
-                    <input type="number" ng-model="renovation_fees_for_renting" name="text"
-                           placeholder="מספר בית" required/>
+                    <input type="number" ng-model="houseToEdit.renovation_fees_for_renting" name="text" required/>
                 </md-input-container>
                 <md-input-container>
                     <label> {{dictionary.Dictionary[0].DiversFees}} :</label>
-                    <input type="number" ng-model="divers_fees" name="text" placeholder="מספר בית"
-                           required/>
+                    <input type="number" ng-model="houseToEdit.divers_fees" name="text" required/>
                 </md-input-container>
                 <center>
                     <md-input-container>

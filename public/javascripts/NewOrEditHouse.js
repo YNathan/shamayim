@@ -25,6 +25,30 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.divers_fees = 0.0;
     $scope.renovation_fees_for_sale = 0.0;
     $scope.renovation_fees_for_renting = 0.0;
+
+    $scope.houseToEdit = {
+        "house_id": "",
+        "state": "",
+        "city": "",
+        "street": "",
+        "house_number": "",
+        "house_kind": "",
+        "number_of_rooms": "",
+        "number_of_living_rooms": "",
+        "number_of_kitchens": "",
+        "number_of_bedrooms": "",
+        "number_of_bathrooms": "",
+        "location_kind": "",
+        "comments": "",
+        "purchase_price": "0.0",
+        "treatment_fees": "0.0",
+        "renovation_fees": "0.0",
+        "divers_fees": "0.0",
+        "renovation_fees_for_renting": "0.0",
+        "renovation_fees_for_sale": "0.0"
+    }
+
+
     $scope.userName = ShamayimFunctions.getCookie("username");
     $scope.isNewHouseChecked = true;
     $scope.houseWasChosen = false;
@@ -285,31 +309,30 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
                         }
                     })
                   function updateEditerHouse(house){
-                      $scope.house_id = house.house_id;
-                      $scope.state = house.state;
-                      $scope.city =house.city;
-                      $scope.street = house.street;
-                      $scope.house_number =house.house_number;
-                      $scope.house_kind = house.house_kind;
-                      $scope.number_of_rooms = house.number_of_rooms;
-                      $scope.number_of_living_rooms = house.number_of_living_rooms;
-                      $scope.number_of_kitchens = house.number_of_kitchens;
-                      $scope.number_of_bedrooms = house.number_of_bedrooms;
-                      $scope.number_of_bathrooms = house.number_of_bathrooms;
-                      $scope.location_kind = house.location_kind;
-                      $scope.comments = house.comments;
-                      $scope.purchase_price =house.purchase_price;
-                      $scope.treatment_fees = house.treatment_fees;
-                      $scope.divers_fees = house.divers_fees;
-                      $scope.renovation_fees_for_sale = house.renovation_fees_for_sale;
-                      $scope.renovation_fees_for_renting = house.renovation_fees_for_renting;
+                      $scope.houseToEdit.house_id = house.house_id;
+                      $scope.houseToEdit.state = house.state;
+                      $scope.houseToEdit.city =house.city;
+                      $scope.houseToEdit.street = house.street;
+                      $scope.houseToEdit.house_number = parseInt(house.house_number);
+                      $scope.houseToEdit.house_kind = 0;
+                      $scope.houseToEdit.number_of_rooms = Math.ceil(house.number_of_rooms);
+                      $scope.houseToEdit.number_of_living_rooms = Math.ceil(house.number_of_living_rooms) ;
+                      $scope.houseToEdit.number_of_kitchens = Math.ceil(house.number_of_kitchens);
+                      $scope.houseToEdit.number_of_bedrooms = Math.ceil(house.number_of_bedrooms);
+                      $scope.houseToEdit.number_of_bathrooms = Math.ceil(house.number_of_bathrooms);
+                      $scope.houseToEdit.location_kind = 0;
+                      $scope.houseToEdit.comments = house.comments;
+                      $scope.houseToEdit.purchase_price = Math.ceil(house.purchase_price);
+                      $scope.houseToEdit.treatment_fees = Math.ceil(house.treatment_fees);
+                      $scope.houseToEdit.divers_fees = Math.ceil(house.divers_fees);
+                      $scope.houseToEdit.renovation_fees_for_sale = Math.ceil(house.renovation_fees_for_sale);
+                      $scope.houseToEdit.renovation_fees_for_renting = Math.ceil(house.renovation_fees_for_renting);
                   }
 
 
                   $scope.updateHouse = function()
                   {
-
-                   var res = $http.post('/UPDATE_HOUSE', house);
+                   var res = $http.post('/UPDATE_HOUSE', $scope.houseToEdit);
                           res.success(function (data, status, headers, config) {
                               alert(data);
                           });

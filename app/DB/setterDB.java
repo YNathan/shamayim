@@ -289,14 +289,14 @@ public class setterDB {
 
             // PreparedStatements can use variables and are more efficient
             preparedStatement = connect.prepareStatement("update " + TABLE_HOUSE_NAME
-                    + " set state = ?,set city = ?, set street = ?, set house_number = ?, set zip_code  = ?, set house_kind  = ?, set number_of_rooms = ?, set number_of_living_rooms = ?, set number_of_kitchens = ?, set number_of_bedrooms = ?, set number_of_bathrooms = ?, set location_kind = ?, set comments = ?, set purchase_price  = ?, set treatment_fees  = ?, set renovation_fees_for_sale  = ?, set renovation_fees_for_renting = ?, set divers_fees  = ? WHERE house_id=" + m_house.getHouseId() + ";");
+                    + " set state = ?, city = ?, street = ?, house_number = ?, zip_code = ?, house_kind = ?, number_of_rooms = ?, number_of_living_rooms = ?, number_of_kitchens = ?, number_of_bedrooms = ?, number_of_bathrooms = ?, location_kind = ?, comments = ?, purchase_price = ?, treatment_fees = ?, renovation_fees_for_sale = ?, renovation_fees_for_renting = ?, divers_fees = ? WHERE house_id = " + m_house.getHouseId() + ";");
             play.Logger.info(" update house in the data-base");
 
             preparedStatement.setString(1, m_house.getState());
             preparedStatement.setString(2, m_house.getCity());
             preparedStatement.setString(3, m_house.getStreet());
             preparedStatement.setInt(4, m_house.getHouseNumber());
-            preparedStatement.setInt(5, m_house.getZipCode());
+            preparedStatement.setInt(5, 00000);
             preparedStatement.setInt(6, m_house.getHouseKind().getValue());
             preparedStatement.setInt(7, m_house.getNumberOfRooms());
             preparedStatement.setInt(8, m_house.getNumberOfLivingRooms());

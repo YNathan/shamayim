@@ -91,6 +91,7 @@ public class setter {
             House houseToRegistre = new House();
             try {
                 System.out.println(json.toString());
+                houseToRegistre.setHouseId(json.findPath("house_id").intValue());
                 houseToRegistre.setState(json.findPath("state").textValue());
                 houseToRegistre.setCity(json.findPath("city").textValue());
                 houseToRegistre.setStreet(json.findPath("street").textValue());
