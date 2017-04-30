@@ -32,7 +32,7 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
                 $state.go('House');
             }
         }, function error(response) {
-            ShamayimFunctions.showAlert("כניסה למערכת","הכנס שם משתמש וסיסמא תקניים","נכשל");
+            ShamayimFunctions.showAlert("כניסה למערכת", "הכנס שם משתמש וסיסמא תקניים", "נכשל");
         });
     };
 
@@ -73,11 +73,11 @@ app.controller('loginRegister', ['$scope', '$http', '$filter', '$state', '$mdDia
     }
 
 
-     $rootScope.isLoged = function () {
-                        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
-                            return true
-                        } else {
-                            return false;
-                        }
-                    }
+    $rootScope.isLoged = function () {
+        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
+            return true
+        } else {
+            return false;
+        }
+    }
 }]);

@@ -2,6 +2,7 @@ package File;
 
 import BL.setterBL;
 import Entity.ESuccessFailed;
+import Entity.House;
 import Entity.WebResponce;
 import play.mvc.Http;
 
@@ -151,4 +152,9 @@ public class FileSetter {
 
         return resizedImage;
     }
+
+    private static void deleteHouse(House m_houseToDelete) {
+        String szPathFolderHouse = System.getProperty("user.dir") ;
+    }
+
 }

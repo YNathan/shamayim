@@ -8,10 +8,10 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.message = 'M. ' + ShamayimFunctions.getCookie("username");
     $scope.DebterName = "";
     $scope.house_id = "1";
-    $scope.state = "israel";
-    $scope.city = "jerusalem";
-    $scope.street = "yirmiyahu";
-    $scope.house_number = 32;
+    $scope.state;
+    $scope.city;
+    $scope.street;
+    $scope.house_number ;
     $scope.house_kind = 3;
     $scope.number_of_rooms = 1;
     $scope.number_of_living_rooms = 1;
@@ -55,25 +55,6 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     var houseName = "";
     var tempArr = [];
     var house = {
-        "houseId": "-1",
-        "state": "israel",
-        "city": "jerusalem",
-        "street": "yirmiyahu",
-        "house_number": "32",
-        "house_kind": "1",
-        "number_of_rooms": "3",
-        "number_of_living_rooms": "1",
-        "number_of_kitchens": "2",
-        "number_of_bedrooms": "1",
-        "number_of_bathrooms": "1",
-        "location_kind": "dfg",
-        "comments": "Nice area great place to have fun",
-        "purchase_price": "0.0",
-        "treatment_fees": "0.0",
-        "renovation_fees": "0.0",
-        "divers_fees": "0.0",
-        "renovation_fees_for_renting": "0.0",
-        "renovation_fees_for_sale": "0.0"
     }
 
 
@@ -120,12 +101,12 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     }
 
-    $scope.setNewHouseAddress = function () {
-        house.state = $scope.state;
-        house.city = $scope.city;
-        house.street = $scope.street;
-        house.house_number = $scope.house_number;
-        house.house_kind = $scope.house_kind;
+    $scope.setNewHouseAddress = function (theForm) {
+        house.state = theForm.state;
+        house.city = theForm.city;
+        house.street = theForm.street;
+        house.house_number = theForm.house_number;
+        house.house_kind = theForm.house_kind;
 
 
         var res = $http.post('/SET_NEW_HOUSE_ADDRESS', house);
@@ -144,16 +125,16 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     }
 
-    $scope.setHouseGeneralDetails = function () {
+    $scope.setHouseGeneralDetails = function (theForm) {
         house.houseId = houseId;
-        house.house_kind = $scope.house_kind;
-        house.number_of_rooms = $scope.number_of_rooms;
-        house.number_of_living_rooms = $scope.number_of_living_rooms;
-        house.number_of_kitchens = $scope.number_of_kitchens;
-        house.number_of_bedrooms = $scope.number_of_bedrooms;
-        house.number_of_bathrooms = $scope.number_of_bathrooms;
-        house.location_kind = $scope.location_kind;
-        house.comments = $scope.comments;
+        house.house_kind = theForm.house_kind;
+        house.number_of_rooms = theForm.number_of_rooms;
+        house.number_of_living_rooms = theForm.number_of_living_rooms;
+        house.number_of_kitchens = theForm.number_of_kitchens;
+        house.number_of_bedrooms = theForm.number_of_bedrooms;
+        house.number_of_bathrooms = theForm.number_of_bathrooms;
+        house.location_kind = theForm.location_kind;
+        house.comments = theForm.comments;
 
 
         var res = $http.post('/SET_HOUSE_GENERAL_DETAILS', house);
@@ -170,13 +151,13 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     }
 
-    $scope.setHouseFinancialDetails = function () {
+    $scope.setHouseFinancialDetails = function (theForm) {
         house.houseId = houseId;
-        house.purchase_price = $scope.purchase_price;
-        house.treatment_fees = $scope.treatment_fees;
-        house.renovation_fees_for_sale = $scope.renovation_fees_for_sale;
-        house.renovation_fees_for_renting = $scope.renovation_fees_for_renting;
-        house.divers_fees = $scope.divers_fees;
+        house.purchase_price = theForm.purchase_price;
+        house.treatment_fees = theForm.treatment_fees;
+        house.renovation_fees_for_sale = theForm.renovation_fees_for_sale;
+        house.renovation_fees_for_renting = theForm.renovation_fees_for_renting;
+        house.divers_fees = theForm.divers_fees;
 
 
         var res = $http.post('/SET_HOUSE_FINANCIAL_DETAILS', house);

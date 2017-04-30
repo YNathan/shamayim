@@ -67,13 +67,6 @@ app.controller('welcome', ['$scope', '$http', '$state', '$interval', '$mdDialog'
         $state.go('welcome');
 
     }
-   /* $rootScope.isLoged = function () {
-        if (ShamayimFunctions.getIsLoggedCookie() == "true") {
-            return true
-        } else {
-            return false;
-        }
-    }*/
     $rootScope.showLrButton = function () {
         if (ShamayimFunctions.getIsLoggedCookie() == "true") {
             return false

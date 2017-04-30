@@ -24,7 +24,7 @@
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}"
                          style="background-color: #DDDDDD;">
                         <div flex=100>
-                            <form ng-submit="setNewHouseAddress()" class="md-padding">
+                            <form ng-submit="setNewHouseAddress(this)" class="md-padding">
                                 <md-input-container>
                                     <label>{{dictionary.Dictionary[0].State}} :</label>
                                     <input type="text" ng-model="state" name="text" placeholder="ארץ" required/>
@@ -67,7 +67,7 @@
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}"
                          style="background-color: #DDDDDD;">
                         <div flex=100>
-                            <form ng-submit="setHouseGeneralDetails()" class="md-padding">
+                            <form ng-submit="setHouseGeneralDetails(this)" class="md-padding">
                                 <md-input-container>
                                     <label> {{dictionary.Dictionary[0].HouseKind}}:</label>
                                     <input type="number" ng-model="house_kind" name="text" placeholder="מספר בית"
@@ -128,7 +128,7 @@
                     <div layout="row" layout-sm="column" md-colors="{color: 'red-A100', border-color: 'primary-600'}"
                          style="background-color: #DDDDDD;">
                         <div flex=100>
-                            <form ng-submit="setHouseFinancialDetails()" class="md-padding">
+                            <form ng-submit="setHouseFinancialDetails(this)" class="md-padding">
                                 <md-input-container>
                                     <label> {{dictionary.Dictionary[0].PurchasePrice}} :</label>
                                     <input type="number" ng-model="purchase_price" name="text" placeholder="מספר בית"

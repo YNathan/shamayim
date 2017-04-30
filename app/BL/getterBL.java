@@ -440,40 +440,59 @@ public class getterBL {
     public StringBuilder getHousePicturesProfilePaths() {
         StringBuilder sbExistingFilesToReturn = new StringBuilder();
         sbExistingFilesToReturn.append("{ \"files\": [");
+        // Get from the Data base a list of the house that the system has,
         ArrayList<House> lstHouses = getterDB.getListOfHouse();
-        Iterator<House> houseIterator = lstHouses.iterator();
-        House currHouse = null;
-        if (houseIterator.hasNext()) {
-            currHouse = houseIterator.next();
+        // Running over the list of the house from the database
+        Iterator<House> houseDataBaseIterator = lstHouses.iterator();
+        House currHouseFromDataBase = null;
+        if (houseDataBaseIterator.hasNext()) {
+            currHouseFromDataBase = houseDataBaseIterator.next();
         }
-        while (currHouse != null) {
-
-            String szFolderName = currHouse.getState() + "_" + currHouse.getCity() + "_" + currHouse.getStreet() + "_" + currHouse.getHouseNumber() + "/Profile";
+        // Running over thw house while is not null
+        while (currHouseFromDataBase != null) {
+            // Extract the path of the current house the state name with "_"
+            // then the city name the street name and number of the house
+            // adding in the end the "/" then the name of the profile picture folder "profile"
+            String szFolderName = currHouseFromDataBase.getState() + "_" + currHouseFromDataBase.getCity() + "_" + currHouseFromDataBase.getStreet() + "_" + currHouseFromDataBase.getHouseNumber() + "/Profile";
+            // Get a list of files that exist in the folder then because in general we have just profile picture the list will return just one file
             ArrayList<String> lstExistingFiles = fileGetter.getImagesName(HOUSES_DOCUMENTS_DIR, szFolderName);
-            // Littel While run over the picture in the profile folder
-            Iterator<String> ltrFiles = lstExistingFiles.iterator();
+            // Littel While run over the picture in the profile folder as we already sayd there is just one file
+            Iterator<String> ltrProfilePictures = lstExistingFiles.iterator();
             String currFile = null;
-            if (ltrFiles.hasNext()) {
-                currFile = ltrFiles.next();
+            if (ltrProfilePictures.hasNext()) {
+                currFile = ltrProfilePictures.next();
             }
             while (currFile != null) {
+                // Appending the new path that is the profile picture
                 sbExistingFilesToReturn.append("\"" + currFile + "\"");
-                if (ltrFiles.hasNext()) {
+                if (ltrProfilePictures.hasNext()) {
                     sbExistingFilesToReturn.append(",");
-                    currFile = ltrFiles.next();
+                    currFile = ltrProfilePictures.next();
                 } else {
                     currFile = null;
                 }
 
             }
-            if (houseIterator.hasNext()) {
+            // Appending the ',' after the profile image path
+            if (houseDataBaseIterator.hasNext()) {
                 sbExistingFilesToReturn.append(",");
-                currHouse = houseIterator.next();
+                currHouseFromDataBase = houseDataBaseIterator.next();
             } else {
-                currHouse = null;
+                currHouseFromDataBase = null;
             }
         }
+        // Appendig the end of the line the end of json format
         sbExistingFilesToReturn.append("]}");
+        while ((sbExistingFilesToReturn.toString().contains(",]") || (sbExistingFilesToReturn.toString().contains(",,")))) {
+            if (sbExistingFilesToReturn.toString().contains(",]")) {
+                int indexOfWrong = sbExistingFilesToReturn.indexOf(",]");
+                sbExistingFilesToReturn.deleteCharAt(indexOfWrong);
+                System.out.println("Wrong Json Format");
+            }
+            if (sbExistingFilesToReturn.toString().contains(",,")) {
+                System.out.println("Wrong Json Format");
+            }
+        }
         return sbExistingFilesToReturn;
     }
 
@@ -564,12 +583,11 @@ public class getterBL {
     }
 
     // Get Specific Picture
-    public File getSpecificPicture(String szFolderName, String szFileName)  {
+    public File getSpecificPicture(String szFolderName, String szFileName) {
         String szFullFilePath = System.getProperty("user.dir") + "\\HousesDocuments\\" + szFolderName + "\\" + szFileName;
         File fileToReturn = fileGetter.getFile(szFullFilePath);
         return fileToReturn;
     }
-
 
 
     // Get Specific Documents
