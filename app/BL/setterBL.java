@@ -295,4 +295,31 @@ public class setterBL {
 
         return webResponce;
     }
+
+
+    public WebResponce deleteHouse(String szUserName, String szHouseId) {
+        webResponce = new WebResponce();
+        // Check if is a manager so he will have the permission to delete the house
+        if (getterDB.getUser(getterDB.getUserIdByName(szUserName)).getPermissionManager()) {
+            int nHouseId = 0;
+            try {
+                nHouseId = Integer.parseInt(szHouseId);
+            } catch (Exception e) {
+                e.printStackTrace();
+                webResponce.seteSuccessFailed(ESuccessFailed.FAILED);
+                webResponce.setReason("Your House Id Is Not A Number");
+            }
+            if (webResponce.getSuccessFailed() != ESuccessFailed.FAILED) {
+                // INFO
+                play.Logger.info("<BUSINESS_LOGIC> Get house by id : " + nHouseId);
+                House house = getterDB.getHouseById(nHouseId);
+                webResponce = setterDB.deleteHouse(nHouseId);
+            }
+
+            // Delete Files
+        }
+
+
+        return webResponce;
+    }
 }

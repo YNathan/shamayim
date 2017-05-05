@@ -42,7 +42,7 @@
 </head>
 
 <body ng-app="root">
-<md-toolbar style="min-height: 5%; background-color:#80CBC4;" layout="row" layout-align="center center">
+<md-toolbar style="position: fixed; min-height: 5%; background-color:#80CBC4;" layout="row" layout-align="center center">
     <md-button class="menu" ng-click="toggleLeft()" ng-if="isLoged()">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
@@ -58,12 +58,12 @@
         </md-select>
     </md-input-container>
 </md-toolbar>
-
+</br></br></br>
 <div class="container" layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="2"
                 style="background-color: #DDDDDD;">
         <md-toolbar class="md-theme-indigo md-padding" align="center">
-            <h1 class="md-toolbar-tools md-padding" align="center">{{dictionary.Dictionary[0].Menu}}</h1>
+            <center><h1 class="md-toolbar-tools md-padding" align="center">{{dictionary.Dictionary[0].Menu}}</h1></center>
         </md-toolbar>
 
         <md-content layout-margin="" align="center" style="background-color: #DDDDDD;">
@@ -87,7 +87,7 @@
                 <div>{{dictionary.Dictionary[0].SystemManager}}</div>
             </md-button>
             </br>
-            <md-button class="copyright" ng-click="goToCopyright()">
+            <md-button class="copyright" ng-click="Copyright()">
                 <md-icon md-svg-icon="copyright"></md-icon>
                 <div>{{dictionary.Dictionary[0].Copyright}}</div>
             </md-button>

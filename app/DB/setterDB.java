@@ -60,6 +60,36 @@ public class setterDB {
         return webResponce;
     }
 
+
+
+    /**
+     * This method wiil delete a house
+     *
+     * @param nHousId the table that want to delete
+     */
+    public WebResponce deleteHouse(int nHousId) {
+        webResponce = new WebResponce();
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/shamayim?user=" + DATA_BASE_USER_NAME
+                    + "&password=" + DATA_BASE_PASSWORD_NAME);
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement("DELETE FROM " + TABLE_HOUSE_NAME + " WHERE user_id=" + nHousId + ";");
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            webResponce = new WebResponce(ESuccessFailed.FAILED, "Error When Try To Delete A User");
+            e.printStackTrace();
+            play.Logger.error(e.getMessage());
+        } finally {
+            // Closing the resultSet
+            close();
+        }
+        // Commit changes
+        commit();
+        webResponce.setReason("Delete User Success. המשתמש הוסר בהצלחה");
+        return webResponce;
+    }
+
     /**
      * Register a new user into the data-base
      *

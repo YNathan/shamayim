@@ -548,5 +548,20 @@ public class setter {
         return ok(webResponce.getReason());
     }
 
+    public static Result deleteHouse(String szUserName, String szHouseId) {
+        System.out.println("Delete House id : "+szHouseId);
+        webResponce = new WebResponce();
+        if ((szUserName == null) || (szHouseId == null)) {
+            return badRequest("user name or house id is empty");
+        } else {
+            webResponce = setterBL.sendHouseMail(szUserName, szHouseId);
+            if (webResponce.getSuccessFailed() == ESuccessFailed.FAILED) {
+                return badRequest(webResponce.getReason());
+            }
+        }
+
+        return ok(webResponce.getReason());
+    }
+
 
 }

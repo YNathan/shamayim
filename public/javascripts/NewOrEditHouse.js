@@ -11,7 +11,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.state;
     $scope.city;
     $scope.street;
-    $scope.house_number ;
+    $scope.house_number;
     $scope.house_kind = 3;
     $scope.number_of_rooms = 1;
     $scope.number_of_living_rooms = 1;
@@ -54,8 +54,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
     $scope.houseWasChosen = false;
     var houseName = "";
     var tempArr = [];
-    var house = {
-    }
+    var house = {}
 
 
     $scope.dataTabs = {
@@ -184,7 +183,7 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
 
     // House Profile Pictures Section
     $scope.$watch('houseProfilePicture.length', function (newVal, oldVal) {
-      console.log($scope.houseProfilePicture);
+        console.log($scope.houseProfilePicture);
     });
 
     // Upload File To The Server (House Pictures OR Some Else File)
@@ -267,62 +266,62 @@ app.controller('neworedithouse', ['$scope', '$http', '$state', '$interval', '$md
             House: 'default'
         }
     };
-        $http.get('/GET_LIST_OF_HOUSES')
-            .then(function successCallback(response) {
-                    angular.forEach(response.data.houses, function (value, key) {
-                        itemName = {
-                            id: key,
-                            House: value
-                        }
-                        tempArr.push(itemName);
-                        $scope.Houses.availableOptions.push(itemName.House);
-                    }, $scope.Houses);
-                },
-                function error(response) {
-                    showAlert("Your attention please", response.data, "cant load houses");
-                });
+    $http.get('/GET_LIST_OF_HOUSES')
+        .then(function successCallback(response) {
+                angular.forEach(response.data.houses, function (value, key) {
+                    itemName = {
+                        id: key,
+                        House: value
+                    }
+                    tempArr.push(itemName);
+                    $scope.Houses.availableOptions.push(itemName.House);
+                }, $scope.Houses);
+            },
+            function error(response) {
+                showAlert("Your attention please", response.data, "cant load houses");
+            });
 
-                 $scope.$watch('Houses.selectedOption', function (newVal, oldVal) {
-                        if (newVal != oldVal) {
-                            $scope.houseWasChosen = true;
-                            updateEditerHouse(newVal);
+    $scope.$watch('Houses.selectedOption', function (newVal, oldVal) {
+        if (newVal != oldVal) {
+            $scope.houseWasChosen = true;
+            updateEditerHouse(newVal);
 
-                        }
-                    })
-                  function updateEditerHouse(house){
-                      $scope.houseToEdit.house_id = house.house_id;
-                      $scope.houseToEdit.state = house.state;
-                      $scope.houseToEdit.city =house.city;
-                      $scope.houseToEdit.street = house.street;
-                      $scope.houseToEdit.house_number = parseInt(house.house_number);
-                      $scope.houseToEdit.house_kind = 0;
-                      $scope.houseToEdit.number_of_rooms = Math.ceil(house.number_of_rooms);
-                      $scope.houseToEdit.number_of_living_rooms = Math.ceil(house.number_of_living_rooms) ;
-                      $scope.houseToEdit.number_of_kitchens = Math.ceil(house.number_of_kitchens);
-                      $scope.houseToEdit.number_of_bedrooms = Math.ceil(house.number_of_bedrooms);
-                      $scope.houseToEdit.number_of_bathrooms = Math.ceil(house.number_of_bathrooms);
-                      $scope.houseToEdit.location_kind = 0;
-                      $scope.houseToEdit.comments = house.comments;
-                      $scope.houseToEdit.purchase_price = Math.ceil(house.purchase_price);
-                      $scope.houseToEdit.treatment_fees = Math.ceil(house.treatment_fees);
-                      $scope.houseToEdit.divers_fees = Math.ceil(house.divers_fees);
-                      $scope.houseToEdit.renovation_fees_for_sale = Math.ceil(house.renovation_fees_for_sale);
-                      $scope.houseToEdit.renovation_fees_for_renting = Math.ceil(house.renovation_fees_for_renting);
-                  }
+        }
+    })
+    function updateEditerHouse(house) {
+        $scope.houseToEdit.house_id = house.house_id;
+        $scope.houseToEdit.state = house.state;
+        $scope.houseToEdit.city = house.city;
+        $scope.houseToEdit.street = house.street;
+        $scope.houseToEdit.house_number = parseInt(house.house_number);
+        $scope.houseToEdit.house_kind = 0;
+        $scope.houseToEdit.number_of_rooms = Math.ceil(house.number_of_rooms);
+        $scope.houseToEdit.number_of_living_rooms = Math.ceil(house.number_of_living_rooms);
+        $scope.houseToEdit.number_of_kitchens = Math.ceil(house.number_of_kitchens);
+        $scope.houseToEdit.number_of_bedrooms = Math.ceil(house.number_of_bedrooms);
+        $scope.houseToEdit.number_of_bathrooms = Math.ceil(house.number_of_bathrooms);
+        $scope.houseToEdit.location_kind = 0;
+        $scope.houseToEdit.comments = house.comments;
+        $scope.houseToEdit.purchase_price = Math.ceil(house.purchase_price);
+        $scope.houseToEdit.treatment_fees = Math.ceil(house.treatment_fees);
+        $scope.houseToEdit.divers_fees = Math.ceil(house.divers_fees);
+        $scope.houseToEdit.renovation_fees_for_sale = Math.ceil(house.renovation_fees_for_sale);
+        $scope.houseToEdit.renovation_fees_for_renting = Math.ceil(house.renovation_fees_for_renting);
+    }
 
 
-                  $scope.updateHouse = function()
-                  {
-                   var res = $http.post('/UPDATE_HOUSE', $scope.houseToEdit);
-                          res.success(function (data, status, headers, config) {
-                              alert(data);
-                          });
-                          res.error(function (data, status, headers, config) {
-                              alert("failure message: " + JSON.stringify({
-                                      data: data
-                                  }));
-                          });
+    $scope.updateHouse = function () {
+        var res = $http.post('/UPDATE_HOUSE', $scope.houseToEdit);
+        res.success(function (data, status, headers, config) {
+            alert(data);
+        });
+        res.error(function (data, status, headers, config) {
+            alert("failure message: " + JSON.stringify({
+                    data: data
+                }));
+        });
 
-                  }
+    }
+
 
 }]);

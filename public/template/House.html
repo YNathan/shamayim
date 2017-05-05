@@ -41,7 +41,8 @@
             </md-content>
         </section>
         <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
-            <cl-paging flex cl-pages="pagingImage.total" , cl-steps="6" , cl-page-changed="pagingImage.onPageChanged()",
+            <cl-paging flex cl-pages="pagingImage.total" , cl-steps="6" , cl-page-changed="pagingImage.onPageChanged()"
+                       ,
                        cl-align="center center" , cl-current-page="pagingImage.current"></cl-paging>
         </section>
     </center>
@@ -133,12 +134,14 @@
             </md-content>
         </section>
         <section layout="row" layout-padding="" style="background-color: #DDDDDD;">
-            <cl-paging flex cl-pages="pagingDocument.total" , cl-steps="6" , cl-page-changed="pagingDocument.onPageChanged()" ,
+            <cl-paging flex cl-pages="pagingDocument.total" , cl-steps="6" ,
+                       cl-page-changed="pagingDocument.onPageChanged()" ,
                        cl-align="center center" , cl-current-page="pagingDocument.current"></cl-paging>
         </section>
     </center>
 
 </div>
+<center><md-button ng-click="deleteHouse($event,house_id)" ng-if="houseWasLoaded && isManager" style="color:red"> delete this house</md-button></center>
 
 
 

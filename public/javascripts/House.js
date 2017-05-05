@@ -265,6 +265,30 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
                 });
     }
 
+    $scope.deleteHouse = function(ev,szHouseId) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Would you like to delete the house?')
+            .textContent('All the details and the files will be deleted .')
+            .ariaLabel('Lucky day')
+            .targetEvent(ev)
+            .ok('I Agree')
+            .cancel('I Dont Want');
+
+        $mdDialog.show(confirm).then(function() {
+            $http.post("/DELETE_HOUSE/" + ShamayimFunctions.getCookie("username") + "/" + szHouseId)
+                .then(function successCallback(response) {
+                        ShamayimFunctions.showAlert("Operation Success", response.data, "");
+                    },
+                    function error(response) {
+                        ShamayimFunctions.showAlert("Your attention please", response.data, "cant delete house");
+                    });
+        }, function() {
+        });
+    };
+
+
+
 
     // Language Section
 
@@ -365,7 +389,6 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     }
 
 
-
     $scope.currentPageImage = 0;
     $scope.pagingImage = {
         total: totalPages,
@@ -375,7 +398,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     function loadPagesImage() {
         console.log('Current image page is : ' + $scope.pagingImage.current);
         $scope.currentPageImage = $scope.pagingImage.current;
-        $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPageImage -1];
+        $scope.houseImage = $scope.housePathesImages.availableOptions[$scope.currentPageImage - 1];
     }
 
     $scope.currentPageDocuments = 0;
@@ -387,7 +410,7 @@ app.controller('house', ['$scope', '$http', '$state', '$interval', '$mdDialog', 
     function loadPagesDocuments() {
         console.log('Current document page is : ' + $scope.pagingDocument.current);
         $scope.currentPageDocuments = $scope.pagingDocument.current;
-        $scope.houseDocument = $scope.houseDocumentsPathes.availableOptions[$scope.currentPageDocuments -1];
+        $scope.houseDocument = $scope.houseDocumentsPathes.availableOptions[$scope.currentPageDocuments - 1];
     }
 }])
 

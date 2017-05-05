@@ -75,6 +75,43 @@ app.controller('welcome', ['$scope', '$http', '$state', '$interval', '$mdDialog'
         }
     }
 
+    // Dialog
+    $scope.status = '  ';
+    $scope.customFullscreen = false;
+
+    $rootScope.Copyright = function (ev) {
+        $mdDialog.show({
+            controller: 'Copyright',
+            templateUrl: 'template/Copyright.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            flex: 0,
+        })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+
+    function closeAlert() {
+        $mdDialog.hide(alert, "finished");
+        alert = undefined;
+    }
+
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+    }
+
+
 
 }]).directive('lazyLoad', function ($timeout) {
     return {
